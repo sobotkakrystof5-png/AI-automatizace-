@@ -24,10 +24,9 @@ dílčí příkazy izolovaně. To v praxi znamená:
   skutečný aktuální stav projektu (git log/diff, existující soubory, obsah
   DB, co už bylo rozhodnuto v předchozích konverzacích). Nikdy nepředpokládej
   stav "od nuly", pokud sis ho neověřil.
-- **Žádné tiché odhady tam, kde existuje zdroj pravdy.** Texty, ceny,
-  struktura sekcí a obchodní logika jsou v `AvenIQ_obsah_webu.md`. Pokud
-  odpověď v dokumentu není, řekni to výslovně a zeptej se — nevyplňuj mezery
-  vlastní interpretací "co by asi majitel chtěl".
+- **Žádné tiché odhady u textů, cen a obchodní logiky.** Pokud si nejsi
+  jistý přesným zněním, cenou nebo pravidlem, řekni to výslovně a zeptej
+  se — nevyplňuj mezery vlastní interpretací "co by asi majitel chtěl".
 - **Každé netriviální rozhodnutí zdůvodni dopadem**, ne pohodlím
   implementace: co to znamená pro důvěryhodnost značky, pro SEO, pro
   konverzi, pro budoucí údržbu. Krátké "udělal jsem X" nestačí — řekni proč
@@ -64,10 +63,9 @@ začneš další. Toto pravidlo bereš doslova a striktně:
 - Vždy transparentně a konkrétně řekni, co jsi změnil, proč, a jaké to má
   vedlejší efekty (jiné soubory, chování, výkon, náklady). Nic nezamlčuj,
   aby odpověď zněla hladčeji nebo hotověji, než reálně je.
-- Kdykoli si nejsi jistý — technicky, obchodně, nebo v interpretaci
-  `AvenIQ_obsah_webu.md` — **zastav se a zeptej se**, než uděláš vlastní
-  odhad a pokračuješ na jeho základě. Nejistota se řeší otázkou, ne tichým
-  předpokladem.
+- Kdykoli si nejsi jistý — technicky, obchodně, nebo obsahově —
+  **zastav se a zeptej se**, než uděláš vlastní odhad a pokračuješ na jeho
+  základě. Nejistota se řeší otázkou, ne tichým předpokladem.
 - Hledej vždy nejdřív řešení, ne důvod, proč něco nejde — ale pokud něco
   reálně není možné nebo rozumné (technicky, právně, časově), řekni to
   na rovinu a rovnou nabídni nejbližší reálně dosažitelnou alternativu.
@@ -103,12 +101,6 @@ neověřené předpoklady tam, kde je možné si stav ověřit, a snaha o
 maximálně kvalitní, udržitelné řešení v rámci každého jednotlivého
 dotazu i session — ne jen "funguje to teď".
 
-## Zdroj pravdy pro obsah
-
-`AvenIQ_obsah_webu.md` je jediný a závazný zdroj textů, cen a obchodní
-logiky. Kurzívou uvedené poznámky v tomto dokumentu jsou instrukce pro
-tebe/copywritera, ne text pro web.
-
 ## Tech stack (neměnitelný bez výslovného souhlasu)
 
 Next.js 16 (App Router, TypeScript strict), Tailwind CSS v4 (CSS-first
@@ -120,21 +112,50 @@ in-memory stavy mezi requesty). Přesné verze (Next 16 / Tailwind v4)
 odsouhlaseny s uživatelem ve Fázi 0 (2026-07-17) místo generického "14+" —
 viz `AskUserQuestion` v té fázi.
 
-## Design systém (závazné hex hodnoty)
+## Cílová skupina a obsahová pravidla (od 2026-07-17)
 
-| Token | Hex | Použití |
+`AvenIQ_obsah_webu.md` byl na žádost uživatele smazán — web se
+restrukturalizuje na vícestránkový a přestal se tímto dokumentem řídit.
+Aktuálně platné, uživatelem potvrzené fakty nahrazující starý zdroj
+pravdy:
+
+- **Cílová skupina:** živnostníci, agentury, malé a středně velké firmy,
+  účetní a marketingové firmy a podobné obory. Copy napříč webem se má
+  touto skupinou řídit, ne zůstávat obecné "pro všechny firmy".
+- **Tým:** AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — žádná
+  sekce (např. "Náš tým") nemá předstírat víc lidí, než reálně existuje.
+- Existující texty na homepage a podstránkách pocházejí z předchozí verze
+  podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
+  segment a styl, ber je jako prozatímní, ne jako potvrzený text.
+
+## Design systém (zjednodušená tmavá paleta, rozhodnuto 2026-07-17)
+
+Nahrazuje původní pětibarevnou paletu (navy/teal/cream/gold/navbar) na
+žádost uživatele — cíl: tmavý, elegantní "tech/luxury" vzhled s minimem
+vlastních barev, postavený primárně na standardní Tailwind CSS škále
+(`zinc`), ne na vlastních pojmenovaných hex hodnotách.
+
+| Token | Zdroj | Použití |
 |---|---|---|
-| `brand.navy` | `#1E3A5F` | Hero, Proces práce, O nás |
-| `brand.teal` | `#4F8074` | Ikony, doplňkové prvky, karty |
-| `brand.cream` | `#F5F2EA` | Světlé sekce, pozadí |
-| `brand.gold` | `#B98B4E` | **Výhradně** CTA tlačítko a sekce Záruka |
-| `brand.navbar` | `#F3F6F4` | Horní lišta |
+| Pozadí (base) | Tailwind `zinc-950` | Základní tmavé pozadí stránky |
+| Povrch/karty | Tailwind `zinc-900` / `zinc-800` | Karty, oddělené sekce, ohraničení |
+| Text primární | Tailwind `zinc-50` | Nadpisy, hlavní text |
+| Text tlumený | Tailwind `zinc-400` | Popisky, sekundární text |
+| `brand.gold` | vlastní token, `#B98B4E` (ponecháno z původní palety) | **Výhradně** CTA tlačítko a klíčové akcenty — jediná vlastní barva v systému |
 
-Zlatá barva se nikdy nepoužívá dekorativně. Při nejistotě, kam barva patří →
-tlumená modrá/teal, nikdy zlatá. Barvy vždy jako pojmenované Tailwind
-tokeny přes `@theme` blok v `app/globals.css` (Tailwind v4, CSS-first),
-nikdy natvrdo v komponentách a nikdy v samostatném `tailwind.config.ts`
-(ten v projektu není a nemá se zakládat).
+Pravidla:
+- Žádné další vlastní barvy bez schválení — pokud je potřeba odstín mimo
+  `zinc` škálu a `brand.gold`, nejdřív navrhnout a počkat na souhlas.
+- `brand.gold` zůstává vyhrazený pro CTA a klíčové akcenty, nepoužívat
+  plošně/dekorativně (stejný princip jako dřív, jen širší formulace).
+- `brand.gold` je pojmenovaný token přes `@theme` blok v
+  `app/globals.css` (Tailwind v4, CSS-first); zbytek palety čerpá přímo ze
+  standardní Tailwind `zinc` škály bez vlastní definice. Nikdy natvrdo v
+  komponentách a nikdy v samostatném `tailwind.config.ts` (ten v projektu
+  není a nemá se zakládat).
+- **Tohle je pracovní návrh implementace** — přesný odstín akcentu (zůstává
+  zlatá, nebo se nahradí jinou barvou) se potvrzuje náhledem na
+  `/design-preview`, než se rozšíří napříč všemi komponentami.
 
 ## Routing — pevná pravidla
 
@@ -157,10 +178,12 @@ označený placeholder `[DOPLNIT PRÁVNÍ TEXT]`.
 
 ## Co se nikdy nedělá
 
-- Měnit ceny, čísla, motta nebo marketingová tvrzení oproti
-  `AvenIQ_obsah_webu.md`.
+- Měnit ceny, čísla, motta nebo marketingová tvrzení webu bez výslovného
+  souhlasu uživatele.
 - Publikovat Reference/case studies bez ≥ 2 publikovaných záznamů.
-- Používat zlatý akcent mimo CTA a Záruku.
+- Používat zlatý akcent mimo CTA a klíčové akcenty (viz Design systém).
+- Předstírat větší tým, než reálně existuje (aktuálně jen Kryštof
+  Sobotka).
 - Přidávat nové závislosti/knihovny "protože jsou lepší" bez návrhu a
   souhlasu — zvlášť ne ORM, CSS framework nebo state management navíc.
 - Commitovat `.env`/`DATABASE_URL`.

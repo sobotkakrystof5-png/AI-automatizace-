@@ -8,6 +8,18 @@ import { SITE_URL } from "@/lib/constants";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: "/", changeFrequency: "monthly" as const, priority: 1 },
+    { path: "/automatizace", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/proc-automatizace", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/cenik", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/proces-prace", changeFrequency: "monthly" as const, priority: 0.8 },
+    {
+      path: "/jak-tvorime-automatizace",
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    { path: "/zaruka", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/faq", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/o-nas", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/vop", changeFrequency: "yearly" as const, priority: 0.3 },
     {
       path: "/ochrana-osobnich-udaju",

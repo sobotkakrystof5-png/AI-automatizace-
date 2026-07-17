@@ -3,8 +3,8 @@
 // viz kickoff prompt, bod 5.
 export const ZAKAZIQ_BOOKING_URL = "[DOPLNIT_URL_ZAKAZIQ]";
 
-// Produkční doména webu — zatím neznámá (žádná doména nebyla potvrzena
-// v AvenIQ_obsah_webu.md ani jinde v repu). Používá se pro absolutní URL
+// Produkční doména webu — zatím neznámá (žádná doména nebyla nikde
+// v repu potvrzena). Používá se pro absolutní URL
 // v sitemap.xml/robots.txt; před deployem MUSÍ být nastavena přes env
 // proměnnou SITE_URL na Vercelu, jinak sitemap obsahuje viditelný
 // placeholder.

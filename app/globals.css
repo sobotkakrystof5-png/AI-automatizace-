@@ -1,16 +1,14 @@
 @import "tailwindcss";
 
 /*
- * Design tokeny — barvy schválené v AvenIQ_obsah_webu.md (sekce
- * "Design a barevná paleta"). brand-gold se v komponentách smí použít
- * výhradně pro CTA tlačítko a sekci Záruka — viz claude.md.
+ * Design tokeny — zjednodušená tmavá paleta (rozhodnuto 2026-07-17,
+ * nahrazuje starou navy/teal/cream/navbar paletu). brand-gold je jediná
+ * vlastní barva v systému — smí se použít výhradně pro CTA tlačítko a
+ * klíčové akcenty, viz claude.md. Zbytek palety (pozadí, povrchy, text)
+ * čerpá přímo ze standardní Tailwind `zinc` škály bez vlastní definice.
  */
 @theme {
-  --color-brand-navy: #1e3a5f;
-  --color-brand-teal: #4f8074;
-  --color-brand-cream: #f5f2ea;
   --color-brand-gold: #b98b4e;
-  --color-brand-navbar: #f3f6f4;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -28,8 +26,8 @@
 }
 
 body {
-  background: var(--color-brand-cream);
-  color: var(--color-brand-navy);
+  background: var(--color-zinc-950);
+  color: var(--color-zinc-50);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 

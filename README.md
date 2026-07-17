@@ -13,12 +13,6 @@ zakladatel Kryštof Sobotka).
 - [Zod](https://zod.dev/) pro validaci
 - Cíl nasazení: [Vercel](https://vercel.com/)
 
-## Zdroj pravdy pro obsah
-
-Veškeré texty, ceny a obchodní logika vycházejí výhradně z
-[`AvenIQ_obsah_webu.md`](./AvenIQ_obsah_webu.md). Nic se neparafrázuje ani
-nevymýšlí nad rámec tohoto dokumentu.
-
 ## Provozní pravidla
 
 Trvalá pravidla pro práci na tomto repozitáři (design systém, fázová

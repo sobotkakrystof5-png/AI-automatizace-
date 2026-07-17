@@ -10,7 +10,6 @@
 
 1. Vytvořte nový prázdný git repozitář / složku projektu.
 2. Do rootu vložte tyto soubory (už existují z předchozí práce):
-   - `AvenIQ_obsah_webu.md` — obsahový/copy základ, jediný zdroj pravdy pro texty
    - `schema.ts`, `db.ts`, `drizzle.config.ts` — hotové databázové schéma
    - `actions.ts` — hotové server actions pro formulář a booking webhook
 3. Spusťte Claude Code ve složce projektu a jako úplně první zprávu mu vložte celý text níže od nadpisu "PROMPT PRO AGENTA".
@@ -20,10 +19,8 @@
 
 Jsi seniorní full-stack vývojář. Stavíš marketingový web pro AvenIQ —
 jednočlenný projekt AI automatizace pro malé a střední firmy (majitel:
-Kryštof Sobotka). V rootu projektu máš k dispozici
-`AvenIQ_obsah_webu.md`, který je jediný a závazný zdroj textů, cen,
-sekcí a poznámek. Kdykoli si nejsi jistý copy textem, strukturou sekce
-nebo obchodní logikou, nejdřív nahlédni tam — nevymýšlej ani
+Kryštof Sobotka). Kdykoli si nejsi jistý copy textem, cenou, strukturou
+sekce nebo obchodní logikou, zastav se a zeptej se — nevymýšlej ani
 neparafrázuj.
 
 ### 0. Nejdůležitější pravidlo
@@ -80,14 +77,31 @@ komponentách.
 
 ### 3. Struktura stránek (routing)
 
+> **Revize 2026-07-17:** původní verze tohoto bodu (jednostránková
+> homepage se všemi sekcemi na `/`) byla na výslovné zadání uživatele
+> nahrazena vícestránkovou strukturou — každá obsahová sekce z bodu 4
+> (Ceník, Proces práce, O nás, Proč automatizace, Jak tvoříme
+> automatizace, Záruka, FAQ, přehled automatizací) dostává vlastní URL.
+> Homepage `/` je nově přehledový hub s krátkými teasery a odkazy na
+> tyto stránky. Historie původního jednostránkového zadání je zachována
+> v git historii tohoto souboru.
+
 ```
-/                                  → homepage (všechny sekce, viz bod 4)
-/automatizace/marketing            → podstránka z "Co vše jde automatizovat"
+/                                  → homepage (hub — viz bod 4)
+/automatizace                      → přehled "Co vše jde automatizovat" (6 oblastí s odkazy na podstránky)
+/automatizace/marketing            → podstránka z přehledu automatizací
 /automatizace/interni-procesy      → tamtéž
 /automatizace/zakaznicka-podpora   → tamtéž
 /automatizace/prace-s-daty         → tamtéž
 /automatizace/reporty              → tamtéž
 /automatizace/ucetnictvi           → tamtéž
+/proc-automatizace                 → Proč automatizace, a ne jen ChatGPT (vč. srovnávací tabulky)
+/cenik                             → Ceník (3 pásma + audit + průběžná podpora)
+/proces-prace                      → Proces práce (6 kroků)
+/jak-tvorime-automatizace          → Jak tvoříme automatizace
+/zaruka                            → Záruka a dlouhodobý závazek
+/faq                               → Časté otázky (FAQ, akordeon)
+/o-nas                             → O nás (příběh, filozofie, kdo za tím stojí, zakladatel)
 /vop                               → Všeobecné obchodní podmínky
 /ochrana-osobnich-udaju            → GDPR zásady
 /cookies                           → Zásady cookies
@@ -102,35 +116,45 @@ pravidlo je v obsahovém dokumentu výslovně zdůvodněné (prázdná
 reference škodí důvěryhodnosti víc než chybějící sekce) — neobcházej
 ho "prázdným stavem" nebo placeholder referencemi.
 
-Podstránky pro jednotlivé oblasti automatizace (marketing, interní
-procesy...) mají mít vlastní SEO titulek a meta popis odvozený z obsahu
-dané sekce v dokumentu — ne generický.
+Všechny samostatné obsahové stránky (nejen `/automatizace/*`) mají mít
+vlastní SEO titulek a meta popis odvozený z obsahu příslušné sekce v
+dokumentu — ne generický.
 
-### 4. Homepage — pořadí sekcí (závazné)
+### 4. Homepage (hub) a obsahové stránky — pořadí a obsah (závazné)
 
-1. Navbar (sticky, CTA tlačítko "Rezervovat konzultaci zdarma")
+Homepage `/`, v tomto pořadí:
+
+1. Navbar (sticky, nav odkazy na všechny obsahové stránky + CTA
+   tlačítko "Rezervovat konzultaci zdarma")
 2. Hero (motto + poslání + CTA)
 3. AvenIQ v číslech
 4. V čem jsme jiní (4 pilíře)
 5. Naše poslání
-6. Co vše jde automatizovat (6 oblastí, každá s odkazem na podstránku)
-7. Proč automatizace, a ne jen ChatGPT (včetně srovnávací tabulky)
-8. Ceník (3 pásma + audit + průběžná podpora)
-9. Proces práce (6 kroků)
-10. Jak tvoříme automatizace
-11. Záruka a dlouhodobý závazek
-12. Časté otázky (FAQ, akordeon)
+6. Teaser "Co vše jde automatizovat" → odkaz na `/automatizace`
+7. Teaser "Proč automatizace, a ne jen ChatGPT" → odkaz na `/proc-automatizace`
+8. Teaser "Ceník" → odkaz na `/cenik`
+9. Teaser "Proces práce" → odkaz na `/proces-prace`
+10. Teaser "Jak tvoříme automatizace" → odkaz na `/jak-tvorime-automatizace`
+11. Teaser "Záruka a dlouhodobý závazek" → odkaz na `/zaruka`
+12. Teaser "Časté otázky" → odkaz na `/faq`
 13. Spolupráce (posouvající se pás log — EstatIQ, ZakazIQ, VIZEON)
-14. O nás (příběh, filozofie, kdo za tím stojí, zakladatel)
-15. Finální CTA sekce (rezervace + krátký formulář)
-16. Footer (odkazy na VOP, GDPR, cookies)
+14. Teaser "O nás" → odkaz na `/o-nas`
+15. Finální CTA sekce (rezervace + krátký formulář — zůstává výhradně
+    na homepage, podstránky mají jen CTA tlačítko na ZakazIQ bez
+    formuláře)
+16. Footer (odkazy na všechny obsahové stránky + VOP, GDPR, cookies)
 
-Přesné texty, nadpisy a mikrotexty ber doslova z
-`AvenIQ_obsah_webu.md`. Smíš jen drobně upravit gramatiku/interpunkci
-kvůli HTML kontextu (např. rozdělit odstavec), ale nesmíš přeformulovávat
-marketingové texty, čísla ani tvrzení. Pokud sekce v dokumentu obsahuje
-poznámku v kurzívě začínající "(...)", je to instrukce pro
-tebe/copywritera, ne text pro web — nezobrazuj ji uživatelům.
+Obsahové stránky (`/cenik`, `/proces-prace`, `/jak-tvorime-automatizace`,
+`/proc-automatizace`, `/zaruka`, `/faq`, `/o-nas`, `/automatizace`)
+obsahují stejný text, jaký byl dřív na homepage, beze změny. Teasery na
+homepage smí použít jen první větu/krátký úryvek existujícího textu dané
+sekce, ne nově vymyšlené shrnutí — aby nedocházelo k duplicitě ani
+rozporu marketingových tvrzení mezi hubem a podstránkou.
+
+Přesné texty, nadpisy a mikrotexty ber doslova z existujícího obsahu
+webu. Smíš jen drobně upravit gramatiku/interpunkci kvůli HTML kontextu
+(např. rozdělit odstavec), ale nesmíš přeformulovávat marketingové
+texty, čísla ani tvrzení.
 
 Sekce "AvenIQ v číslech" a "V čem jsme jiní" obsahují reálná, poctivě
 malá čísla (2 roky, 24 hodin, 3 produkty) — nevylepšuj je, nezaokrouhluj
@@ -207,8 +231,8 @@ ne JS knihovna navíc).
 
 ### 10. Co agent NESMÍ dělat
 
-- Nesmí měnit ceny, čísla, motta ani marketingová tvrzení oproti
-  `AvenIQ_obsah_webu.md`.
+- Nesmí měnit ceny, čísla, motta ani marketingová tvrzení webu bez
+  výslovného souhlasu uživatele.
 - Nesmí publikovat sekci Reference/case studies, dokud v DB nejsou ≥2
   `is_published = true` záznamy.
 - Nesmí používat zlatý akcent mimo CTA tlačítko a sekci Záruka.

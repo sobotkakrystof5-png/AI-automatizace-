@@ -44,13 +44,13 @@ export default function CookieConsent() {
     <div
       role="dialog"
       aria-label="Nastavení cookies"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-navy/10 bg-white px-6 py-5 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] sm:px-8"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800 bg-zinc-900 px-6 py-5 shadow-[0_-4px_16px_rgba(0,0,0,0.4)] sm:px-8"
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-brand-navy/80">
+        <p className="text-sm text-zinc-400">
           Používáme nutné cookies pro chod webu a — jen s vaším souhlasem —
           analytické cookies pro vyhodnocení návštěvnosti. Víc v{" "}
-          <Link href="/cookies" className="underline hover:text-brand-navy">
+          <Link href="/cookies" className="underline hover:text-zinc-50">
             Zásadách cookies
           </Link>
           .
@@ -59,14 +59,14 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => saveConsent("necessary")}
-            className="rounded-md border border-brand-navy/20 px-4 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-teal"
+            className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-50 transition-colors hover:border-brand-gold"
           >
             Pouze nutné
           </button>
           <button
             type="button"
             onClick={() => saveConsent("all")}
-            className="rounded-md bg-brand-navy px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-navy/90"
+            className="rounded-md bg-brand-gold px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
           >
             Přijmout vše
           </button>

@@ -55,30 +55,30 @@ const comparisonRows = [
 
 export default function WhyAutomation() {
   return (
-    <section id="proc-automatizace" className="bg-white">
+    <section>
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Proč automatizace, a ne jen ChatGPT
-        </h2>
-        <p className="mt-4 max-w-3xl text-brand-navy/80">
+        </h1>
+        <p className="mt-4 max-w-3xl text-zinc-400">
           {'Spousta firem si myslí, že "mít AI" znamená občas otevřít ChatGPT a nechat si tam něco vygenerovat. To je dobrý začátek — ale není to řešení. ChatGPT odpoví, když se ho zeptáte. Nespustí se sám, nezná vaše systémy, nepamatuje si kontext vaší firmy a hlavně — pořád je tu člověk, který musí ručně kopírovat data tam a zpátky.'}
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {points.map((point) => (
             <div key={point.title}>
-              <h3 className="text-xl font-bold text-brand-teal">
+              <h3 className="text-xl font-bold text-zinc-50">
                 {point.title}
               </h3>
-              <p className="mt-2 text-brand-navy/80">{point.body}</p>
+              <p className="mt-2 text-zinc-400">{point.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 overflow-x-auto rounded-lg border border-brand-navy/10">
+        <div className="mt-12 overflow-x-auto rounded-lg border border-zinc-800">
           <table className="w-full min-w-[480px] border-collapse text-left text-sm">
             <thead>
-              <tr className="bg-brand-navy text-brand-cream">
+              <tr className="bg-zinc-900 text-zinc-50">
                 <th scope="col" className="px-4 py-3 font-semibold">
                   <span className="sr-only">Kritérium</span>
                 </th>
@@ -94,27 +94,23 @@ export default function WhyAutomation() {
               {comparisonRows.map((row, i) => (
                 <tr
                   key={row.label}
-                  className={i % 2 === 0 ? "bg-brand-cream" : "bg-white"}
+                  className={i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900"}
                 >
                   <th
                     scope="row"
-                    className="px-4 py-3 font-medium text-brand-navy"
+                    className="px-4 py-3 font-medium text-zinc-50"
                   >
                     {row.label}
                   </th>
-                  <td className="px-4 py-3 text-brand-navy/80">
-                    {row.manual}
-                  </td>
-                  <td className="px-4 py-3 text-brand-navy/80">
-                    {row.automated}
-                  </td>
+                  <td className="px-4 py-3 text-zinc-400">{row.manual}</td>
+                  <td className="px-4 py-3 text-zinc-400">{row.automated}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <p className="mt-10 text-xl font-semibold text-brand-navy">
+        <p className="mt-10 text-xl font-semibold text-zinc-50">
           {'Nejde o to mít "AI ve firmě". Jde o to, aby AI dělala práci za vás — ne abyste vy dělali práci s AI.'}
         </p>
       </div>

@@ -39,24 +39,24 @@ export default async function AutomationAreaPage({ params }: Props) {
   }
 
   return (
-    <section className="bg-brand-cream">
+    <section>
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
         <Link
-          href="/#co-jde-automatizovat"
-          className="text-sm font-medium text-brand-navy underline hover:text-brand-teal"
+          href="/automatizace"
+          className="text-sm font-medium text-zinc-50 underline hover:text-brand-gold"
         >
           ← Zpět na přehled automatizací
         </Link>
 
-        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h1 className="mt-6 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           {area.title}
         </h1>
-        <p className="mt-4 text-xl text-brand-navy/80">{area.lead}</p>
+        <p className="mt-4 text-xl text-zinc-400">{area.lead}</p>
 
         <ul className="mt-8 space-y-4">
           {area.points.map((point) => (
-            <li key={point} className="flex gap-3 text-brand-navy/80">
-              <span aria-hidden className="text-brand-teal">
+            <li key={point} className="flex gap-3 text-zinc-400">
+              <span aria-hidden className="text-zinc-600">
                 •
               </span>
               <span>{point}</span>
@@ -64,24 +64,24 @@ export default async function AutomationAreaPage({ params }: Props) {
           ))}
         </ul>
 
-        <div className="mt-12 rounded-lg border border-brand-navy/10 bg-white p-6 sm:p-8">
-          <p className="text-lg font-semibold text-brand-navy">
+        <div className="mt-12 rounded-lg border border-zinc-800 bg-zinc-900 p-6 sm:p-8">
+          <p className="text-lg font-semibold text-zinc-50">
             Řešíte podobný proces ve svém provozu?
           </p>
-          <p className="mt-2 text-brand-navy/80">
+          <p className="mt-2 text-zinc-400">
             Probereme ho na nezávazné konzultaci a řekneme vám na rovinu, jestli
             se automatizace vyplatí.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
               href={ZAKAZIQ_BOOKING_URL}
-              className="inline-flex justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90"
+              className="inline-flex justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
             >
               Rezervovat konzultaci zdarma
             </a>
             <Link
               href="/#kontakt"
-              className="inline-flex justify-center rounded-md border border-brand-navy/20 px-6 py-3 font-semibold text-brand-navy transition-colors hover:border-brand-teal"
+              className="inline-flex justify-center rounded-md border border-zinc-700 px-6 py-3 font-semibold text-zinc-50 transition-colors hover:border-brand-gold"
             >
               nebo napsat pár řádků
             </Link>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const faqs = [
   {
     q: "Co když se automatizace po čase rozbije?",
@@ -26,7 +28,7 @@ const faqs = [
   {
     q: "Proč bych si to nezvládl/a jen v ChatGPT?",
     a: "ChatGPT odpoví, když se zeptáte — ale nespustí se sám a nepropojí vaše systémy. Automatizace běží na pozadí bez vašeho zásahu a škáluje se s objemem práce. Víc v sekci ",
-    link: { href: "#proc-automatizace", label: "Proč automatizace, a ne jen ChatGPT" },
+    link: { href: "/proc-automatizace", label: "Proč automatizace, a ne jen ChatGPT" },
     afterLink: " výše.",
   },
   {
@@ -61,24 +63,24 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section className="bg-brand-cream">
+    <section>
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Časté otázky
-        </h2>
+        </h1>
 
         <div className="mt-10 space-y-3">
           {faqs.map((faq) => (
             <details
               key={faq.q}
-              className="group rounded-lg border border-brand-navy/10 bg-white p-5"
+              className="group rounded-lg border border-zinc-800 bg-zinc-900 p-5"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-brand-navy marker:content-none">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-zinc-50 marker:content-none">
                 {faq.q}
                 <svg
                   aria-hidden
                   viewBox="0 0 20 20"
-                  className="h-4 w-4 shrink-0 text-brand-teal transition-transform group-open:rotate-180"
+                  className="h-4 w-4 shrink-0 text-brand-gold transition-transform group-open:rotate-180"
                 >
                   <path
                     fill="currentColor"
@@ -86,15 +88,15 @@ export default function FAQ() {
                   />
                 </svg>
               </summary>
-              <p className="mt-3 text-brand-navy/80">
+              <p className="mt-3 text-zinc-400">
                 {faq.a}
                 {faq.link && (
-                  <a
+                  <Link
                     href={faq.link.href}
-                    className="text-brand-navy underline hover:text-brand-teal"
+                    className="text-zinc-50 underline hover:text-brand-gold"
                   >
                     {faq.link.label}
-                  </a>
+                  </Link>
                 )}
                 {faq.afterLink}
               </p>

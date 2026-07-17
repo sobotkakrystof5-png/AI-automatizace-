@@ -28,21 +28,21 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section id="proces-prace" className="bg-brand-navy text-brand-cream">
+    <section className="bg-zinc-900">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Proces práce
-        </h2>
+        </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {steps.map((step) => (
             <div key={step.title}>
-              <h3 className="text-lg font-semibold text-brand-cream">
+              <h3 className="text-lg font-semibold text-zinc-50">
                 {step.title}
               </h3>
-              <p className="mt-2 text-brand-cream/80">{step.body}</p>
+              <p className="mt-2 text-zinc-400">{step.body}</p>
               {step.note && (
-                <p className="mt-2 text-sm italic text-brand-cream/60">
+                <p className="mt-2 text-sm italic text-zinc-500">
                   {step.note}
                 </p>
               )}

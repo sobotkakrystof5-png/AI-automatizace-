@@ -1,5 +1,5 @@
-// Jediný zdroj dat pro oblasti automatizace (viz AvenIQ_obsah_webu.md,
-// sekce "Co vše jde automatizovat"). Sdíleno mezi homepage přehledem
+// Jediný zdroj dat pro oblasti automatizace ("Co vše jde automatizovat").
+// Sdíleno mezi homepage přehledem
 // (AutomationAreas) a jednotlivými podstránkami /automatizace/[slug],
 // aby text nemohl mezi oběma místy zdrift.ovat.
 export type AutomationArea = {

@@ -21,25 +21,21 @@ const pillars = [
 
 export default function Differentiators() {
   return (
-    <section className="bg-white">
+    <section>
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           V čem jsme jiní
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {pillars.map((p) => (
             <div
               key={p.title}
-              className="rounded-lg border border-brand-navy/10 p-6"
+              className="rounded-lg border border-zinc-800 bg-zinc-900 p-6"
             >
-              <h3 className="text-xl font-bold text-brand-teal">
-                {p.title}
-              </h3>
-              <p className="mt-3 text-brand-navy/80">{p.body}</p>
+              <h3 className="text-xl font-bold text-zinc-50">{p.title}</h3>
+              <p className="mt-3 text-zinc-400">{p.body}</p>
               {p.tagline && (
-                <p className="mt-4 font-medium text-brand-navy">
-                  {p.tagline}
-                </p>
+                <p className="mt-4 font-medium text-zinc-50">{p.tagline}</p>
               )}
             </div>
           ))}

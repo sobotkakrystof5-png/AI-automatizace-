@@ -19,15 +19,15 @@ const sections = [
 
 export default function CookiesPage() {
   return (
-    <section className="bg-brand-cream">
+    <section>
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
-        <h1 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Zásady cookies
         </h1>
         <LegalDraftNotice />
 
-        <div className="mt-6 rounded-md border border-brand-teal/30 bg-white px-4 py-3 text-sm text-brand-navy/80">
-          <strong className="font-semibold text-brand-navy">
+        <div className="mt-6 rounded-md border border-brand-gold/30 bg-zinc-900 px-4 py-3 text-sm text-zinc-400">
+          <strong className="font-semibold text-zinc-50">
             Technická poznámka:
           </strong>{" "}
           web aktuálně nespouští žádné analytické ani marketingové skripty.

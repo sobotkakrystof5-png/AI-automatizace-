@@ -21,9 +21,9 @@ const sections = [
 
 export default function VopPage() {
   return (
-    <section className="bg-brand-cream">
+    <section>
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
-        <h1 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Všeobecné obchodní podmínky
         </h1>
         <LegalDraftNotice />

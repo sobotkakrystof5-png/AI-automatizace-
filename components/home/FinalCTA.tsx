@@ -19,34 +19,34 @@ export default function FinalCTA() {
   );
 
   return (
-    <section id="kontakt" className="bg-brand-cream">
+    <section id="kontakt" className="bg-zinc-900">
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
+        <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
           Chcete zpátky svůj čas?
         </h2>
-        <p className="mt-4 text-xl text-brand-navy/80">
+        <p className="mt-4 text-xl text-zinc-400">
           Napište pár vět o tom, co vás brzdí — ozvu se do 24 hodin s
           konkrétním nápadem, ne s prodejní řečí.
         </p>
 
         <a
           href={ZAKAZIQ_BOOKING_URL}
-          className="mt-8 inline-flex rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90"
+          className="mt-8 inline-flex rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
         >
           Rezervovat konzultaci zdarma
         </a>
 
-        <p className="mt-4 text-sm text-brand-navy/80">
+        <p className="mt-4 text-sm text-zinc-400">
           nebo napište pár řádků níž ↓
         </p>
 
-        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-brand-navy/10 pt-8">
+        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-zinc-800 pt-8">
           {stats.map((stat) => (
             <div key={stat.label}>
-              <p className="text-xl font-bold text-brand-teal">
+              <p className="text-xl font-bold text-brand-gold">
                 {stat.value}
               </p>
-              <p className="text-sm text-brand-navy/80">{stat.label}</p>
+              <p className="text-sm text-zinc-400">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -54,10 +54,10 @@ export default function FinalCTA() {
         {state.success ? (
           <div
             role="status"
-            className="mt-8 rounded-lg border border-brand-teal/30 bg-white p-6"
+            className="mt-8 rounded-lg border border-brand-gold/30 bg-zinc-950 p-6"
           >
-            <p className="font-semibold text-brand-navy">Díky, mám to.</p>
-            <p className="mt-2 text-brand-navy/80">
+            <p className="font-semibold text-zinc-50">Díky, mám to.</p>
+            <p className="mt-2 text-zinc-400">
               Ozvu se osobně, nejpozději do 24 hodin — každý den v týdnu.
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function FinalCTA() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-brand-navy"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Jméno *
               </label>
@@ -75,14 +75,14 @@ export default function FinalCTA() {
                 name="name"
                 type="text"
                 required
-                className="mt-1 w-full rounded-md border border-brand-navy/20 bg-white px-3 py-2 text-brand-navy focus:border-brand-teal focus:outline-none"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>
 
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-brand-navy"
+                className="block text-sm font-medium text-zinc-50"
               >
                 E-mail *
               </label>
@@ -91,14 +91,14 @@ export default function FinalCTA() {
                 name="email"
                 type="email"
                 required
-                className="mt-1 w-full rounded-md border border-brand-navy/20 bg-white px-3 py-2 text-brand-navy focus:border-brand-teal focus:outline-none"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>
 
             <div>
               <label
                 htmlFor="blocker"
-                className="block text-sm font-medium text-brand-navy"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Co vás ve firmě aktuálně nejvíc zdržuje? *
               </label>
@@ -108,14 +108,14 @@ export default function FinalCTA() {
                 required
                 rows={4}
                 placeholder="např. ručně přepisujeme objednávky mezi e-shopem a účetnictvím"
-                className="mt-1 w-full rounded-md border border-brand-navy/20 bg-white px-3 py-2 text-brand-navy focus:border-brand-teal focus:outline-none"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>
 
             <div>
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-brand-navy"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Telefon
               </label>
@@ -123,14 +123,14 @@ export default function FinalCTA() {
                 id="phone"
                 name="phone"
                 type="tel"
-                className="mt-1 w-full rounded-md border border-brand-navy/20 bg-white px-3 py-2 text-brand-navy focus:border-brand-teal focus:outline-none"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>
 
             <div>
               <label
                 htmlFor="companyUrl"
-                className="block text-sm font-medium text-brand-navy"
+                className="block text-sm font-medium text-zinc-50"
               >
                 Odkaz na web firmy
               </label>
@@ -139,7 +139,7 @@ export default function FinalCTA() {
                 name="companyUrl"
                 type="url"
                 placeholder="https://"
-                className="mt-1 w-full rounded-md border border-brand-navy/20 bg-white px-3 py-2 text-brand-navy focus:border-brand-teal focus:outline-none"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>
 
@@ -149,13 +149,13 @@ export default function FinalCTA() {
                 name="consent"
                 type="checkbox"
                 required
-                className="mt-1 h-4 w-4 rounded border-brand-navy/30 text-brand-teal focus:ring-brand-teal"
+                className="mt-1 h-4 w-4 rounded border-zinc-700 text-brand-gold focus:ring-brand-gold"
               />
-              <label htmlFor="consent" className="text-sm text-brand-navy/80">
+              <label htmlFor="consent" className="text-sm text-zinc-400">
                 Souhlasím se zpracováním osobních údajů podle{" "}
                 <a
                   href="/ochrana-osobnich-udaju"
-                  className="underline hover:text-brand-navy"
+                  className="underline hover:text-zinc-50"
                 >
                   Zásad ochrany osobních údajů
                 </a>
@@ -164,7 +164,7 @@ export default function FinalCTA() {
             </div>
 
             {state.error && (
-              <p role="alert" className="text-sm text-red-700">
+              <p role="alert" className="text-sm text-red-400">
                 {state.error}
               </p>
             )}
@@ -172,12 +172,12 @@ export default function FinalCTA() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90 disabled:opacity-60 sm:w-auto"
+              className="w-full rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90 disabled:opacity-60 sm:w-auto"
             >
               {isPending ? "Odesílám…" : "Odeslat a domluvit další krok →"}
             </button>
 
-            <p className="text-sm text-brand-navy/80">
+            <p className="text-sm text-zinc-400">
               Bez závazků. Ozvu se osobně, nejpozději do 24 hodin — každý den
               v týdnu. Vaše údaje nikam neputují mimo tuhle konverzaci.
             </p>
