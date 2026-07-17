@@ -23,8 +23,8 @@ export default function AutomationAreas() {
               <h3 className="text-lg font-semibold text-brand-navy group-hover:text-brand-teal">
                 {area.title}
               </h3>
-              <p className="mt-2 text-sm text-brand-navy/70">{area.lead}</p>
-              <ul className="mt-4 space-y-2 text-sm text-brand-navy/70">
+              <p className="mt-2 text-sm text-brand-navy/80">{area.lead}</p>
+              <ul className="mt-4 space-y-2 text-sm text-brand-navy/80">
                 {area.points.map((point) => (
                   <li key={point} className="flex gap-2">
                     <span aria-hidden className="text-brand-teal">
@@ -38,7 +38,7 @@ export default function AutomationAreas() {
           ))}
         </div>
 
-        <p className="mt-8 text-brand-navy/70">
+        <p className="mt-8 text-brand-navy/80">
           Toto je jen výběr nejčastějších oblastí — pokud se váš proces
           opakuje a stojí vás čas, s vysokou pravděpodobností jde
           automatizovat.

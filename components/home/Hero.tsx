@@ -17,7 +17,7 @@ export default function Hero() {
         </p>
         <a
           href={ZAKAZIQ_BOOKING_URL}
-          className="rounded-full bg-brand-gold px-6 py-3 text-base font-medium text-white transition-opacity hover:opacity-90 sm:px-8 sm:py-4 sm:text-lg"
+          className="rounded-full bg-brand-gold px-6 py-3 text-base font-medium text-black transition-opacity hover:opacity-90 sm:px-8 sm:py-4 sm:text-lg"
         >
           Rezervovat konzultaci zdarma — popište svůj projekt
         </a>

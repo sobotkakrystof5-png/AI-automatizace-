@@ -43,7 +43,7 @@ export default async function AutomationAreaPage({ params }: Props) {
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
         <Link
           href="/#co-jde-automatizovat"
-          className="text-sm font-medium text-brand-teal hover:underline"
+          className="text-sm font-medium text-brand-navy underline hover:text-brand-teal"
         >
           ← Zpět na přehled automatizací
         </Link>
@@ -68,14 +68,14 @@ export default async function AutomationAreaPage({ params }: Props) {
           <p className="text-lg font-semibold text-brand-navy">
             Řešíte podobný proces ve svém provozu?
           </p>
-          <p className="mt-2 text-brand-navy/70">
+          <p className="mt-2 text-brand-navy/80">
             Probereme ho na nezávazné konzultaci a řekneme vám na rovinu, jestli
             se automatizace vyplatí.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
               href={ZAKAZIQ_BOOKING_URL}
-              className="inline-flex justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-gold/90"
+              className="inline-flex justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90"
             >
               Rezervovat konzultaci zdarma
             </a>

@@ -91,7 +91,7 @@ export default function FAQ() {
                 {faq.link && (
                   <a
                     href={faq.link.href}
-                    className="text-brand-teal underline hover:text-brand-navy"
+                    className="text-brand-navy underline hover:text-brand-teal"
                   >
                     {faq.link.label}
                   </a>

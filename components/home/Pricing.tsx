@@ -45,11 +45,11 @@ export default function Pricing() {
               <h3 className="flex items-center gap-2 text-lg font-semibold text-brand-navy">
                 <span aria-hidden>{tier.emoji}</span> {tier.title}
               </h3>
-              <p className="mt-1 text-xl font-semibold text-brand-teal">
+              <p className="mt-1 text-xl font-bold text-brand-teal">
                 {tier.price}
               </p>
               <p className="mt-3 text-brand-navy/80">{tier.body}</p>
-              <p className="mt-4 text-sm italic text-brand-navy/60">
+              <p className="mt-4 text-sm italic text-brand-navy/80">
                 {tier.example}
               </p>
             </div>

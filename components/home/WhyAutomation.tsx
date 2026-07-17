@@ -67,7 +67,7 @@ export default function WhyAutomation() {
         <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {points.map((point) => (
             <div key={point.title}>
-              <h3 className="text-lg font-semibold text-brand-teal">
+              <h3 className="text-xl font-bold text-brand-teal">
                 {point.title}
               </h3>
               <p className="mt-2 text-brand-navy/80">{point.body}</p>
@@ -102,10 +102,10 @@ export default function WhyAutomation() {
                   >
                     {row.label}
                   </th>
-                  <td className="px-4 py-3 text-brand-navy/70">
+                  <td className="px-4 py-3 text-brand-navy/80">
                     {row.manual}
                   </td>
-                  <td className="px-4 py-3 text-brand-navy/70">
+                  <td className="px-4 py-3 text-brand-navy/80">
                     {row.automated}
                   </td>
                 </tr>

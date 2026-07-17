@@ -66,7 +66,7 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => saveConsent("all")}
-            className="rounded-md bg-brand-teal px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-teal/90"
+            className="rounded-md bg-brand-navy px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-navy/90"
           >
             Přijmout vše
           </button>

@@ -9,7 +9,10 @@ export default function Guarantee() {
         <div className="mt-8 rounded-lg border-l-4 border-brand-gold bg-white p-6 sm:p-8">
           <p className="text-xl font-semibold text-brand-navy">
             Garantujeme{" "}
-            <span className="text-brand-gold">2 roky záruky</span> na
+            <span className="font-bold text-brand-navy underline decoration-brand-gold decoration-2 underline-offset-4">
+              2 roky záruky
+            </span>{" "}
+            na
             každou dodanou automatizaci.
           </p>
           <p className="mt-4 text-brand-navy/80">

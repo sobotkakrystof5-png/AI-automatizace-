@@ -13,10 +13,13 @@ export default function Footer() {
         <p className="text-lg font-semibold tracking-tight">AvenIQ</p>
 
         <nav aria-label="Právní odkazy">
-          <ul className="flex flex-col gap-3 text-sm text-brand-cream/80 sm:flex-row sm:gap-6">
+          <ul className="flex flex-col text-sm text-brand-cream/80 sm:flex-row sm:gap-6">
             {legalLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-brand-cream">
+                <Link
+                  href={link.href}
+                  className="inline-block py-2 hover:text-brand-cream"
+                >
                   {link.label}
                 </Link>
               </li>

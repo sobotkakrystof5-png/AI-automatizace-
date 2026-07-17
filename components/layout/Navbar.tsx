@@ -14,7 +14,7 @@ export default function Navbar() {
 
         <a
           href={ZAKAZIQ_BOOKING_URL}
-          className="rounded-full bg-brand-gold px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 sm:px-6 sm:py-2.5 sm:text-base"
+          className="rounded-full bg-brand-gold px-4 py-2 text-sm font-medium text-black transition-opacity hover:opacity-90 sm:px-6 sm:py-2.5 sm:text-base"
         >
           Rezervovat konzultaci zdarma — popište svůj projekt
         </a>

@@ -32,7 +32,7 @@ export default function Differentiators() {
               key={p.title}
               className="rounded-lg border border-brand-navy/10 p-6"
             >
-              <h3 className="text-lg font-semibold text-brand-teal">
+              <h3 className="text-xl font-bold text-brand-teal">
                 {p.title}
               </h3>
               <p className="mt-3 text-brand-navy/80">{p.body}</p>

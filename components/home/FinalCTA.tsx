@@ -31,22 +31,22 @@ export default function FinalCTA() {
 
         <a
           href={ZAKAZIQ_BOOKING_URL}
-          className="mt-8 inline-flex rounded-md bg-brand-gold px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-gold/90"
+          className="mt-8 inline-flex rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90"
         >
           Rezervovat konzultaci zdarma
         </a>
 
-        <p className="mt-4 text-sm text-brand-navy/60">
+        <p className="mt-4 text-sm text-brand-navy/80">
           nebo napište pár řádků níž ↓
         </p>
 
         <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-brand-navy/10 pt-8">
           {stats.map((stat) => (
             <div key={stat.label}>
-              <p className="text-lg font-semibold text-brand-teal">
+              <p className="text-xl font-bold text-brand-teal">
                 {stat.value}
               </p>
-              <p className="text-sm text-brand-navy/70">{stat.label}</p>
+              <p className="text-sm text-brand-navy/80">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -172,12 +172,12 @@ export default function FinalCTA() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full rounded-md bg-brand-gold px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-gold/90 disabled:opacity-60 sm:w-auto"
+              className="w-full rounded-md bg-brand-gold px-6 py-3 font-semibold text-black transition-colors hover:bg-brand-gold/90 disabled:opacity-60 sm:w-auto"
             >
               {isPending ? "Odesílám…" : "Odeslat a domluvit další krok →"}
             </button>
 
-            <p className="text-sm text-brand-navy/60">
+            <p className="text-sm text-brand-navy/80">
               Bez závazků. Ozvu se osobně, nejpozději do 24 hodin — každý den
               v týdnu. Vaše údaje nikam neputují mimo tuhle konverzaci.
             </p>
