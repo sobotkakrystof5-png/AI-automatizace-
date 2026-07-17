@@ -55,7 +55,7 @@ const comparisonRows = [
 
 export default function WhyAutomation() {
   return (
-    <section className="bg-white">
+    <section id="proc-automatizace" className="bg-white">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
         <h2 className="text-3xl font-semibold tracking-tight text-brand-navy sm:text-4xl">
           Proč automatizace, a ne jen ChatGPT
