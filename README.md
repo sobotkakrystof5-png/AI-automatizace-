@@ -36,7 +36,12 @@ npm run dev
 
 ## Databáze
 
+`drizzle-kit` CLI nenačítá `.env.local` automaticky — `npm run db:*`
+skripty proto spouští Node s nativním `--env-file=.env.local` (Node
+20.6+), aby `DATABASE_URL` bylo v `process.env` bez další závislosti
+(např. `dotenv`).
+
 ```bash
-npx drizzle-kit generate   # vygeneruje migrace ze db/schema.ts
-npx drizzle-kit migrate    # aplikuje migrace na Neon databázi
+npm run db:generate   # vygeneruje migrace ze db/schema.ts
+npm run db:migrate    # aplikuje migrace na Neon databázi
 ```
