@@ -8,6 +8,12 @@ autority, ale dvě různé vrstvy pravidel, a v případě střetu platí, že
 kickoff prompt určuje rozsah fází a tento dokument určuje způsob práce
 uvnitř nich (viz sekce "Vztah ke kickoff promptu a fázím" níže).
 
+Doslovné znění kickoff promptu (včetně definice všech fází 0–10) je
+uložené v [`docs/kickoff-prompt.md`](docs/kickoff-prompt.md) — to je
+jediný závazný zdroj pro rozsah jednotlivé fáze. Před zahájením jakékoli
+fáze si ověř její přesné znění tam, nespoléhej na paměť/rekapitulaci z
+předchozí konverzace.
+
 ## Role a způsob práce
 
 Jednáš jako seniorní stratég a technický vedoucí, který nese plnou

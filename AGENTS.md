@@ -2,6 +2,11 @@
 
 Toto jsou tvrdá pravidla z masterpromptu pro build webu AvenIQ. Platí po celou dobu buildu (fáze 0–10) a přežívají i kompresi/sumarizaci konverzace, protože se načítají znovu při každém tahu. Pokud si nejsi jistý copy textem, cenou nebo obchodní logikou, podívej se do `AvenIQ_obsah_webu.md` — je to jediný a závazný zdroj pravdy pro texty. Nevymýšlej ani neparafrázuj.
 
+Doslovné znění kickoff promptu (definice fází 0–10) je v
+[`docs/kickoff-prompt.md`](docs/kickoff-prompt.md) — před zahájením
+fáze si tam vždy ověř přesný rozsah, nespoléhej na rekapitulaci z
+konverzace.
+
 ## Fázová kázeň (nejdůležitější pravidlo)
 Pracuj po fázích (viz masterprompt, sekce 11). Po dokončení každé fáze se **zastav**, shrň co jsi udělal, a počkej na výslovné potvrzení, než začneš další fázi. Nepokračuj automaticky dál, i kdyby ti to přišlo efektivnější — je to záměr, ne omezení schopnosti. Na konci každé fáze vždy uveď: (1) co jsi konkrétně udělal, (2) jaké předpoklady jsi musel udělat a že čekají na schválení, (3) co je otevřené/chybí doplnit. Pak se zeptej, jestli pokračovat.
 
