@@ -1,4 +1,6 @@
 import CountUpValue from "@/components/home/CountUpValue";
+import AnimatedSection from "@/components/motion/AnimatedSection";
+import GlowCard from "@/components/motion/GlowCard";
 
 const stats = [
   {
@@ -30,16 +32,18 @@ export default function StatsBar() {
         <h2 className="text-center text-sm font-semibold uppercase tracking-wide text-zinc-400 sm:text-left">
           AvenIQ v číslech
         </h2>
-        <dl className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <div key={i} className="text-center sm:text-left">
-              <dt className="text-3xl font-semibold tabular-nums text-brand-gold sm:text-4xl">
-                <CountUpValue target={s.target} suffix={s.suffix} />
-              </dt>
-              <dd className="mt-2 text-sm text-zinc-400">{s.label}</dd>
-            </div>
+            <AnimatedSection key={i} delay={i * 0.08}>
+              <GlowCard accent="gold" className="h-full bg-zinc-950 p-6 text-center sm:text-left">
+                <p className="text-3xl font-semibold tabular-nums text-brand-gold sm:text-4xl">
+                  <CountUpValue target={s.target} suffix={s.suffix} />
+                </p>
+                <p className="mt-2 text-sm text-zinc-400">{s.label}</p>
+              </GlowCard>
+            </AnimatedSection>
           ))}
-        </dl>
+        </div>
         <p className="mt-10 text-center text-sm text-zinc-400 sm:text-left">
           Menší čísla než u velkých agentur — ale za každým z nich stojí
           přímá zkušenost, ne marketing.

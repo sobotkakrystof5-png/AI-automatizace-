@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import LegalPageSection, {
   LegalDraftNotice,
 } from "@/components/layout/LegalPageSection";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Zásady cookies | AvenIQ",
-  description:
-    "Zásady používání cookies na webu AvenIQ — dokument se připravuje a čeká na finální kontrolu advokátem.",
+export const metadata = {
+  ...pageMetadata({
+    path: "/cookies",
+    title: "Zásady cookies | AvenIQ",
+    description:
+      "Zásady používání cookies na webu AvenIQ — dokument se připravuje a čeká na finální kontrolu advokátem.",
+  }),
   robots: { index: false, follow: true },
 };
 

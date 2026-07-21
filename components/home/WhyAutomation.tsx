@@ -1,77 +1,36 @@
-const points = [
-  {
-    title: "Automatizace pracuje za vás, ne vy s ní",
-    body: "S ChatGPT musíte vy sami otevřít okno, napsat zadání a výstup ručně přenést dál. Automatizace se spustí sama, ve chvíli, kdy nastane událost — nová objednávka, e-mail, faktura — bez jediného kliknutí z vaší strany.",
-  },
-  {
-    title: "Propojení s vašimi systémy",
-    body: "ChatGPT nezná vaše CRM, fakturační systém ani sklad. Automatizace ano — čte a zapisuje data přímo tam, kde je potřebujete, a spojuje víc nástrojů dohromady do jednoho plynulého procesu.",
-  },
-  {
-    title: "Konzistence a spolehlivost",
-    body: "Ruční práce s AI se liší člověk od člověka a den ode dne — jednou se zapomene upravit zadání, jindy se vynechá krok. Automatizovaný proces běží pokaždé stejně, bez ohledu na to, kdo je zrovna v práci nebo jak je unavený.",
-  },
-  {
-    title: "Bezpečnost vašich dat",
-    body: "Kopírování citlivých firemních nebo zákaznických údajů do veřejného ChatGPT je riziko samo o sobě — nevíte přesně, kam data putují dál. Automatizace umožňuje AI zapojit tak, aby data zůstala ve vašich systémech, pod vaší kontrolou.",
-  },
-  {
-    title: "Škáluje se s vámi",
-    body: "Ruční kopírování do ChatGPT funguje u pěti e-mailů denně. U pěti stovek už ne. Automatizace zvládne stejný proces bez ohledu na to, jestli je požadavků pět, nebo pět tisíc.",
-  },
-  {
-    title: "Čas, který se skutečně sečte",
-    body: "Pár ušetřených minut u jednoho úkolu v ChatGPT nevypadá jako moc. Vynásobené každým dnem a každým zaměstnancem se z toho ale stávají desítky hodin měsíčně — a automatizace je z rovnice odstraní úplně, ne jen zkrátí.",
-  },
-];
+"use client";
 
-const comparisonRows = [
-  {
-    label: "Spouští se",
-    manual: "Musíte to udělat vy",
-    automated: "Sama, podle události",
-  },
-  {
-    label: "Propojení se systémy",
-    manual: "Ruční kopírování",
-    automated: "Napojena přímo",
-  },
-  {
-    label: "Konzistence",
-    manual: "Liší se člověk od člověka",
-    automated: "Vždy stejný proces",
-  },
-  {
-    label: "Bezpečnost dat",
-    manual: "Mimo vaši kontrolu",
-    automated: "Zůstává ve vašich systémech",
-  },
-  {
-    label: "Škáluje se",
-    manual: "Ne",
-    automated: "Ano",
-  },
-];
+import { motion } from "motion/react";
+import { whyAutomationPoints, comparisonRows } from "@/lib/why-automation";
+import AnimatedSection from "@/components/motion/AnimatedSection";
+import GlowCard from "@/components/motion/GlowCard";
+import { usePrefersReducedMotion } from "@/components/motion/usePrefersReducedMotion";
 
 export default function WhyAutomation() {
-  return (
-    <section>
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
-        <h1 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-          Proč automatizace, a ne jen ChatGPT
-        </h1>
-        <p className="mt-4 max-w-3xl text-zinc-400">
-          {'Spousta firem si myslí, že "mít AI" znamená občas otevřít ChatGPT a nechat si tam něco vygenerovat. To je dobrý začátek — ale není to řešení. ChatGPT odpoví, když se ho zeptáte. Nespustí se sám, nezná vaše systémy, nepamatuje si kontext vaší firmy a hlavně — pořád je tu člověk, který musí ručně kopírovat data tam a zpátky.'}
-        </p>
+  const shouldReduceMotion = usePrefersReducedMotion();
 
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {points.map((point) => (
-            <div key={point.title}>
-              <h3 className="text-xl font-bold text-zinc-50">
-                {point.title}
-              </h3>
-              <p className="mt-2 text-zinc-400">{point.body}</p>
-            </div>
+  return (
+    <section id="proc-automatizace">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
+        <AnimatedSection>
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+            Proč automatizace, a ne jen ChatGPT
+          </h2>
+          <p className="mt-4 max-w-3xl text-zinc-400">
+            {'Mít AI neznamená občas otevřít ChatGPT. ChatGPT odpoví, když se zeptáte — ale nespustí se sám, nezná vaše systémy ani kontext firmy, a data pořád musíte kopírovat ručně tam a zpátky.'}
+          </p>
+        </AnimatedSection>
+
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {whyAutomationPoints.map((point, i) => (
+            <AnimatedSection key={point.title} delay={Math.min(i * 0.06, 0.3)}>
+              <GlowCard accent="electric" className="h-full p-6">
+                <h3 className="text-xl font-bold text-zinc-50">
+                  {point.title}
+                </h3>
+                <p className="mt-2 text-zinc-400">{point.body}</p>
+              </GlowCard>
+            </AnimatedSection>
           ))}
         </div>
 
@@ -92,9 +51,13 @@ export default function WhyAutomation() {
             </thead>
             <tbody>
               {comparisonRows.map((row, i) => (
-                <tr
+                <motion.tr
                   key={row.label}
                   className={i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900"}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -16 }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                 >
                   <th
                     scope="row"
@@ -104,7 +67,7 @@ export default function WhyAutomation() {
                   </th>
                   <td className="px-4 py-3 text-zinc-400">{row.manual}</td>
                   <td className="px-4 py-3 text-zinc-400">{row.automated}</td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>

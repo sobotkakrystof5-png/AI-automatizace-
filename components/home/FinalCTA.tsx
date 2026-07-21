@@ -2,7 +2,9 @@
 
 import { useActionState } from "react";
 import { submitLead, type LeadFormState } from "@/actions";
-import { ZAKAZIQ_BOOKING_URL } from "@/lib/constants";
+import AnimatedSection from "@/components/motion/AnimatedSection";
+import GlowCard from "@/components/motion/GlowCard";
+import MagneticButton from "@/components/motion/MagneticButton";
 
 const initialState: LeadFormState = { success: false };
 
@@ -21,33 +23,26 @@ export default function FinalCTA() {
   return (
     <section id="kontakt" className="bg-zinc-900">
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
-        <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-          Chcete zpátky svůj čas?
-        </h2>
-        <p className="mt-4 text-xl text-zinc-400">
-          Napište pár vět o tom, co vás brzdí — ozvu se do 24 hodin s
-          konkrétním nápadem, ne s prodejní řečí.
-        </p>
+        <AnimatedSection>
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+            Chcete zpátky svůj čas?
+          </h2>
+          <p className="mt-4 text-xl text-zinc-400">
+            Napište pár vět o tom, co vás brzdí — ozvu se do 24 hodin s
+            konkrétním nápadem, ne s prodejní řečí.
+          </p>
+        </AnimatedSection>
 
-        <a
-          href={ZAKAZIQ_BOOKING_URL}
-          className="mt-8 inline-flex rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
-        >
-          Rezervovat konzultaci zdarma
-        </a>
-
-        <p className="mt-4 text-sm text-zinc-400">
-          nebo napište pár řádků níž ↓
-        </p>
-
-        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-zinc-800 pt-8">
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <p className="text-xl font-bold text-brand-gold">
-                {stat.value}
-              </p>
-              <p className="text-sm text-zinc-400">{stat.label}</p>
-            </div>
+        <div className="mt-10 grid grid-cols-1 gap-4 border-t border-zinc-800 pt-8 sm:grid-cols-3">
+          {stats.map((stat, i) => (
+            <AnimatedSection key={stat.label} delay={i * 0.08}>
+              <GlowCard accent="gold" className="bg-zinc-950 p-4">
+                <p className="text-xl font-bold text-brand-gold">
+                  {stat.value}
+                </p>
+                <p className="text-sm text-zinc-400">{stat.label}</p>
+              </GlowCard>
+            </AnimatedSection>
           ))}
         </div>
 
@@ -169,13 +164,13 @@ export default function FinalCTA() {
               </p>
             )}
 
-            <button
+            <MagneticButton
               type="submit"
               disabled={isPending}
               className="w-full rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90 disabled:opacity-60 sm:w-auto"
             >
               {isPending ? "Odesílám…" : "Odeslat a domluvit další krok →"}
-            </button>
+            </MagneticButton>
 
             <p className="text-sm text-zinc-400">
               Bez závazků. Ozvu se osobně, nejpozději do 24 hodin — každý den

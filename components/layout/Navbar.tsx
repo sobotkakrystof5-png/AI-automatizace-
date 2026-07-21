@@ -2,17 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ZAKAZIQ_BOOKING_URL } from "@/lib/constants";
 
 const navLinks = [
-  { href: "/automatizace", label: "Automatizace" },
-  { href: "/proc-automatizace", label: "Proč automatizace" },
-  { href: "/cenik", label: "Ceník" },
-  { href: "/proces-prace", label: "Proces práce" },
-  { href: "/jak-tvorime-automatizace", label: "Jak tvoříme" },
-  { href: "/zaruka", label: "Záruka" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/o-nas", label: "O nás" },
+  { href: "/#proc-automatizace", label: "Proč automatizace" },
+  { href: "/#automatizace", label: "Automatizace" },
+  { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
+  { href: "/#proces-prace", label: "Proces práce" },
+  { href: "/#cenik", label: "Ceník" },
+  { href: "/#zaruka", label: "Záruka" },
+  { href: "/#o-nas", label: "O nás" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -44,12 +43,13 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={ZAKAZIQ_BOOKING_URL}
+          {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
+          <Link
+            href="/#kontakt"
             className="hidden rounded-full bg-brand-gold px-4 py-2 text-sm font-medium text-zinc-950 transition-opacity hover:opacity-90 sm:inline-flex sm:px-6 sm:py-2.5 sm:text-base"
           >
             Rezervovat konzultaci zdarma — popište svůj projekt
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -107,12 +107,14 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="px-6 pb-4 sm:hidden sm:px-8">
-            <a
-              href={ZAKAZIQ_BOOKING_URL}
+            {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
+            <Link
+              href="/#kontakt"
+              onClick={() => setIsMenuOpen(false)}
               className="inline-flex w-full justify-center rounded-full bg-brand-gold px-6 py-2.5 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
             >
               Rezervovat konzultaci zdarma — popište svůj projekt
-            </a>
+            </Link>
           </div>
         </nav>
       )}
