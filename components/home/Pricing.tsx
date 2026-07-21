@@ -12,7 +12,7 @@ export default function Pricing() {
             Ceník
           </h2>
           <p className="mt-4 max-w-3xl text-zinc-400">
-            {'Cena se neřídí tím, kolik nás stálo automatizaci postavit, ale tím, kolik systémů propojuje, jak složitá je její logika a jakou hodnotu vám přináší. Proto tři orientační pásma:'}
+            {"Cena záleží na počtu systémů, složitosti logiky a hodnotě, kterou přináší."}
           </p>
         </AnimatedSection>
 

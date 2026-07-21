@@ -17,7 +17,7 @@ export default function WhyAutomation() {
             Proč automatizace, a ne jen ChatGPT
           </h2>
           <p className="mt-4 max-w-3xl text-zinc-400">
-            {'Mít AI neznamená občas otevřít ChatGPT. ChatGPT odpoví, když se zeptáte — ale nespustí se sám, nezná vaše systémy ani kontext firmy, a data pořád musíte kopírovat ručně tam a zpátky.'}
+            {"ChatGPT odpoví, jen když se zeptáte — nespustí se sám ani nezná vaše systémy."}
           </p>
         </AnimatedSection>
 

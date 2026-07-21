@@ -2,26 +2,33 @@
 
 /*
  * Design tokeny — zjednodušená tmavá paleta (rozhodnuto 2026-07-17,
- * nahrazuje starou navy/teal/cream/navbar paletu). brand-gold a (návrhově)
- * brand-electric jsou jediné dvě vlastní barvy v systému — obě podléhají
- * striktnímu omezení použití, viz claude.md, sekce Design systém. Zbytek
- * palety (pozadí, povrchy, text) čerpá přímo ze standardní Tailwind `zinc`
- * škály bez vlastní definice.
+ * redesign 2026 rozhodnut 2026-07-21 — viz claude.md, sekce "Redesign
+ * 2026"). brand-gold a brand-electric jsou jediné dvě vlastní barvy v
+ * systému — obě podléhají striktnímu omezení použití, viz claude.md,
+ * sekce Design systém. Zbytek palety (pozadí, povrchy, text) čerpá přímo
+ * ze standardní Tailwind `zinc` škály bez vlastní definice.
  */
 @theme {
+  /* Výhradně CTA tlačítko (od 2026-07-21, zúženo z dřívějšího "CTA a
+   * klíčové akcenty" — tuto roli teď má brand-electric). */
   --color-brand-gold: #b98b4e;
 
-  /* Návrh nového akcentu (2026-07-18, Checkpoint 1) — studená "AI/tech"
-   * barva pro technické/interaktivní prvky (diagramy toku dat, aktivní/
-   * hover stavy, glow efekty). Čeká na vizuální potvrzení na
-   * /design-preview, než se použije mimo tuto stránku. Stejné pravidlo
-   * jako u brand-gold: nikdy dekorativně/plošně. */
+  /* Potvrzeno jako primární interaktivní akcent (Fáze R1, 2026-07-21) —
+   * diagramy toku dat, aktivní/hover stavy, glow efekty, klíčové
+   * interaktivní prvky napříč webem. Odvozené hover/glow hodnoty
+   * (opacity modifikátory /10, /20, /50 apod.) jdou přes standardní
+   * Tailwind v4 opacity syntax na tomto tokenu, ne přes nové vlastní
+   * tokeny — viz GlowCard.tsx. Stejná zdrženlivost jako u brand-gold:
+   * nikdy dekorativně/plošně, jen interaktivní a klíčové prvky. */
   --color-brand-electric: #22d3ee;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
   --animate-marquee: marquee 28s linear infinite;
+  --animate-slow-spin: spin-slow 40s linear infinite;
+  --animate-slow-spin-reverse: spin-slow 40s linear infinite reverse;
+  --animate-flow-pulse: flow-pulse 3s ease-in-out infinite;
 }
 
 @keyframes marquee {
@@ -33,6 +40,29 @@
   }
 }
 
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flow-pulse {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
 body {
   background: var(--color-zinc-950);
   color: var(--color-zinc-50);
@@ -40,7 +70,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-slow-spin,
+  .animate-slow-spin-reverse {
     animation: none;
+  }
+
+  /* Puls zastavený uprostřed dráhy by vypadal jako náhodná tečka navíc —
+   * pod reduced-motion se rovnou skryje, uzly a spojnice samy o sobě
+   * ukazují "vstup → zpracování → výstup" i bez pohybu. */
+  .animate-flow-pulse {
+    display: none;
   }
 }

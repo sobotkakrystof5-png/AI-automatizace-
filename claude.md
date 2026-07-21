@@ -128,7 +128,8 @@ pravdy:
   podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
   segment a styl, ber je jako prozatímní, ne jako potvrzený text.
 
-## Design systém (zjednodušená tmavá paleta, rozhodnuto 2026-07-17)
+## Design systém (zjednodušená tmavá paleta, rozhodnuto 2026-07-17 —
+aktualizováno 2026-07-21, viz sekce "Redesign 2026" níže)
 
 Nahrazuje původní pětibarevnou paletu (navy/teal/cream/gold/navbar) na
 žádost uživatele — cíl: tmavý, elegantní "tech/luxury" vzhled s minimem
@@ -137,25 +138,95 @@ vlastních barev, postavený primárně na standardní Tailwind CSS škále
 
 | Token | Zdroj | Použití |
 |---|---|---|
-| Pozadí (base) | Tailwind `zinc-950` | Základní tmavé pozadí stránky |
+| Pozadí (base) | Tailwind `zinc-950` | Základní tmavé pozadí stránky — **mění se** směrem ke světlejšímu/hybridnímu tónu (rozhodnuto 2026-07-21), přesný odstín/token čeká na schválení z `/design-preview` ve Fázi R1; do té doby platí `zinc-950` |
 | Povrch/karty | Tailwind `zinc-900` / `zinc-800` | Karty, oddělené sekce, ohraničení |
 | Text primární | Tailwind `zinc-50` | Nadpisy, hlavní text |
 | Text tlumený | Tailwind `zinc-400` | Popisky, sekundární text |
-| `brand.gold` | vlastní token, `#B98B4E` (ponecháno z původní palety) | **Výhradně** CTA tlačítko a klíčové akcenty — jediná vlastní barva v systému |
+| `brand.gold` | vlastní token, `#B98B4E` (ponecháno z původní palety) | **Výhradně** CTA tlačítko — od 2026-07-21 už ne "klíčové akcenty" obecně, tuto roli přebírá `brand.electric` |
+| `brand.electric` | vlastní token, `#22D3EE` | Od 2026-07-21 **primární interaktivní akcent** — diagramy, hover/aktivní stavy, glow efekty, klíčové interaktivní prvky napříč webem (dřív jen technický/AI akcent, viz Redesign 2026) |
 
 Pravidla:
 - Žádné další vlastní barvy bez schválení — pokud je potřeba odstín mimo
-  `zinc` škálu a `brand.gold`, nejdřív navrhnout a počkat na souhlas.
-- `brand.gold` zůstává vyhrazený pro CTA a klíčové akcenty, nepoužívat
-  plošně/dekorativně (stejný princip jako dřív, jen širší formulace).
-- `brand.gold` je pojmenovaný token přes `@theme` blok v
-  `app/globals.css` (Tailwind v4, CSS-first); zbytek palety čerpá přímo ze
-  standardní Tailwind `zinc` škály bez vlastní definice. Nikdy natvrdo v
-  komponentách a nikdy v samostatném `tailwind.config.ts` (ten v projektu
-  není a nemá se zakládat).
-- **Tohle je pracovní návrh implementace** — přesný odstín akcentu (zůstává
-  zlatá, nebo se nahradí jinou barvou) se potvrzuje náhledem na
-  `/design-preview`, než se rozšíří napříč všemi komponentami.
+  `zinc` škálu, `brand.gold` a `brand.electric`, nejdřív navrhnout a
+  počkat na souhlas.
+- `brand.gold` zůstává vyhrazený **výhradně pro CTA tlačítko**, nepoužívat
+  plošně/dekorativně ani jako obecný "klíčový akcent" (tuto roli má od
+  2026-07-21 `brand.electric`).
+- `brand.electric` je primární interaktivní/klíčový akcent, ale platí pro
+  něj stejná zdrženlivost jako dřív pro zlatou — nepoužívat plošně/
+  dekorativně mimo interaktivní a klíčové prvky.
+- Oba tokeny (`brand.gold`, `brand.electric`) jsou pojmenované tokeny přes
+  `@theme` blok v `app/globals.css` (Tailwind v4, CSS-first); zbytek
+  palety čerpá přímo ze standardní Tailwind `zinc` škály bez vlastní
+  definice. Nikdy natvrdo v komponentách a nikdy v samostatném
+  `tailwind.config.ts` (ten v projektu není a nemá se zakládat).
+- **Přesný odstín nového pozadí je otevřený bod** — potvrzuje se náhledem
+  na `/design-preview` (Fáze R1), než se rozšíří napříč všemi komponentami.
+
+## Redesign 2026 — cíl a inspirace
+
+Doslovné znění redesign kickoff promptu (fáze R0–R10) je uložené v
+[`docs/redesign-kickoff-prompt.md`](docs/redesign-kickoff-prompt.md) —
+stejný princip jako `docs/kickoff-prompt.md` pro původní fáze 0–10, ověř
+si tam přesný rozsah dané R-fáze, nespoléhej na rekapitulaci z konverzace.
+
+Web se posouvá k výraznější "interaktivní/tech" identitě — modrá
+(`brand.electric`) se stává primární interaktivní barvou místo zlaté,
+homepage dostává vlastní vlajkovou scrollytelling animaci vysvětlující
+automatizaci (Fáze R3) a přísnější jazykový standard "babička test 2.0"
+(Fáze R2: nadpis max. 3–6 slov, popis max. 1 věta/~12 slov, vizuál nese
+myšlenku, text jen doplňuje).
+
+Rozhodnutí potvrzená uživatelem 2026-07-21 (Fáze R0):
+- **Barva:** `brand.electric` (#22D3EE, beze změny odstínu) primární,
+  `brand.gold` zúžen výhradně na CTA (viz tabulka výše).
+- **Pozadí:** směr potvrzen (světlejší/hybridní místo čistého
+  `zinc-950`), přesná hodnota je otevřený bod do Fáze R1.
+- **Proces práce:** Varianta A — všech 6 kroků v `lib/process-steps.ts`
+  zůstává beze změny, homepage (Fáze R6) je jen vizuálně přebalí a
+  zkrátí popisky pro zobrazení.
+- `docs/kickoff-prompt.md` odkaz níže v tomto souboru zůstává záměrně
+  nedotčený/nefunkční — uživatel se rozhodl tuto konkrétní věc teď
+  neřešit; `docs/redesign-kickoff-prompt.md` je nový, samostatný soubor
+  pro fáze R0–R10 a s tímto rozhodnutím nekoliduje.
+
+Otevřené body čekající na reálný podklad od uživatele (neřešit tichým
+odhadem, ptát se přímo, až přijde na řadu příslušná fáze): fotka
+zakladatele pro Fázi R8, skutečný seznam nástrojů pro integrace (Fáze R3
+popisky kostek, R4, R7), rezervační nástroj nahrazující
+`ZAKAZIQ_BOOKING_URL` (Fáze R9), volitelný LinkedIn odkaz (Fáze R8).
+
+## Jazykový standard — babička test 2.0 (od Fáze R2, 2026-07-21)
+
+Platí od teď pro každou novou nebo upravovanou větu na webu — přísnější
+verze původního "babička testu", protože jde o razantní zkrácení, ne jen
+zjednodušení pojmů:
+
+- **Vizuál nese myšlenku, text jen doplňuje.** Každá sekce musí dávat
+  smysl i s vypnutým textem — jen z vizuálu/ikony/animace/čísla. Text se
+  píše až po vizuálu, ne naopak.
+- **Nadpis sekce: max. 3–6 slov.** Jedna hlavní myšlenka, žádné souvětí.
+- **Popisný text pod nadpisem: max. 1 věta, do ~12 slov.** Pokud věta
+  potřebuje spojku "a zároveň" nebo vedlejší větu, rozděl ji na dvě
+  samostatné myšlenky, nebo jednu z nich vyhoď/přesuň jinam.
+- **Žádná zkratka bez vysvětlení při prvním výskytu** — primární cesta je
+  zkratce se úplně vyhnout jednodušším slovem, ne ji jen vysvětlit v
+  závorce. Tam, kde se zkratce nejde vyhnout (typicky technické pojmy na
+  `/automatizace/[slug]` podstránkách), je navržená — zatím **neschválená**
+  — komponenta `TermTooltip` (podtržený pojem s tooltipem/rozkliknutím
+  vysvětlení, např. "CRM ⓘ" → "systém, kde firma eviduje své zákazníky").
+  Nestaví se, dokud uživatel nepotvrdí přesný vzhled/chování.
+- **Odstavce o více větách** (jaké má dnes např. `About.tsx`) se ve
+  viditelné ploše homepage **neobjevují** — patří nanejvýš do
+  rozkliknutého detailu nebo podstránky, ne do hlavního scrollu.
+- Před odevzdáním každé fáze, která mění copy, přečti text nahlas z
+  pohledu člověka, co o automatizaci v životě neslyšel a nikdy nečte
+  dlouhé odstavce na webu — pokud by ho druhá věta už nudila, zkrať.
+
+Fáze R2 jen ustavuje tohle pravidlo a navrhuje `TermTooltip` — nepřepisuje
+existující obsah. Přepis konkrétních sekcí (Hero, karty, About, proces...)
+podle tohoto standardu se děje uvnitř příslušných pozdějších fází (R3–R9),
+ne tady.
 
 ## Routing — pevná pravidla
 
@@ -181,7 +252,10 @@ označený placeholder `[DOPLNIT PRÁVNÍ TEXT]`.
 - Měnit ceny, čísla, motta nebo marketingová tvrzení webu bez výslovného
   souhlasu uživatele.
 - Publikovat Reference/case studies bez ≥ 2 publikovaných záznamů.
-- Používat zlatý akcent mimo CTA a klíčové akcenty (viz Design systém).
+- Používat zlatý akcent mimo CTA tlačítko (viz Design systém — od
+  2026-07-21 je "klíčový akcent" role modré, ne zlaté).
+- Používat modrý akcent (`brand.electric`) plošně/dekorativně mimo
+  interaktivní a klíčové prvky (stejná zdrženlivost jako dřív u zlaté).
 - Předstírat větší tým, než reálně existuje (aktuálně jen Kryštof
   Sobotka).
 - Přidávat nové závislosti/knihovny "protože jsou lepší" bez návrhu a

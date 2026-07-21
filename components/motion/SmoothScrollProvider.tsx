@@ -1,9 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
+import { createContext, useContext, useEffect, useRef, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+
+const LenisContext = createContext<RefObject<Lenis | null> | null>(null);
+
+// Sdílená instance Lenis pro komponenty, které potřebují programově
+// naskočit na konkrétní scroll pozici (např. klik na krokový ukazatel ve
+// scrollytelling animaci) — přímé `window.scrollTo`/`scrollIntoView` by
+// s Lenisovým virtuálním scrollem soupeřilo, `lenis.scrollTo` je jediný
+// bezkonfliktní způsob. Vrací ref (ne hodnotu/state) — instance vzniká až
+// v efektu (SSR/client-only), a čtení přes `.current` v okamžiku kliknutí
+// se obejde bez re-renderu celého stromu při inicializaci/zániku Lenis.
+// `.current` je `null`, dokud Lenis neběží (SSR i prefers-reduced-motion),
+// volající strana musí na `null` reagovat vlastním (native) fallbackem.
+export function useLenis() {
+  return useContext(LenisContext);
+}
 
 // Lenis je poháněná přes gsap.ticker (ne vlastní requestAnimationFrame
 // smyčkou), aby na stránce běžel jen jeden sdílený animační "hodinový
@@ -14,6 +29,8 @@ export default function SmoothScrollProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -25,20 +42,24 @@ export default function SmoothScrollProvider({
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis();
-    lenis.on("scroll", ScrollTrigger.update);
+    const instance = new Lenis();
+    instance.on("scroll", ScrollTrigger.update);
+    lenisRef.current = instance;
 
     const update = (time: number) => {
-      lenis.raf(time * 1000);
+      instance.raf(time * 1000);
     };
     gsap.ticker.add(update);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(update);
-      lenis.destroy();
+      instance.destroy();
+      lenisRef.current = null;
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <LenisContext.Provider value={lenisRef}>{children}</LenisContext.Provider>
+  );
 }

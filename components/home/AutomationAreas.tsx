@@ -1,7 +1,32 @@
-import Link from "next/link";
-import { automationAreas } from "@/lib/automation-areas";
+import { automationAreas, type AutomationArea } from "@/lib/automation-areas";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
+import MiniProcessDiagram, {
+  type MiniProcessIcons,
+} from "@/components/motion/MiniProcessDiagram";
+import {
+  ArrowIcon,
+  ChartIcon,
+  ChatIcon,
+  CheckIcon,
+  DatabaseIcon,
+  DocumentIcon,
+  FunnelIcon,
+  GearIcon,
+  SparkIcon,
+} from "@/components/motion/process-icons";
+
+// Tři ikony na míru dané oblasti (vstup → zpracování → výstup) — Fáze
+// R5. Karta má dávat smysl i bez čtení textu, viz
+// docs/redesign-kickoff-prompt.md, Fáze R5.
+const AREA_ICONS: Record<AutomationArea["slug"], MiniProcessIcons> = {
+  marketing: [ChatIcon, SparkIcon, ChartIcon],
+  "interni-procesy": [DocumentIcon, CheckIcon, ArrowIcon],
+  "zakaznicka-podpora": [ChatIcon, SparkIcon, CheckIcon],
+  "prace-s-daty": [DatabaseIcon, FunnelIcon, CheckIcon],
+  reporty: [DatabaseIcon, GearIcon, ChartIcon],
+  ucetnictvi: [DocumentIcon, CheckIcon, ChartIcon],
+};
 
 export default function AutomationAreas() {
   return (
@@ -25,20 +50,11 @@ export default function AutomationAreas() {
                 href={`/automatizace/${area.slug}`}
                 className="flex h-full flex-col p-6"
               >
-                <h3 className="text-lg font-semibold text-zinc-50 group-hover:text-brand-electric">
+                <MiniProcessDiagram icons={AREA_ICONS[area.slug]} />
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50 group-hover:text-brand-electric">
                   {area.title}
                 </h3>
-                <p className="mt-2 text-sm text-zinc-400">{area.lead}</p>
-                <ul className="mt-4 space-y-2 text-sm text-zinc-400">
-                  {area.points.map((point) => (
-                    <li key={point} className="flex gap-2">
-                      <span aria-hidden className="text-zinc-600">
-                        •
-                      </span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-2 text-sm text-zinc-400">{area.cardLead}</p>
               </GlowCard>
             </AnimatedSection>
           ))}

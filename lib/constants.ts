@@ -3,6 +3,13 @@
 // viz kickoff prompt, bod 5.
 export const ZAKAZIQ_BOOKING_URL = "[DOPLNIT_URL_ZAKAZIQ]";
 
+// true, jakmile je ZAKAZIQ_BOOKING_URL nastavená na reálnou adresu —
+// dokud ne, booking sekce (Fáze R9 redesignu) odkazuje místo mrtvého
+// placeholder odkazu radši na kontaktní formulář (`/#kontakt`).
+export const isBookingUrlConfigured = /^https?:\/\//.test(
+  ZAKAZIQ_BOOKING_URL
+);
+
 // Produkční doména webu — zatím neznámá (žádná doména nebyla nikde
 // v repu potvrzena). Používá se pro absolutní URL
 // v sitemap.xml/robots.txt; před deployem MUSÍ být nastavena přes env

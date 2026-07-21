@@ -56,7 +56,7 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <p className="text-xs text-zinc-500">
+          <p className="text-xs text-zinc-400">
             © {new Date().getFullYear()} AvenIQ
           </p>
         </div>

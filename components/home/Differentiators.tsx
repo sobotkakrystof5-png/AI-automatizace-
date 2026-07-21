@@ -70,12 +70,25 @@ export default function Differentiators() {
                 exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
               >
-                <p className="text-zinc-400">{pillars[active].body}</p>
-                {pillars[active].tagline && (
-                  <p className="mt-4 font-medium text-zinc-50">
-                    {pillars[active].tagline}
-                  </p>
-                )}
+                <p className="font-medium text-zinc-50">
+                  {pillars[active].tagline}
+                </p>
+                <details className="group mt-3">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm text-brand-gold marker:content-none">
+                    Proč
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 20 20"
+                      className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M5.25 7.5 10 12.25 14.75 7.5H5.25Z"
+                      />
+                    </svg>
+                  </summary>
+                  <p className="mt-2 text-zinc-400">{pillars[active].body}</p>
+                </details>
               </motion.div>
             </AnimatePresence>
           </GlowCard>

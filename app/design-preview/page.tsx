@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import MagneticButton from "@/components/motion/MagneticButton";
+import MagneticLink from "@/components/motion/MagneticLink";
 import GlowCard from "@/components/motion/GlowCard";
 import FlowDiagramLazy from "@/components/motion/FlowDiagramLazy";
 
@@ -127,7 +128,8 @@ export default function DesignPreviewPage() {
 
         <section>
           <h2 className="mb-6 text-xl font-semibold">
-            Akcent 2 — brand-electric (návrh, čeká na potvrzení)
+            Akcent 2 — brand-electric (potvrzeno jako primární interaktivní
+            akcent, Fáze R1)
           </h2>
           <div className="overflow-hidden rounded-lg border border-zinc-800 sm:max-w-sm">
             <div className="flex h-24 items-end bg-brand-electric p-4 text-zinc-950">
@@ -138,12 +140,146 @@ export default function DesignPreviewPage() {
                 brand-electric
               </p>
               <p className="text-sm text-zinc-400">
-                Výhradně AI/interaktivní/technické prvky — diagramy toku dat,
-                aktivní/hover stavy, glow. Nikdy dekorativně/plošně, stejné
-                pravidlo jako u brand-gold. Kontrast proti zinc-950 a
-                komplementární vztah k teplé zlaté — viz demo primitiv níže.
+                Od 2026-07-21 primární interaktivní akcent — diagramy toku
+                dat, aktivní/hover stavy, glow, klíčové interaktivní prvky
+                napříč webem. brand-gold zůstává zúžený výhradně na CTA
+                tlačítko. Nikdy dekorativně/plošně, u obou tokenů stejná
+                zdrženlivost.
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="space-y-8 rounded-xl border border-brand-electric/20 bg-zinc-900/40 p-6 sm:p-8">
+          <div className="space-y-2">
+            <p className="text-sm font-medium uppercase tracking-wide text-brand-electric">
+              Redesign 2026 — Fáze R1
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Nový barevný systém — náhled ke schválení
+            </h2>
+            <p className="max-w-2xl text-sm text-zinc-400">
+              brand-electric je od teď potvrzený primární akcent (viz výše).
+              Zbývá schválit jediný otevřený bod: přesný odstín nového,
+              světlejšího/hybridního pozadí — kandidáti níže, žádný z nich
+              zatím neběží produkčně.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-1 font-mono text-sm font-semibold">
+              Systém vedle sebe
+            </h3>
+            <p className="mb-4 text-sm text-zinc-400">
+              Primární CTA (zlatá, beze změny), karta s glow efektem, nadpis,
+              odkaz a badge/tag prvek — celý systém na jeden pohled.
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="flex flex-col items-start gap-4 rounded-lg border border-zinc-800 bg-zinc-900 p-6">
+                <button className="rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition hover:brightness-110">
+                  Rezervovat konzultaci zdarma
+                </button>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-electric/40 bg-brand-electric/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-brand-electric">
+                  Badge / tag ukázka
+                </span>
+                <h3 className="text-2xl font-semibold tracking-tight text-zinc-50">
+                  Automatizace, která{" "}
+                  <span className="text-brand-electric">funguje</span>.
+                </h3>
+                <MagneticLink
+                  href="/design-preview"
+                  className="text-brand-electric underline decoration-brand-electric/40 underline-offset-4 transition-colors hover:decoration-brand-electric"
+                >
+                  Zjistit více →
+                </MagneticLink>
+              </div>
+              <GlowCard accent="electric" className="bg-zinc-900 p-6">
+                <p className="text-sm font-medium text-zinc-50">
+                  GlowCard accent=&quot;electric&quot;
+                </p>
+                <p className="mt-1 text-sm text-zinc-400">
+                  Stejná komponenta jako v Motion foundation níže — jen
+                  zopakovaná tady vedle zbytku systému pro snadné srovnání.
+                </p>
+              </GlowCard>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-1 font-mono text-sm font-semibold">
+              Pozadí — kandidáti (čeká na schválení)
+            </h3>
+            <p className="mb-4 text-sm text-zinc-400">
+              Směr &bdquo;světlejší/hybridní&ldquo; potvrzen 2026-07-21, přesná
+              hodnota ne. Žádný kandidát níže neběží produkčně — jen tahle
+              stránka.
+            </p>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              <div className="overflow-hidden rounded-lg border border-zinc-800">
+                <div className="flex h-32 items-end bg-zinc-950 p-4">
+                  <span className="font-mono text-xs text-zinc-400">
+                    zinc-950
+                  </span>
+                </div>
+                <div className="bg-zinc-900 p-3">
+                  <p className="text-xs font-semibold text-zinc-50">
+                    Aktuální (produkce)
+                  </p>
+                  <p className="text-xs text-zinc-500">Beze změny, baseline.</p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-lg border border-zinc-800">
+                <div className="flex h-32 items-end bg-zinc-900 p-4">
+                  <span className="font-mono text-xs text-zinc-400">
+                    zinc-900
+                  </span>
+                </div>
+                <div className="bg-zinc-900 p-3">
+                  <p className="text-xs font-semibold text-zinc-50">
+                    Kandidát A — plochá, světlejší
+                  </p>
+                  <p className="text-xs text-zinc-500">
+                    Base posunuta o krok výš, karty by šly na zinc-800/700.
+                  </p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-lg border border-zinc-800">
+                <div
+                  className="flex h-32 items-end p-4"
+                  style={{
+                    background:
+                      "radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, var(--color-brand-electric) 10%, transparent), transparent 70%), var(--color-zinc-950)",
+                  }}
+                >
+                  <span className="font-mono text-xs text-zinc-400">
+                    zinc-950 + modrý podtón
+                  </span>
+                </div>
+                <div className="bg-zinc-900 p-3">
+                  <p className="text-xs font-semibold text-zinc-50">
+                    Kandidát B — hybridní
+                  </p>
+                  <p className="text-xs text-zinc-500">
+                    Beze změny hex hodnot, jen jemný gradient z brand-electric.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-2 font-mono text-sm font-semibold">
+              Kontrast (WCAG AA)
+            </h3>
+            <p className="max-w-2xl text-sm text-zinc-400">
+              brand-electric (#22D3EE) na zinc-950 (#09090B):{" "}
+              <strong className="text-zinc-50">~11,0 : 1</strong>. Na zinc-900
+              (#18181B): <strong className="text-zinc-50">~9,8 : 1</strong>.
+              Obojí vysoko nad požadovaným AA prahem (4,5 : 1 pro běžný text,
+              3 : 1 pro velký text/UI prvky) a nad AAA (7 : 1) — kandidát B
+              přidává jen ~10% podtón nahoře, výsledný kontrast textu se tím
+              prakticky nemění.
+            </p>
           </div>
         </section>
 

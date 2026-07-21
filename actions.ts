@@ -15,6 +15,9 @@ const leadSchema = z.object({
   blocker: z.string().min(1, "Popište, co vás brzdí").max(2000),
   phone: z.string().max(50).optional().or(z.literal("")),
   companyUrl: z.string().url().max(500).optional().or(z.literal("")),
+  toolsUsed: z.array(z.string().max(100)).max(50),
+  toolsOther: z.string().max(300).optional().or(z.literal("")),
+  automationGoal: z.string().max(2000).optional().or(z.literal("")),
   consent: z.boolean().refine((v) => v === true, {
     message: "Je potřeba souhlasit se zpracováním údajů",
   }),
@@ -35,6 +38,9 @@ export async function submitLead(
     blocker: formData.get("blocker"),
     phone: formData.get("phone") || "",
     companyUrl: formData.get("companyUrl") || "",
+    toolsUsed: formData.getAll("toolsUsed"),
+    toolsOther: formData.get("toolsOther") || "",
+    automationGoal: formData.get("automationGoal") || "",
     consent: formData.get("consent") === "on",
   });
 
@@ -45,7 +51,16 @@ export async function submitLead(
     };
   }
 
-  const { name, email, blocker, phone, companyUrl } = parsed.data;
+  const {
+    name,
+    email,
+    blocker,
+    phone,
+    companyUrl,
+    toolsUsed,
+    toolsOther,
+    automationGoal,
+  } = parsed.data;
 
   try {
     await db.insert(leads).values({
@@ -54,6 +69,9 @@ export async function submitLead(
       blocker,
       phone: phone || null,
       companyUrl: companyUrl || null,
+      toolsUsed,
+      toolsOther: toolsOther || null,
+      automationGoal: automationGoal || null,
       source: "contact_form",
       consentGivenAt: new Date(),
       // retence 3 roky od udělení souhlasu — sladit s finálním zněním

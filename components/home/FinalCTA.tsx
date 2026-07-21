@@ -5,6 +5,7 @@ import { submitLead, type LeadFormState } from "@/actions";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 import MagneticButton from "@/components/motion/MagneticButton";
+import { connectedTools } from "@/lib/tools";
 
 const initialState: LeadFormState = { success: false };
 
@@ -103,6 +104,51 @@ export default function FinalCTA() {
                 required
                 rows={4}
                 placeholder="např. ručně přepisujeme objednávky mezi e-shopem a účetnictvím"
+                className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <span className="block text-sm font-medium text-zinc-50">
+                Jaké nástroje dnes ve firmě používáte?
+              </span>
+              <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">
+                {connectedTools.map((tool) => (
+                  <label
+                    key={tool.slug}
+                    className="flex items-center gap-2 text-sm text-zinc-300"
+                  >
+                    <input
+                      type="checkbox"
+                      name="toolsUsed"
+                      value={tool.slug}
+                      className="h-4 w-4 rounded border-zinc-700 text-brand-gold focus:ring-brand-gold"
+                    />
+                    {tool.name}
+                  </label>
+                ))}
+              </div>
+              <input
+                id="toolsOther"
+                name="toolsOther"
+                type="text"
+                placeholder="Jiné nástroje (nepovinné)"
+                className="mt-2 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="automationGoal"
+                className="block text-sm font-medium text-zinc-50"
+              >
+                Co konkrétně byste chtěli automatizovat?
+              </label>
+              <textarea
+                id="automationGoal"
+                name="automationGoal"
+                rows={3}
+                placeholder="např. automatické vystavování faktur po dokončené zakázce"
                 className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 focus:border-brand-gold focus:outline-none"
               />
             </div>

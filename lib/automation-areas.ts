@@ -2,10 +2,18 @@
 // Sdíleno mezi homepage přehledem
 // (AutomationAreas) a jednotlivými podstránkami /automatizace/[slug],
 // aby text nemohl mezi oběma místy zdrift.ovat.
+//
+// `lead` zůstává plnohodnotná verze pro podstránku (H1 podnadpis) a SEO
+// meta popis (`generateMetadata` v app/automatizace/[slug]/page.tsx) —
+// ta se nemění. `cardLead` je nová, samostatná zkrácená verze (≤ ~12
+// slov) jen pro homepage kartu (Fáze R4/R5 redesignu, jazykový standard
+// "babička test 2.0") — homepage karta je jen "trailer", plný text
+// zůstává na podstránce.
 export type AutomationArea = {
   slug: string;
   title: string;
   lead: string;
+  cardLead: string;
   points: string[];
   seoTitle: string;
 };
@@ -15,6 +23,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "marketing",
     title: "Marketing",
     lead: "Od zachycení leadu až po vyhodnocení kampaně — bez ručního přepisování mezi nástroji.",
+    cardLead: "Od nového leadu až po report kampaně, automaticky.",
     points: [
       "Nový lead z formuláře automaticky obohacen, ohodnocen a zapsán do CRM",
       "Personalizovaná e-mailová komunikace a follow-up sekvence spouštěné podle chování zákazníka",
@@ -27,6 +36,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "interni-procesy",
     title: "Interní procesy",
     lead: "Schválení, předávání úkolů a firemní administrativa, která proběhne sama — ve správný čas, správné osobě.",
+    cardLead: "Schválení a úkoly proběhnou samy, ve správný čas.",
     points: [
       "Schvalovací workflow pro faktury, objednávky nebo dovolené — bez mailového ping-pongu",
       "Onboarding nových zaměstnanců (přístupy, úkoly, dokumenty) spuštěný jedním krokem",
@@ -39,6 +49,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "zakaznicka-podpora",
     title: "Zákaznická podpora",
     lead: "Rychlejší odpovědi, méně ztracených dotazů, tým soustředěný jen na to, co si opravdu žádá člověka.",
+    cardLead: "Rychlejší odpovědi, méně práce navíc pro tým.",
     points: [
       "Automatické třídění a směrování příchozích dotazů podle tématu a naléhavosti",
       "AI odpovědi na často kladené otázky přímo z vaší znalostní báze",
@@ -51,6 +62,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "prace-s-daty",
     title: "Práce s daty",
     lead: "Data z různých systémů na jednom místě, čistá a připravená k použití — bez ruční práce a chyb z přepisování.",
+    cardLead: "Data ze všech systémů, čistá a na jednom místě.",
     points: [
       "Sběr dat z více zdrojů (CRM, e-shop, fakturační systém) do jednoho přehledu",
       "Automatické čištění, deduplikace a slučování záznamů",
@@ -63,6 +75,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "reporty",
     title: "Reporty",
     lead: "Čísla, která za vámi přijdou sama, přesně ve chvíli a formě, kdy je potřebujete.",
+    cardLead: "Čísla vám přijdou sama, přesně když je potřebujete.",
     points: [
       "Automatické denní, týdenní nebo měsíční souhrny (obrat, marže, provoz) do e-mailu nebo Slacku",
       "Reporty sestavené z více zdrojů dat najednou, bez ručního kopírování do Excelu",
@@ -75,6 +88,7 @@ export const automationAreas: AutomationArea[] = [
     slug: "ucetnictvi",
     title: "Účetnictví",
     lead: "Menší administrativní zátěž, méně manuálních chyb, rychlejší uzávěrky.",
+    cardLead: "Méně administrativy, méně chyb, rychlejší uzávěrky.",
     points: [
       "Příjem faktur z e-mailu, vytěžení dat pomocí AI a validace proti objednávce",
       "Automatické zaúčtování shodných položek, eskalace nesrovnalostí ke kontrole",

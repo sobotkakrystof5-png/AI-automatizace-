@@ -62,6 +62,13 @@ export const leads = pgTable(
     phone: varchar("phone", { length: 50 }),
     companyUrl: varchar("company_url", { length: 500 }),
 
+    // rozšířený intake (Fáze R9 redesignu 2026) — samostatná pole, ne
+    // přepis `blocker`: jde o jinou otázku ("jaké nástroje dnes používáte"
+    // / "co konkrétně chcete automatizovat" vs. "co vás brzdí")
+    toolsUsed: jsonb("tools_used").$type<string[]>().notNull().default([]), // slugy z lib/tools.ts + volitelně "jiné" hodnoty
+    toolsOther: varchar("tools_other", { length: 300 }),
+    automationGoal: text("automation_goal"),
+
     status: leadStatusEnum("status").notNull().default("new"),
     source: leadSourceEnum("source").notNull().default("contact_form"),
 
