@@ -35,8 +35,8 @@ export default function StatsBar() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
             <AnimatedSection key={i} delay={i * 0.08}>
-              <GlowCard accent="gold" className="h-full bg-zinc-950 p-6 text-center sm:text-left">
-                <p className="text-3xl font-semibold tabular-nums text-brand-gold sm:text-4xl">
+              <GlowCard accent="turquoise" className="h-full bg-zinc-950 p-6 text-center sm:text-left">
+                <p className="text-3xl font-semibold tabular-nums text-brand-turquoise sm:text-4xl">
                   <CountUpValue target={s.target} suffix={s.suffix} />
                 </p>
                 <p className="mt-2 text-sm text-zinc-400">{s.label}</p>

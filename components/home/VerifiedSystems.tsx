@@ -12,7 +12,7 @@ export default function VerifiedSystems() {
       <div className="mx-auto max-w-4xl px-6 py-16 text-center sm:px-8 sm:py-20">
         <AnimatedSection>
           <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
-            Nástroje, které už znáte
+            Propojujeme to, co již používáte.
           </h2>
           <p className="mt-3 text-zinc-400">
             Napojíme se na ně — nic nemusíte měnit.

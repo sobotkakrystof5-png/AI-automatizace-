@@ -73,7 +73,7 @@ export function pricingServiceJsonLd() {
       itemListElement: pricingTiers.map((tier) => ({
         "@type": "Offer",
         name: tier.title,
-        description: tier.body,
+        description: tier.description,
         priceCurrency: "CZK",
         priceSpecification: {
           "@type": "UnitPriceSpecification",

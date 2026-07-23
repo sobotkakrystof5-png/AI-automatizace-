@@ -101,7 +101,7 @@ export default function ProcessSteps() {
           <div
             ref={lineRef}
             aria-hidden
-            className="absolute left-7 top-0 bottom-0 w-px bg-brand-electric"
+            className="absolute left-7 top-0 bottom-0 w-px bg-brand-turquoise"
           />
 
           <ol className="space-y-10">
@@ -122,7 +122,7 @@ export default function ProcessSteps() {
                     className={cx(
                       "absolute -left-14 top-0 flex h-10 w-10 items-center justify-center rounded-full border font-mono text-sm font-semibold transition-colors duration-300",
                       isActive
-                        ? "border-brand-electric bg-brand-electric/10 text-brand-electric"
+                        ? "border-brand-turquoise bg-brand-turquoise/10 text-brand-turquoise"
                         : "border-zinc-700 text-zinc-400"
                     )}
                   >
@@ -149,7 +149,7 @@ export default function ProcessSteps() {
                       type="button"
                       onClick={() => toggleExpanded(i)}
                       aria-expanded={isExpanded}
-                      className="mt-2 text-sm font-medium text-brand-electric hover:underline"
+                      className="mt-2 text-sm font-medium text-brand-turquoise hover:underline"
                     >
                       {isExpanded ? "Skrýt" : "Zobrazit víc"}
                     </button>

@@ -46,12 +46,12 @@ export default function AutomationAreas() {
           {automationAreas.map((area, i) => (
             <AnimatedSection key={area.slug} delay={Math.min(i * 0.06, 0.3)}>
               <GlowCard
-                accent="electric"
+                accent="turquoise"
                 href={`/automatizace/${area.slug}`}
                 className="flex h-full flex-col p-6"
               >
                 <MiniProcessDiagram icons={AREA_ICONS[area.slug]} />
-                <h3 className="mt-2 text-lg font-semibold text-zinc-50 group-hover:text-brand-electric">
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50 group-hover:text-brand-turquoise">
                   {area.title}
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">{area.cardLead}</p>

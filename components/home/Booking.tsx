@@ -1,5 +1,5 @@
+import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
-import MagneticLink from "@/components/motion/MagneticLink";
 import { ZAKAZIQ_BOOKING_URL, isBookingUrlConfigured } from "@/lib/constants";
 
 // Fáze R9 redesignu — samostatná booking sekce hned před rozšířeným
@@ -19,12 +19,12 @@ export default function Booking() {
             Nezávazná konzultace zdarma, přímo v kalendáři ZakazIQ.
           </p>
 
-          <MagneticLink
+          <Link
             href={isBookingUrlConfigured ? ZAKAZIQ_BOOKING_URL : "/#kontakt"}
-            className="mt-6 inline-block rounded-full bg-brand-gold px-6 py-3 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
+            className="mt-6 inline-block rounded-full bg-brand-turquoise px-6 py-3 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
           >
             Otevřít kalendář ZakazIQ
-          </MagneticLink>
+          </Link>
 
           {!isBookingUrlConfigured && (
             <p className="mt-3 text-sm text-zinc-400">

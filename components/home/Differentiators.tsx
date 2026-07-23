@@ -20,7 +20,7 @@ const pillars = [
   {
     title: "3. Řekneme vám i to, co se automatizovat nevyplatí",
     body: "Nejcennější není konzultant, který postaví cokoliv chcete — je to ten, kdo vás odradí od funkce bez návratnosti. Radši vám ušetříme peníze, než prodáme něco, co nevyužijete.",
-    tagline: "Nabudujeme jen to, co se vám opravdu vyplatí.",
+    tagline: "Stavíme jen to, co se vám vrátí.",
   },
   {
     title: "4. Naši jednoduchost nemusíte věřit na slovo — zažijete ji",
@@ -52,7 +52,7 @@ export default function Differentiators() {
                 aria-pressed={active === i}
                 className={`shrink-0 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors lg:shrink ${
                   active === i
-                    ? "border-brand-gold bg-zinc-900 text-zinc-50"
+                    ? "border-brand-turquoise bg-zinc-900 text-zinc-50"
                     : "border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
                 }`}
               >
@@ -61,20 +61,30 @@ export default function Differentiators() {
             ))}
           </div>
 
-          <GlowCard accent="gold" className="min-h-[220px] bg-zinc-900 p-6 sm:p-8">
+          <GlowCard
+            accent="turquoise"
+            className="relative flex min-h-[220px] flex-col justify-center overflow-hidden bg-zinc-900 p-6 sm:p-8"
+          >
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -right-2 -top-6 select-none text-[7rem] font-bold leading-none text-brand-turquoise/10 sm:text-[9rem]"
+            >
+              0{active + 1}
+            </span>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
+                className="relative"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
               >
-                <p className="font-medium text-zinc-50">
+                <p className="text-2xl font-semibold leading-snug text-zinc-50 sm:text-3xl">
                   {pillars[active].tagline}
                 </p>
-                <details className="group mt-3">
-                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm text-brand-gold marker:content-none">
+                <details className="group mt-4">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm text-brand-turquoise marker:content-none">
                     Proč
                     <svg
                       aria-hidden

@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { automationAreas } from "@/lib/automation-areas";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
-import MagneticLink from "@/components/motion/MagneticLink";
 import JsonLd from "@/components/seo/JsonLd";
 import { automationAreaServiceJsonLd, breadcrumbJsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -57,7 +56,7 @@ export default async function AutomationAreaPage({ params }: Props) {
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
         <Link
           href="/#automatizace"
-          className="text-sm font-medium text-zinc-50 underline hover:text-brand-gold"
+          className="text-sm font-medium text-zinc-50 underline hover:text-brand-turquoise"
         >
           ← Zpět na přehled automatizací
         </Link>
@@ -81,7 +80,7 @@ export default async function AutomationAreaPage({ params }: Props) {
         </AnimatedSection>
 
         <AnimatedSection delay={0.1}>
-          <GlowCard accent="gold" className="mt-12 p-6 sm:p-8">
+          <GlowCard accent="turquoise" className="mt-12 p-6 sm:p-8">
             <p className="text-lg font-semibold text-zinc-50">
               Řešíte podobný proces ve svém provozu?
             </p>
@@ -91,12 +90,12 @@ export default async function AutomationAreaPage({ params }: Props) {
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
-              <MagneticLink
+              <Link
                 href="/#kontakt"
-                className="inline-flex justify-center rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
+                className="inline-flex justify-center rounded-md bg-brand-turquoise px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-turquoise/90"
               >
                 Rezervovat konzultaci zdarma
-              </MagneticLink>
+              </Link>
             </div>
           </GlowCard>
         </AnimatedSection>
@@ -105,7 +104,7 @@ export default async function AutomationAreaPage({ params }: Props) {
           Zajímá vás, jak bude spolupráce probíhat krok za krokem?{" "}
           <Link
             href="/#proces-prace"
-            className="text-zinc-50 underline hover:text-brand-gold"
+            className="text-zinc-50 underline hover:text-brand-turquoise"
           >
             Podívejte se na proces práce
           </Link>

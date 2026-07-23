@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
-import MagneticButton from "@/components/motion/MagneticButton";
-import MagneticLink from "@/components/motion/MagneticLink";
 import GlowCard from "@/components/motion/GlowCard";
 import FlowDiagramLazy from "@/components/motion/FlowDiagramLazy";
 
-// Interní QA stránka — náhled navrhované tmavé palety (rozhodnuto
-// 2026-07-17, nahrazuje starou navy/teal/cream/gold/navbar paletu) a od
-// Checkpointu 1 (2026-07-18) i sandbox pro motion primitivy a návrh
-// druhého akcentu, než se rozšíří na produkční stránky. Nepatří do
-// produkční navigace webu.
+// Interní QA stránka — náhled design tokenů a motion primitiv, ne
+// produkční layout. Historie palety: zjednodušená tmavá paleta
+// (2026-07-17) → brand-gold/brand-electric (Fáze R0/R1, 2026-07-21) →
+// tyrkysovo-mintová paleta R11 (2026-07-22, viz claude.md, sekce "Redesign
+// 2026" → "Paleta R11"), aktuálně běžící produkčně napříč webem.
+// Nepatří do produkční navigace webu.
 export const metadata: Metadata = {
   title: "Design tokeny — interní náhled",
   robots: { index: false, follow: false },
@@ -19,7 +19,7 @@ const neutralSwatches = [
   {
     token: "zinc-950",
     hex: "#09090b",
-    usage: "Základní pozadí stránky (base)",
+    usage: "Report/karty na tmavém podkladu, ne base pozadí (to je teď gradient)",
     className: "bg-zinc-950",
     textOn: "text-zinc-50",
   },
@@ -53,34 +53,71 @@ const neutralSwatches = [
   },
 ] as const;
 
+const brandSwatches = [
+  {
+    token: "brand-turquoise",
+    hex: "#2DD4BF",
+    usage: "Primární interaktivní akcent — CTA, aktivní stavy, klíčové zvýraznění",
+    className: "bg-brand-turquoise",
+    textOn: "text-zinc-950",
+  },
+  {
+    token: "brand-mint",
+    hex: "#6EE7B7",
+    usage: "Doplněk k tyrkysové — gradienty, jemné ambientní detaily",
+    className: "bg-brand-mint",
+    textOn: "text-zinc-950",
+  },
+  {
+    token: "brand-deep-green",
+    hex: "#052E2B",
+    usage: "Tmavý zeleno-černý podklad pozadí (ambient gradient)",
+    className: "bg-brand-deep-green",
+    textOn: "text-zinc-50",
+  },
+  {
+    token: "brand-deep-blue",
+    hex: "#0A1A2F",
+    usage: "Tmavý modro-černý podklad pozadí (ambient gradient)",
+    className: "bg-brand-deep-blue",
+    textOn: "text-zinc-50",
+  },
+] as const;
+
 export default function DesignPreviewPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 px-6 py-16 text-zinc-50 sm:px-12">
+    <div className="min-h-screen px-6 py-16 text-zinc-50 sm:px-12">
       <div className="mx-auto max-w-4xl space-y-16">
         <header className="space-y-3 border-b border-zinc-800 pb-8">
-          <p className="text-sm font-medium uppercase tracking-wide text-brand-gold">
-            Návrh — nahrazuje starou paletu, čeká na schválení
+          <p className="text-sm font-medium uppercase tracking-wide text-brand-turquoise">
+            Paleta R11 — potvrzeno 2026-07-22, běží produkčně
           </p>
           <h1 className="text-4xl font-semibold tracking-tight">
-            Zjednodušená tmavá paleta
+            Tyrkysovo-mintová paleta
           </h1>
           <p className="max-w-2xl text-zinc-400">
-            Minimum vlastních barev: základ tvoří přímo standardní Tailwind
-            škála{" "}
+            Neutrální základ zůstává na standardní Tailwind škále{" "}
             <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
               zinc
-            </code>{" "}
-            (žádné vlastní hex tokeny). Vlastní jsou jen dvě barvy — potvrzený
-            akcent{" "}
+            </code>
+            . Vlastní jsou čtyři tokeny —{" "}
             <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
-              brand-gold
+              brand-turquoise
             </code>{" "}
-            pro CTA a klíčové akcenty, a navrhovaný druhý akcent{" "}
+            jako primární interaktivní akcent,{" "}
             <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
-              brand-electric
+              brand-mint
             </code>{" "}
-            pro AI/interaktivní/technické prvky, čekající na potvrzení níže.
-            Cíl: tmavý, elegantní &bdquo;tech / luxury&ldquo; dojem.
+            jako jeho jemný doplněk, a{" "}
+            <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
+              brand-deep-green
+            </code>
+            /
+            <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
+              brand-deep-blue
+            </code>{" "}
+            pro ambientní gradient pozadí. Nahrazují dřívější
+            brand-gold/brand-electric systém (Fáze R0/R1, 2026-07-21).
           </p>
         </header>
 
@@ -110,177 +147,68 @@ export default function DesignPreviewPage() {
 
         <section>
           <h2 className="mb-6 text-xl font-semibold">
-            Akcent 1 — brand-gold (potvrzeno, používá se produkčně)
+            Značkové tokeny (potvrzeno, používá se produkčně)
           </h2>
-          <div className="overflow-hidden rounded-lg border border-zinc-800 sm:max-w-sm">
-            <div className="flex h-24 items-end bg-brand-gold p-4 text-zinc-950">
-              <span className="font-mono text-sm">#B98B4E</span>
-            </div>
-            <div className="bg-zinc-900 p-4">
-              <p className="font-mono text-sm font-semibold">brand-gold</p>
-              <p className="text-sm text-zinc-400">
-                Výhradně CTA tlačítko a klíčové akcenty — ponecháno z
-                původní palety kvůli kontinuitě značky.
-              </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {brandSwatches.map((s) => (
+              <div
+                key={s.token}
+                className="overflow-hidden rounded-lg border border-zinc-800"
+              >
+                <div
+                  className={`flex h-24 items-end p-4 ${s.className} ${s.textOn}`}
+                >
+                  <span className="font-mono text-sm">{s.hex}</span>
+                </div>
+                <div className="bg-zinc-900 p-4">
+                  <p className="font-mono text-sm font-semibold">{s.token}</p>
+                  <p className="text-sm text-zinc-400">{s.usage}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-4 rounded-xl border border-brand-turquoise/20 bg-zinc-900/40 p-6 sm:p-8">
+          <div className="space-y-2">
+            <p className="text-sm font-medium uppercase tracking-wide text-brand-turquoise">
+              Pozadí — aktuální stav
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Ambientní gradient (živě, viz body v globals.css)
+            </h2>
+            <p className="max-w-2xl text-sm text-zinc-400">
+              Nahrazuje plochou <code className="rounded bg-zinc-950 px-1.5 py-0.5">zinc-950</code>{" "}
+              — dva radiální gradienty (deep-green vlevo nahoře, deep-blue
+              vpravo) nad téměř černým základem, `background-attachment:
+              fixed`, aby se nepřekresloval při scrollu.
+            </p>
+          </div>
+          <div className="overflow-hidden rounded-lg border border-zinc-800">
+            <div
+              className="flex h-40 items-end p-4"
+              style={{
+                background:
+                  "#05070a radial-gradient(ellipse 80% 50% at 20% -10%, color-mix(in oklab, var(--color-brand-deep-green) 55%, transparent), transparent), radial-gradient(ellipse 70% 50% at 100% 20%, color-mix(in oklab, var(--color-brand-deep-blue) 60%, transparent), transparent)",
+              }}
+            >
+              <span className="font-mono text-xs text-zinc-400">
+                body — living gradient
+              </span>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="mb-6 text-xl font-semibold">
-            Akcent 2 — brand-electric (potvrzeno jako primární interaktivní
-            akcent, Fáze R1)
-          </h2>
-          <div className="overflow-hidden rounded-lg border border-zinc-800 sm:max-w-sm">
-            <div className="flex h-24 items-end bg-brand-electric p-4 text-zinc-950">
-              <span className="font-mono text-sm">#22D3EE</span>
-            </div>
-            <div className="bg-zinc-900 p-4">
-              <p className="font-mono text-sm font-semibold">
-                brand-electric
-              </p>
-              <p className="text-sm text-zinc-400">
-                Od 2026-07-21 primární interaktivní akcent — diagramy toku
-                dat, aktivní/hover stavy, glow, klíčové interaktivní prvky
-                napříč webem. brand-gold zůstává zúžený výhradně na CTA
-                tlačítko. Nikdy dekorativně/plošně, u obou tokenů stejná
-                zdrženlivost.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="space-y-8 rounded-xl border border-brand-electric/20 bg-zinc-900/40 p-6 sm:p-8">
-          <div className="space-y-2">
-            <p className="text-sm font-medium uppercase tracking-wide text-brand-electric">
-              Redesign 2026 — Fáze R1
-            </p>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Nový barevný systém — náhled ke schválení
-            </h2>
-            <p className="max-w-2xl text-sm text-zinc-400">
-              brand-electric je od teď potvrzený primární akcent (viz výše).
-              Zbývá schválit jediný otevřený bod: přesný odstín nového,
-              světlejšího/hybridního pozadí — kandidáti níže, žádný z nich
-              zatím neběží produkčně.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="mb-1 font-mono text-sm font-semibold">
-              Systém vedle sebe
-            </h3>
-            <p className="mb-4 text-sm text-zinc-400">
-              Primární CTA (zlatá, beze změny), karta s glow efektem, nadpis,
-              odkaz a badge/tag prvek — celý systém na jeden pohled.
-            </p>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="flex flex-col items-start gap-4 rounded-lg border border-zinc-800 bg-zinc-900 p-6">
-                <button className="rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition hover:brightness-110">
-                  Rezervovat konzultaci zdarma
-                </button>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-electric/40 bg-brand-electric/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-brand-electric">
-                  Badge / tag ukázka
-                </span>
-                <h3 className="text-2xl font-semibold tracking-tight text-zinc-50">
-                  Automatizace, která{" "}
-                  <span className="text-brand-electric">funguje</span>.
-                </h3>
-                <MagneticLink
-                  href="/design-preview"
-                  className="text-brand-electric underline decoration-brand-electric/40 underline-offset-4 transition-colors hover:decoration-brand-electric"
-                >
-                  Zjistit více →
-                </MagneticLink>
-              </div>
-              <GlowCard accent="electric" className="bg-zinc-900 p-6">
-                <p className="text-sm font-medium text-zinc-50">
-                  GlowCard accent=&quot;electric&quot;
-                </p>
-                <p className="mt-1 text-sm text-zinc-400">
-                  Stejná komponenta jako v Motion foundation níže — jen
-                  zopakovaná tady vedle zbytku systému pro snadné srovnání.
-                </p>
-              </GlowCard>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="mb-1 font-mono text-sm font-semibold">
-              Pozadí — kandidáti (čeká na schválení)
-            </h3>
-            <p className="mb-4 text-sm text-zinc-400">
-              Směr &bdquo;světlejší/hybridní&ldquo; potvrzen 2026-07-21, přesná
-              hodnota ne. Žádný kandidát níže neběží produkčně — jen tahle
-              stránka.
-            </p>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <div className="overflow-hidden rounded-lg border border-zinc-800">
-                <div className="flex h-32 items-end bg-zinc-950 p-4">
-                  <span className="font-mono text-xs text-zinc-400">
-                    zinc-950
-                  </span>
-                </div>
-                <div className="bg-zinc-900 p-3">
-                  <p className="text-xs font-semibold text-zinc-50">
-                    Aktuální (produkce)
-                  </p>
-                  <p className="text-xs text-zinc-500">Beze změny, baseline.</p>
-                </div>
-              </div>
-              <div className="overflow-hidden rounded-lg border border-zinc-800">
-                <div className="flex h-32 items-end bg-zinc-900 p-4">
-                  <span className="font-mono text-xs text-zinc-400">
-                    zinc-900
-                  </span>
-                </div>
-                <div className="bg-zinc-900 p-3">
-                  <p className="text-xs font-semibold text-zinc-50">
-                    Kandidát A — plochá, světlejší
-                  </p>
-                  <p className="text-xs text-zinc-500">
-                    Base posunuta o krok výš, karty by šly na zinc-800/700.
-                  </p>
-                </div>
-              </div>
-              <div className="overflow-hidden rounded-lg border border-zinc-800">
-                <div
-                  className="flex h-32 items-end p-4"
-                  style={{
-                    background:
-                      "radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, var(--color-brand-electric) 10%, transparent), transparent 70%), var(--color-zinc-950)",
-                  }}
-                >
-                  <span className="font-mono text-xs text-zinc-400">
-                    zinc-950 + modrý podtón
-                  </span>
-                </div>
-                <div className="bg-zinc-900 p-3">
-                  <p className="text-xs font-semibold text-zinc-50">
-                    Kandidát B — hybridní
-                  </p>
-                  <p className="text-xs text-zinc-500">
-                    Beze změny hex hodnot, jen jemný gradient z brand-electric.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="mb-2 font-mono text-sm font-semibold">
-              Kontrast (WCAG AA)
-            </h3>
-            <p className="max-w-2xl text-sm text-zinc-400">
-              brand-electric (#22D3EE) na zinc-950 (#09090B):{" "}
-              <strong className="text-zinc-50">~11,0 : 1</strong>. Na zinc-900
-              (#18181B): <strong className="text-zinc-50">~9,8 : 1</strong>.
-              Obojí vysoko nad požadovaným AA prahem (4,5 : 1 pro běžný text,
-              3 : 1 pro velký text/UI prvky) a nad AAA (7 : 1) — kandidát B
-              přidává jen ~10% podtón nahoře, výsledný kontrast textu se tím
-              prakticky nemění.
-            </p>
-          </div>
+          <h2 className="mb-2 text-xl font-semibold">Kontrast (WCAG AA)</h2>
+          <p className="max-w-2xl text-sm text-zinc-400">
+            brand-turquoise (#2DD4BF) na zinc-950 (#09090B):{" "}
+            <strong className="text-zinc-50">~10,7 : 1</strong>. Na zinc-900
+            (#18181B): <strong className="text-zinc-50">~9,5 : 1</strong>.
+            Text-zinc-950 na bg-brand-turquoise (CTA tlačítka): stejný poměr
+            ~10,7 : 1. Vše vysoko nad požadovaným AA prahem (4,5 : 1 pro
+            běžný text, 3 : 1 pro velký text/UI prvky) i nad AAA (7 : 1).
+          </p>
         </section>
 
         <section>
@@ -292,9 +220,12 @@ export default function DesignPreviewPage() {
             <h2 className="text-2xl font-semibold text-zinc-50">
               Váš čas patří zákazníkům, ne excelu.
             </h2>
-            <h3 className="text-lg font-medium text-brand-gold">
+            <h3 className="text-lg font-medium text-brand-turquoise">
               V čem jsme jiní
             </h3>
+            <p className="magic-gradient-text max-w-xl text-2xl font-semibold">
+              Ukázka .magic-gradient-text (střídmě, max 1–2× na stránku)
+            </p>
             <p className="max-w-xl text-zinc-400">
               Bereme firmám zpátky hodiny strávené opakovanou administrativou
               — a vracíme je tam, kam patří: k zákazníkům, k růstu, k práci,
@@ -308,26 +239,29 @@ export default function DesignPreviewPage() {
 
         <section>
           <h2 className="mb-6 text-xl font-semibold">Ukázka — hero blok</h2>
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-10 sm:p-14">
-            <p className="mb-3 text-sm font-medium uppercase tracking-wide text-zinc-400">
-              AvenIQ — AI automatizace
-            </p>
-            <h3 className="mb-4 max-w-xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-              Chytrá automatizace. Lidský přístup.
-            </h3>
-            <p className="mb-8 max-w-lg text-zinc-400">
-              Ukázka kontrastu textu a tlačítka na navrhovaném tmavém pozadí —
-              pro reálné porovnání s aktuální (světlou) verzí webu.
-            </p>
-            <button className="rounded-md bg-brand-gold px-6 py-3 font-semibold text-zinc-950 transition hover:brightness-110">
-              Rezervovat konzultaci zdarma
-            </button>
+          <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-10 sm:p-14">
+            <div className="magic-aurora pointer-events-none absolute -inset-20" aria-hidden />
+            <div className="relative">
+              <p className="mb-3 text-sm font-medium uppercase tracking-wide text-zinc-400">
+                AvenIQ — AI automatizace
+              </p>
+              <h3 className="mb-4 max-w-xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+                Chytrá automatizace. Lidský přístup.
+              </h3>
+              <p className="mb-8 max-w-lg text-zinc-400">
+                Ukázka kontrastu textu a tlačítka na aktuálním tmavém pozadí,
+                s ambientní `.magic-aurora` plochou za obsahem.
+              </p>
+              <button className="rounded-md bg-brand-turquoise px-6 py-3 font-semibold text-zinc-950 transition hover:brightness-110">
+                Rezervovat konzultaci zdarma
+              </button>
+            </div>
           </div>
         </section>
 
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">
-            Motion foundation (Checkpoint 1) — živé demo primitiv
+            Motion foundation — živé demo primitiv
           </h2>
           <p className="max-w-2xl text-sm text-zinc-400">
             Vše níže respektuje <code className="rounded bg-zinc-900 px-1.5 py-0.5">prefers-reduced-motion</code> —
@@ -352,38 +286,49 @@ export default function DesignPreviewPage() {
           </AnimatedSection>
 
           <div className="space-y-3 rounded-lg border border-zinc-800 bg-zinc-900 p-6">
-            <p className="font-mono text-sm font-semibold">MagneticButton</p>
+            <p className="font-mono text-sm font-semibold">
+              CTA hover (bez magnetického efektu)
+            </p>
             <p className="text-sm text-zinc-400">
-              Kurzor přitahuje tlačítko k sobě (myší, ne na dotykových
-              zařízeních).
+              Redesign 2026 odstranil kurzorem řízený &bdquo;magnetický&ldquo;
+              pohyb tlačítek — CTA teď reaguje jen jemným
+              opacity/scale hover stavem, nesleduje kurzor.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
-              <MagneticButton className="rounded-full bg-brand-gold px-6 py-3 font-medium text-zinc-950 transition-opacity hover:opacity-90">
-                Zlatý akcent
-              </MagneticButton>
-              <MagneticButton className="rounded-full border border-brand-electric px-6 py-3 font-medium text-brand-electric transition-colors hover:bg-brand-electric/10">
-                Elektrický akcent
-              </MagneticButton>
+              <button className="rounded-full bg-brand-turquoise px-6 py-3 font-medium text-zinc-950 transition-opacity hover:opacity-90">
+                Primární CTA
+              </button>
+              <Link
+                href="/design-preview"
+                className="rounded-full border border-brand-turquoise px-6 py-3 font-medium text-brand-turquoise transition-colors hover:bg-brand-turquoise/10"
+              >
+                Sekundární odkaz
+              </Link>
             </div>
           </div>
 
           <div>
             <p className="mb-3 font-mono text-sm font-semibold">GlowCard</p>
+            <p className="mb-4 text-sm text-zinc-400">
+              Zjednodušeno na čistou prezentační komponentu — žádný
+              mouse-tracking spotlight, jen jemné zesvětlení borderu a lift
+              na hover.
+            </p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <GlowCard accent="gold" className="bg-zinc-900 p-6">
+              <GlowCard accent="turquoise" className="bg-zinc-900 p-6">
                 <p className="text-sm font-medium text-zinc-50">
-                  accent=&quot;gold&quot;
+                  accent=&quot;turquoise&quot;
                 </p>
                 <p className="mt-1 text-sm text-zinc-400">
-                  Najeď myší — okrajová i kurzorem řízená záře v teplé zlaté.
+                  Najeď myší — border zesvětlí a karta se jemně nadzvedne.
                 </p>
               </GlowCard>
-              <GlowCard accent="electric" className="bg-zinc-900 p-6">
+              <GlowCard accent="mint" className="bg-zinc-900 p-6">
                 <p className="text-sm font-medium text-zinc-50">
-                  accent=&quot;electric&quot;
+                  accent=&quot;mint&quot;
                 </p>
                 <p className="mt-1 text-sm text-zinc-400">
-                  Stejný efekt, studený akcent — pro AI/technické karty.
+                  Stejný efekt, jemnější doplňkový akcent.
                 </p>
               </GlowCard>
             </div>
@@ -406,14 +351,13 @@ export default function DesignPreviewPage() {
         <footer className="border-t border-zinc-800 pt-8 text-sm text-zinc-400">
           <p>
             Tohle je jen ukázka tokenů a motion primitiv, ne finální layout.
-            Zinc/gold paleta už{" "}
+            Tyrkysovo-mintová paleta R11 už{" "}
             <strong className="text-zinc-50">běží produkčně</strong> napříč
-            webem (Navbar, Hero, homepage sekce). Nové na této stránce —{" "}
+            webem (Navbar, Hero, homepage sekce). Historii rozhodnutí viz{" "}
             <code className="rounded bg-zinc-900 px-1.5 py-0.5">
-              brand-electric
-            </code>{" "}
-            a motion primitivy výše — čekají na tvoje schválení tady, než se
-            rozšíří na produkční stránky (Checkpoint 2+).
+              claude.md
+            </code>
+            , sekce &bdquo;Redesign 2026&ldquo;.
           </p>
         </footer>
       </div>

@@ -128,40 +128,43 @@ pravdy:
   podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
   segment a styl, ber je jako prozatímní, ne jako potvrzený text.
 
-## Design systém (zjednodušená tmavá paleta, rozhodnuto 2026-07-17 —
-aktualizováno 2026-07-21, viz sekce "Redesign 2026" níže)
+## Design systém (paleta revidována 2026-07-22, viz "Paleta R11" níže —
+nahrazuje R0/R1 rozhodnutí z 2026-07-21)
 
-Nahrazuje původní pětibarevnou paletu (navy/teal/cream/gold/navbar) na
-žádost uživatele — cíl: tmavý, elegantní "tech/luxury" vzhled s minimem
-vlastních barev, postavený primárně na standardní Tailwind CSS škále
-(`zinc`), ne na vlastních pojmenovaných hex hodnotách.
+Nahrazuje `brand.gold`/`brand.electric` systém (rozhodnutý 2026-07-21 ve
+Fázi R0/R1) na základě nového redesign promptu, který uživatel výslovně
+potvrdil jako záměrné přepsání R0 (viz "Paleta R11" níže) — cíl: tyrkysová/
+mintová identita na tmavém zeleno-modrém gradientu místo ploché `zinc-950`.
 
 | Token | Zdroj | Použití |
 |---|---|---|
-| Pozadí (base) | Tailwind `zinc-950` | Základní tmavé pozadí stránky — **mění se** směrem ke světlejšímu/hybridnímu tónu (rozhodnuto 2026-07-21), přesný odstín/token čeká na schválení z `/design-preview` ve Fázi R1; do té doby platí `zinc-950` |
-| Povrch/karty | Tailwind `zinc-900` / `zinc-800` | Karty, oddělené sekce, ohraničení |
-| Text primární | Tailwind `zinc-50` | Nadpisy, hlavní text |
-| Text tlumený | Tailwind `zinc-400` | Popisky, sekundární text |
-| `brand.gold` | vlastní token, `#B98B4E` (ponecháno z původní palety) | **Výhradně** CTA tlačítko — od 2026-07-21 už ne "klíčové akcenty" obecně, tuto roli přebírá `brand.electric` |
-| `brand.electric` | vlastní token, `#22D3EE` | Od 2026-07-21 **primární interaktivní akcent** — diagramy, hover/aktivní stavy, glow efekty, klíčové interaktivní prvky napříč webem (dřív jen technický/AI akcent, viz Redesign 2026) |
+| Pozadí (base) | vlastní gradient `#05070a` → `brand.deep-green`/`brand.deep-blue` (radial, fixed) | Základní pozadí stránky — nahrazuje plochou `zinc-950`; supersede R0/R1 směr "lighter/hybrid", který se s R11 rozhodnutím stal neaktuálním |
+| Povrch/karty | Tailwind `zinc-900` / `zinc-800` | Karty, oddělené sekce, ohraničení (beze změny) |
+| Text primární | Tailwind `zinc-50` | Nadpisy, hlavní text (beze změny) |
+| Text tlumený | Tailwind `zinc-400` | Popisky, sekundární text (beze změny) |
+| `brand.turquoise` | vlastní token, `#2DD4BF` | **Primární interaktivní akcent** — CTA tlačítka, aktivní stavy, klíčové zvýraznění. Nahrazuje `brand.gold` i `brand.electric` v této roli. |
+| `brand.mint` | vlastní token, `#6EE7B7` | Světle zelený doplněk k tyrkysové — `.magic-gradient-text`, jemnější ambientní detaily, druhý bod v gradientech/pásech |
+| `brand.deep-green` | vlastní token, `#052E2B` | Tmavý zeleno-černý podklad pozadí (ambient gradient) |
+| `brand.deep-blue` | vlastní token, `#0A1A2F` | Tmavý modro-černý podklad pozadí (ambient gradient) |
 
 Pravidla:
 - Žádné další vlastní barvy bez schválení — pokud je potřeba odstín mimo
-  `zinc` škálu, `brand.gold` a `brand.electric`, nejdřív navrhnout a
-  počkat na souhlas.
-- `brand.gold` zůstává vyhrazený **výhradně pro CTA tlačítko**, nepoužívat
-  plošně/dekorativně ani jako obecný "klíčový akcent" (tuto roli má od
-  2026-07-21 `brand.electric`).
-- `brand.electric` je primární interaktivní/klíčový akcent, ale platí pro
-  něj stejná zdrženlivost jako dřív pro zlatou — nepoužívat plošně/
-  dekorativně mimo interaktivní a klíčové prvky.
-- Oba tokeny (`brand.gold`, `brand.electric`) jsou pojmenované tokeny přes
-  `@theme` blok v `app/globals.css` (Tailwind v4, CSS-first); zbytek
-  palety čerpá přímo ze standardní Tailwind `zinc` škály bez vlastní
-  definice. Nikdy natvrdo v komponentách a nikdy v samostatném
-  `tailwind.config.ts` (ten v projektu není a nemá se zakládat).
-- **Přesný odstín nového pozadí je otevřený bod** — potvrzuje se náhledem
-  na `/design-preview` (Fáze R1), než se rozšíří napříč všemi komponentami.
+  `zinc` škálu a čtyři tokeny výše, nejdřív navrhnout a počkat na souhlas.
+- `brand.turquoise` je hlavní interaktivní/klíčový akcent (CTA i aktivní
+  stavy) — platí pro něj stejná zdrženlivost jako dřív pro zlatou/modrou:
+  nepoužívat plošně/dekorativně mimo interaktivní a klíčové prvky.
+- `brand.mint` jen jako doplněk k tyrkysové (gradienty, jemné detaily),
+  nikdy jako samostatný primární akcent.
+- `brand.deep-green`/`brand.deep-blue` jsou vyhrazené pro pozadí/ambient
+  vrstvy (`.magic-aurora`), ne pro text ani interaktivní prvky.
+- Všechny čtyři tokeny jsou pojmenované tokeny přes `@theme` blok v
+  `app/globals.css` (Tailwind v4, CSS-first); zbytek palety čerpá přímo ze
+  standardní Tailwind `zinc` škály bez vlastní definice. Nikdy natvrdo v
+  komponentách a nikdy v samostatném `tailwind.config.ts` (ten v projektu
+  není a nemá se zakládat).
+- `brand.gold` (#B98B4E) a `brand.electric` (#22D3EE) jsou od 2026-07-22
+  **zrušené** tokeny — pokud narazíš na zbytkový výskyt v kódu mimo tuto
+  redesign session, je to nedokončený úklid, ne platný token.
 
 ## Redesign 2026 — cíl a inspirace
 
@@ -195,6 +198,21 @@ odhadem, ptát se přímo, až přijde na řadu příslušná fáze): fotka
 zakladatele pro Fázi R8, skutečný seznam nástrojů pro integrace (Fáze R3
 popisky kostek, R4, R7), rezervační nástroj nahrazující
 `ZAKAZIQ_BOOKING_URL` (Fáze R9), volitelný LinkedIn odkaz (Fáze R8).
+
+### Paleta R11 (2026-07-22) — přepsání barevného rozhodnutí z R0/R1
+
+Po dokončení R0–R10 (viz git log) přišel uživatel s novým, samostatným
+redesign promptem (mimo `docs/redesign-kickoff-prompt.md`), který žádá
+kompletní nahrazení `brand.gold`/`brand.electric` tyrkysovo-mintovou
+paletou (`brand.turquoise` #2DD4BF, `brand.mint` #6EE7B7) a tmavý
+zeleno-modrý gradient pozadí (`brand.deep-green` #052E2B, `brand.deep-blue`
+#0A1A2F) místo ploché `zinc-950` — **opačný směr**, než "lighter/hybrid"
+potvrzený v R0/R1. Než se prompt začal provádět, byl tento rozpor uživateli
+výslovně předložen (`AskUserQuestion`) a uživatel **potvrdil**, že jde o
+záměrné přepsání R0/R1 rozhodnutí, ne o přehlédnutí. Nová paleta viz sekce
+"Design systém" výše. Rozsah provedení (9 sekcí redesign promptu) se
+zpracovává v jedné session, sekci po sekci, s `npm run lint`/`npm run build`
+po každé — dle výslovné volby uživatele, ne dělené do samostatných session.
 
 ## Jazykový standard — babička test 2.0 (od Fáze R2, 2026-07-21)
 
@@ -252,10 +270,9 @@ označený placeholder `[DOPLNIT PRÁVNÍ TEXT]`.
 - Měnit ceny, čísla, motta nebo marketingová tvrzení webu bez výslovného
   souhlasu uživatele.
 - Publikovat Reference/case studies bez ≥ 2 publikovaných záznamů.
-- Používat zlatý akcent mimo CTA tlačítko (viz Design systém — od
-  2026-07-21 je "klíčový akcent" role modré, ne zlaté).
-- Používat modrý akcent (`brand.electric`) plošně/dekorativně mimo
-  interaktivní a klíčové prvky (stejná zdrženlivost jako dřív u zlaté).
+- Používat `brand.turquoise`/`brand.mint` plošně/dekorativně mimo
+  interaktivní a klíčové prvky (viz Design systém — od 2026-07-22 nahrazují
+  `brand.gold`/`brand.electric` v této roli, se stejnou zdrženlivostí).
 - Předstírat větší tým, než reálně existuje (aktuálně jen Kryštof
   Sobotka).
 - Přidávat nové závislosti/knihovny "protože jsou lepší" bez návrhu a

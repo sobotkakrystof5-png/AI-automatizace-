@@ -8,20 +8,20 @@ export default function FAQ() {
       <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
         <AnimatedSection>
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-            Časté otázky
+            Časté dotazy
           </h2>
         </AnimatedSection>
 
         <div className="mt-10 space-y-3">
           {faqs.map((faq, i) => (
             <AnimatedSection key={faq.q} delay={Math.min(i * 0.04, 0.4)} y={12}>
-              <details className="group rounded-lg border border-zinc-800 bg-zinc-900 p-5 transition-colors hover:border-brand-gold/30">
+              <details className="group rounded-lg border border-zinc-800 bg-zinc-900 p-5 transition-colors hover:border-brand-turquoise/30">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-zinc-50 marker:content-none">
                   {faq.q}
                   <svg
                     aria-hidden
                     viewBox="0 0 20 20"
-                    className="h-4 w-4 shrink-0 text-brand-gold transition-transform group-open:rotate-180"
+                    className="h-4 w-4 shrink-0 text-brand-turquoise transition-transform group-open:rotate-180"
                   >
                     <path
                       fill="currentColor"
@@ -34,7 +34,7 @@ export default function FAQ() {
                   {faq.link && (
                     <Link
                       href={faq.link.href}
-                      className="text-zinc-50 underline hover:text-brand-gold"
+                      className="text-zinc-50 underline hover:text-brand-turquoise"
                     >
                       {faq.link.label}
                     </Link>
@@ -50,7 +50,7 @@ export default function FAQ() {
           Odpověď jste nenašli?{" "}
           <Link
             href="/#kontakt"
-            className="text-zinc-50 underline hover:text-brand-gold"
+            className="text-zinc-50 underline hover:text-brand-turquoise"
           >
             Napište nám
           </Link>{" "}

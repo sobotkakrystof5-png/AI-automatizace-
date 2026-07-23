@@ -59,14 +59,14 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => saveConsent("necessary")}
-            className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-50 transition-colors hover:border-brand-gold"
+            className="rounded-md border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-50 transition-colors hover:border-brand-turquoise"
           >
             Pouze nutné
           </button>
           <button
             type="button"
             onClick={() => saveConsent("all")}
-            className="rounded-md bg-brand-gold px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-brand-gold/90"
+            className="rounded-md bg-brand-turquoise px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-brand-turquoise/90"
           >
             Přijmout vše
           </button>

@@ -5,13 +5,12 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/#proc-automatizace", label: "Proč automatizace" },
-  { href: "/#automatizace", label: "Automatizace" },
   { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
   { href: "/#proces-prace", label: "Proces práce" },
   { href: "/#cenik", label: "Ceník" },
-  { href: "/#zaruka", label: "Záruka" },
   { href: "/#o-nas", label: "O nás" },
   { href: "/#faq", label: "FAQ" },
+  { href: "/#primy-kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
@@ -46,9 +45,9 @@ export default function Navbar() {
           {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
           <Link
             href="/#kontakt"
-            className="hidden rounded-full bg-brand-gold px-4 py-2 text-sm font-medium text-zinc-950 transition-opacity hover:opacity-90 sm:inline-flex sm:px-6 sm:py-2.5 sm:text-base"
+            className="hidden rounded-full bg-brand-turquoise px-4 py-2 text-sm font-medium text-zinc-950 transition-opacity hover:opacity-90 sm:inline-flex"
           >
-            Rezervovat konzultaci zdarma — popište svůj projekt
+            Konzultace zdarma
           </Link>
 
           <button
@@ -111,7 +110,7 @@ export default function Navbar() {
             <Link
               href="/#kontakt"
               onClick={() => setIsMenuOpen(false)}
-              className="inline-flex w-full justify-center rounded-full bg-brand-gold px-6 py-2.5 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
+              className="inline-flex w-full justify-center rounded-full bg-brand-turquoise px-6 py-2.5 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
             >
               Rezervovat konzultaci zdarma — popište svůj projekt
             </Link>

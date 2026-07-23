@@ -3,6 +3,10 @@ import { pricingTiers } from "@/lib/pricing";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+
 export default function Pricing() {
   return (
     <section id="cenik" className="bg-zinc-900">
@@ -12,23 +16,28 @@ export default function Pricing() {
             Ceník
           </h2>
           <p className="mt-4 max-w-3xl text-zinc-400">
-            {"Cena záleží na počtu systémů, složitosti logiky a hodnotě, kterou přináší."}
+            Cena záleží na počtu systémů, složitosti logiky a hodnotě, kterou
+            přináší.
           </p>
         </AnimatedSection>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {pricingTiers.map((tier, i) => (
             <AnimatedSection key={tier.title} delay={i * 0.1}>
-              <GlowCard accent="gold" className="flex h-full flex-col bg-zinc-950 p-6">
-                <h3 className="flex items-center gap-2 text-lg font-semibold text-zinc-50">
-                  <span aria-hidden>{tier.emoji}</span> {tier.title}
-                </h3>
-                <p className="mt-1 text-xl font-bold text-brand-gold">
+              <GlowCard accent="turquoise" className="flex h-full flex-col bg-zinc-950 p-6">
+                <div className="flex items-baseline justify-between">
+                  <h3 className="text-lg font-semibold text-zinc-50">
+                    {tier.title}
+                  </h3>
+                  <span aria-hidden className="font-mono text-xs text-zinc-600">
+                    {pad(i + 1)}
+                  </span>
+                </div>
+                <p className="mt-3 text-2xl font-bold text-brand-turquoise">
                   {tier.price}
                 </p>
-                <p className="mt-3 text-zinc-400">{tier.body}</p>
-                <p className="mt-4 text-sm italic text-zinc-400">
-                  {tier.example}
+                <p className="mt-4 border-t border-zinc-800 pt-4 text-sm text-zinc-400">
+                  {tier.description}
                 </p>
               </GlowCard>
             </AnimatedSection>
@@ -36,37 +45,29 @@ export default function Pricing() {
         </div>
 
         <p className="mt-8 font-semibold text-zinc-50">
-          Přesná cena vždy vychází z konzultace. U střední a větší
-          automatizace záleží na počtu systémů, množství logiky a objemu
-          dat — čísla výše jsou orientační výchozí bod, ne finální nabídka.
+          Přesná cena vychází z konzultace — čísla výše jsou orientační, ne
+          finální nabídka.
         </p>
 
-        <p className="mt-4 text-zinc-400">
-          <span className="font-semibold text-zinc-50">
-            Nevíte přesně, kterou automatizaci potřebujete?
-          </span>{" "}
-          Nabízíme samostatný automatizační audit za 4 999 Kč (viz sekce{" "}
+        <p className="mt-3 text-zinc-400">
+          Nevíte, kterou automatizaci potřebujete? Audit za 4 999 Kč (viz{" "}
           <Link
             href="#proces-prace"
-            className="text-zinc-50 underline hover:text-brand-gold"
+            className="text-zinc-50 underline hover:text-brand-turquoise"
           >
             Proces práce
           </Link>
-          ) — konkrétní doporučení, co se vyplatí řešit jako první. Cenu
-          auditu odečítáme z ceny realizace, pokud se rozhodnete jít dál.
+          ) doporučí, co řešit první — cenu odečítáme z realizace.
         </p>
 
         <AnimatedSection>
-          <GlowCard accent="gold" className="mt-10 bg-zinc-950 p-6">
+          <GlowCard accent="turquoise" className="mt-10 bg-zinc-950 p-6">
             <h3 className="text-lg font-semibold text-zinc-50">
-              Průběžná podpora (volitelně)
+              Průběžná podpora
             </h3>
-            <p className="mt-2 text-zinc-400">
-              Pro klienty, kteří chtějí mít jistotu, že automatizace poběží
-              spolehlivě i při změnách na straně propojených nástrojů,
-              nabízíme měsíční paušál na monitoring, drobné úpravy a
-              přednostní podporu — cena podle rozsahu a počtu automatizací v
-              provozu.
+            <p className="mt-2 text-sm text-zinc-400">
+              Volitelný měsíční paušál: monitoring, úpravy a přednostní
+              podpora podle rozsahu provozu.
             </p>
           </GlowCard>
         </AnimatedSection>

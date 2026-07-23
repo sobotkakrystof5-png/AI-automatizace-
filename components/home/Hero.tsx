@@ -1,4 +1,4 @@
-import MagneticLink from "@/components/motion/MagneticLink";
+import Link from "next/link";
 import AutomationJourney from "@/components/motion/AutomationJourney";
 
 export default function Hero() {
@@ -13,12 +13,12 @@ export default function Hero() {
             Váš čas patří zákazníkům, ne excelu.
           </p>
           {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
-          <MagneticLink
+          <Link
             href="/#kontakt"
-            className="rounded-full bg-brand-gold px-6 py-3 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90 sm:px-8 sm:py-4 sm:text-lg"
+            className="rounded-full bg-brand-turquoise px-6 py-3 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90 sm:px-8 sm:py-4 sm:text-lg"
           >
             Rezervovat konzultaci zdarma — popište svůj projekt
-          </MagneticLink>
+          </Link>
         </div>
       </div>
 

@@ -1,34 +1,33 @@
 @import "tailwindcss";
 
 /*
- * Design tokeny — zjednodušená tmavá paleta (rozhodnuto 2026-07-17,
- * redesign 2026 rozhodnut 2026-07-21 — viz claude.md, sekce "Redesign
- * 2026"). brand-gold a brand-electric jsou jediné dvě vlastní barvy v
- * systému — obě podléhají striktnímu omezení použití, viz claude.md,
- * sekce Design systém. Zbytek palety (pozadí, povrchy, text) čerpá přímo
- * ze standardní Tailwind `zinc` škály bez vlastní definice.
+ * Design tokeny — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — viz
+ * claude.md, sekce "Redesign 2026" → "Paleta R11"). Nahrazuje dřívější
+ * brand-gold/brand-electric systém (rozhodnutý 2026-07-21). Čtyři vlastní
+ * tokeny (brand-turquoise, brand-mint, brand-deep-green, brand-deep-blue)
+ * podléhají striktnímu omezení použití, viz claude.md, sekce Design
+ * systém. Zbytek palety (povrchy, text) čerpá přímo ze standardní
+ * Tailwind `zinc` škály bez vlastní definice.
  */
 @theme {
-  /* Výhradně CTA tlačítko (od 2026-07-21, zúženo z dřívějšího "CTA a
-   * klíčové akcenty" — tuto roli teď má brand-electric). */
-  --color-brand-gold: #b98b4e;
+  /* Primární interaktivní akcent — CTA, aktivní stavy, klíčové zvýraznění.
+     Nahrazuje dřívější brand-gold i brand-electric v této roli. */
+  --color-brand-turquoise: #2dd4bf;
+  --color-brand-mint: #6ee7b7;
 
-  /* Potvrzeno jako primární interaktivní akcent (Fáze R1, 2026-07-21) —
-   * diagramy toku dat, aktivní/hover stavy, glow efekty, klíčové
-   * interaktivní prvky napříč webem. Odvozené hover/glow hodnoty
-   * (opacity modifikátory /10, /20, /50 apod.) jdou přes standardní
-   * Tailwind v4 opacity syntax na tomto tokenu, ne přes nové vlastní
-   * tokeny — viz GlowCard.tsx. Stejná zdrženlivost jako u brand-gold:
-   * nikdy dekorativně/plošně, jen interaktivní a klíčové prvky. */
-  --color-brand-electric: #22d3ee;
+  /* Tmavé podklady a hloubka pozadí — nahrazují plochou zinc-950. */
+  --color-brand-deep-green: #052e2b;
+  --color-brand-deep-blue: #0a1a2f;
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
   --animate-marquee: marquee 28s linear infinite;
+  --animate-marquee-fast: marquee 18s linear infinite;
   --animate-slow-spin: spin-slow 40s linear infinite;
   --animate-slow-spin-reverse: spin-slow 40s linear infinite reverse;
   --animate-flow-pulse: flow-pulse 3s ease-in-out infinite;
+  --animate-aurora: aurora-shift 14s ease-in-out infinite;
 }
 
 @keyframes marquee {
@@ -63,16 +62,118 @@
   }
 }
 
+@keyframes aurora-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-8px);
+  }
+}
+
+/* Plovoucí animace pro loga rozhozená uvnitř kruhu (ToolOrbit) — doba a
+ * zpoždění se nastavují per-prvek přes CSS proměnné (--float-duration,
+ * --float-delay), aby loga neplavala synchronně. Pauza na hover dá
+ * uživateli najevo, že jde o interaktivní prvek, ne jen dekoraci. */
+.animate-float-y {
+  animation: float-y var(--float-duration, 5s) ease-in-out
+    var(--float-delay, 0s) infinite;
+}
+
+.animate-float-y:hover {
+  animation-play-state: paused;
+}
+
+@keyframes idle-jitter {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-4deg) scale(1.03);
+  }
+  50% {
+    transform: rotate(3deg) scale(0.97);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.02);
+  }
+}
+
+/* Jemný nepřetržitý "dech" pro kostky v AutomationJourney (hero
+ * scrollytelling) — dává centrálnímu vizuálu pocit živého systému i mimo
+ * scroll-řízené kroky. Doba/zpoždění per-prvek přes CSS proměnné, stejný
+ * vzor jako --float-duration/--float-delay u .animate-float-y. Element,
+ * na který se aplikuje, musí být oddělený od toho, co polohuje GSAP —
+ * CSS animace by jinak přepsala GSAP inline transform. */
+.animate-idle-jitter {
+  animation: idle-jitter var(--jitter-duration, 3.5s) ease-in-out
+    var(--jitter-delay, 0s) infinite;
+}
+
 body {
-  background: var(--color-zinc-950);
+  background: #05070a;
+  background-image: radial-gradient(
+      ellipse 80% 50% at 20% -10%,
+      color-mix(in oklab, var(--color-brand-deep-green) 55%, transparent),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 70% 50% at 100% 20%,
+      color-mix(in oklab, var(--color-brand-deep-blue) 60%, transparent),
+      transparent
+    );
+  background-attachment: fixed;
   color: var(--color-zinc-50);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+.magic-gradient-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-brand-turquoise),
+    var(--color-brand-mint),
+    var(--color-brand-turquoise)
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: aurora-shift 6s ease-in-out infinite;
+}
+
+.magic-aurora {
+  background: conic-gradient(
+    from 0deg,
+    var(--color-brand-deep-green),
+    var(--color-brand-turquoise) 25%,
+    var(--color-brand-deep-blue) 50%,
+    var(--color-brand-mint) 75%,
+    var(--color-brand-deep-green) 100%
+  );
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: var(--animate-aurora);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
+  .animate-marquee-fast,
   .animate-slow-spin,
-  .animate-slow-spin-reverse {
+  .animate-slow-spin-reverse,
+  .animate-float-y,
+  .animate-idle-jitter {
     animation: none;
   }
 
@@ -81,5 +182,14 @@ body {
    * ukazují "vstup → zpracování → výstup" i bez pohybu. */
   .animate-flow-pulse {
     display: none;
+  }
+
+  .magic-gradient-text {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .magic-aurora {
+    animation: none;
   }
 }

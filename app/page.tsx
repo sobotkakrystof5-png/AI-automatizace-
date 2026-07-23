@@ -10,10 +10,10 @@ import HowWeBuild from "@/components/home/HowWeBuild";
 import ProcessSteps from "@/components/home/ProcessSteps";
 import ToolsIntegration from "@/components/home/ToolsIntegration";
 import Pricing from "@/components/home/Pricing";
-import Guarantee from "@/components/home/Guarantee";
 import About from "@/components/home/About";
 import FAQ from "@/components/home/FAQ";
 import Collaboration from "@/components/home/Collaboration";
+import Contact from "@/components/home/Contact";
 import Booking from "@/components/home/Booking";
 import FinalCTA from "@/components/home/FinalCTA";
 
@@ -29,13 +29,13 @@ export default function Home() {
       <WhyAutomation />
       <AutomationAreas />
       <HowWeBuild />
-      <ProcessSteps />
       <ToolsIntegration />
+      <ProcessSteps />
       <Pricing />
-      <Guarantee />
       <About />
-      <FAQ />
       <Collaboration />
+      <FAQ />
+      <Contact />
       <Booking />
       <FinalCTA />
     </>

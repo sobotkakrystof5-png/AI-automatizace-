@@ -109,14 +109,14 @@ export default function FlowDiagram() {
       <path
         ref={path1Ref}
         d="M 140 100 L 260 100"
-        stroke="var(--color-brand-electric)"
+        stroke="var(--color-brand-turquoise)"
         strokeWidth={2}
         fill="none"
       />
       <path
         ref={path2Ref}
         d="M 360 100 L 480 100"
-        stroke="var(--color-brand-electric)"
+        stroke="var(--color-brand-turquoise)"
         strokeWidth={2}
         fill="none"
       />
@@ -152,7 +152,7 @@ export default function FlowDiagram() {
           cy={100}
           r={50}
           fill="var(--color-zinc-900)"
-          stroke="var(--color-brand-electric)"
+          stroke="var(--color-brand-turquoise)"
           strokeWidth={1.5}
         />
         <text
@@ -199,8 +199,8 @@ export default function FlowDiagram() {
         </text>
       </g>
 
-      <circle ref={pulse1Ref} r={5} fill="var(--color-brand-electric)" />
-      <circle ref={pulse2Ref} r={5} fill="var(--color-brand-electric)" />
+      <circle ref={pulse1Ref} r={5} fill="var(--color-brand-turquoise)" />
+      <circle ref={pulse2Ref} r={5} fill="var(--color-brand-turquoise)" />
     </svg>
   );
 }

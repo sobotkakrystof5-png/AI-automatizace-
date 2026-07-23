@@ -17,17 +17,19 @@ Pracuj po fázích (viz masterprompt, sekce 11). Po dokončení každé fáze se
 ## Cílová skupina a tým (od 2026-07-17)
 Segment: živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory — copy se má touto skupinou řídit, ne zůstávat obecné. Tým: AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
 
-## Design systém — zjednodušená tmavá paleta (rozhodnuto 2026-07-17, nahrazuje starou pětibarevnou — aktualizováno 2026-07-21, redesign 2026)
+## Design systém — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — nahrazuje `brand.gold`/`brand.electric` rozhodnutí z 2026-07-21)
 | Token | Zdroj | Použití |
 |---|---|---|
-| Pozadí (base) | Tailwind `zinc-950` | Základní tmavé pozadí stránky — mění se směrem ke světlejšímu/hybridnímu tónu (2026-07-21), přesný odstín čeká na schválení z `/design-preview` ve Fázi R1 |
+| Pozadí (base) | vlastní gradient `#05070a` → `brand.deep-green`/`brand.deep-blue` (radial, fixed) | Nahrazuje plochou `zinc-950` — supersede R0/R1 směr "lighter/hybrid" |
 | Povrch/karty | Tailwind `zinc-900` / `zinc-800` | Karty, oddělené sekce, ohraničení |
 | Text primární | Tailwind `zinc-50` | Nadpisy, hlavní text |
 | Text tlumený | Tailwind `zinc-400` | Popisky, sekundární text |
-| `brand.gold` | vlastní token `#B98B4E` (ponecháno) | **Výhradně** CTA tlačítko — od 2026-07-21 už ne "klíčové akcenty" obecně |
-| `brand.electric` | vlastní token `#22D3EE` | Od 2026-07-21 primární interaktivní akcent — diagramy, hover/aktivní stavy, glow, klíčové interaktivní prvky |
+| `brand.turquoise` | vlastní token `#2DD4BF` | Primární interaktivní akcent — CTA, aktivní stavy, klíčové zvýraznění (nahrazuje `brand.gold` i `brand.electric`) |
+| `brand.mint` | vlastní token `#6EE7B7` | Doplněk k tyrkysové — gradienty, jemné ambientní detaily |
+| `brand.deep-green` | vlastní token `#052E2B` | Tmavý zeleno-černý podklad pozadí |
+| `brand.deep-blue` | vlastní token `#0A1A2F` | Tmavý modro-černý podklad pozadí |
 
-Cíl: tmavý, elegantní "tech/luxury" vzhled s minimem vlastních barev. `brand.gold` se nesmí objevit jako dekorace, podtržení nadpisů, ikony apod. — jen CTA. `brand.electric` má stejnou zdrženlivost — jen interaktivní/klíčové prvky, ne plošná dekorace. Zbytek palety čerpá přímo ze standardní Tailwind `zinc` škály bez vlastní definice — žádné další vlastní barvy bez schválení. Oba tokeny patří jako pojmenované tokeny do `@theme` bloku v `app/globals.css`, ne natvrdo do komponent. Žádný `tailwind.config.ts` v tomto projektu není a nemá se vytvářet. Přesný odstín nového pozadí je otevřený bod, potvrzuje se náhledem na `/design-preview` (Fáze R1), než se rozšíří napříč komponentami. Detaily a zdůvodnění viz `CLAUDE.md`, sekce "Redesign 2026 — cíl a inspirace".
+Cíl: tyrkysová/mintová identita na tmavém zeleno-modrém gradientu. `brand.turquoise` se nesmí objevit jako plošná dekorace — jen CTA a klíčové interaktivní prvky, stejná zdrženlivost jako dřív u zlaté/modré. `brand.mint` jen jako doplněk (gradienty, jemné detaily), nikdy samostatně jako primární akcent. `brand.deep-green`/`brand.deep-blue` jen pro pozadí/ambient vrstvy. Zbytek palety čerpá přímo ze standardní Tailwind `zinc` škály bez vlastní definice — žádné další vlastní barvy bez schválení. Všechny čtyři tokeny patří jako pojmenované tokeny do `@theme` bloku v `app/globals.css`, ne natvrdo do komponent. Žádný `tailwind.config.ts` v tomto projektu není a nemá se vytvářet. `brand.gold`/`brand.electric` jsou od 2026-07-22 zrušené tokeny. Detaily a zdůvodnění viz `CLAUDE.md`, sekce "Redesign 2026 — cíl a inspirace" → "Paleta R11 (2026-07-22)".
 
 ## Jazykový standard — babička test 2.0 (od Fáze R2, 2026-07-21)
 Platí pro každou novou/upravovanou větu na webu: nadpis max. 3–6 slov, popis pod ním max. 1 věta/~12 slov, žádná nevysvětlená zkratka (přednostně se jí vyhnout, jinak navržená komponenta `TermTooltip` — zatím **neschválená**, nestavět bez potvrzení), žádný vícevětý odstavec ve viditelné ploše homepage (jen v podstránce/detailu). Vizuál nese myšlenku, text je jen doplněk — sekce musí dávat smysl i bez čtení textu. Tahle fáze nepřepisuje existující obsah, jen ustavuje pravidlo — přepis konkrétních sekcí se děje uvnitř fází R3–R9. Detaily viz `claude.md`, sekce "Jazykový standard — babička test 2.0".
@@ -44,10 +46,9 @@ EstatIQ, ZakazIQ a VIZEON jsou propojené/spolupracující projekty, ne klienti 
 ## Co agent NESMÍ dělat
 - Měnit ceny, čísla, motta ani marketingová tvrzení webu bez výslovného souhlasu uživatele.
 - Publikovat sekci Reference/case studies, dokud v DB nejsou ≥2 `is_published = true` záznamy (a stránku `/reference` v navigaci vůbec neodkazovat, dokud tato podmínka neplatí).
-- Používat zlatý akcent mimo CTA tlačítko.
-- Používat modrý akcent (`brand.electric`) plošně/dekorativně mimo
+- Používat `brand.turquoise`/`brand.mint` plošně/dekorativně mimo
   interaktivní a klíčové prvky — stejný princip zdrženlivosti jako dřív
-  u zlaté.
+  u zlaté/modré.
 - Předstírat větší tým, než reálně existuje (aktuálně jen Kryštof Sobotka).
 - Přidávat nové závislosti/knihovny "protože jsou lepší" bez návrhu a souhlasu — zvlášť ne nový ORM, CSS framework nebo state management navíc.
 - Commitovat `.env` / `DATABASE_URL` do gitu.

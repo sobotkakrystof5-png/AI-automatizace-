@@ -24,7 +24,7 @@ export default function WhyAutomation() {
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {whyAutomationPoints.map((point, i) => (
             <AnimatedSection key={point.title} delay={Math.min(i * 0.06, 0.3)}>
-              <GlowCard accent="electric" className="h-full p-6">
+              <GlowCard accent="turquoise" className="h-full p-6">
                 <h3 className="text-xl font-bold text-zinc-50">
                   {point.title}
                 </h3>
@@ -74,7 +74,10 @@ export default function WhyAutomation() {
         </div>
 
         <p className="mt-10 text-xl font-semibold text-zinc-50">
-          {'Nejde o to mít "AI ve firmě". Jde o to, aby AI dělala práci za vás — ne abyste vy dělali práci s AI.'}
+          Prostor pro to, co má smysl.
+        </p>
+        <p className="mt-2 text-zinc-400">
+          Automatizace odstraní zdlouhavé rutiny — ušetříte čas i peníze.
         </p>
       </div>
     </section>

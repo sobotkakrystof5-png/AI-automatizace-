@@ -29,7 +29,7 @@ export default function CookiesPage() {
         </h1>
         <LegalDraftNotice />
 
-        <div className="mt-6 rounded-md border border-brand-gold/30 bg-zinc-900 px-4 py-3 text-sm text-zinc-400">
+        <div className="mt-6 rounded-md border border-brand-turquoise/30 bg-zinc-900 px-4 py-3 text-sm text-zinc-400">
           <strong className="font-semibold text-zinc-50">
             Technická poznámka:
           </strong>{" "}

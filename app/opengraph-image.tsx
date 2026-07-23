@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 // podstránky ho dědí, pokud nemají vlastní opengraph-image). Generuje se
 // jednou při buildu (žádný dynamický segment), takže náklad na build je
 // zanedbatelný. Barvy odpovídají design systému (zinc-950 pozadí,
-// brand-gold #B98B4E akcent) — žádná nová barva navíc.
+// brand-turquoise #2DD4BF akcent) — žádná nová barva navíc.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             height: 700,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(185,139,78,0.35) 0%, rgba(185,139,78,0) 70%)",
+              "radial-gradient(circle, rgba(45,212,191,0.35) 0%, rgba(45,212,191,0) 70%)",
           }}
         />
         <div
@@ -50,7 +50,7 @@ export default function OpengraphImage() {
             marginTop: 28,
             width: 120,
             height: 4,
-            backgroundColor: "#B98B4E",
+            backgroundColor: "#2DD4BF",
           }}
         />
         <div
