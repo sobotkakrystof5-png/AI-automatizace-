@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendorované design skilly (viz claude.md, sekce "Design skilly").
+    // Je to cizí kód třetích stran, který se v projektu needituje — jeho
+    // lint chyby by jen zašuměly výstup a schovaly skutečné problémy v
+    // našem kódu.
+    ".claude/**",
   ]),
 ]);
 

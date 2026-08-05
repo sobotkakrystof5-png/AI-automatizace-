@@ -37,6 +37,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# impeccable (design detektor) — runtime cache a nastavení vázané na stroj.
+# Sdílené nastavení v .impeccable/config.json se naopak commituje.
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/config.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

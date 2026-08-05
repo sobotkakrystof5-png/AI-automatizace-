@@ -246,6 +246,60 @@ existující obsah. Přepis konkrétních sekcí (Hero, karty, About, proces...)
 podle tohoto standardu se děje uvnitř příslušných pozdějších fází (R3–R9),
 ne tady.
 
+## Design skilly (nainstalované 2026-08-05)
+
+V projektu je nainstalováno 29 design skillů ze čtyř zdrojů, v
+`.claude/skills/` (verzované v gitu):
+
+| Zdroj | Skilly | K čemu |
+|---|---|---|
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | 8 (`emil-design-eng`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`, `apple-design`, `pick-ui-library`, `prototype`) | Animace a detaily UI |
+| [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) | 13 (`design-taste-frontend`, `gpt-taste`, `minimalist-ui`, `high-end-visual-design`, `redesign-existing-projects`, `image-to-code`, `brandkit`, …) | Anti-slop frontend, vizuální úroveň |
+| [nextlevelbuilder/ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | 7 (`ui-ux-pro-max`, `design-system`, `ui-styling`, `design`, `brand`, `banner-design`, `slides`) | Databáze stylů, palet, fontů (Python 3, běží na stdlib) |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | 1 skill / 23 příkazů + 4 agenti | `/impeccable audit`, `polish`, `critique`, … + detektor anti-patternů |
+
+### Kontext pro skilly
+
+`PRODUCT.md` a `DESIGN.md` v rootu jsou **odvozené** z tohoto souboru a z
+`app/globals.css`. Existují proto, aby skilly neodhadovaly identitu
+projektu samy. **Nejsou to nové zdroje pravdy** — když se něco změní
+tady nebo v `@theme` bloku, musí se to promítnout i do nich.
+
+### Priorita při konfliktu — případ od případu (rozhodnutí uživatele 2026-08-05)
+
+Tyto skilly mají vlastní silné názory na design a místy se bijí se
+zamčenou identitou AvenIQ (paleta R11, Tailwind v4 bez configu, čeština,
+zákaz nových závislostí). Platí:
+
+- **Skill nikdy nemění paletu, fonty, stack ani obchodní tvrzení sám od
+  sebe.** Když jeho doporučení vede k takové změně, předlož ji uživateli
+  jako návrh s odůvodněním a počkej na souhlas — přesně jako u
+  jakéhokoli jiného netriviálního rozhodnutí podle sekce „Role a způsob
+  práce".
+- Do souhlasu platí `claude.md` a `app/globals.css`.
+- Doporučení, která se do zamčených mantinelů vejdou (rozestupy,
+  hierarchie, pohyb, přístupnost, kvalita copy), se aplikují normálně
+  bez ptaní.
+- Pozor na `pick-ui-library` a `ui-styling` — navrhují instalaci
+  knihoven (shadcn/ui, Radix aj.). Nové závislosti podléhají souhlasu
+  podle sekce „Co se nikdy nedělá“.
+- Skilly jsou anglické, ale copy na webu zůstává **česky** podle
+  babička testu 2.0.
+
+### Detektor a hooky
+
+`.claude/settings.json` zapíná Impeccable detektor: rychlá kontrola po
+každém Edit/Write/MultiEdit (5 s) a hloubkový průchod na konci session
+(30 s). K 2026-08-05 je projekt na **0 nálezů**, takže cokoli nového je
+skutečná regrese, ne šum.
+
+- Ruční sken: `node .claude/skills/impeccable/scripts/detect.mjs components/ app/`
+- Vypnutí hooků: `node .claude/skills/impeccable/scripts/hook-admin.mjs off`
+- Falešný poplach se řeší **cíleně na řádku**
+  (`// impeccable-disable-next-line <rule>: důvod`), ne plošným vypnutím
+  pravidla. Pozor: text zdůvodnění nesmí sám obsahovat vzor, který
+  pravidlo hledá — jinak se ignore komentář stane novým nálezem.
+
 ## Routing — pevná pravidla
 
 - `/reference` se nesmí stát viditelnou/navigovatelnou stránkou, dokud v DB

@@ -629,6 +629,7 @@ function DesktopJourney() {
                   strokeWidth={highlighted ? 2.5 : 1.5}
                   fill="none"
                   style={{
+                    // impeccable-disable-next-line layout-transition: jde o SVG prezentační vlastnost tahu, ne o layoutový rozměr — reflow nezpůsobuje.
                     transition: "stroke-opacity 0.25s ease, stroke-width 0.25s ease",
                     strokeOpacity: dimmed ? 0.15 : 0.85,
                   }}
