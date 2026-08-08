@@ -41,8 +41,12 @@ export default function CookieConsent() {
   }
 
   return (
+    // `role="region"`, ne `role="dialog"`: lišta nic neblokuje, nemá focus
+    // trap ani `aria-modal` a uživatel do ní nikdy „nevstoupí". Odečítač by
+    // u dialogu ohlásil kontext, ve kterém se uživatel nenachází. Region s
+    // popiskem dá stejnou orientaci bez té lži.
     <div
-      role="dialog"
+      role="region"
       aria-label="Nastavení cookies"
       className="fixed inset-x-0 bottom-0 z-50 border-t border-zinc-800 bg-zinc-900 px-6 py-5 shadow-[0_-4px_16px_rgba(0,0,0,0.4)] sm:px-8"
     >

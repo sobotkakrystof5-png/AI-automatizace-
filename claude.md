@@ -234,9 +234,14 @@ zjednodušení pojmů:
   — komponenta `TermTooltip` (podtržený pojem s tooltipem/rozkliknutím
   vysvětlení, např. "CRM ⓘ" → "systém, kde firma eviduje své zákazníky").
   Nestaví se, dokud uživatel nepotvrdí přesný vzhled/chování.
-- **Odstavce o více větách** (jaké má dnes např. `About.tsx`) se ve
-  viditelné ploše homepage **neobjevují** — patří nanejvýš do
-  rozkliknutého detailu nebo podstránky, ne do hlavního scrollu.
+- **Odstavce o více větách** se ve viditelné ploše homepage
+  **neobjevují** — patří nanejvýš do rozkliknutého detailu nebo
+  podstránky, ne do hlavního scrollu. **Výjimka: sekce „O nás"**
+  (`components/home/About.tsx`), kde příběh Vizeon → ZakazIQ → AvenIQ
+  nese důvěryhodnost celé sekce a zkrácení na jednu větu by ji vyprázdnilo.
+  Výjimku potvrdil uživatel 2026-08-05 po auditu, který rozpor mezi
+  pravidlem a kódem odhalil — je to vědomé rozhodnutí, ne přehlédnutý dluh.
+  Neplatí pro žádnou jinou sekci homepage a nerozšiřuje se analogií.
 - Před odevzdáním každé fáze, která mění copy, přečti text nahlas z
   pohledu člověka, co o automatizaci v životě neslyšel a nikdy nečte
   dlouhé odstavce na webu — pokud by ho druhá věta už nudila, zkrať.

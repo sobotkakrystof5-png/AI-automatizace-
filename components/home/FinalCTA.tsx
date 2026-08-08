@@ -33,13 +33,13 @@ export default function FinalCTA() {
 
   return (
     <section id="kontakt" className="bg-zinc-900">
-      <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-3xl px-6 py-24 sm:px-8 sm:py-32">
         <AnimatedSection>
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
             Chcete zpátky čas i peníze?
           </h2>
           <p className="mt-4 text-xl text-zinc-400">
-            Napište pár vět o tom, co vás brzdí — ozvu se do 24 hodin s
+            Napište pár vět o tom, co vás brzdí — ozveme se do 24 hodin s
             konkrétním nápadem, ne s prodejní řečí.
           </p>
         </AnimatedSection>
@@ -62,9 +62,9 @@ export default function FinalCTA() {
             role="status"
             className="mt-8 rounded-lg border border-brand-turquoise/30 bg-zinc-950 p-6"
           >
-            <p className="font-semibold text-zinc-50">Díky, mám to.</p>
+            <p className="font-semibold text-zinc-50">Díky, máme to.</p>
             <p className="mt-2 text-zinc-400">
-              Ozvu se osobně, nejpozději do 24 hodin — každý den v týdnu.
+              Ozveme se osobně, nejpozději do 24 hodin — každý den v týdnu.
             </p>
           </div>
         ) : (
@@ -82,7 +82,7 @@ export default function FinalCTA() {
                   name="name"
                   type="text"
                   required
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
 
@@ -98,7 +98,7 @@ export default function FinalCTA() {
                   name="email"
                   type="email"
                   required
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
 
@@ -113,7 +113,7 @@ export default function FinalCTA() {
                   id="phone"
                   name="phone"
                   type="tel"
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function FinalCTA() {
                   required
                   rows={4}
                   placeholder="např. ručně přepisujeme objednávky mezi e-shopem a účetnictvím — chtěli bychom, aby to šlo samo"
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
 
@@ -149,7 +149,7 @@ export default function FinalCTA() {
                   name="automationGoal"
                   rows={3}
                   placeholder="např. chci, aby se celý proces od poptávky po fakturaci odehrál bez jediného ručního kroku"
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
 
@@ -165,7 +165,7 @@ export default function FinalCTA() {
                   name="companyUrl"
                   type="url"
                   placeholder="https://"
-                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-500 focus:border-brand-turquoise focus:outline-none"
+                  className="mt-1 w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-50 placeholder:text-zinc-400 focus:border-brand-turquoise"
                 />
               </div>
             </div>
@@ -201,12 +201,12 @@ export default function FinalCTA() {
               disabled={isPending}
               className="w-full rounded-md bg-brand-turquoise px-6 py-3 font-semibold text-zinc-950 transition-colors hover:bg-brand-turquoise/90 disabled:opacity-60 sm:w-auto"
             >
-              {isPending ? "Odesílám…" : "Odeslat a domluvit další krok →"}
+              {isPending ? "Odesílám…" : "Odeslat a domluvit konzultaci"}
             </button>
 
             <p className="text-sm text-zinc-400">
-              Bez závazků. Ozvu se osobně, nejpozději do 24 hodin — každý den
-              v týdnu. Vaše údaje nikam neputují mimo tuhle konverzaci.
+              Bez závazků. Ozveme se osobně, nejpozději do 24 hodin — každý
+              den v týdnu. Vaše údaje nikam neputují mimo tuhle konverzaci.
             </p>
           </form>
         )}

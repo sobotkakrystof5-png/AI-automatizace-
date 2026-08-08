@@ -27,7 +27,13 @@ export default function MiniProcessDiagram({ icons }: MiniProcessDiagramProps) {
     >
       <div className="absolute inset-x-5 top-1/2 h-px -translate-y-1/2 bg-zinc-700" />
       <div className="absolute inset-x-5 top-1/2 h-px -translate-y-1/2 overflow-hidden">
-        <div className="animate-flow-pulse absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-brand-turquoise shadow-[0_0_8px_2px_var(--color-brand-turquoise)]" />
+        {/* Posouvá se obal přes celou šířku dráhy, ne samotná tečka —
+            `flow-pulse` animuje `transform`, a translateX(%) se počítá z
+            velikosti animovaného prvku. Tečka u levého okraje obalu tak
+            urazí přesně délku dráhy. */}
+        <div className="animate-flow-pulse absolute inset-0">
+          <div className="absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-brand-turquoise shadow-[0_0_8px_2px_var(--color-brand-turquoise)]" />
+        </div>
       </div>
 
       {icons.map((Icon, index) => (

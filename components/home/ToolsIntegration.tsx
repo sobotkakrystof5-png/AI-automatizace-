@@ -10,9 +10,9 @@ import { automationTools } from "@/lib/automation-tools";
 export default function ToolsIntegration() {
   return (
     <section>
-      <div className="mx-auto max-w-4xl px-6 py-16 text-center sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-5xl px-6 py-12 text-center sm:px-8 sm:py-16">
         <AnimatedSection>
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
             Stavíme na nejmodernějších nástrojích
           </h2>
           <p className="mt-3 text-zinc-400">

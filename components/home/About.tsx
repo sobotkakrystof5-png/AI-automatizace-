@@ -30,9 +30,9 @@ const values = [
 export default function About() {
   return (
     <section id="o-nas">
-      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 sm:py-24">
         <AnimatedSection>
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
             O nás
           </h2>
         </AnimatedSection>

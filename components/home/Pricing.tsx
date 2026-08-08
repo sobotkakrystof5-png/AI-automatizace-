@@ -10,9 +10,9 @@ function pad(n: number) {
 export default function Pricing() {
   return (
     <section id="cenik" className="bg-zinc-900">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-24">
         <AnimatedSection>
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
             Ceník
           </h2>
           <p className="mt-4 max-w-3xl text-zinc-400">

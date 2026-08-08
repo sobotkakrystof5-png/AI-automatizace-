@@ -14,10 +14,6 @@
 
 web
 
-## Register
-
-brand
-
 ## Users
 
 Živnostníci, agentury, malé a středně velké firmy, účetní a marketingové

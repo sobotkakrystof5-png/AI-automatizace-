@@ -57,11 +57,28 @@ export default function RootLayout({
       lang="cs"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-zinc-950 text-zinc-50">
+      {/* `bg-zinc-950` tu záměrně není: pozadí stránky je od palety R11
+          gradient definovaný v `body` v globals.css (viz DESIGN.md §2).
+          Utilita by ho nepřebila — nevrstvené pravidlo vyhrává nad
+          `@layer utilities` — ale zůstala by tu jako mrtvý kód, který
+          odporuje dokumentaci a při přesunu pravidla do vrstvy by gradient
+          tiše zmizel. */}
+      <body className="flex min-h-full flex-col text-zinc-50">
         <JsonLd data={organizationJsonLd()} />
+        {/* Přeskočení navigace (WCAG 2.4.1). Viditelné až při focusu —
+            sticky hlavička má 7 odkazů plus CTA, kterými by uživatel na
+            klávesnici musel projít na každé stránce. */}
+        <a
+          href="#obsah"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-turquoise focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-zinc-950"
+        >
+          Přeskočit na obsah
+        </a>
         <SmoothScrollProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="obsah" className="flex-1">
+            {children}
+          </main>
           <Footer />
           <CookieConsent />
         </SmoothScrollProvider>

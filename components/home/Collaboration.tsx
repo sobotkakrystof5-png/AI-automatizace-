@@ -5,12 +5,11 @@ import AnimatedSection from "@/components/motion/AnimatedSection";
 // spolupracující projekty, ne klientské reference).
 const partners = ["EstatIQ", "ZakazIQ", "VIZEON"];
 
-function Wordmark({ name, ariaHidden }: { name: string; ariaHidden?: boolean }) {
+// `aria-hidden` řeší celý pás najednou (viz níže), takže wordmark sám žádný
+// přístupnostní prop nepotřebuje.
+function Wordmark({ name }: { name: string }) {
   return (
-    <span
-      aria-hidden={ariaHidden}
-      className="mx-8 shrink-0 text-2xl font-semibold tracking-tight text-zinc-500 sm:text-3xl"
-    >
+    <span className="mx-8 shrink-0 text-2xl font-semibold tracking-tight text-zinc-500 sm:text-3xl">
       {name}
     </span>
   );
@@ -18,10 +17,10 @@ function Wordmark({ name, ariaHidden }: { name: string; ariaHidden?: boolean }) 
 
 export default function Collaboration() {
   return (
-    <section className="bg-zinc-900">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-20">
+    <section>
+      <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 sm:py-16">
         <AnimatedSection className="text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
             Spolupráce
           </h2>
           <p className="mt-3 text-zinc-400">
@@ -30,17 +29,27 @@ export default function Collaboration() {
         </AnimatedSection>
 
         <div className="mt-10 overflow-hidden rounded-xl border border-zinc-800 py-4">
-          <div className="flex w-max animate-marquee hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
-            <div className="flex items-center" aria-label="Partneři a spolupracující projekty">
-              {partners.map((name) => (
-                <Wordmark key={name} name={name} />
-              ))}
-            </div>
-            <div className="flex items-center" aria-hidden="true">
-              {partners.map((name) => (
-                <Wordmark key={`${name}-repeat`} name={name} ariaHidden />
-              ))}
-            </div>
+          {/* Názvy jednou a čitelně pro odečítač. Vizuální pás je čistě
+              dekorativní opakování — `aria-label` na holém <div> bez role
+              stejně většina odečítačů ignoruje. */}
+          <span className="sr-only">
+            Partneři a spolupracující projekty: {partners.join(", ")}.
+          </span>
+          {/* Každá půlka nese seznam dvakrát. Keyframe `marquee` posouvá o
+              -50 %, což vyžaduje dvě shodné poloviny; se třemi wordmarky na
+              půlku měl pás jen ~1200 px a na širokém displeji by ve smyčce
+              probleskla prázdná mezera. */}
+          <div
+            aria-hidden="true"
+            className="flex w-max animate-marquee hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]"
+          >
+            {[0, 1].map((half) => (
+              <div key={half} className="flex items-center">
+                {[...partners, ...partners].map((name, i) => (
+                  <Wordmark key={`${half}-${i}`} name={name} />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const navLinks = [
@@ -15,6 +15,23 @@ const navLinks = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // Escape zavře menu a vrátí focus na přepínač. Bez toho uživatel na
+  // klávesnici menu otevře, ale nemá jak se z něj dostat zpět jinam než
+  // protabováním všech položek.
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      toggleRef.current?.focus();
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
@@ -50,12 +67,15 @@ export default function Navbar() {
             Konzultace zdarma
           </Link>
 
+          {/* p-2.5 (ne p-2): 24px ikona + 2×10px = 44×44 px, doporučená
+              velikost dotykového terče podle Apple i Androidu. */}
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
-            className="inline-flex items-center justify-center rounded-md p-2 text-zinc-50 lg:hidden"
+            className="inline-flex items-center justify-center rounded-md p-2.5 text-zinc-50 lg:hidden"
           >
             <span className="sr-only">
               {isMenuOpen ? "Zavřít menu" : "Otevřít menu"}
@@ -112,7 +132,7 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
               className="inline-flex w-full justify-center rounded-full bg-brand-turquoise px-6 py-2.5 text-base font-medium text-zinc-950 transition-opacity hover:opacity-90"
             >
-              Rezervovat konzultaci zdarma — popište svůj projekt
+              Konzultace zdarma
             </Link>
           </div>
         </nav>

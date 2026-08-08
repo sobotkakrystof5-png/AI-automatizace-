@@ -45,9 +45,17 @@
   }
 }
 
+/* Puls putující po spojnici. Animuje `transform`, ne `left` — `left` je
+ * layoutová vlastnost, takže by se každý snímek počítal na hlavním vlákně
+ * a nešel by na kompozitor (viz DESIGN.md §5, "Neanimovat width/height/
+ * padding/margin"). Na homepage běží 8 těchto pulsů současně a nekonečně,
+ * takže rozdíl není teoretický. Element, na který se třída aplikuje, musí
+ * být plná šířka dráhy (`inset-0`) s tečkou u svého levého okraje —
+ * translateX(100%) ho pak posune přesně o délku dráhy, stejně jako
+ * původní `left: 100%`. */
 @keyframes flow-pulse {
   0% {
-    left: 0%;
+    transform: translateX(0%);
     opacity: 0;
   }
   10% {
@@ -57,9 +65,33 @@
     opacity: 1;
   }
   100% {
-    left: 100%;
+    transform: translateX(100%);
     opacity: 0;
   }
+}
+
+/* Svislá varianta `flow-pulse` — stejný princip (posouvá se obal přes celou
+ * délku dráhy, ne samotná tečka), jen po ose Y. Pro vrstvené diagramy, kde
+ * tok jde shora dolů. */
+@keyframes flow-pulse-y {
+  0% {
+    transform: translateY(0%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-flow-pulse-y {
+  animation: flow-pulse-y 3s ease-in-out infinite;
 }
 
 @keyframes aurora-shift {
@@ -72,13 +104,21 @@
   }
 }
 
+/* Pozor: tenhle keyframe dřív obsahoval `translate(-50%, -50%)` pro
+ * vycentrování loga na bodu kružnice. To je chyba — Tailwind v4 kompiluje
+ * `-translate-x-1/2` do samostatné vlastnosti `translate:`, ne do
+ * `transform:`, a obě vlastnosti se podle CSS Transforms L2 skládají.
+ * Logo se tak posouvalo o -100 %, -100 % místo -50 %, -50 %. Centrování
+ * teď obstarává výhradně `translate:` (Tailwind třídy na elementu),
+ * keyframe řeší jen samotné plavání. Stejný princip jako u zákazu
+ * kombinovat CSS animaci s GSAP polohováním níže. */
 @keyframes float-y {
   0%,
   100% {
-    transform: translate(-50%, -50%) translateY(0);
+    transform: translateY(0);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-8px);
+    transform: translateY(-8px);
   }
 }
 
@@ -139,6 +179,28 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* `background-attachment: fixed` nutí prohlížeč překreslovat gradient při
+ * každém posunu. Na desktopu je to v pohodě a drží zamýšlený dojem hloubky
+ * (pozadí stojí, obsah jede). Na dotykových zařízeních je to známý zdroj
+ * trhání — mobilní Safari `fixed` navíc stejně nectí spolehlivě — a spolu
+ * s Lenisem se to sčítá. Rozlišujeme podle `hover: none`, ne podle šířky:
+ * rozhoduje typ zařízení, ne velikost okna. */
+@media (hover: none) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* Jednotný focus indikátor pro celý web. Bez něj spoléhaly interaktivní
+ * prvky (taby, rozkliky, krokové tečky, odkazy v kartách) na výchozí
+ * kroužek prohlížeče, který se na tmavém podkladu ztrácí. 2px + offset
+ * splňuje WCAG 2.2 SC 2.4.11 Focus Appearance; tyrkysová je tu na místě —
+ * jde o interaktivní stav, ne dekoraci. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-turquoise);
+  outline-offset: 2px;
+}
+
 .magic-gradient-text {
   background: linear-gradient(
     100deg,
@@ -180,7 +242,8 @@ body {
   /* Puls zastavený uprostřed dráhy by vypadal jako náhodná tečka navíc —
    * pod reduced-motion se rovnou skryje, uzly a spojnice samy o sobě
    * ukazují "vstup → zpracování → výstup" i bez pohybu. */
-  .animate-flow-pulse {
+  .animate-flow-pulse,
+  .animate-flow-pulse-y {
     display: none;
   }
 

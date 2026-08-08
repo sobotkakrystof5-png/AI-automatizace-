@@ -27,8 +27,8 @@ const stats = [
 
 export default function StatsBar() {
   return (
-    <section className="bg-zinc-900">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
+    <section>
+      <div className="mx-auto max-w-6xl px-6 py-12 sm:px-8 sm:py-16">
         <h2 className="text-center text-sm font-semibold uppercase tracking-wide text-zinc-400 sm:text-left">
           AvenIQ v číslech
         </h2>

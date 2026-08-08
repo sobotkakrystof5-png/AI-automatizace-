@@ -17,12 +17,24 @@ colors:
 
   # --- Povrchy a text: standardní Tailwind v4 zinc škála, bez vlastní definice ---
   zinc-50: "oklch(98.5% 0 none)"          # primární text, nadpisy
-  zinc-400: "oklch(70.5% 0.015 286.067)"  # tlumený text, popisky
+  zinc-400: "oklch(70.5% 0.015 286.067)"  # tlumený text, popisky, placeholdery
+  # Vyhrazeno pro text, který je záměrně potlačený a zároveň dost velký,
+  # aby na 3:1 stačil (wordmarky v sekci Spolupráce, 24–30 px semibold).
+  # Na běžný text se nepoužívá — na tmavém podkladu dává jen ~4,1:1.
+  zinc-500: "oklch(55.2% 0.016 285.938)"
+  # Jen dekorativní prvky s aria-hidden (pořadová čísla karet v ceníku).
+  # Kontrast 2,6:1 je pod AA záměrně — stejná role jako vodoznak 7rem níže.
   zinc-600: "oklch(44.2% 0.017 285.786)"
   zinc-700: "oklch(37% 0.013 285.805)"    # ohraničení (zvýrazněné)
   zinc-800: "oklch(27.4% 0.006 286.033)"  # ohraničení (výchozí)
   zinc-900: "oklch(21% 0.006 285.885)"    # karty, oddělené sekce
   zinc-950: "oklch(14.1% 0.005 285.823)"  # nejtmavší povrch
+
+  # Chybový stav formuláře (FinalCTA.tsx). Jediná barva mimo zinc škálu a
+  # čtyři brand tokeny; na zinc-900 dává 6,4:1, takže AA splňuje. Zatím
+  # NENÍ pojmenovaný token v @theme — povýšení na `--color-brand-danger`
+  # je návrh čekající na souhlas uživatele, ne hotová věc.
+  red-400: "#f87171"
 
   # Doslovný zápis zinc-50. Nutný v app/opengraph-image.tsx: OG obrázky
   # renderuje Satori (next/og), které neumí Tailwind třídy ani CSS
@@ -45,9 +57,14 @@ typography:
     "18": "1.125rem"     # text-lg — lead odstavec
     "20": "1.25rem"      # text-xl — titulky karet
     "24": "1.5rem"       # text-2xl — podnadpisy
-    "30": "1.875rem"     # text-3xl — nadpisy sekcí
-    "36": "2.25rem"      # text-4xl — velké nadpisy sekcí
-    "48": "3rem"         # text-5xl — hero
+    "30": "1.875rem"     # text-3xl — nadpisy sekcí, mobil
+    "36": "2.25rem"      # text-4xl — nadpisy vedlejších sekcí, desktop
+    "48": "3rem"         # text-5xl — nadpisy hlavních sekcí, desktop
+    # Přidáno 2026-08-05 (etapa D1 redesignu). Strop 48 px byl důvod, proč
+    # web působil plochý — nic na stránce nedávalo najevo, co je důležité.
+    # Vyhrazeno výhradně pro hero: nikde jinde se nepoužívá.
+    "72": "4.5rem"       # text-7xl — hero, od sm výš
+    "96": "6rem"         # text-8xl — hero, od lg výš
     # Dekorativní vodoznak: obří pořadové číslo za obsahem karty
     # (Differentiators.tsx), aria-hidden, krytí 10 %. Není to čitelný
     # text, proto stojí mimo běžnou škálu a nesmí se použít na obsah.
@@ -95,7 +112,16 @@ klidně — ne jako neonový „AI SaaS".
 Ground je `#05070a` s dvěma `radial-gradient` vrstvami (`brand-deep-green`
 vlevo nahoře, `brand-deep-blue` vpravo) a `background-attachment: fixed`.
 Definováno v `body` v `app/globals.css`. Plochá `zinc-950` jako pozadí
-stránky je **nahrazená** — na úrovni `<body>` se už nepoužívá.
+stránky je **nahrazená** — na úrovni `<body>` se už nepoužívá, a od
+2026-08-05 už tam není ani jako Tailwind třída. Nevrstvené pravidlo v
+`globals.css` by ji sice přebilo (utility jsou v `@layer utilities`, které
+prohrávají s nevrstveným CSS), ale zůstávala by jako mrtvý kód, který
+odporuje téhle dokumentaci.
+
+Na dotykových zařízeních (`@media (hover: none)`) se attachment přepíná na
+`scroll` — `fixed` tam nutí překreslovat gradient při každém posunu, mobilní
+Safari ho stejně nectí spolehlivě a s Lenisem se to sčítá. Rozlišuje se
+podle typu zařízení, ne podle šířky okna.
 
 ### Povrchy
 
@@ -112,7 +138,22 @@ stránky je **nahrazená** — na úrovni `<body>` se už nepoužívá.
 | Role | Token |
 |---|---|
 | Nadpisy, hlavní text | `zinc-50` |
-| Popisky, sekundární text | `zinc-400` |
+| Popisky, sekundární text, placeholdery | `zinc-400` |
+| Potlačený velký text (≥ 24 px) | `zinc-500` |
+| Dekorace s `aria-hidden` | `zinc-600` |
+| Chybová hláška formuláře | `red-400` |
+
+Minimum je 4,5:1 na podkladu, na kterém prvek reálně leží. `zinc-500`
+projde jen u velkého textu (3:1), `zinc-600` neprojde vůbec — proto je
+vyhrazená čistě na dekoraci, která nic nesděluje.
+
+### Focus
+
+Globální `:focus-visible` v `globals.css`: 2px `brand-turquoise` s 2px
+odsazením. Platí pro celý web, jednotlivé komponenty si focus **nevypínají**
+(`outline-none` bez plnohodnotné náhrady je porušení WCAG 2.2 SC 2.4.11).
+Tyrkysová je tu na místě — jde o interaktivní stav, ne o dekoraci, takže
+pravidlo zdrženlivosti níže se na ni nevztahuje.
 
 ### Akcent
 
@@ -157,7 +198,43 @@ nepatří.
 panely používají `rounded-md` až `rounded-2xl`. Nemíchat víc než dvě
 úrovně zaoblení v jednom bloku.
 
-## 5. Pohyb
+## 5. Rytmus a kompozice
+
+Zavedeno 2026-08-05 (etapa D1). Do té doby mělo **15 z 16 sekcí homepage
+identické `py-16 sm:py-20`**, pět různých šířek kontejneru bez pravidla a
+`bg-zinc-900` rozházené na pěti sekcích bez systému. Výsledek: nic
+nedávalo najevo, co je důležité, a stránka četla jako jeden dlouhý pás.
+
+### Vertikální rytmus — tři stupně
+
+| Stupeň | Třídy | Kde |
+|---|---|---|
+| **Zlom** | `py-24 sm:py-32` | Hero, závěrečné CTA — sekce, které mají dýchat |
+| **Standard** | `py-16 sm:py-24` | Obsahové sekce s vlastním sdělením |
+| **Pás** | `py-12 sm:py-16` | Krátké proužky bez samostatné myšlenky (trust strip, marquee, čísla) |
+
+Nikdy nedávat dvě „zlomové" sekce za sebe — rytmus pak zmizí stejně jako
+při plochém `py-16` všude.
+
+### Šířky kontejneru — tři, ne pět
+
+| Šířka | Kde |
+|---|---|
+| `max-w-3xl` | Souvislý text ke čtení — FAQ, kontakt, formulář, rezervace |
+| `max-w-5xl` | Text s doprovodným vizuálem — O nás, proces, jak tvoříme |
+| `max-w-6xl` | Mřížky a tabulky — oblasti, ceník, čísla, pilíře |
+
+`max-w-2xl` a `max-w-4xl` se na homepage **nepoužívají**. Existující výskyt
+je pozůstatek, ne rozhodnutí.
+
+### Rytmus pozadí
+
+`bg-zinc-900` označuje **rozhodovací sekce** — proces práce, ceník a
+závěrečné CTA. Nikde jinde. Je to signál „tady se rozhoduješ", ne
+dekorativní pruhování; když se použije na každou druhou sekci, přestane
+znamenat cokoli.
+
+## 6. Pohyb
 
 Animace jsou v projektu **první třídy** — nejsou to ozdoby, ale nosič
 sdělení (hero scrollytelling `AutomationJourney` vysvětluje automatizaci
@@ -179,14 +256,29 @@ synchronně.
   na konci `app/globals.css`. Blok už vypíná marquee, spin, float,
   jitter, aurora i gradientový text; `flow-pulse` se pod reduced-motion
   rovnou skryje, protože zastavený puls by vypadal jako tečka navíc.
-- **Neanimovat `width`, `height`, `padding`, `margin`** — způsobuje
-  layout thrash. Používat `transform` a `opacity`, na výšku
-  `grid-template-rows`. (Známý dluh:
-  `components/motion/AutomationJourney.tsx:632` animuje `width`.)
+- **Neanimovat layoutové vlastnosti** — `width`, `height`, `padding`,
+  `margin` a stejně tak `left`, `top`, `right`, `bottom`. Nejdou na
+  kompozitor a počítají se každý snímek na hlavním vlákně. Používat
+  `transform` a `opacity`, na výšku `grid-template-rows`. Když se potřebuje
+  něco posunout po dráze proměnné délky, animuje se obal přes celou šířku
+  dráhy pomocí `translateX(0 → 100 %)`, ne `left` samotného prvku — viz
+  `flow-pulse` v `globals.css` a `MiniProcessDiagram.tsx`.
 - **CSS animace se nesmí aplikovat na element, který polohuje GSAP** —
   přepsala by inline transform. Vždy oddělený wrapper.
+- **CSS animace `transform` se nesmí kombinovat s Tailwind třídami
+  `translate-*` / `scale-*` / `rotate-*` na stejném elementu.** Tailwind v4
+  kompiluje tyhle utility do **samostatných** vlastností (`translate:`,
+  `scale:`, `rotate:`), ne do `transform:`, a podle CSS Transforms L2 se
+  všechny skládají — posun se tedy sečte, ne přepíše. Přesně tímhle se
+  `float-y` dřív posouval o -100 %, -100 % místo -50 %, -50 %. Buď
+  centrovat výhradně přes Tailwind a keyframe nechat jen na pohybu (dnešní
+  řešení `ToolOrbit`), nebo použít oddělený wrapper.
+- **Poznámka k detektoru:** `stroke-width` a `stroke-opacity` na SVG jsou
+  prezentační vlastnosti tahu, ne layoutové rozměry — jejich přechod
+  reflow nezpůsobuje. Pravidlo `layout-transition` na ně hlásí falešný
+  poplach (viz potlačení v `AutomationJourney.tsx`).
 
-## 6. Ano / Ne
+## 7. Ano / Ne
 
 ### Ano
 

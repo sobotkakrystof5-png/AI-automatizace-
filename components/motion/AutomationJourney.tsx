@@ -605,7 +605,7 @@ function DesktopJourney() {
           {/* Rámuje celý diagram jako JEDEN konkrétní scénář, ne jen
               soubor log — bez tohoto štítku by uzly čtenáři nemusely dojít
               jako propojený příběh (na žádost uživatele 2026-07-22). */}
-          <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+          <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
             <span className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
             Příklad · nová objednávka v e-shopu
           </div>
@@ -735,7 +735,11 @@ function DesktopJourney() {
         </div>
       </div>
 
-      <div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center gap-3 sm:right-8">
+      {/* Bez `gap`: terče tlačítek jsou 24×24 px kvůli WCAG 2.5.8, takže
+          rozestup mezi viditelnými tečkami nese jejich vlastní odsazení.
+          Rozteč vychází na 24 px místo původních 22 px — vizuálně shodné,
+          ale kliknutelná plocha je 5,7× větší. */}
+      <div className="absolute right-4 top-1/2 flex -translate-y-1/2 flex-col items-center sm:right-8">
         <div
           aria-hidden
           className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-zinc-800"
@@ -753,13 +757,18 @@ function DesktopJourney() {
             onClick={() => goToStep(i)}
             aria-label={`Krok ${i + 1}: ${s.category}`}
             aria-current={activeStep === i}
-            className={cx(
-              "relative h-2.5 w-2.5 rounded-full border transition-colors",
-              activeStep === i
-                ? "border-brand-turquoise bg-brand-turquoise"
-                : "border-zinc-700 bg-zinc-950 hover:border-brand-turquoise/60"
-            )}
-          />
+            className="group relative flex h-6 w-6 items-center justify-center"
+          >
+            <span
+              aria-hidden
+              className={cx(
+                "h-2.5 w-2.5 rounded-full border transition-colors",
+                activeStep === i
+                  ? "border-brand-turquoise bg-brand-turquoise"
+                  : "border-zinc-700 bg-zinc-950 group-hover:border-brand-turquoise/60"
+              )}
+            />
+          </button>
         ))}
       </div>
     </div>
@@ -776,7 +785,7 @@ function MiniWorkflowPreview({ animated }: { animated: boolean }) {
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+      <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
         Příklad · nová objednávka v e-shopu
       </p>
       <div className="flex w-full max-w-xs items-center justify-center gap-2 sm:max-w-sm">
@@ -784,7 +793,9 @@ function MiniWorkflowPreview({ animated }: { animated: boolean }) {
         <div className="relative h-px flex-1 bg-zinc-700">
           {animated && (
             <div className="absolute inset-0 overflow-hidden">
-              <div className="animate-flow-pulse absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand-mint shadow-[0_0_6px_1px_var(--color-brand-mint)]" />
+              <div className="animate-flow-pulse absolute inset-0">
+                <div className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand-mint shadow-[0_0_6px_1px_var(--color-brand-mint)]" />
+              </div>
             </div>
           )}
         </div>
@@ -796,7 +807,9 @@ function MiniWorkflowPreview({ animated }: { animated: boolean }) {
         <div className="relative h-px flex-1 bg-zinc-700">
           {animated && (
             <div className="absolute inset-0 overflow-hidden">
-              <div className="animate-flow-pulse absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand-mint shadow-[0_0_6px_1px_var(--color-brand-mint)] [animation-delay:1.4s]" />
+              <div className="animate-flow-pulse absolute inset-0 [animation-delay:1.4s]">
+                <div className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand-mint shadow-[0_0_6px_1px_var(--color-brand-mint)]" />
+              </div>
             </div>
           )}
         </div>
