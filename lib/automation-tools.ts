@@ -1,4 +1,4 @@
-import { siN8n, siMake, siZapier, siAnthropic } from "simple-icons";
+import { siN8n, siMake, siZapier, siClaude } from "simple-icons";
 import { openAiIconPath } from "./brand-icons";
 
 // Nástroje, na kterých AvenIQ reálně staví automatizace (odlišné od
@@ -21,7 +21,7 @@ export type AutomationTool = {
 
 export const automationTools: AutomationTool[] = [
   { slug: "n8n", name: "n8n", path: siN8n.path },
-  { slug: "claude", name: "Claude", path: siAnthropic.path },
+  { slug: "claude", name: "Claude", path: siClaude.path },
   { slug: "make", name: "Make.com", path: siMake.path },
   { slug: "zapier", name: "Zapier", path: siZapier.path },
   { slug: "chatgpt", name: "ChatGPT", path: openAiIconPath },
