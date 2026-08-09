@@ -33,7 +33,7 @@ export const leadSourceEnum = pgEnum("lead_source", [
 
 export const bookingTypeEnum = pgEnum("booking_type", [
   "consultation",  // konzultace zdarma
-  "audit",         // automatizační audit (4 999 Kč)
+  "audit",         // automatizační audit (volitelný, cena se sděluje na konzultaci)
 ]);
 
 export const bookingStatusEnum = pgEnum("booking_status", [

@@ -5,8 +5,6 @@ const siteLinks = [
   { href: "/#automatizace", label: "Automatizace" },
   { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
   { href: "/#proces-prace", label: "Proces práce" },
-  { href: "/#cenik", label: "Ceník" },
-  { href: "/#zaruka", label: "Záruka" },
   { href: "/#o-nas", label: "O nás" },
   { href: "/#faq", label: "FAQ" },
 ];

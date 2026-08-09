@@ -1,8 +1,12 @@
 // Jediný zdroj pravdy pro JSON-LD structured data. Staví výhradně na datech
-// z existujících lib/*.ts zdrojů (pricing, faq, automation-areas), aby se
-// structured data nikdy nerozešlo s tím, co je vidět na stránce.
+// z existujících lib/*.ts zdrojů (faq, automation-areas), aby se structured
+// data nikdy nerozešlo s tím, co je vidět na stránce.
+//
+// Od 2026-08-09 tu není žádné schéma s cenou: web ceny neuvádí (viz claude.md,
+// sekce "Co se nikdy nedělá"), takže by je nesmělo publikovat ani structured
+// data. Pokud sem někdy přibude Service schéma pro sekci Služby, musí být bez
+// Offer/priceSpecification.
 import { SITE_URL_BASE } from "@/lib/constants";
-import { pricingTiers } from "@/lib/pricing";
 import { faqs, type FaqItem } from "@/lib/faq";
 import type { AutomationArea } from "@/lib/automation-areas";
 
@@ -54,34 +58,6 @@ export function faqPageJsonLd() {
         text: faqAnswerText(item),
       },
     })),
-  };
-}
-
-// "od X Kč" v ceníku = minimální/orientační cena, ne fixní — proto
-// priceSpecification s minPrice, ne pevné price, aby structured data
-// neříkalo víc, než co je na stránce skutečně napsané.
-export function pricingServiceJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "AI automatizace firemních procesů — AvenIQ",
-    provider: { "@id": `${absoluteUrl("/")}#organization` },
-    areaServed: "CZ",
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "Cenová pásma automatizací",
-      itemListElement: pricingTiers.map((tier) => ({
-        "@type": "Offer",
-        name: tier.title,
-        description: tier.description,
-        priceCurrency: "CZK",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          priceCurrency: "CZK",
-          minPrice: Number(tier.price.replace(/[^\d]/g, "")),
-        },
-      })),
-    },
   };
 }
 

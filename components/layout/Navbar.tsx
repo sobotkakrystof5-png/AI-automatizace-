@@ -7,7 +7,6 @@ const navLinks = [
   { href: "/#proc-automatizace", label: "Proč automatizace" },
   { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
   { href: "/#proces-prace", label: "Proces práce" },
-  { href: "/#cenik", label: "Ceník" },
   { href: "/#o-nas", label: "O nás" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#primy-kontakt", label: "Kontakt" },
