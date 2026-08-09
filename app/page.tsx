@@ -1,40 +1,59 @@
 import JsonLd from "@/components/seo/JsonLd";
 import { faqPageJsonLd } from "@/lib/json-ld";
 import Hero from "@/components/home/Hero";
-import VerifiedSystems from "@/components/home/VerifiedSystems";
-import StatsBar from "@/components/home/StatsBar";
+import TrustStrip from "@/components/home/TrustStrip";
+import Mission from "@/components/home/Mission";
+import About from "@/components/home/About";
 import Differentiators from "@/components/home/Differentiators";
 import WhyAutomation from "@/components/home/WhyAutomation";
 import AutomationAreas from "@/components/home/AutomationAreas";
+import VerifiedSystems from "@/components/home/VerifiedSystems";
+import Services from "@/components/home/Services";
 import HowWeBuild from "@/components/home/HowWeBuild";
-import ProcessSteps from "@/components/home/ProcessSteps";
 import ToolsIntegration from "@/components/home/ToolsIntegration";
-import About from "@/components/home/About";
+import ProcessSteps from "@/components/home/ProcessSteps";
 import FAQ from "@/components/home/FAQ";
-import Collaboration from "@/components/home/Collaboration";
-import Contact from "@/components/home/Contact";
-import Booking from "@/components/home/Booking";
-import FinalCTA from "@/components/home/FinalCTA";
+import ContactSection from "@/components/home/ContactSection";
 
+// Kanonické pořadí sekcí homepage (repozice 2026-08-09, viz
+// docs/plan-repozice-2026-08.md, sekce 2, a claude.md, "Struktura
+// homepage"). Pořadí není libovolné — vede návštěvníka od důvěry a
+// poslání přes osobní příběh k tomu, co si může objednat, a teprve
+// nakonec ke kontaktu.
+//
+// Čtyři sekce, které plán jmenovitě neuvádí (Differentiators,
+// VerifiedSystems, HowWeBuild, ToolsIntegration), uživatel 2026-08-09
+// rozhodl zachovat. Jejich umístění řeší dvě obsahové kolize, na které
+// jsem upozorňoval — nejsou náhodná, nepřehazovat bez rozmyslu:
+//
+//  - VerifiedSystems a ToolsIntegration obě ukazují loga nástrojů. Jsou
+//    proto tři sekce od sebe; vedle sebe by stránka dvakrát po sobě
+//    dělala totéž.
+//  - HowWeBuild (3 principy) a ProcessSteps (5 kroků spolupráce) se
+//    obsahově překrývají. Mezi nimi stojí ToolsIntegration — stejné
+//    odstínění, jaké mělo pořadí před repozicí.
+//
+// StatsBar a Collaboration byly stejným rozhodnutím zrušeny: čísla
+// přebírá TrustStrip a vlastní projekty vysvětlí sekce ZakazIQ (Fáze 4)
+// a stránka /o-mne (Fáze 5).
 export default function Home() {
   return (
     <>
       <JsonLd data={faqPageJsonLd()} />
       <Hero />
-      <VerifiedSystems />
-      <StatsBar />
+      <TrustStrip />
+      <Mission />
+      <About />
       <Differentiators />
       <WhyAutomation />
       <AutomationAreas />
+      <VerifiedSystems />
+      <Services />
       <HowWeBuild />
       <ToolsIntegration />
       <ProcessSteps />
-      <About />
-      <Collaboration />
       <FAQ />
-      <Contact />
-      <Booking />
-      <FinalCTA />
+      <ContactSection />
     </>
   );
 }

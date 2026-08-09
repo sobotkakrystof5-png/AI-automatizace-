@@ -6,13 +6,21 @@ import { z } from "zod";
 
 // ---------------------------------------------------------------------------
 // Validace vstupu z finálního kontaktního formuláře
-// (3 povinná pole + 2 volitelná — viz sekce "Finální CTA sekce" v obsahovém dokumentu)
+//
+// Repozice 2026-08-09: povinná zůstávají jen jméno, e-mail a souhlas.
+// Dřívější povinné pole `blocker` ("co vás nejvíc brzdí") a nepovinné
+// `automationGoal` ("vize automatizace") nahradilo jediné nepovinné pole
+// `additionalNotes` — konkrétní bolest se probírá až na konzultaci.
+//
+// `additionalNotes` se ukládá do sloupce `blocker`, protože ten je v
+// db/schema.ts `notNull()` a je to jediné volné textové pole formuláře.
+// Prázdná hodnota jde do DB jako "" (splňuje NOT NULL), ne jako null.
 // ---------------------------------------------------------------------------
 
 const leadSchema = z.object({
   name: z.string().min(1, "Vyplňte jméno").max(200),
   email: z.string().email("Zadejte platný e-mail"),
-  blocker: z.string().min(1, "Popište, co vás brzdí").max(2000),
+  additionalNotes: z.string().max(2000).optional().or(z.literal("")),
   phone: z.string().max(50).optional().or(z.literal("")),
   companyUrl: z.string().url().max(500).optional().or(z.literal("")),
   toolsUsed: z.array(z.string().max(100)).max(50),
@@ -35,7 +43,7 @@ export async function submitLead(
   const parsed = leadSchema.safeParse({
     name: formData.get("name"),
     email: formData.get("email"),
-    blocker: formData.get("blocker"),
+    additionalNotes: formData.get("additionalNotes") || "",
     phone: formData.get("phone") || "",
     companyUrl: formData.get("companyUrl") || "",
     toolsUsed: formData.getAll("toolsUsed"),
@@ -54,7 +62,7 @@ export async function submitLead(
   const {
     name,
     email,
-    blocker,
+    additionalNotes,
     phone,
     companyUrl,
     toolsUsed,
@@ -66,7 +74,8 @@ export async function submitLead(
     await db.insert(leads).values({
       name,
       email,
-      blocker,
+      // sloupec `blocker` je notNull() — prázdné pole ukládáme jako ""
+      blocker: additionalNotes || "",
       phone: phone || null,
       companyUrl: companyUrl || null,
       toolsUsed,

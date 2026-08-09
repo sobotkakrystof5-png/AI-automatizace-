@@ -14,21 +14,21 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-// Interaktivní timeline procesu (Fáze R6, redesign 2026) — vizuálně stejná
-// rodina prvků jako svislý ukazatel kroku v AutomationJourney.tsx (Fáze
-// R3): velká čísla, modrá spojnice, aktivní krok zvýrazněný. Obsah kroků
-// (`lib/process-steps.ts`) se nemění (Varianta A, potvrzeno uživatelem ve
-// Fázi R0) — homepage jen zobrazí kratší `homeSummary` a plný `body`/`note`
-// odkryje až klik na "Zobrazit víc" (viz komentář u ProcessStep typu,
-// proč tu už není odkaz na `/proces-prace`).
+// Interaktivní timeline spolupráce — vizuálně stejná rodina prvků jako
+// svislý ukazatel kroku v AutomationJourney.tsx: velká čísla, tyrkysová
+// spojnice, aktivní krok zvýrazněný.
+//
+// Repozice 2026-08-09: 6 kroků → 5 (viz lib/process-steps.ts) a zrušeno
+// rozbalování "Zobrazit víc" — u jednořádkových kroků nemělo co odkrývat.
+// Obě animace (GSAP scrub spojnice, scrollspy) jsou řízené indexem, ne
+// počtem kroků, takže změnu počtu přežily beze změny logiky; doladily se
+// jen časovací konstanty, protože sekce je po zkrácení kroků výrazně
+// nižší — viz komentáře u `start`/`end` a `space-y-14` níže.
 export default function ProcessSteps() {
   const containerRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<Array<HTMLLIElement | null>>([]);
   const [activeStep, setActiveStep] = useState(0);
-  const [expanded, setExpanded] = useState<boolean[]>(() =>
-    processSteps.map(() => false)
-  );
 
   useEffect(() => {
     if (!containerRef.current || !lineRef.current) return;
@@ -51,8 +51,11 @@ export default function ProcessSteps() {
         ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 70%",
-          end: "bottom 60%",
+          // Dřív "top 70%" / "bottom 60%". Po zkrácení kroků je kontejner
+          // o poznání nižší, takže se scrub stihl dojet skoro okamžitě —
+          // širší okno drží spojnici v pohybu po celou dobu čtení sekce.
+          start: "top 80%",
+          end: "bottom 70%",
           scrub: 0.5,
         },
       });
@@ -80,16 +83,12 @@ export default function ProcessSteps() {
     return () => observer.disconnect();
   }, []);
 
-  function toggleExpanded(index: number) {
-    setExpanded((prev) => prev.map((v, i) => (i === index ? !v : v)));
-  }
-
   return (
-    <section id="proces-prace" className="bg-zinc-900">
+    <section id="spoluprace" className="bg-zinc-900">
       <div className="mx-auto max-w-5xl px-6 py-16 sm:px-8 sm:py-24">
         <AnimatedSection>
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
-            Proces práce
+            Jak spolupráce probíhá
           </h2>
         </AnimatedSection>
 
@@ -104,10 +103,13 @@ export default function ProcessSteps() {
             className="absolute left-7 top-0 bottom-0 w-px bg-brand-turquoise"
           />
 
-          <ol className="space-y-10">
+          {/* Dřív `space-y-10`. Zkrácené kroky jsou nižší než pás, který
+              scrollspy sleduje (`rootMargin: -45%`), takže by v něm často
+              byly dva kroky naráz a aktivní kolečko by poskakovalo —
+              větší mezera drží krok i s odstupem vyšší než ten pás. */}
+          <ol className="space-y-14">
             {processSteps.map((step, i) => {
               const isActive = activeStep === i;
-              const isExpanded = expanded[i];
 
               return (
                 <li
@@ -132,27 +134,9 @@ export default function ProcessSteps() {
                     <h3 className="text-lg font-semibold text-zinc-50">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-zinc-400">{step.homeSummary}</p>
-
-                    {isExpanded && (
-                      <div className="mt-2">
-                        <p className="text-zinc-400">{step.body}</p>
-                        {step.note && (
-                          <p className="mt-2 text-sm italic text-zinc-400">
-                            {step.note}
-                          </p>
-                        )}
-                      </div>
+                    {step.summary && (
+                      <p className="mt-2 text-zinc-400">{step.summary}</p>
                     )}
-
-                    <button
-                      type="button"
-                      onClick={() => toggleExpanded(i)}
-                      aria-expanded={isExpanded}
-                      className="mt-2 text-sm font-medium text-brand-turquoise hover:underline"
-                    >
-                      {isExpanded ? "Skrýt" : "Zobrazit víc"}
-                    </button>
                   </AnimatedSection>
                 </li>
               );

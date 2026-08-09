@@ -10,6 +10,12 @@ import {
 // hodin", která zatím nejsou naměřená — místo tvrzení ukazuje tvar systému,
 // kterým zákazník reálně projde, než s AvenIQ vůbec promluví.
 //
+// STAV 2026-08-09: dočasně nezapojená. Používala ji sekce Booking, která
+// se sloučila do ContactSection — tam se ale nepřenesla schválně, protože
+// její obsah mluví o ZakazIQ, ne o kontaktu. REZERVOVÁNO pro sekci ZakazIQ
+// (Fáze 4, viz docs/plan-repozice-2026-08.md, sekce 7). Nemazat jako
+// mrtvý kód.
+//
 // Obsah není nové obchodní tvrzení: vrstvy odpovídají popisu od majitele
 // (frontend produkt → automatizace n8n → databáze), výstupy jsou přesně ty,
 // které už web uvádí v Differentiators.tsx ("termín, potvrzení, připomínka

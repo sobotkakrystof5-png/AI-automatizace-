@@ -103,10 +103,10 @@ export default async function AutomationAreaPage({ params }: Props) {
         <p className="mt-8 text-zinc-400">
           Zajímá vás, jak bude spolupráce probíhat krok za krokem?{" "}
           <Link
-            href="/#proces-prace"
+            href="/#spoluprace"
             className="text-zinc-50 underline hover:text-brand-turquoise"
           >
-            Podívejte se na proces práce
+            Podívejte se, jak spolupráce probíhá
           </Link>
           .
         </p>

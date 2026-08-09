@@ -1,11 +1,15 @@
 import Link from "next/link";
 
+// Footer nese širší výběr než navigace v hlavičce — je tu místo, takže
+// sem patří i sekce, které se do horního řádku nevešly.
 const siteLinks = [
+  { href: "/#poslani", label: "Poslání" },
+  { href: "/#o-nas", label: "O mně" },
   { href: "/#proc-automatizace", label: "Proč automatizace" },
   { href: "/#automatizace", label: "Automatizace" },
+  { href: "/#sluzby", label: "Služby" },
   { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
-  { href: "/#proces-prace", label: "Proces práce" },
-  { href: "/#o-nas", label: "O nás" },
+  { href: "/#spoluprace", label: "Jak pracujeme" },
   { href: "/#faq", label: "FAQ" },
 ];
 

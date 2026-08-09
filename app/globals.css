@@ -162,6 +162,16 @@
     var(--jitter-delay, 0s) infinite;
 }
 
+/* Navbar je `sticky top-0` (~68 px včetně border a py-4), takže skok na
+ * kotvu dosud přistával pod hlavičkou a nadpis sekce zůstal schovaný.
+ * Jeden řádek tady řeší všechny kotvy naráz — čistší než rozsévat
+ * `scroll-mt-*` po jednotlivých sekcích a zapomenout ho u příští nové.
+ * Lenis (SmoothScrollProvider) nemá zapnutou vlastní obsluhu kotev, takže
+ * hash navigace zůstává nativní a tohle pravidlo se na ni vztahuje. */
+html {
+  scroll-padding-top: 5rem;
+}
+
 body {
   background: #05070a;
   background-image: radial-gradient(

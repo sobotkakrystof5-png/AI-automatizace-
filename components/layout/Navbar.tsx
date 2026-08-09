@@ -3,13 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
+// Navigace podle docs/plan-repozice-2026-08.md, sekce 2. Záměrně
+// neobsahuje položku pro každou sekci — „Proč automatizace" a „Jak
+// tvoříme" jsou na stránce dál, jen nemají vlastní odkaz, aby se řádek
+// navigace nepřeplnil.
+//
+// Položka ZakazIQ přibude ve Fázi 4, až sekce vznikne. Přidat ji dřív by
+// znamenalo mrtvou kotvu.
 const navLinks = [
-  { href: "/#proc-automatizace", label: "Proč automatizace" },
-  { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
-  { href: "/#proces-prace", label: "Proces práce" },
-  { href: "/#o-nas", label: "O nás" },
+  { href: "/#poslani", label: "Poslání" },
+  { href: "/#o-nas", label: "O mně" },
+  { href: "/#sluzby", label: "Služby" },
+  { href: "/#spoluprace", label: "Jak pracujeme" },
   { href: "/#faq", label: "FAQ" },
-  { href: "/#primy-kontakt", label: "Kontakt" },
+  { href: "/#kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
