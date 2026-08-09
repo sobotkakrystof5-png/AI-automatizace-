@@ -119,14 +119,85 @@ restrukturalizuje na vícestránkový a přestal se tímto dokumentem řídit.
 Aktuálně platné, uživatelem potvrzené fakty nahrazující starý zdroj
 pravdy:
 
-- **Cílová skupina:** živnostníci, agentury, malé a středně velké firmy,
-  účetní a marketingové firmy a podobné obory. Copy napříč webem se má
-  touto skupinou řídit, ne zůstávat obecné "pro všechny firmy".
+- **Cílová skupina (aktualizováno 2026-08-09):** menší a středně velké
+  firmy. Účetnictví a reality jsou **ukázkové příklady oborů, ne uzavřená
+  specializace** — copy se před ostatními obory (živnostníci, agentury,
+  marketingové firmy) nesmí zavírat, ale zároveň nemá zůstávat obecné
+  "pro všechny firmy".
+  *Nahrazuje formulaci platnou 2026-07-17 až 2026-08-09: "živnostníci,
+  agentury, malé a středně velké firmy, účetní a marketingové firmy a
+  podobné obory" — ta zněla jako uzavřený výčet oborů. Změna vzešla z
+  repozičního promptu, ne z domněnky.*
 - **Tým:** AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — žádná
   sekce (např. "Náš tým") nemá předstírat víc lidí, než reálně existuje.
 - Existující texty na homepage a podstránkách pocházejí z předchozí verze
   podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
   segment a styl, ber je jako prozatímní, ne jako potvrzený text.
+
+## Struktura homepage — kanonické pořadí (od 2026-08-09)
+
+Zdroj: `docs/plan-repozice-2026-08.md`, sekce 2. Pořadí v `app/page.tsx`
+není libovolné a nemění se bez souhlasu:
+
+Hero → **Důvěra/citace** (`TrustStrip`) → **Poslání** (`Mission`) → O mně
+(`About`) → Differentiators → Proč automatizace (`WhyAutomation`) →
+Příklady automatizací (`AutomationAreas`) → VerifiedSystems → **Služby**
+(`Services`) → HowWeBuild → ToolsIntegration → **Jak spolupráce probíhá**
+(`ProcessSteps`) → *[ZakazIQ — Fáze 4]* → FAQ → **Kontakt + formulář**
+(`ContactSection`).
+
+Pravidla, která z toho plynou:
+
+- **Sekce Poslání je vizuálně oddělená od prodejního jazyka** — žádná
+  karta, žádné CTA, a nikdy `bg-zinc-900` (ta je podle `DESIGN.md` §5
+  vyhrazená pro rozhodovací sekce a udělala by z Poslání další CTA blok).
+- **Sekce Služby nikdy nezobrazuje cenu ani odkaz na ceník** — konkretizace
+  zásady o cenách v „Co se nikdy nedělá" níže. Typ `Service` v
+  `lib/services.ts` proto pole pro cenu vůbec nemá.
+- `VerifiedSystems` a `ToolsIntegration` obě ukazují loga nástrojů a
+  **nesmí stát vedle sebe**. Stejně tak `HowWeBuild` a `ProcessSteps` se
+  obsahově překrývají a drží mezi sebou odstup.
+- `StatsBar` a `Collaboration` byly 2026-08-09 zrušeny (čísla přebírá
+  `TrustStrip`, vlastní projekty vysvětlí sekce ZakazIQ a `/o-mne`).
+- Kotva `#kontakt` je **kanonická** pro kontaktní sekci — míří na ni šest
+  míst napříč webem, nepřejmenovávat. `#proces-prace` bylo 2026-08-09
+  přejmenováno na `#spoluprace`.
+- Před odevzdáním zásahu do struktury ověř mrtvé kotvy: každý cíl
+  `href="#…"` musí mít existující `id`. Grep musí zabrat i odkazy
+  v objektových literálech (`href: "/#x"`), ne jen JSX atributy.
+
+## Obchodní tvrzení a leadový formulář (od 2026-08-09)
+
+Fakty potvrzené uživatelem při repozici. Nemění se bez dalšího souhlasu.
+
+- **Hero claim:** „Automatizujeme rutinu. Vy se věnujte byznysu."
+  Nahrazuje motto „Chytrá automatizace. Lidský přístup." (platné
+  2026-07-17 až 2026-08-09). Změnu uživatel výslovně potvrdil — motto
+  je chráněné tvrzení, takže tohle **není** precedens pro další úpravy
+  bez ptaní. Zdroj: `docs/plan-repozice-2026-08.md`, sekce 5.
+- **Diferenciační citace** („Nejsem agentura…") patří **výhradně** do
+  pruhu Důvěra, ne do hero — plán ji uvádí na obou místech, ale doslovné
+  zopakování dvou sekcí po sobě působí jako chyba. Rozhodnuto 2026-08-09.
+
+- **Podpora po spuštění:** první měsíc od spuštění zdarma. Potom volitelný
+  měsíční paušál (monitoring, úpravy, přednostní řešení problémů); bez
+  paušálu se každý zásah řeší zvlášť podle rozsahu.
+- **Dvouletá záruka je zrušené tvrzení.** Do 2026-08-09 ji web uváděl na
+  pěti místech (`StatsBar`, `HowWeBuild`, `FinalCTA`, `lib/faq.ts`,
+  `lib/process-steps.ts`). Pokud na ni někde narazíš, je to nedokončený
+  úklid, ne platný fakt.
+- **Automatizační audit** zůstává jako volitelná služba, ale **bez ceny** —
+  dřívější „4 999 Kč" je zrušené číslo, viz zásada o cenách níže.
+- **Leadový formulář** (`components/home/ContactLeadForm.tsx`): povinné jsou jen
+  jméno, e-mail a souhlas se zpracováním údajů. Dřívější povinná otázka „co
+  vás nejvíc brzdí" a nepovinná „vize automatizace" byly nahrazeny jediným
+  nepovinným polem **„Co máte na srdci (nepovinné)"** (`additionalNotes`) —
+  konkrétní bolest se probírá až na konzultaci, povinná esej před prvním
+  kontaktem jen zvyšovala bariéru.
+  Technická poznámka: `additionalNotes` se ukládá do sloupce `blocker`,
+  protože ten je v `db/schema.ts` `notNull()`; prázdná hodnota jde do DB
+  jako `""`. Migrace na vlastní nullable sloupec je otevřený bod — navrhnout
+  a počkat na souhlas, ne ji provést mimochodem.
 
 ## Design systém (paleta revidována 2026-07-22, viz "Paleta R11" níže —
 nahrazuje R0/R1 rozhodnutí z 2026-07-21)
@@ -251,6 +322,24 @@ existující obsah. Přepis konkrétních sekcí (Hero, karty, About, proces...)
 podle tohoto standardu se děje uvnitř příslušných pozdějších fází (R3–R9),
 ne tady.
 
+### Hranice „já" / „my" (od 2026-08-09)
+
+Web mluví dvěma hlasy a je to záměr, ne nedůslednost:
+
+- **První osoba jednotného čísla** v osobních sekcích — „O mně", pruh
+  důvěry, kontakt. Sem patří „komunikujete přímo se mnou", „postavil jsem
+  si to pro sebe", „nejsem agentura". Tohle je diferenciátor, ne skromnost.
+- **Množné číslo jen tam, kde mluví AvenIQ jako značka** — Poslání,
+  Služby, obecný popis nabídky („Pomáháme firmám…").
+
+Značkové „my" **není** předstírání týmu a nekoliduje s pravidlem o
+velikosti týmu níže. Zakázané zůstává množné číslo, které tvrdí nebo
+naznačuje **konkrétní další lidi** („náš tým", „naši konzultanti",
+„zeptejte se našich specialistů").
+
+Když si u nové věty nejsi jistý, do které kategorie patří, rozhodni podle
+toho, kdo je jejím mluvčím: člověk Kryštof → „já", firma AvenIQ → „my".
+
 ## Design skilly (nainstalované 2026-08-05)
 
 V projektu je nainstalováno 29 design skillů ze čtyř zdrojů, v
@@ -326,6 +415,15 @@ označený placeholder `[DOPLNIT PRÁVNÍ TEXT]`.
 
 ## Co se nikdy nedělá
 
+- **Uvádět na webu jakoukoli cenu (od 2026-08-09).** Web nikde neuvádí
+  konkrétní cenu ani cenové rozmezí — ani orientační, ani „od X". Platí to
+  pro viditelné texty, datovou vrstvu v `lib/`, i pro structured data
+  (`lib/json-ld.ts` nesmí obsahovat `Offer`/`priceSpecification`). **Cena se
+  sděluje výhradně na konzultaci.** Sekce Ceník, `lib/pricing.ts` a
+  `pricingServiceJsonLd()` byly z tohoto důvodu smazané — pokud na ně někde
+  narazíš, je to nedokončený úklid, ne platný stav. Zvlášť pozor na nově
+  vznikající sekce (Služby): nikdy tam nesmí přibýt cena ani tlačítko vedoucí
+  na ceník.
 - Měnit ceny, čísla, motta nebo marketingová tvrzení webu bez výslovného
   souhlasu uživatele.
 - Publikovat Reference/case studies bez ≥ 2 publikovaných záznamů.

@@ -9,9 +9,13 @@ import { SITE_URL_BASE } from "@/lib/constants";
 import { organizationJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
-const title = "AvenIQ — Chytrá automatizace. Lidský přístup.";
+// Claim sladěný s hero (repozice 2026-08-09) — dřív „Chytrá automatizace.
+// Lidský přístup.". Popis nese frázi „rutinní procesy" záměrně: plán
+// (docs/plan-repozice-2026-08.md, sekce 5a) ji chce opakovat i mimo
+// sekci Poslání — v hero podnadpisu a meta description.
+const title = "AvenIQ — Automatizujeme rutinu. Vy se věnujte byznysu.";
 const description =
-  "Bereme firmám zpátky hodiny strávené opakovanou administrativou — a vracíme je tam, kam patří: k zákazníkům, k růstu, k práci, která vás baví.";
+  "Automatizujeme menším a středně velkým firmám rutinní procesy, které je zdržují — od faktur po e-maily. Konzultace zdarma, odpověď do 24 hodin.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

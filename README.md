@@ -1,7 +1,7 @@
 # AvenIQ — marketingový web
 
-Marketingový web pro AvenIQ (AI automatizace pro malé a střední firmy,
-zakladatel Kryštof Sobotka).
+Marketingový web pro AvenIQ (AI automatizace pro menší a středně velké
+firmy, zakladatel Kryštof Sobotka).
 
 ## Tech stack
 

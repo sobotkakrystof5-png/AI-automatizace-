@@ -16,7 +16,7 @@ export function organizationJsonLd() {
     name: "AvenIQ",
     url: absoluteUrl("/"),
     description:
-      "AI automatizace firemních procesů pro živnostníky, agentury a malé až středně velké firmy — chytrá automatizace, lidský přístup.",
+      "AI automatizace firemních procesů pro menší a středně velké firmy — chytrá automatizace, lidský přístup.",
     founder: {
       "@type": "Person",
       name: "Kryštof Sobotka",

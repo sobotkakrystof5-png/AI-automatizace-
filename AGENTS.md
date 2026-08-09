@@ -14,8 +14,10 @@ ověř si tam rozsah fáze před jejím zahájením.
 ## Fázová kázeň (nejdůležitější pravidlo)
 Pracuj po fázích (viz masterprompt, sekce 11). Po dokončení každé fáze se **zastav**, shrň co jsi udělal, a počkej na výslovné potvrzení, než začneš další fázi. Nepokračuj automaticky dál, i kdyby ti to přišlo efektivnější — je to záměr, ne omezení schopnosti. Na konci každé fáze vždy uveď: (1) co jsi konkrétně udělal, (2) jaké předpoklady jsi musel udělat a že čekají na schválení, (3) co je otevřené/chybí doplnit. Pak se zeptej, jestli pokračovat.
 
-## Cílová skupina a tým (od 2026-07-17)
-Segment: živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory — copy se má touto skupinou řídit, ne zůstávat obecné. Tým: AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
+## Cílová skupina a tým (aktualizováno 2026-08-09)
+Segment: **menší a středně velké firmy**. Účetnictví a reality jsou ukázkové příklady oborů, **ne uzavřená specializace** — copy se před ostatními obory (živnostníci, agentury, marketingové firmy) nesmí zavírat, ale nemá zůstávat ani obecné „pro všechny firmy". *Nahrazuje formulaci platnou 2026-07-17 až 2026-08-09 („živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory"), která zněla jako uzavřený výčet.* Tým: AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
+
+Hlas: první osoba jednotného čísla v osobních sekcích (O mně, pruh důvěry, kontakt), množné číslo jen tam, kde mluví AvenIQ jako značka (Poslání, Služby). Značkové „my" není předstírání týmu; zakázané je množné číslo naznačující konkrétní další lidi („náš tým", „naši konzultanti"). Detaily viz `claude.md`, sekce „Hranice ‚já' / ‚my'".
 
 ## Design systém — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — nahrazuje `brand.gold`/`brand.electric` rozhodnutí z 2026-07-21)
 | Token | Zdroj | Použití |
@@ -44,6 +46,7 @@ Platí pro každou novou/upravovanou větu na webu: nadpis max. 3–6 slov, popi
 EstatIQ, ZakazIQ a VIZEON jsou propojené/spolupracující projekty, ne klienti — nepsat "klient" ani hodnocení. Žádná reálná loga k dispozici — použít jednoduché textové wordmarky v Tailwindu (ne fake generovaná loga) a označit komentářem `// TODO: nahradit reálným SVG logem`. Pás se posouvá plynule doleva čistou CSS animací, ne JS knihovnou.
 
 ## Co agent NESMÍ dělat
+- **Uvádět na webu jakoukoli cenu (od 2026-08-09).** Žádné číslo, rozmezí ani „od X" — ve viditelných textech, v `lib/`, ani ve structured data (`lib/json-ld.ts` bez `Offer`/`priceSpecification`). Cena se sděluje výhradně na konzultaci. Sekce Ceník, `lib/pricing.ts` i `pricingServiceJsonLd()` byly proto smazané; zbytkový výskyt = nedokončený úklid, ne platný stav. Platí i pro nově vznikající sekce (Služby).
 - Měnit ceny, čísla, motta ani marketingová tvrzení webu bez výslovného souhlasu uživatele.
 - Publikovat sekci Reference/case studies, dokud v DB nejsou ≥2 `is_published = true` záznamy (a stránku `/reference` v navigaci vůbec neodkazovat, dokud tato podmínka neplatí).
 - Používat `brand.turquoise`/`brand.mint` plošně/dekorativně mimo

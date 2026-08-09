@@ -5,8 +5,8 @@ import GlowCard from "@/components/motion/GlowCard";
 // duplicitní 6krokový client journey (viz lib/process-steps.ts /
 // ProcessSteps.tsx níže na stránce, kde jsou detailní kroky konzultace →
 // audit → návrh → stavba → spuštění → podpora). Texty jsou zkrácené
-// přeformulování už jinde na webu potvrzených faktů (2 roky záruky —
-// About.tsx/lib/process-steps.ts, testování před nasazením —
+// přeformulování už jinde na webu potvrzených faktů (podpora po spuštění —
+// lib/process-steps.ts krok 6, testování před nasazením —
 // lib/process-steps.ts krok 4, řešení na míru — About.tsx/
 // Differentiators.tsx), ne nové/nepotvrzené obchodní tvrzení; zkráceno
 // podle babička testu 2.0 (claude.md).
@@ -21,7 +21,7 @@ const buildPrinciples = [
   },
   {
     title: "Podpora i po startu",
-    body: "Dva roky záruky a podpora, dokud nejste 100 % spokojeni.",
+    body: "První měsíc od spuštění máte podporu zdarma.",
   },
 ];
 

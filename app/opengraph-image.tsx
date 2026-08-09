@@ -61,7 +61,7 @@ export default function OpengraphImage() {
             color: "#a1a1aa",
           }}
         >
-          Chytrá automatizace. Lidský přístup.
+          Automatizujeme rutinu. Vy se věnujte byznysu.
         </div>
       </div>
     ),

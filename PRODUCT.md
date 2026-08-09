@@ -16,11 +16,20 @@ web
 
 ## Users
 
-Živnostníci, agentury, malé a středně velké firmy, účetní a marketingové
-firmy a podobné obory. Nejsou to technicky založení lidé — o automatizaci
-většinou nikdy nečetli a nemají důvod se učit žargon. Přicházejí s
-konkrétní bolestí („topím se v opakované administrativě"), ne s poptávkou
-po technologii. Rozhodují se rychle a nedočtou dlouhý odstavec.
+**Menší a středně velké firmy.** Účetnictví a reality jsou **ukázkové
+příklady oborů, ne uzavřená specializace** — automatizace se stejně dobře
+hodí pro živnostníky, agentury nebo marketingové firmy a copy se před
+nimi nesmí zavírat.
+
+Nejsou to technicky založení lidé — o automatizaci většinou nikdy nečetli
+a nemají důvod se učit žargon. Přicházejí s konkrétní bolestí („topím se
+v opakované administrativě"), ne s poptávkou po technologii. Rozhodují se
+rychle a nedočtou dlouhý odstavec.
+
+> Nahrazuje formulaci platnou do 2026-08-09 („Živnostníci, agentury, malé
+> a středně velké firmy, účetní a marketingové firmy a podobné obory"),
+> která zněla jako uzavřený výčet oborů. Historie rozhodnutí viz
+> `claude.md`, sekce „Cílová skupina a obsahová pravidla".
 
 ## Product Purpose
 
@@ -30,8 +39,20 @@ automatizace znamená a jak spolupráce probíhá, a dovést návštěvníka k
 nezávaznému kontaktu. Úspěch = návštěvník bez technického zázemí pochopí
 nabídku z vizuálu a krátkých vět, a ozve se.
 
-Aktuální motto webu: **„Chytrá automatizace. Lidský přístup."**
-(Nesmí se měnit bez výslovného souhlasu — viz `claude.md`.)
+**Poslání** (od 2026-08-09, zobrazuje se na webu jako samostatná sekce):
+
+> Pomáháme firmám soustředit se na to, co má pro jejich byznys skutečně
+> smysl — odebíráme jim rutinní procesy, které za ně zvládne automatizace.
+
+Aktuální hero claim (od 2026-08-09): **„Automatizujeme rutinu. Vy se
+věnujte byznysu."** Nahrazuje dřívější motto „Chytrá automatizace.
+Lidský přístup.", platné 2026-07-17 až 2026-08-09 — změnu uživatel
+výslovně potvrdil při repozici, viz `docs/plan-repozice-2026-08.md`,
+sekce 5. Dál platí, že se claim **nesmí měnit bez výslovného souhlasu**.
+
+**Ceny se na webu neuvádějí** — žádné číslo, rozmezí ani orientační
+částka. Cena se sděluje výhradně na konzultaci. Platí od 2026-08-09, viz
+`claude.md`, sekce „Co se nikdy nedělá".
 
 ## Brand Personality
 
@@ -45,8 +66,14 @@ Tři slova: **srozumitelný, věcný, důvěryhodný**.
 
 AvenIQ je zatím **jednočlenný projekt (Kryštof Sobotka)**. Žádná sekce,
 copy ani vizuál nesmí předstírat větší tým — žádné „náš tým", „naši
-konzultanti", fotky smyšlených lidí ani množné číslo naznačující víc lidí,
-než reálně existuje.
+konzultanti" ani fotky smyšlených lidí.
+
+**Hranice „já" / „my"** (rozhodnuto 2026-08-09): první osoba jednotného
+čísla v osobních sekcích — O mně, pruh důvěry, kontakt („komunikujete
+přímo se mnou", „postavil jsem"). Množné číslo **jen tam, kde mluví
+AvenIQ jako značka** — Poslání, Služby, obecný popis nabídky. Značkové
+„my" není předstírání týmu; zakázané zůstává jen množné číslo, které
+tvrdí nebo naznačuje **konkrétní další lidi**.
 
 ## Anti-references
 
