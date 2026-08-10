@@ -14,29 +14,40 @@ export type Service = {
   summary: string;
 };
 
-// STATUS: čeká na výběr konkrétních služeb (Fáze 6, viz
-// docs/plan-repozice-2026-08.md, sekce 6 a 12 — "služby ještě uvidíme").
-// Placeholdery jsou tu schválně viditelné, ne vyplněné odhadem: podle
-// claude.md se mezery v obchodním obsahu neřeší vlastní interpretací.
-//
-// Až přijdou reálné služby, jako výchozí inspirace (ne uzavřený seznam)
-// slouží příklady z v1 plánu: vytěžování a tvorba faktur, automatické
-// odesílání e-mailů, tvorba příspěvků na sociální sítě, přepisy PDF
-// dokumentů, automatická příprava nabídek.
+// Služby potvrzené uživatelem 2026-08-10 (Fáze 6, viz
+// docs/plan-repozice-2026-08.md, sekce 6). Pět položek místo tří
+// z původního návrhu — uživatel chtěl zobrazit všechny, ne redukovat na
+// tři, takže grid v components/home/Services.tsx počítá s pěti kartami
+// (viz komentář tam k rozvržení posledního řádku).
 export const services: Service[] = [
   {
-    slug: "doplnit-1",
-    title: "[DOPLNIT — služba 1]",
-    summary: "[DOPLNIT — jedna věta, co služba dělá. Čeká na Fázi 6.]",
+    slug: "faktury",
+    title: "Zpracování faktur",
+    summary:
+      "AI vytěží data z faktur, spáruje objednávky a upozorní na nesrovnalosti.",
   },
   {
-    slug: "doplnit-2",
-    title: "[DOPLNIT — služba 2]",
-    summary: "[DOPLNIT — jedna věta, co služba dělá. Čeká na Fázi 6.]",
+    slug: "emailova-komunikace",
+    title: "E-mailová komunikace",
+    summary:
+      "Personalizované e-maily a připomínky se odešlou samy, přesně ve správný čas.",
   },
   {
-    slug: "doplnit-3",
-    title: "[DOPLNIT — služba 3]",
-    summary: "[DOPLNIT — jedna věta, co služba dělá. Čeká na Fázi 6.]",
+    slug: "prepisy-dokumentu",
+    title: "Přepisy dokumentů",
+    summary:
+      "AI přečte PDF nebo scan a data rovnou zapíše do vašeho systému.",
+  },
+  {
+    slug: "newslettery",
+    title: "Automatické newslettery",
+    summary:
+      "Pravidelný obsah pro zákazníky se sestaví a odešle bez zásahu člověka.",
+  },
+  {
+    slug: "chatbot",
+    title: "Chatbot na míru",
+    summary:
+      "Odpovídá zákazníkům z vašich dat 24/7 a složitější dotazy předá vám.",
   },
 ];

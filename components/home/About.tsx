@@ -83,6 +83,24 @@ export default function About() {
           </div>
         </AnimatedSection>
 
+        {/* Citace přesunuta sem z TrustStrip.tsx (2026-08-10, na žádost
+            uživatele) — claude.md měl výslovné pravidlo "patří výhradně
+            do pruhu Důvěra", takže šlo o vědomé přepsání, ne přidání
+            duplicity; TrustStrip o citaci přišel ve stejné úpravě. */}
+        <AnimatedSection delay={0.08}>
+          <figure className="mt-10 max-w-3xl border-t border-zinc-800 pt-8">
+            <blockquote className="text-xl font-medium text-zinc-50 sm:text-2xl">
+              „Nejsem agentura, která slibuje automatizaci pro každého. Jsem
+              člověk, který zautomatizoval vlastní byznys — a přesně vím, jak
+              na to i u vás.“
+            </blockquote>
+            <figcaption className="mt-4 text-sm text-zinc-400">
+              <cite className="not-italic">Kryštof Sobotka</cite> — zakladatel
+              AvenIQ
+            </figcaption>
+          </figure>
+        </AnimatedSection>
+
         <AnimatedSection delay={0.1}>
           <div className="mt-12">
             <h3 className="text-xl font-semibold text-zinc-50">Moje hodnoty</h3>

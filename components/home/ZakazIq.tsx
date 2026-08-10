@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
-import GlowCard from "@/components/motion/GlowCard";
 import LiveSystemFlow from "@/components/motion/LiveSystemFlow";
 
 // Sekce ZakazIQ (Fáze 4 repozice, viz docs/plan-repozice-2026-08.md,
@@ -23,13 +22,40 @@ import LiveSystemFlow from "@/components/motion/LiveSystemFlow";
 // Popisky jsou od 2026-08-09 ověřené proti reálnému screenshotu
 // (`public/zakaziq-ukazka.png`), ne odvozené — každý pojmenovává prvek,
 // který je na obrazovce vidět. Kdo je bude měnit, ať se na obrázek
-// podívá: text a důkaz vedle sebe si nesmí odporovat.
+// podívá: text a důkaz si nesmí odporovat, i když teď (viz níže) stojí
+// nad sebou, ne vedle sebe jako dřív.
 //
 // „Přehled" původně (téhož dne, před dodáním screenshotu) zněl
 // „Rezervace i termíny pohromadě". Obrázek ukázal, že karta sleduje
 // postup zakázky v procentech a datum aktualizace, ne kalendář — popisek
 // se opravil podle důkazu. Je to varování do budoucna: odvození
 // z okolního copy nestačí tam, kde vedle stojí screenshot.
+//
+// Layout (2026-08-10): přestavěno podle hierarchie na vizeon.cz — ten
+// samý produkt tam má vlastní sekci se třemi očíslovanými vlastnostmi
+// v řadě NAD screenshotem, místo dřívějších dvou sloupců vedle sebe.
+// Nejdřív se přečtou tři tvrzení, pak přijde důkaz. Očíslované odznaky
+// přebírají vizuální slovník `ProcessSteps.tsx` (kruh, `font-mono`,
+// `pad()`), ne nový vzor — ten na webu už existuje a trojice tady není
+// sekvenční proces, proto bez spojnice a bez zvýraznění aktivního
+// kroku. CTA zůstává tyrkysové pilulkové tlačítko podle zbytku webu,
+// ne vizeonův podtržený odkaz se šipkou — přebírání cizího stylu CTA
+// by rozbilo konzistenci se zbytkem homepage.
+//
+// Doplněno (2026-08-10, druhá iterace): obrázek zmenšený a přesunutý
+// doprava, vlevo k němu přibyl krátký odstavec vysvětlující, co
+// ZakazIQ je a jak se do něj klient dostane — na výslovné přání
+// uživatele, doplněk k trojici nahoře, ne náhrada (popisky pod
+// jednotlivými vlastnostmi zůstávají). Věta záměrně jmenuje AvenIQ, ne
+// VIZEON — potvrzeno uživatelem po dotazu, protože VIZEON není na
+// tomhle webu nikde představený. Text je zkrácený na dvě krátké věty
+// místo jednoho delšího souvětí z uživatelova podkladu („inspiruj se“,
+// ne doslovné znění) kvůli pravidlu o víceřetých odstavcích v hlavním
+// scrollu homepage (viz „Jazykový standard“ v claude.md). Věta „přes
+// AvenIQ se automaticky dostanete do systému“ je v mírném napětí s CTA
+// níže („Stejný princip umím postavit i pro vaši firmu“, které dřív
+// naznačovalo, že klienti AvenIQ dostanou obdobu, ne přímo ZakazIQ) —
+// otevřený bod ke zvážení, ne oprava provedená mnou.
 const vlastnosti = [
   {
     nazev: "Přímá komunikace",
@@ -81,67 +107,87 @@ export default function ZakazIq() {
           </p>
         </AnimatedSection>
 
-        <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-12">
-          <ol className="space-y-4">
-            {vlastnosti.map((vlastnost, i) => (
-              <li key={vlastnost.nazev}>
-                <AnimatedSection delay={i * 0.08}>
-                  <GlowCard accent="turquoise" className="bg-zinc-950 p-5">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <h3 className="text-lg font-semibold text-zinc-50">
-                        {vlastnost.nazev}
-                      </h3>
-                      <span
-                        aria-hidden
-                        className="font-mono text-xs text-zinc-600"
-                      >
-                        {pad(i + 1)}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm text-zinc-400">
-                      {vlastnost.popis}
-                    </p>
-                  </GlowCard>
-                </AnimatedSection>
-              </li>
-            ))}
-          </ol>
+        {/* Tři vlastnosti v řadě, ne ve sloupci — čtou se jako rychlý
+            přehled ještě předtím, než přijde na řadu obrázek. Odznaky jsou
+            `aria-hidden`: pořadí je vizuální, ne informace navíc k
+            nadpisu, stejně jako u `ProcessSteps.tsx`. */}
+        <ol className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
+          {vlastnosti.map((vlastnost, i) => (
+            <li key={vlastnost.nazev}>
+              <AnimatedSection delay={i * 0.08}>
+                <span
+                  aria-hidden
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 font-mono text-sm font-semibold text-zinc-400"
+                >
+                  {pad(i + 1)}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold text-zinc-50">
+                  {vlastnost.nazev}
+                </h3>
+                <p className="mt-2 text-sm text-zinc-400">
+                  {vlastnost.popis}
+                </p>
+              </AnimatedSection>
+            </li>
+          ))}
+        </ol>
 
-          {/* Screenshot je jediný tvrdý důkaz na celé stránce — proto
-              nestojí jako dekorace pod textem, ale vedle vlastností, aby
-              se dal číst zároveň s nimi. Světlé UI na tmavé stránce svítí
-              samo o sobě, žádné zvýraznění navíc nepotřebuje.
+        {/* Text vlevo, zmenšený screenshot vpravo (2026-08-10, na
+            výslovné přání uživatele — viz komentář nahoře). Krátký
+            text a menší obrázek mají podobnou výšku, proto
+            `items-center`: u předchozí verze (delší seznam vs. vysoký
+            portrétový screenshot) by `items-start` nechalo pod textem
+            velkou prázdnou plochu. */}
+        <AnimatedSection delay={0.24}>
+          <div className="mt-14 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-10">
+            <div>
+              <p className="text-zinc-400">
+                ZakazIQ je komunikační a rezervační systém, který
+                přiřazuji každému klientovi.
+              </p>
+              <p className="mt-2 text-zinc-400">
+                Do systému se dostanete hned po objednání konzultace
+                přes AvenIQ.
+              </p>
+            </div>
 
-              `alt` popisuje, co je na obrazovce vidět, ne že jde
-              o screenshot — odečítač jinak dostane informaci, která mu
-              k ničemu není. Obrázek je hluboko pod ohybem stránky, takže
-              zůstává líné načítání (výchozí u next/image): priority by
-              zbytečně soutěžila s LCP v hero.
+            {/* Screenshot je jediný tvrdý důkaz na celé stránce — proto
+                i zmenšený zůstává vlastní figurou s popiskem, ne
+                dekorací. Světlé UI na tmavé stránce svítí samo o sobě,
+                žádné zvýraznění navíc nepotřebuje.
 
-              V ukázce figuruje jméno majitele, ne reálného klienta.
-              Kdyby se obrázek někdy vyměňoval, tohle musí platit dál —
-              screenshot s cizími osobními údaji na web nepatří. */}
-          <AnimatedSection delay={0.12}>
-            <figure className="m-0">
+                `alt` popisuje, co je na obrazovce vidět, ne že jde
+                o screenshot — odečítač jinak dostane informaci, která
+                mu k ničemu není. Obrázek je hluboko pod ohybem
+                stránky, takže zůstává líné načítání (výchozí u
+                next/image): priority by zbytečně soutěžila s LCP
+                v hero.
+
+                V ukázce figuruje jméno majitele, ne reálného klienta.
+                Kdyby se obrázek někdy vyměňoval, tohle musí platit
+                dál — screenshot s cizími osobními údaji na web
+                nepatří. */}
+            <figure className="m-0 ml-auto w-full max-w-[240px] sm:max-w-[280px]">
               {/* Bez vlastního rámečku a zaoblení: obrázek si zaoblené
                   rohy nese sám a v jejich výřezu má tmavou výplň
-                  (9,11,15) — prakticky totožnou s pozadím stránky. Rámeček
-                  navíc by kolem karty nakreslil druhý obrys a v rozích
-                  nechal tmavé srpky. Ověřeno měřením pixelů, ne odhadem. */}
+                  (9,11,15) — prakticky totožnou s pozadím stránky.
+                  Rámeček navíc by kolem karty nakreslil druhý obrys
+                  a v rozích nechal tmavé srpky. Ověřeno měřením
+                  pixelů, ne odhadem. */}
               <Image
                 src="/zakaziq-ukazka.png"
                 alt="Karta projektu v ZakazIQ: jméno zadavatele, jeho zadání, stav „Nová“, ukazatel postupu prací, hodnocení na škále 1–10 a pole pro zpětnou vazbu."
                 width={902}
                 height={1276}
-                sizes="(min-width: 1024px) 420px, 100vw"
+                sizes="(min-width: 640px) 280px, 240px"
                 className="h-auto w-full"
               />
               <figcaption className="mt-4 text-sm text-zinc-400">
                 Prostředí, které vidí klient. Obsluhuje ho systém, ne já.
               </figcaption>
             </figure>
-          </AnimatedSection>
-        </div>
+          </div>
+        </AnimatedSection>
 
         <div className="mt-16">
           <AnimatedSection>

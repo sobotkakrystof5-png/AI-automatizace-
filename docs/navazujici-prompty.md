@@ -1,10 +1,16 @@
 # Navazující prompty — repozice AvenIQ (stav k 2026-08-09)
 
-> **Průběžný stav: Části 0, 1 a 2 jsou hotové a commitnuté.** Zbývají
-> Část 3 (Fáze 6 — obsah Služeb) a Část 4 (Fáze 7 — technický dotah);
-> obě čekají na vstup od uživatele, viz jejich sekce níže. Část 5
-> (Fáze 8) zůstává mimo aktuální rozsah. Prompty hotových částí se
-> nechávají v dokumentu jako záznam zadání, ne jako práce k provedení.
+> **Průběžný stav: Části 0, 1, 2, 3 jsou hotové; Část 4 hotová až na
+> jeden bod.** Části 0–2 jsou commitnuté na `main` (`0fdb9cf`…`df4cee9`,
+> `ea22ac1`). Části 3 a 4 jsou hotové v pracovním stromu, ale **zatím
+> necommitnuté** — spolu s nimi jsou necommitnuté i dvě samostatné úpravy
+> `ZakazIq.tsx` (layout, viz komentář v souboru) a `Footer.tsx` (odkaz
+> „Vyrobeno vizeon.cz"), které vznikly mimo tyto části. **Jediné, co v
+> Části 4 zbývá, jsou reálné hodnoty `SITE_URL` a `ZAKAZIQ_BOOKING_URL`**
+> od uživatele — dokud nepřijdou, sitemap publikuje localhost a
+> rezervace nefunguje. Část 5 (Fáze 8) zůstává mimo aktuální rozsah.
+> Prompty hotových částí se nechávají v dokumentu jako záznam zadání,
+> ne jako práce k provedení.
 
 Rozdělení zbývající práce do samostatných částí, každá do vlastní session.
 Důvod je v `claude.md`, sekce „Řízení rozsahu úkolu": velké úkoly se
@@ -25,7 +31,9 @@ odpovídají Fázím 4–7 v `docs/plan-repozice-2026-08.md`, sekce 11 — ale
 - Governance: `PRODUCT.md`, `claude.md`, `AGENTS.md`, `README.md` popisují
   novou cílovku, hranici hlasu „já"/„my" a zákaz cen.
 - Hero claim, `<title>`, OG obrázek a design-preview sladěné na
-  „Automatizujeme rutinu. Vy se věnujte byznysu."
+  „Automatizujeme rutinu. Vy se věnujte byznysu." — **claim 2026-08-10
+  přepsán na „Vy řešíte byznys. Rutinu automatizujeme my."**, viz
+  `claude.md`, sekce „Obchodní tvrzení a leadový formulář".
 - Ceník smazaný kompletně (komponenta, `lib/pricing.ts`, JSON-LD, odkazy).
 - Formulář zredukovaný na jméno/e-mail/telefon/web/`additionalNotes`/souhlas.
 - FAQ zredukované ze 14 na 6 otázek.
@@ -58,13 +66,13 @@ odpovídají Fázím 4–7 v `docs/plan-repozice-2026-08.md`, sekce 11 — ale
 | ~~`LiveSystemFlow` je nezapojený~~ — vyřešeno, zapojen v `ZakazIq.tsx` | ~~Část 1~~ |
 | ~~Položka „ZakazIQ" chybí v navigaci~~ — vyřešeno, kotva `#zakaziq` existuje | ~~Část 1~~ |
 | ~~Odkaz „Celý příběh →" v `About.tsx`~~ — vyřešeno, míří na `/o-mne` | ~~Část 2~~ |
-| Karty Služby jsou viditelné `[DOPLNIT]` | Část 3 |
-| `SITE_URL` a `ZAKAZIQ_BOOKING_URL` jsou placeholdery — blokující chyba | Část 4 |
-| Mrtvé odkazy na `docs/kickoff-prompt.md` v `claude.md` a `AGENTS.md` | Část 4 |
-| Mrtvý kód: `MagneticButton`, `MagneticLink`, `FlowDiagram(Lazy)` | Část 4 |
-| Podnadpis hero má 2 věty (~16 slov) vs. babička test (1 věta, ~12 slov) | Část 4 |
-| Migrace `additionalNotes` na vlastní sloupec místo `blocker` | Volitelné, Část 4 |
-| Formulář nebyl otestován proti reálné Neon DB | Část 4 |
+| ~~Karty Služby jsou viditelné `[DOPLNIT]`~~ — vyřešeno, 5 služeb potvrzených uživatelem | ~~Část 3~~ |
+| `SITE_URL` a `ZAKAZIQ_BOOKING_URL` jsou placeholdery — blokující chyba | **Stále otevřené**, Část 4 |
+| ~~Mrtvé odkazy na `docs/kickoff-prompt.md`~~ — záměrně nedotčeno, viz `claude.md` řádek 277–280 (vědomé rozhodnutí uživatele) | ~~Část 4~~ |
+| ~~Mrtvý kód: `MagneticButton`, `MagneticLink`~~ — smazáno (uživatel rozhodl po ukázce obsahu); `FlowDiagram(Lazy)` zůstává (ukázka v `/design-preview`) | ~~Část 4~~ |
+| ~~Podnadpis hero má 2 věty~~ — uživatel rozhodl nechat beze změny, vědomá výjimka z babička testu | ~~Část 4~~ |
+| Migrace `additionalNotes` na vlastní sloupec místo `blocker` | Volitelné, stále otevřené |
+| ~~Formulář nebyl otestován proti reálné Neon DB~~ — otestováno přes Playwright, prázdné pole prošlo, test lead smazán | ~~Část 4~~ |
 
 ---
 
@@ -202,10 +210,20 @@ metadata, je v sitemapě, a lint + build + impeccable detektor jsou čisté.
 
 ---
 
-## Část 3 — Fáze 6: obsah Služeb a Příkladů automatizací
+## Část 3 — Fáze 6: obsah Služeb a Příkladů automatizací ✅ HOTOVO 2026-08-10
 
-**Čeká na tvůj výběr služeb.** Připrav si, které automatizace chceš
-nabízet jako první.
+**Poučení pro příště:** uživatel na dotaz vybral 5 služeb (zpracování
+faktur, e-mailová komunikace, přepisy dokumentů, automatické
+newslettery, chatbot na míru), ne 3, na které byla sekce původně
+navržená (`sm:grid-cols-3`). Rozhodnutí mezi zredukovat na 3 vs.
+rozšířit grid na 5 bylo vlastní otázka (layoutová věc, ne jen obsahová)
+— uživatel zvolil rozšíření. Grid zůstal 3sloupcový, poslední řádek má
+2 karty zarovnané doleva (ověřeno screenshotem přes Playwright, žádný
+umělý padding navíc). `AutomationAreas.tsx`/`lib/automation-areas.ts`
+zkontrolované a beze změny — už odpovídají novému positioningu (6
+obecných oblastí, žádný uzavřený výčet oborů).
+
+Původní zadání (ponecháno jako záznam):
 
 ```text
 Přečti si claude.md, AGENTS.md a docs/plan-repozice-2026-08.md (sekce 6).
@@ -241,10 +259,44 @@ a lint + build + detektor jsou čisté.
 
 ---
 
-## Část 4 — Fáze 7: technický dotah a úklid
+## Část 4 — Fáze 7: technický dotah a úklid — ČÁSTEČNĚ HOTOVO 2026-08-10
 
-**Na nic nečeká, ale dává smysl až po Částech 1–3**, protože se dotýká
-metadat sekcí, které ještě nevznikly.
+**Stav bod po bodu:**
+
+1. ⏳ **Stále blokující.** `SITE_URL` a `ZAKAZIQ_BOOKING_URL` jsou pořád
+   placeholdery — čeká na reálné hodnoty od uživatele, viz konec
+   dokumentu.
+2. ✅ Ověřeno, beze změny. `/o-mne` má vlastní override přes
+   `pageMetadata()`, layout.tsx má globální fallback.
+3. ✅ Opraveno. `organizationJsonLd()` v `lib/json-ld.ts` měla zapomenutý
+   zbytek zrušeného motta („chytrá automatizace, lidský přístup") z doby
+   před přejmenováním 2026-08-09 — sem se ta úprava tehdy nepromítla.
+   Ostatní schémata ověřená, bez ceny.
+4. ✅ Ověřeno, beze změny. `sitemap.ts`/`robots.ts` sedí s finálním
+   seznamem rout.
+5. **Záměrně nedotčeno.** `claude.md` řádek 277–280 už dokumentuje, že
+   jde o vědomé rozhodnutí uživatele z 2026-07-21 nechat tenhle odkaz
+   nefunkční — novější a konkrétnější zápis vyhrává nad tímhle bodem
+   checklistu.
+6. ✅ Vyřešeno. Uživateli ukázán konkrétní obsah souborů (screenshot
+   FlowDiagram z `/design-preview`, popis magnetického hover efektu) —
+   rozhodl smazat jen `MagneticButton.tsx`, `MagneticLink.tsx` a
+   `useMagneticHover.ts` (0 importů nikde v repu). `FlowDiagram.tsx` a
+   `FlowDiagramLazy.tsx` zůstávají (ukázka v `/design-preview`).
+7. **Rozhodnuto uživatelem: nechat beze změny.** Dvouvětý hero podnadpis
+   zůstává, i když technicky nesplňuje babička test 2.0 — vědomá výjimka,
+   ne přehlédnutí.
+8. ✅ Ověřeno na produkčním buildu (ne dev server — ten dával zavádějící
+   LCP 18 s). Performance 0.90, CLS 0 (nové animované sekce nezpůsobují
+   layout shift), LCP 3.6 s (hranice „needs improvement", není regrese).
+9. ✅ Otestováno end-to-end přes Playwright proti reálné Neon DB —
+   prázdné `additionalNotes` se správně uloží jako `""` do `blocker`
+   (notNull). Testovací lead smazán.
+
+Zbývá jen bod 1 — dokument zůstává otevřený, dokud nepřijdou reálné
+hodnoty.
+
+Původní zadání (ponecháno jako záznam):
 
 ```text
 Přečti si claude.md a AGENTS.md. Ověř si stav v gitu.

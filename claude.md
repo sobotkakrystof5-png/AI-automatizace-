@@ -142,17 +142,30 @@ pravdy:
   podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
   segment a styl, ber je jako prozatímní, ne jako potvrzený text.
 
-## Struktura homepage — kanonické pořadí (od 2026-08-09)
+## Struktura homepage — kanonické pořadí (od 2026-08-10)
 
-Zdroj: `docs/plan-repozice-2026-08.md`, sekce 2. Pořadí v `app/page.tsx`
-není libovolné a nemění se bez souhlasu:
+Nahrazuje pořadí z repozice 2026-08-09 (`docs/plan-repozice-2026-08.md`,
+sekce 2) — uživatel 2026-08-10 výslovně zadal nové pořadí navbaru i
+stránky zároveň, viz `Navbar.tsx` a `app/page.tsx` pro doslovné znění a
+zdůvodnění. Pořadí v `app/page.tsx` není libovolné a nemění se bez
+souhlasu:
 
-Hero → **Důvěra/citace** (`TrustStrip`) → **Poslání** (`Mission`) → O mně
-(`About`) → Differentiators → Proč automatizace (`WhyAutomation`) →
-Příklady automatizací (`AutomationAreas`) → VerifiedSystems → **Služby**
-(`Services`) → HowWeBuild → ToolsIntegration → **Jak spolupráce probíhá**
-(`ProcessSteps`) → **ZakazIQ** (`ZakazIq`) → FAQ → **Kontakt + formulář**
-(`ContactSection`).
+Hero → TrustStrip → **Proč automatizace** (`WhyAutomation`) → Poslání
+(`Mission`) → Příklady automatizací (`AutomationAreas`) → **Služby**
+(`Services`) → VerifiedSystems → **Jak pracujeme** (`ProcessSteps`) →
+ToolsIntegration → Nacenění (`QuoteProcess`) → **V čem jsme jiní**
+(`Differentiators`) → **O mně** (`About`) → **ZakazIQ** (`ZakazIq`) →
+**FAQ** → **Kontakt + formulář** (`ContactSection`).
+
+Tučně jsou sekce, které mají vlastní odkaz v navbaru (8, přesně v tomto
+pořadí) — to je zadání, které uživatel dal. Zbylých 5 sekcí (TrustStrip,
+Mission, AutomationAreas, VerifiedSystems, ToolsIntegration)
+uživatel ve svém zadání nejmenoval; na otázku, co s nimi, odpověděl „to
+vyřešíme později" (2026-08-10) — **nejsou smazané**, jsou zachované jako
+mezisekce u obsahově nejbližší pojmenované sekce (viz komentář v
+`app/page.tsx` pro přesné odůvodnění umístění každé z nich). Jejich
+dlouhodobé umístění nebo případné zrušení je **otevřený bod pro budoucí
+session**, ne hotové rozhodnutí — neber aktuální umístění jako závazné.
 
 Pravidla, která z toho plynou:
 
@@ -163,20 +176,45 @@ Pravidla, která z toho plynou:
   zásady o cenách v „Co se nikdy nedělá" níže. Typ `Service` v
   `lib/services.ts` proto pole pro cenu vůbec nemá.
 - `VerifiedSystems` a `ToolsIntegration` obě ukazují loga nástrojů a
-  **nesmí stát vedle sebe**. Stejně tak `HowWeBuild` a `ProcessSteps` se
-  obsahově překrývají a drží mezi sebou odstup.
+  **nesmí stát vedle sebe** — od 2026-08-10 je odděluje `ProcessSteps`.
+- **`HowWeBuild` byla 2026-08-10 zrušena a nahrazena sekcí `QuoteProcess`**
+  (nadpis „Kolik to bude stát", kotva `#naceneni`) na stejné pozici. Důvod
+  zrušení: sekce neměla vlastní obsah — všechny tři body byly duplicity,
+  dva z nich doslovné opisy kroků 4 a 5 z `lib/process-steps.ts`, které
+  stojí jen dvě sekce nad ní. Pokud na `HowWeBuild` nebo kotvu
+  `#jak-tvorime-automatizace` někde narazíš, je to nedokončený úklid, ne
+  platný stav.
+- **`QuoteProcess` vysvětluje, jak vzniká cena — nikdy žádné číslo.**
+  Existuje právě proto, že web nemá ceník: popisuje mechanismus, ne částku,
+  a tím zásadu „cena se sděluje výhradně na konzultaci" podpírá, ne
+  porušuje. Nesmí sem přibýt částka, rozmezí, „od X", odkaz na ceník ani
+  `Offer`/`priceSpecification` v `lib/json-ld.ts`. Dvě obchodní tvrzení
+  v ní **potvrdil uživatel 2026-08-10** a nemění se bez nového souhlasu:
+  výstupem je **pevná cena** za dohodnutý rozsah (ne odhad ani rozpětí)
+  a klient ji slyší **přímo na konzultaci** (ne až v písemné nabídce po ní).
+- `QuoteProcess` a `ProcessSteps` se obsahově **nepřekrývají a nesmí
+  začít** — `ProcessSteps` popisuje, *co se stane* (timeline spolupráce),
+  `QuoteProcess` *jak vzniká cena*. Proto první bod `QuoteProcess` mluví
+  o vymezení **rozsahu**, ne o tom „co vás brzdí" (to je krok 1
+  v `ProcessSteps`). Přepis, který tenhle rozdíl setře, vrací přesně tu
+  duplicitu, kvůli které padla `HowWeBuild`.
 - `StatsBar` a `Collaboration` byly 2026-08-09 zrušeny (čísla přebírá
   `TrustStrip`, vlastní projekty vysvětlí sekce ZakazIQ a `/o-mne`).
 - **Sekce ZakazIQ nepoužívá `bg-zinc-900`** (od 2026-08-09) — je důkazní,
-  ne rozhodovací (`DESIGN.md` §5), a `ProcessSteps` přímo nad ní zinc-900
-  má. Společně by se slily do jednoho pásu.
+  ne rozhodovací (`DESIGN.md` §5), a `ProcessSteps` má zinc-900. Od
+  2026-08-10 už nestojí bezprostředně nad ZakazIQ (mezi nimi je
+  `ToolsIntegration`, `QuoteProcess`, `Differentiators` a `About`), takže
+  riziko vizuálního slití pominulo, ale pravidlo o barvě pozadí platí
+  beze změny.
 - `LiveSystemFlow` patří **výhradně** do sekce ZakazIQ — nese tok „jak to
   funguje" a jinde by mluvil o cizím tématu (proto se nepřenesl do
   `ContactSection` při slučování). Není to sdílený vizuál k volnému
   použití.
 - Kotva `#kontakt` je **kanonická** pro kontaktní sekci — míří na ni šest
   míst napříč webem, nepřejmenovávat. `#proces-prace` bylo 2026-08-09
-  přejmenováno na `#spoluprace`.
+  přejmenováno na `#spoluprace`. `Differentiators` dostala 2026-08-10
+  novou kotvu `#v-cem-jsme-jini` (dřív žádnou neměla, protože neměla
+  odkaz v navbaru).
 - Před odevzdáním zásahu do struktury ověř mrtvé kotvy: každý cíl
   `href="#…"` musí mít existující `id`. Grep musí zabrat i odkazy
   v objektových literálech (`href: "/#x"`), ne jen JSX atributy.
@@ -185,14 +223,37 @@ Pravidla, která z toho plynou:
 
 Fakty potvrzené uživatelem při repozici. Nemění se bez dalšího souhlasu.
 
-- **Hero claim:** „Automatizujeme rutinu. Vy se věnujte byznysu."
-  Nahrazuje motto „Chytrá automatizace. Lidský přístup." (platné
-  2026-07-17 až 2026-08-09). Změnu uživatel výslovně potvrdil — motto
-  je chráněné tvrzení, takže tohle **není** precedens pro další úpravy
-  bez ptaní. Zdroj: `docs/plan-repozice-2026-08.md`, sekce 5.
+- **Hero claim (od 2026-08-10):** „Vy řešíte byznys. Rutinu automatizujeme
+  my." Nahrazuje claim „Automatizujeme rutinu. Vy se věnujte byznysu."
+  (platný 2026-08-09 až 2026-08-10) a před ním motto „Chytrá automatizace.
+  Lidský přístup." (2026-07-17 až 2026-08-09). Uživatel vybral znění
+  z `AskUserQuestion` se třemi variantami — motto je chráněné tvrzení,
+  takže tohle **není** precedens pro další úpravy bez ptaní. Historii
+  předchozí změny drží `docs/plan-repozice-2026-08.md`, sekce 5 (ten
+  soubor je záznam plánu z 2026-08-09 a **záměrně se nepřepisuje** —
+  aktuální znění platí odsud, ne odtamtud).
+
+  Dvě vlastnosti claimu jsou funkční, ne stylistické, a nesmí se ztratit
+  při případném dalším přepisu:
+  - **Sloveso „automatizujeme" musí v claimu zůstat.** Claim je zároveň
+    `<title>` v `app/layout.tsx` — bez něj z title tagu vypadne kořen
+    „automatiz-", což je hlavní vyhledávací záměr firmy. Uživatelův
+    původní návrh „Vy řešíte byznys, my řešíme rutinu." byl z tohoto
+    důvodu upraven, ne převzat doslova.
+  - **Druhá věta je oznamovací, ne rozkazovací.** „Vy se věnujte byznysu"
+    byl imperativ vůči návštěvníkovi, který zatím nic neodsouhlasil.
+  - Claim musí být **doslova shodný** na všech místech: `Hero.tsx` (H1,
+    dva řádky přes `<span className="block">`), `app/layout.tsx` (`title`),
+    `app/opengraph-image.tsx`, `app/design-preview/page.tsx` (2×).
+    Do `lib/json-ld.ts` se claim nekopíruje — description popisuje
+    nabídku, ne slogan.
 - **Diferenciační citace** („Nejsem agentura…") patří **výhradně** do
-  pruhu Důvěra, ne do hero — plán ji uvádí na obou místech, ale doslovné
-  zopakování dvou sekcí po sobě působí jako chyba. Rozhodnuto 2026-08-09.
+  sekce O mně (`components/home/About.tsx`), ne do hero ani do pruhu
+  Důvěra — plán ji uvádí na obou místech, ale doslovné zopakování dvou
+  sekcí po sobě působí jako chyba. Rozhodnuto 2026-08-09, přesunuto z
+  `TrustStrip.tsx` do `About.tsx` 2026-08-10 na výslovnou žádost
+  uživatele; `TrustStrip.tsx` teď obsahuje jen tři body důvěry beze
+  citace.
 
 - **Podpora po spuštění:** první měsíc od spuštění zdarma. Potom volitelný
   měsíční paušál (monitoring, úpravy, přednostní řešení problémů); bez
@@ -251,6 +312,33 @@ Pravidla:
 - `brand.gold` (#B98B4E) a `brand.electric` (#22D3EE) jsou od 2026-07-22
   **zrušené** tokeny — pokud narazíš na zbytkový výskyt v kódu mimo tuto
   redesign session, je to nedokončený úklid, ne platný token.
+
+## Loga nástrojů a seznam integrací (od 2026-08-10)
+
+- Zdroje log jsou **dva**: primárně `simple-icons`, doplňkově
+  `@fortawesome/free-brands-svg-icons` (schváleno uživatelem 2026-08-10) pro
+  značky, které simple-icons odstranil kvůli trademark policy — aktuálně
+  LinkedIn, Slack, Salesforce, Microsoft. Oba balíčky dávají surová SVG path
+  data; FA ikony mají vlastní `viewBox` (pole `viewBox` v typu `Tool`).
+  Uživatel v nabídce odsouhlasil variantu „react-icons"; nainstalován byl
+  tento sesterský balíček se stejnou FA brands sadou, protože exportuje
+  path data místo React komponent a zapadá do existující architektury —
+  substituce mu byla transparentně oznámena.
+- **Návrat Slacku (2026-08-10) ruší rozhodnutí z 2026-07-22 Slack úplně
+  vynechat.** Tehdejší důvod (žádné reálné logo, textový placeholder by
+  vypadal rozbitě) pominul: FA logo existuje a dlaždice mají viditelné
+  názvy. Pořád platí zákaz kreslit vymyšlené napodobeniny log.
+- **Kritérium pro zařazení do `connectedTools`** (deska spojů v sekci
+  „Propojujeme to, co již používáte"): nástroj má oficiální n8n node —
+  ověřeno 2026-08-10 přes oficiální n8n MCP, ne odhadem. Výjimka: Google
+  Meet (node nemá, jede přes Google Calendar node) — položka schválená už
+  2026-07-21, bez souhlasu se neodebírá. Nové nástroje do seznamu jen se
+  splněným kritériem.
+- **Počet nástrojů je přesně 44 a není libovolný**: mřížka `ToolBoard` s
+  centrálním uzlem 2×2 (1×1 na mobilu) vychází beze zbytku na všech čtyřech
+  breakpointech (3/4/6/8 sloupců) jen pro 44 položek — viz výpočet v
+  hlavičce `components/motion/ToolBoard.tsx`. Přidání/odebrání nástroje
+  vyžaduje přepočet geometrie, ne jen úpravu pole.
 
 ## Redesign 2026 — cíl a inspirace
 

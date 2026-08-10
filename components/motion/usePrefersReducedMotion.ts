@@ -21,8 +21,8 @@ function getServerSnapshot() {
 // motion/react's own useReducedMotion() reads matchMedia synchronously on
 // the client's first render, which mismatches the server-rendered markup
 // for any of these primitives that aren't behind a ssr:false dynamic import
-// (AnimatedSection/MagneticButton/GlowCard, unlike FlowDiagram, are server-
-// rendered directly). useSyncExternalStore's getServerSnapshot guarantees
+// (AnimatedSection/GlowCard, unlike FlowDiagram, are server-rendered
+// directly). useSyncExternalStore's getServerSnapshot guarantees
 // the first client render matches the server (assumes motion enabled), then
 // safely re-syncs to the real value right after hydration.
 export function usePrefersReducedMotion() {

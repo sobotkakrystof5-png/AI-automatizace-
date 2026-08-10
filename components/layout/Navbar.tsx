@@ -3,19 +3,28 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-// Navigace podle docs/plan-repozice-2026-08.md, sekce 2. Záměrně
-// neobsahuje položku pro každou sekci — „Proč automatizace" a „Jak
-// tvoříme" jsou na stránce dál, jen nemají vlastní odkaz, aby se řádek
-// navigace nepřeplnil.
+// Pořadí přepracováno 2026-08-10 na výslovnou žádost uživatele — nahrazuje
+// pořadí podle docs/plan-repozice-2026-08.md, sekce 2 (viz claude.md,
+// "Struktura homepage"). Navigace teď pokrývá všech 8 sekcí, které tvoří
+// hlavní konverzní trasu stránky, v přesně tomto pořadí; „V čem jsme jiní"
+// (Differentiators) dřív vlastní odkaz nemělo, teď má (`#v-cem-jsme-jini`).
 //
-// ZakazIQ doplněn 2026-08-09 (Fáze 4), až po vzniku sekce s kotvou
-// `#zakaziq` — dřív by z něj byla mrtvá kotva. Pořadí odpovídá pořadí
-// sekcí na stránce, ne důležitosti: navigace je mapa scrollu.
+// Zbylé sekce (TrustStrip, Mission/Poslání, AutomationAreas, VerifiedSystems,
+// ToolsIntegration, QuoteProcess/Nacenění) na stránce zůstávají jako
+// mezisekce beze změny — jejich dlouhodobé umístění je otevřený bod, řeší se
+// v budoucí session. Proto v navbaru záměrně nemají odkaz: nejde o
+// zapomenutí. `QuoteProcess` (nacenění, 2026-08-10) odkaz v navbaru
+// **nedostal** záměrně: navbar je schválený na přesně 8 položek a přidání
+// deváté je změna zadání, ne úklid. Dosažitelná je z patičky (`#naceneni`).
+//
+// Pořadí odpovídá pořadí sekcí na stránce, ne důležitosti: navigace je
+// mapa scrollu.
 const navLinks = [
-  { href: "/#poslani", label: "Poslání" },
-  { href: "/#o-nas", label: "O mně" },
+  { href: "/#proc-automatizace", label: "Proč automatizace" },
   { href: "/#sluzby", label: "Služby" },
   { href: "/#spoluprace", label: "Jak pracujeme" },
+  { href: "/#v-cem-jsme-jini", label: "V čem jsme jiní" },
+  { href: "/#o-nas", label: "O mně" },
   { href: "/#zakaziq", label: "ZakazIQ" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#kontakt", label: "Kontakt" },

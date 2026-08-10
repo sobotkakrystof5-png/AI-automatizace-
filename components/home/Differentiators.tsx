@@ -58,7 +58,7 @@ export default function Differentiators() {
   }
 
   return (
-    <section>
+    <section id="v-cem-jsme-jini">
       <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8 sm:py-24">
         <AnimatedSection>
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">

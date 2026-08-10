@@ -9,11 +9,15 @@ import { SITE_URL_BASE } from "@/lib/constants";
 import { organizationJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
-// Claim sladěný s hero (repozice 2026-08-09) — dřív „Chytrá automatizace.
-// Lidský přístup.". Popis nese frázi „rutinní procesy" záměrně: plán
+// Claim sladěný s hero (components/home/Hero.tsx) — musí s ním zůstat
+// doslova shodný. Znění 2026-08-10; dřív „Automatizujeme rutinu. Vy se
+// věnujte byznysu." (2026-08-09) a před tím „Chytrá automatizace. Lidský
+// přístup.". Sloveso „automatizujeme" je v claimu podmínka, ne ozdoba:
+// title tag je hlavní nositel kořene „automatiz-" pro vyhledávání.
+// Popis nese frázi „rutinní procesy" záměrně: plán
 // (docs/plan-repozice-2026-08.md, sekce 5a) ji chce opakovat i mimo
 // sekci Poslání — v hero podnadpisu a meta description.
-const title = "AvenIQ — Automatizujeme rutinu. Vy se věnujte byznysu.";
+const title = "AvenIQ — Vy řešíte byznys. Rutinu automatizujeme my.";
 const description =
   "Automatizujeme menším a středně velkým firmám rutinní procesy, které je zdržují — od faktur po e-maily. Konzultace zdarma, odpověď do 24 hodin.";
 

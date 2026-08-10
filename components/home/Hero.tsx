@@ -7,17 +7,23 @@ export default function Hero() {
       <div className="mx-auto max-w-5xl px-6 pt-24 pb-6 sm:px-8 sm:pt-32">
         <div className="flex flex-col items-start gap-8">
           {/* Jediné místo na webu, kde se sahá nad text-5xl (viz DESIGN.md
-              §3). Zalomení je záměrné, ne náhoda šířky: druhá věta je slib
-              zákazníkovi a stojí proti první, která mluví o nás — proto
-              <span className="block">, ne spoléhání na wrap.
+              §3). Zalomení je záměrné, ne náhoda šířky: první věta mluví o
+              zákazníkovi, druhá o nás — proto <span className="block">, ne
+              spoléhání na wrap.
 
-              Repozice 2026-08-09: nahrazuje dřívější motto „Chytrá
-              automatizace. Lidský přístup." Změnu potvrdil uživatel
-              výslovně (motto je v claude.md chráněné) — viz
-              docs/plan-repozice-2026-08.md, sekce 5. */}
+              Repozice 2026-08-09: nahradila motto „Chytrá automatizace.
+              Lidský přístup." claimem „Automatizujeme rutinu. Vy se věnujte
+              byznysu." Ten 2026-08-10 nahrazen aktuálním zněním na výslovnou
+              volbu uživatele (AskUserQuestion ze tří variant): zákazník je
+              teď v pořadí první a druhá věta je oznamovací, ne rozkazovací
+              („Vy se věnujte…" byl imperativ vůči návštěvníkovi, který zatím
+              nic neodsouhlasil). Sloveso „automatizujeme" muselo zůstat —
+              claim je zároveň <title> (app/layout.tsx), takže bez něj by z
+              title tagu vypadl kořen „automatiz-". Motto je v claude.md
+              chráněné tvrzení, tohle není precedens pro další úpravy. */}
           <h1 className="text-5xl font-semibold leading-[0.95] tracking-tight text-zinc-50 sm:text-7xl lg:text-8xl">
-            Automatizujeme rutinu.
-            <span className="block text-zinc-400">Vy se věnujte byznysu.</span>
+            Vy řešíte byznys.
+            <span className="block text-zinc-400">Rutinu automatizujeme my.</span>
           </h1>
           <p className="max-w-xl text-xl font-medium text-zinc-200 sm:text-2xl">
             Postavil jsem si vlastní automatizační systém. Teď stejné

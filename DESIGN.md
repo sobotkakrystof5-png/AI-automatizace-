@@ -49,8 +49,9 @@ typography:
     #
     # Kroky 9 a 10 px jsou VYHRAZENÉ mikropopisky uvnitř vizuálů, kde je
     # místo fyzicky omezené. Nikdy se nepoužívají na běžný text.
-    "9": "0.5625rem"     # text-[9px] — fallback název nástroje v kruhu (ToolOrbit)
-    "10": "0.625rem"     # text-[10px] — mono štítky v diagramu (AutomationJourney)
+    "9": "0.5625rem"     # text-[9px] — fallback název nástroje v odznaku (ToolChip)
+    "10": "0.625rem"     # text-[10px] — mono štítky v diagramu (AutomationJourney),
+                         #               názvy nástrojů na desce spojů (ToolBoard)
     "12": "0.75rem"      # text-xs — drobné popisky
     "14": "0.875rem"     # text-sm — nejčastější velikost, běžný text
     "16": "1rem"         # text-base — výchozí tělo
@@ -245,16 +246,19 @@ přechody), **Lenis** (plynulý scroll, přes `SmoothScrollProvider`).
 Přidání další animační knihovny vyžaduje souhlas.
 
 Pojmenované animace v `@theme`: `marquee` (28s), `marquee-fast` (18s),
-`slow-spin` (40s), `flow-pulse` (3s), `aurora` (14s). Utility třídy
-`.animate-float-y` a `.animate-idle-jitter` se ladí per-prvek přes CSS
-proměnné (`--float-duration`, `--jitter-delay`), aby prvky neplavaly
-synchronně.
+`slow-spin` (40s), `flow-pulse` (3s), `aurora` (14s).
+
+Klidový pohyb v `AutomationJourney` (drift uzlů, dech jádra, posun
+čárkování na kabelech) řídí **GSAP uvnitř komponenty**, ne CSS třída —
+musí sdílet timeline s běhy dat a jít zabít při scrollu zpět. Dřívější
+`.animate-idle-jitter` byl 2026-08-10 smazán, protože jiného uživatele
+neměl.
 
 ### Pravidla pohybu
 
 - **Každá nová animace musí přibýt do `prefers-reduced-motion` bloku**
-  na konci `app/globals.css`. Blok už vypíná marquee, spin, float,
-  jitter, aurora i gradientový text; `flow-pulse` se pod reduced-motion
+  na konci `app/globals.css`. Blok už vypíná marquee, spin, jitter,
+  aurora i gradientový text; `flow-pulse` se pod reduced-motion
   rovnou skryje, protože zastavený puls by vypadal jako tečka navíc.
 - **Neanimovat layoutové vlastnosti** — `width`, `height`, `padding`,
   `margin` a stejně tak `left`, `top`, `right`, `bottom`. Nejdou na
@@ -270,9 +274,10 @@ synchronně.
   kompiluje tyhle utility do **samostatných** vlastností (`translate:`,
   `scale:`, `rotate:`), ne do `transform:`, a podle CSS Transforms L2 se
   všechny skládají — posun se tedy sečte, ne přepíše. Přesně tímhle se
-  `float-y` dřív posouval o -100 %, -100 % místo -50 %, -50 %. Buď
-  centrovat výhradně přes Tailwind a keyframe nechat jen na pohybu (dnešní
-  řešení `ToolOrbit`), nebo použít oddělený wrapper.
+  dřív posouval `float-y` (plovoucí loga v `ToolOrbit`) o -100 %, -100 %
+  místo -50 %, -50 %. Buď centrovat výhradně přes Tailwind a keyframe nechat
+  jen na pohybu, nebo použít oddělený wrapper — druhá cesta je dnešní řešení
+  pulsů v `ToolBoard.tsx` a `LiveSystemFlow.tsx`.
 - **Poznámka k detektoru:** `stroke-width` a `stroke-opacity` na SVG jsou
   prezentační vlastnosti tahu, ne layoutové rozměry — jejich přechod
   reflow nezpůsobuje. Pravidlo `layout-transition` na ně hlásí falešný

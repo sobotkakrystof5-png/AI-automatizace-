@@ -1,40 +1,39 @@
 import AnimatedSection from "@/components/motion/AnimatedSection";
 
 // Sekce Poslání (repozice 2026-08-09, viz docs/plan-repozice-2026-08.md,
-// sekce 5a). Musí být vizuálně oddělená od prodejního jazyka — proto se
-// odlišuje tím, že PORUŠUJE vzorec zbytku stránky:
+// sekce 5a; redesign 2026-08-10 na žádost uživatele). Dřív sekce záměrně
+// PORUŠOVALA vzorec zbytku stránky (obrácená hierarchie, žádný nadpis
+// v obvyklé váze, ambientní `.magic-aurora` pozadí) — uživatel tohle
+// zrušil: pozadí označil za rušivé a chtěl sekci sjednotit s designem
+// zbytku webu, ne ji od něj odlišovat. Dvě zásady tedy dál platí beze
+// změny (od 2026-08-09): žádná karta, žádné ohraničení, žádné CTA —
+// sekce s tlačítkem by četla jako další prodejní blok — a `bg-zinc-900`
+// se nepoužívá, protože je podle DESIGN.md §5 vyhrazená pro
+// "rozhodovací" sekce (ceník, kontakt).
 //
-//  1. Žádná karta, žádné ohraničení, žádné CTA. Sekce s tlačítkem by
-//     četla jako další prodejní blok, což je přesně to, čemu se plán
-//     vyhýbá.
-//  2. `bg-zinc-900` se tu záměrně NEPOUŽÍVÁ — podle DESIGN.md §5 je
-//     vyhrazená pro "rozhodovací" sekce (ceník, kontakt), takže by sem
-//     vnesla přesně ten prodejní tón, který sem nepatří.
-//  3. Obrácená hierarchie: nadpis je malý mono eyebrow, největším prvkem
-//     je samotná věta poslání. Všude jinde na webu platí nadpis > text.
-//  4. Ambientní `.magic-aurora` na pozadí — třída už v globals.css
-//     existuje, staví na vyhrazených `deep-green`/`deep-blue` tokenech a
-//     má ošetřený `prefers-reduced-motion`. Do teď byla použitá jen
-//     v interním /design-preview; tohle je její jediné produkční nasazení,
-//     což jí drží význam.
+// Nově: standardní nadpis (stejná váha jako `About.tsx` „O mně") a
+// `py-16 sm:py-24` — DESIGN.md §5 tier "Standard", ne "Zlom" jako dřív;
+// sekce nese jedno sdělení, ne velké entrée jako Hero. Pozadí je jen
+// globální gradient stránky z `body` (`app/globals.css`), žádný vlastní
+// efekt. `.magic-gradient-text` na samotné větě poslání je jediné
+// produkční nasazení tohoto stylu (jinak jen /design-preview) — drží
+// větu vizuálně výraznou i bez vlastního pozadí; je to sankcionovaný
+// nástroj systému pro `brand-mint` (DESIGN.md §2), ne nový jednorázový
+// vzor.
 //
 // Mikrokopii "Automatizujeme rutinu. Vy se soustředíte na byznys." plán
-// nabízí jako doplněk, ale záměrně tu není: nový hero claim zní
-// "Automatizujeme rutinu. Vy se věnujte byznysu." a dvě skoro totožné
-// věty na jedné stránce by působily jako chyba, ne jako refrén.
+// nabízí jako doplněk, ale záměrně tu není: hero claim zní "Vy řešíte
+// byznys. Rutinu automatizujeme my." (znění 2026-08-10) a dvě skoro
+// totožné věty na jedné stránce by působily jako chyba, ne jako refrén.
 export default function Mission() {
   return (
-    <section id="poslani" className="relative overflow-hidden">
-      <div
-        className="magic-aurora pointer-events-none absolute -inset-32"
-        aria-hidden
-      />
-      <div className="relative mx-auto max-w-3xl px-6 py-24 sm:px-8 sm:py-32">
+    <section id="poslani">
+      <div className="mx-auto max-w-3xl px-6 py-16 sm:px-8 sm:py-24">
         <AnimatedSection>
-          <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-400">
-            Naše poslání
+          <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
+            Naše motto
           </h2>
-          <p className="mt-6 text-3xl font-semibold leading-tight tracking-tight text-zinc-50 sm:text-4xl">
+          <p className="magic-gradient-text mt-6 text-xl font-semibold leading-snug sm:text-2xl">
             Pomáháme firmám soustředit se na to, co má pro jejich byznys
             skutečně smysl — odebíráme jim rutinní procesy, které za ně
             zvládne automatizace.

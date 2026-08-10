@@ -104,63 +104,22 @@
   }
 }
 
-/* Pozor: tenhle keyframe dřív obsahoval `translate(-50%, -50%)` pro
- * vycentrování loga na bodu kružnice. To je chyba — Tailwind v4 kompiluje
+/* Pozor při psaní nových keyframes, které polohují prvek: nikdy do nich
+ * nedávat `translate(-50%, -50%)` pro vycentrování. Tailwind v4 kompiluje
  * `-translate-x-1/2` do samostatné vlastnosti `translate:`, ne do
- * `transform:`, a obě vlastnosti se podle CSS Transforms L2 skládají.
- * Logo se tak posouvalo o -100 %, -100 % místo -50 %, -50 %. Centrování
- * teď obstarává výhradně `translate:` (Tailwind třídy na elementu),
- * keyframe řeší jen samotné plavání. Stejný princip jako u zákazu
- * kombinovat CSS animaci s GSAP polohováním níže. */
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Plovoucí animace pro loga rozhozená uvnitř kruhu (ToolOrbit) — doba a
- * zpoždění se nastavují per-prvek přes CSS proměnné (--float-duration,
- * --float-delay), aby loga neplavala synchronně. Pauza na hover dá
- * uživateli najevo, že jde o interaktivní prvek, ne jen dekoraci. */
-.animate-float-y {
-  animation: float-y var(--float-duration, 5s) ease-in-out
-    var(--float-delay, 0s) infinite;
-}
-
-.animate-float-y:hover {
-  animation-play-state: paused;
-}
-
-@keyframes idle-jitter {
-  0%,
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
-  25% {
-    transform: rotate(-4deg) scale(1.03);
-  }
-  50% {
-    transform: rotate(3deg) scale(0.97);
-  }
-  75% {
-    transform: rotate(-2deg) scale(1.02);
-  }
-}
-
-/* Jemný nepřetržitý "dech" pro kostky v AutomationJourney (hero
- * scrollytelling) — dává centrálnímu vizuálu pocit živého systému i mimo
- * scroll-řízené kroky. Doba/zpoždění per-prvek přes CSS proměnné, stejný
- * vzor jako --float-duration/--float-delay u .animate-float-y. Element,
- * na který se aplikuje, musí být oddělený od toho, co polohuje GSAP —
- * CSS animace by jinak přepsala GSAP inline transform. */
-.animate-idle-jitter {
-  animation: idle-jitter var(--jitter-duration, 3.5s) ease-in-out
-    var(--jitter-delay, 0s) infinite;
-}
+ * `transform:`, a obě vlastnosti se podle CSS Transforms L2 skládají —
+ * prvek by se posunul o -100 %, -100 % místo -50 %, -50 %. Centrování patří
+ * výhradně na `translate:` (Tailwind třídy na elementu), keyframe řeší jen
+ * samotný pohyb. Stejný princip jako u zákazu kombinovat CSS animaci s GSAP
+ * polohováním níže. Historicky na tom havaroval `float-y` (plovoucí loga v
+ * ToolOrbit); ten keyframe byl 2026-08-10 spolu s komponentou smazán, ale
+ * pravidlo platí dál.
+ *
+ * Ke stejnému datu zmizel i `idle-jitter` (rotace + scale kostek v
+ * AutomationJourney). Jeho jediný uživatel po přestavbě hero animace
+ * odpadl: klidový pohyb uzlů teď řídí GSAP přímo v komponentě, protože
+ * musí sdílet timeline s běhy dat a jít vypnout, když se scrolluje zpět —
+ * to CSS animace neumí. */
 
 /* Navbar je `sticky top-0` (~68 px včetně border a py-4), takže skok na
  * kotvu dosud přistával pod hlavičkou a nadpis sekce zůstal schovaný.
@@ -243,9 +202,7 @@ body {
   .animate-marquee,
   .animate-marquee-fast,
   .animate-slow-spin,
-  .animate-slow-spin-reverse,
-  .animate-float-y,
-  .animate-idle-jitter {
+  .animate-slow-spin-reverse {
     animation: none;
   }
 

@@ -13,7 +13,7 @@ const siteLinks = [
   { href: "/#proc-automatizace", label: "Proč automatizace" },
   { href: "/#automatizace", label: "Automatizace" },
   { href: "/#sluzby", label: "Služby" },
-  { href: "/#jak-tvorime-automatizace", label: "Jak tvoříme" },
+  { href: "/#naceneni", label: "Nacenění" },
   { href: "/#spoluprace", label: "Jak pracujeme" },
   { href: "/#faq", label: "FAQ" },
 ];
@@ -67,6 +67,18 @@ export default function Footer() {
             © {new Date().getFullYear()} AvenIQ
           </p>
         </div>
+
+        <p className="text-right text-xs text-zinc-500">
+          Vyrobeno{" "}
+          <a
+            href="https://vizeon.cz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-300"
+          >
+            vizeon.cz
+          </a>
+        </p>
       </div>
     </footer>
   );

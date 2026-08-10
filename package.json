@@ -11,6 +11,7 @@
     "db:migrate": "node --env-file=.env.local node_modules/.bin/drizzle-kit migrate"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@neondatabase/serverless": "^1.1.0",
     "drizzle-orm": "^0.45.2",
     "gsap": "^3.15.0",

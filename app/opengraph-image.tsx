@@ -61,7 +61,7 @@ export default function OpengraphImage() {
             color: "#a1a1aa",
           }}
         >
-          Automatizujeme rutinu. Vy se věnujte byznysu.
+          Vy řešíte byznys. Rutinu automatizujeme my.
         </div>
       </div>
     ),

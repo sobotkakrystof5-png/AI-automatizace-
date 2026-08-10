@@ -215,7 +215,7 @@ export default function DesignPreviewPage() {
           <h2 className="mb-6 text-xl font-semibold">Typografie (font-sans)</h2>
           <div className="space-y-4 rounded-lg border border-zinc-800 bg-zinc-900 p-6">
             <h1 className="text-4xl font-semibold tracking-tight">
-              Automatizujeme rutinu. Vy se věnujte byznysu.
+              Vy řešíte byznys. Rutinu automatizujeme my.
             </h1>
             <h2 className="text-2xl font-semibold text-zinc-50">
               Postavil jsem si vlastní automatizační systém.
@@ -246,7 +246,7 @@ export default function DesignPreviewPage() {
                 AvenIQ — AI automatizace
               </p>
               <h3 className="mb-4 max-w-xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
-                Automatizujeme rutinu. Vy se věnujte byznysu.
+                Vy řešíte byznys. Rutinu automatizujeme my.
               </h3>
               <p className="mb-8 max-w-lg text-zinc-400">
                 Ukázka kontrastu textu a tlačítka na aktuálním tmavém pozadí,

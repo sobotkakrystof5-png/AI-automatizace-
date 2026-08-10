@@ -2,61 +2,69 @@ import JsonLd from "@/components/seo/JsonLd";
 import { faqPageJsonLd } from "@/lib/json-ld";
 import Hero from "@/components/home/Hero";
 import TrustStrip from "@/components/home/TrustStrip";
-import Mission from "@/components/home/Mission";
-import About from "@/components/home/About";
-import Differentiators from "@/components/home/Differentiators";
 import WhyAutomation from "@/components/home/WhyAutomation";
+import Mission from "@/components/home/Mission";
 import AutomationAreas from "@/components/home/AutomationAreas";
-import VerifiedSystems from "@/components/home/VerifiedSystems";
 import Services from "@/components/home/Services";
-import HowWeBuild from "@/components/home/HowWeBuild";
-import ToolsIntegration from "@/components/home/ToolsIntegration";
+import VerifiedSystems from "@/components/home/VerifiedSystems";
 import ProcessSteps from "@/components/home/ProcessSteps";
+import ToolsIntegration from "@/components/home/ToolsIntegration";
+import QuoteProcess from "@/components/home/QuoteProcess";
+import Differentiators from "@/components/home/Differentiators";
+import About from "@/components/home/About";
 import ZakazIq from "@/components/home/ZakazIq";
 import FAQ from "@/components/home/FAQ";
 import ContactSection from "@/components/home/ContactSection";
 
-// Kanonické pořadí sekcí homepage (repozice 2026-08-09, viz
-// docs/plan-repozice-2026-08.md, sekce 2, a claude.md, "Struktura
-// homepage"). Pořadí není libovolné — vede návštěvníka od důvěry a
-// poslání přes osobní příběh k tomu, co si může objednat, a teprve
-// nakonec ke kontaktu.
+// Pořadí přepracováno 2026-08-10 na výslovnou žádost uživatele — nahrazuje
+// "kanonické pořadí" z repozice 2026-08-09 (viz claude.md, "Struktura
+// homepage", a git historie tohoto souboru pro původní verzi). Osm
+// hlavních sekcí teď jde přesně v pořadí navbaru (Navbar.tsx):
+// Proč automatizace → Služby → Jak pracujeme → V čem jsme jiní → O mně →
+// ZakazIQ → FAQ → Kontakt.
 //
-// Čtyři sekce, které plán jmenovitě neuvádí (Differentiators,
-// VerifiedSystems, HowWeBuild, ToolsIntegration), uživatel 2026-08-09
-// rozhodl zachovat. Jejich umístění řeší dvě obsahové kolize, na které
-// jsem upozorňoval — nejsou náhodná, nepřehazovat bez rozmyslu:
+// Pět sekcí, které uživatel v zadání nejmenoval (TrustStrip, Mission,
+// AutomationAreas, VerifiedSystems, ToolsIntegration), NEBYLY smazány —
+// uživatel výslovně řekl "to vyřešíme později" (2026-08-10). Zůstávají
+// jako mezisekce u obsahově příbuzné hlavní sekce a nemají vlastní odkaz
+// v navbaru. Jejich dlouhodobé umístění/osud je otevřený bod pro budoucí
+// session, ne finální rozhodnutí. (Šestou z nich byl HowWeBuild —
+// 2026-08-10 nahrazen sekcí QuoteProcess, viz níže.)
 //
-//  - VerifiedSystems a ToolsIntegration obě ukazují loga nástrojů. Jsou
-//    proto tři sekce od sebe; vedle sebe by stránka dvakrát po sobě
-//    dělala totéž.
-//  - HowWeBuild (3 principy) a ProcessSteps (5 kroků spolupráce) se
-//    obsahově překrývají. Mezi nimi stojí ToolsIntegration — stejné
-//    odstínění, jaké mělo pořadí před repozicí.
+//  - TrustStrip zůstává hned pod Hero (beze změny) — je to krátký pruh
+//    důvěry, patří k prvnímu dojmu, ne k žádné z pojmenovaných sekcí.
+//  - Mission a AutomationAreas stojí u WhyAutomation — obě obsahově
+//    doplňují "proč automatizace" (motto, resp. konkrétní příklady).
+//  - VerifiedSystems stojí u Services — loga nástrojů podpírají důvěru
+//    v nabízené služby.
+//  - ToolsIntegration a QuoteProcess stojí mezi ProcessSteps a
+//    Differentiators. Pravidlo z claude.md platí beze změny:
+//    VerifiedSystems a ToolsIntegration (obě loga nástrojů) nesmí stát
+//    vedle sebe — dělí je ProcessSteps.
 //
-// StatsBar a Collaboration byly stejným rozhodnutím zrušeny: čísla
-// přebírá TrustStrip a vlastní projekty vysvětlí sekce ZakazIQ (Fáze 4)
-// a stránka /o-mne (Fáze 5).
-//
-// ZakazIQ (Fáze 4, 2026-08-09) stojí mezi ProcessSteps a FAQ přesně podle
-// plánu: nejdřív se návštěvník dozví, jak spolupráce probíhá, pak dostane
-// důkaz, že to celé opravdu funguje, a teprve potom řeší námitky ve FAQ.
+// QuoteProcess (nacenění) obsadil 2026-08-10 pozici po HowWeBuild. Původní
+// důvod pro odstup od ProcessSteps (obsahový překryv) tím zmizel — nová
+// sekce odpovídá na jinou otázku, viz komentář v QuoteProcess.tsx. Pozice
+// je proto volná: sekce o ceně by logicky mohla stát hned za Services nebo
+// těsně před FAQ/Kontakt, kde námitka „kolik to stojí" reálně vzniká.
+// Přesun ale mění schválené pořadí homepage, takže je to otevřený bod pro
+// příští session, ne věc k tichému provedení.
 export default function Home() {
   return (
     <>
       <JsonLd data={faqPageJsonLd()} />
       <Hero />
       <TrustStrip />
-      <Mission />
-      <About />
-      <Differentiators />
       <WhyAutomation />
+      <Mission />
       <AutomationAreas />
-      <VerifiedSystems />
       <Services />
-      <HowWeBuild />
-      <ToolsIntegration />
+      <VerifiedSystems />
       <ProcessSteps />
+      <ToolsIntegration />
+      <QuoteProcess />
+      <Differentiators />
+      <About />
       <ZakazIq />
       <FAQ />
       <ContactSection />

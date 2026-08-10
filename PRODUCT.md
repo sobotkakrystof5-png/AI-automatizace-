@@ -44,11 +44,13 @@ nabídku z vizuálu a krátkých vět, a ozve se.
 > Pomáháme firmám soustředit se na to, co má pro jejich byznys skutečně
 > smysl — odebíráme jim rutinní procesy, které za ně zvládne automatizace.
 
-Aktuální hero claim (od 2026-08-09): **„Automatizujeme rutinu. Vy se
-věnujte byznysu."** Nahrazuje dřívější motto „Chytrá automatizace.
-Lidský přístup.", platné 2026-07-17 až 2026-08-09 — změnu uživatel
-výslovně potvrdil při repozici, viz `docs/plan-repozice-2026-08.md`,
-sekce 5. Dál platí, že se claim **nesmí měnit bez výslovného souhlasu**.
+Aktuální hero claim (od 2026-08-10): **„Vy řešíte byznys. Rutinu
+automatizujeme my."** Nahrazuje claim „Automatizujeme rutinu. Vy se
+věnujte byznysu." (2026-08-09 až 2026-08-10) a před ním motto „Chytrá
+automatizace. Lidský přístup." (2026-07-17 až 2026-08-09). Obě změny
+uživatel výslovně vybral. Dál platí, že se claim **nesmí měnit bez
+výslovného souhlasu** — a že v něm musí zůstat sloveso „automatizujeme"
+(claim je zároveň `<title>`, viz `claude.md`, sekce „Obchodní tvrzení").
 
 **Ceny se na webu neuvádějí** — žádné číslo, rozmezí ani orientační
 částka. Cena se sděluje výhradně na konzultaci. Platí od 2026-08-09, viz
