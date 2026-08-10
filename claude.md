@@ -280,8 +280,11 @@ Rozhodnutí potvrzená uživatelem 2026-07-21 (Fáze R0):
   pro fáze R0–R10 a s tímto rozhodnutím nekoliduje.
 
 Otevřené body čekající na reálný podklad od uživatele (neřešit tichým
-odhadem, ptát se přímo, až přijde na řadu příslušná fáze): fotka
-zakladatele pro Fázi R8, skutečný seznam nástrojů pro integrace (Fáze R3
+odhadem, ptát se přímo, až přijde na řadu příslušná fáze): ~~fotka
+zakladatele~~ (vyřešeno 2026-08-09 — uživatel schválil
+`public/krystof-sobotka.jpeg` pro `/o-mne`; je neformální a byl na to
+výslovně upozorněn, takže to není přehlédnutí), skutečný seznam nástrojů
+pro integrace (Fáze R3
 popisky kostek, R4, R7), rezervační nástroj nahrazující
 `ZAKAZIQ_BOOKING_URL` (Fáze R9), volitelný LinkedIn odkaz (Fáze R8).
 
@@ -416,6 +419,14 @@ skutečná regrese, ne šum.
   přes prázdný stav nebo placeholder reference.
 - Podstránky `/automatizace/*` mají vlastní SEO titulek a meta popis odvozený
   z obsahu příslušné sekce — ne generický.
+- `/o-mne` (od 2026-08-09, Fáze 5) nese **plný** příběh Vizeon → kurzy →
+  ZakazIQ → AvenIQ. Sekce `About` na homepage zůstává schválně zkrácená a
+  odkazuje sem přes „Celý příběh →" — obojí se nesmí rozejít v tvrzeních.
+  Celá stránka je v první osobě jednotného čísla a delší odstavce jsou tu
+  povolené (je to detail, ne první kontakt). Odkazuje na ni patička
+  (`Footer`, položka „O mně" míří na `/o-mne`, ne na kotvu `#o-nas`) a
+  homepage; do horní navigace se **nepřidává** — „O mně" tam už je jako
+  kotva a dvě stejně pojmenované položky s různým cílem by mátly.
 
 ## Databáze
 

@@ -1,5 +1,11 @@
 # Navazující prompty — repozice AvenIQ (stav k 2026-08-09)
 
+> **Průběžný stav: Části 0, 1 a 2 jsou hotové a commitnuté.** Zbývají
+> Část 3 (Fáze 6 — obsah Služeb) a Část 4 (Fáze 7 — technický dotah);
+> obě čekají na vstup od uživatele, viz jejich sekce níže. Část 5
+> (Fáze 8) zůstává mimo aktuální rozsah. Prompty hotových částí se
+> nechávají v dokumentu jako záznam zadání, ne jako práce k provedení.
+
 Rozdělení zbývající práce do samostatných částí, každá do vlastní session.
 Důvod je v `claude.md`, sekce „Řízení rozsahu úkolu": velké úkoly se
 nezačínají rovnou, ale rozdělí se na části, které na sebe navazují a
@@ -30,14 +36,28 @@ odpovídají Fázím 4–7 v `docs/plan-repozice-2026-08.md`, sekce 11 — ale
 - Zrušeno: `StatsBar`, `Collaboration`, `CountUpValue`, `Pricing`,
   `Contact`, `Booking`, `FinalCTA`.
 
+**Hotovo navíc 2026-08-09** (Fáze 4–5, Části 1–2 tohoto dokumentu):
+
+- Sekce ZakazIQ (`components/home/ZakazIq.tsx`, kotva `#zakaziq`) — tři
+  vlastnosti potvrzené uživatelem, reálné logo a screenshot z aplikace,
+  tok „jak to funguje" nese znovupoužitý `LiveSystemFlow`, CTA vede jen
+  na konzultaci. Položka „ZakazIQ" doplněna do `Navbar`.
+- Podstránka `/o-mne` — plný příběh v 1. os. j. č., breadcrumb JSON-LD,
+  vlastní SEO metadata, v sitemapě s prioritou 0.8, fotka zakladatele.
+  Odkaz „Celý příběh →" doplněn do `About.tsx`, patička míří na `/o-mne`.
+- Trvalé zásady z těchto fází zapsané v `claude.md` i `AGENTS.md`
+  (ZakazIQ/VIZEON = vlastní projekt a nikdy klientská reference; zákaz
+  `bg-zinc-900` pro sekci ZakazIQ; `LiveSystemFlow` patří výhradně tam;
+  pravidla pro `/o-mne`).
+
 **Přenesené otevřené body** — každý je přiřazený k části níže, aby se na
 žádný nezapomnělo:
 
 | Bod | Kde se řeší |
 |---|---|
-| `LiveSystemFlow` je nezapojený, rezervovaný pro sekci ZakazIQ | Část 1 |
-| Položka „ZakazIQ" chybí v navigaci (nepřidána, aby nevznikla mrtvá kotva) | Část 1 |
-| Odkaz „Celý příběh →" v `About.tsx` (dnes `TODO`, vedl by na 404) | Část 2 |
+| ~~`LiveSystemFlow` je nezapojený~~ — vyřešeno, zapojen v `ZakazIq.tsx` | ~~Část 1~~ |
+| ~~Položka „ZakazIQ" chybí v navigaci~~ — vyřešeno, kotva `#zakaziq` existuje | ~~Část 1~~ |
+| ~~Odkaz „Celý příběh →" v `About.tsx`~~ — vyřešeno, míří na `/o-mne` | ~~Část 2~~ |
 | Karty Služby jsou viditelné `[DOPLNIT]` | Část 3 |
 | `SITE_URL` a `ZAKAZIQ_BOOKING_URL` jsou placeholdery — blokující chyba | Část 4 |
 | Mrtvé odkazy na `docs/kickoff-prompt.md` v `claude.md` a `AGENTS.md` | Část 4 |
@@ -75,11 +95,17 @@ zeptej se — neopravuj to potichu v rámci commitu.
 
 ---
 
-## Část 1 — Fáze 4: sekce ZakazIQ
+## Část 1 — Fáze 4: sekce ZakazIQ ✅ HOTOVO 2026-08-09
 
-**Čeká na vstup od tebe.** Bez něj vznikne jen prázdná struktura.
-Připrav si předem: co ZakazIQ reálně dělá (3 vlastnosti), jak vypadá tok
-„jak to funguje", a screenshot nebo popis prostředí.
+**Poučení pro příště:** ani plán, ani tenhle prompt neobsahovaly, co
+ZakazIQ reálně dělá — `docs/plan-repozice-2026-08.md` to v sekci 12 vede
+jako otevřenou otázku. Použitelné podklady byly v už schváleném **kódu**
+(`About.tsx`, `Differentiators.tsx`, `LiveSystemFlow.tsx`). Screenshot od
+uživatele pak jedno odvození opravil: karta v ZakazIQ sleduje postup
+zakázky v procentech, ne kalendář rezervací. Kde vedle textu stojí
+obrázek, odvození z okolního copy nestačí.
+
+Původní zadání (ponecháno jako záznam):
 
 ```text
 Přečti si claude.md, AGENTS.md a docs/plan-repozice-2026-08.md (sekce 7).
@@ -128,9 +154,13 @@ Zkontroluj mrtvé kotvy podle postupu v claude.md.
 
 ---
 
-## Část 2 — Fáze 5: podstránka `/o-mne`
+## Část 2 — Fáze 5: podstránka `/o-mne` ✅ HOTOVO 2026-08-09
 
-**Na nic nečeká.** Nejlepší kandidát, pokud chceš pokračovat hned.
+**Zůstalo schválně obecné:** názvy kurzů, délka praxe a doložený výsledek
+Vizeonu potvrzené nejsou, takže je stránka nekonkretizuje. Až je uživatel
+dodá, je to nejlevnější způsob, jak stránku posílit.
+
+Původní zadání (ponecháno jako záznam):
 
 ```text
 Přečti si claude.md, AGENTS.md a docs/plan-repozice-2026-08.md (sekce 4

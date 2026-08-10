@@ -2,9 +2,14 @@ import Link from "next/link";
 
 // Footer nese širší výběr než navigace v hlavičce — je tu místo, takže
 // sem patří i sekce, které se do horního řádku nevešly.
+//
+// „O mně" míří od Fáze 5 na podstránku /o-mne, ne na kotvu /#o-nas.
+// Záměr: v patičce se hledají stránky, ne pozice ve scrollu, a plný
+// příběh je užitečnější cíl než jeho zkrácená verze. Kotva /#o-nas
+// zůstává v horní navigaci, takže o ni web nepřišel.
 const siteLinks = [
   { href: "/#poslani", label: "Poslání" },
-  { href: "/#o-nas", label: "O mně" },
+  { href: "/o-mne", label: "O mně" },
   { href: "/#proc-automatizace", label: "Proč automatizace" },
   { href: "/#automatizace", label: "Automatizace" },
   { href: "/#sluzby", label: "Služby" },

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 
@@ -16,8 +17,9 @@ import GlowCard from "@/components/motion/GlowCard";
 // i 2026-08-09), protože příběh Vizeon → ZakazIQ → AvenIQ nese
 // důvěryhodnost a jedna věta by ji vyprázdnila.
 //
-// TODO (Fáze 5): doplnit odkaz „Celý příběh →" na /o-mne, až ta stránka
-// vznikne. Teď by vedl na 404.
+// Fáze 5 (2026-08-09): odkaz „Celý příběh →" doplněn — /o-mne existuje.
+// Sekce tady zůstává ZKRÁCENÁ schválně: plný příběh (Vizeon, kurzy,
+// technický popis ZakazIQ) patří na podstránku, ne do hlavního scrollu.
 const values = [
   {
     title: "Transparentnost",
@@ -69,6 +71,14 @@ export default function About() {
             <p>
               Na AvenIQ zatím pracuju sám. Je to záměr, ne provizorium —
               vaši zakázku nikdo nepředá dál.
+            </p>
+            <p>
+              <Link
+                href="/o-mne"
+                className="font-medium text-zinc-50 underline hover:text-brand-turquoise"
+              >
+                Celý příběh →
+              </Link>
             </p>
           </div>
         </AnimatedSection>

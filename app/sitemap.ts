@@ -8,6 +8,10 @@ import { SITE_URL } from "@/lib/constants";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: "/", changeFrequency: "monthly" as const, priority: 1 },
+    // /o-mne (Fáze 5) je jediná podstránka, která nese příběh zakladatele
+    // — pro důvěryhodnost webu je hned po homepage nejdůležitější, proto
+    // priorita 0.8, výš než tematické stránky automatizací.
+    { path: "/o-mne", changeFrequency: "yearly" as const, priority: 0.8 },
   ];
 
   // /vop, /ochrana-osobnich-udaju a /cookies jsou záměrně vynechané —
