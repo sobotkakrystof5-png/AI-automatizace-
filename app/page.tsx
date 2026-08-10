@@ -12,6 +12,7 @@ import Services from "@/components/home/Services";
 import HowWeBuild from "@/components/home/HowWeBuild";
 import ToolsIntegration from "@/components/home/ToolsIntegration";
 import ProcessSteps from "@/components/home/ProcessSteps";
+import ZakazIq from "@/components/home/ZakazIq";
 import FAQ from "@/components/home/FAQ";
 import ContactSection from "@/components/home/ContactSection";
 
@@ -36,6 +37,10 @@ import ContactSection from "@/components/home/ContactSection";
 // StatsBar a Collaboration byly stejným rozhodnutím zrušeny: čísla
 // přebírá TrustStrip a vlastní projekty vysvětlí sekce ZakazIQ (Fáze 4)
 // a stránka /o-mne (Fáze 5).
+//
+// ZakazIQ (Fáze 4, 2026-08-09) stojí mezi ProcessSteps a FAQ přesně podle
+// plánu: nejdřív se návštěvník dozví, jak spolupráce probíhá, pak dostane
+// důkaz, že to celé opravdu funguje, a teprve potom řeší námitky ve FAQ.
 export default function Home() {
   return (
     <>
@@ -52,6 +57,7 @@ export default function Home() {
       <HowWeBuild />
       <ToolsIntegration />
       <ProcessSteps />
+      <ZakazIq />
       <FAQ />
       <ContactSection />
     </>

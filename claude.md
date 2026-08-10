@@ -130,6 +130,14 @@ pravdy:
   repozičního promptu, ne z domněnky.*
 - **Tým:** AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — žádná
   sekce (např. "Náš tým") nemá předstírat víc lidí, než reálně existuje.
+- **ZakazIQ a VIZEON jsou vlastní projekty zakladatele, nikdy klientská
+  reference (od 2026-08-09).** Platí pro copy, ikony, loga i structured
+  data: nesmí se objevit slovo „klient", hodnocení, ani zařazení mezi
+  reference. Jsou to jediné důkazy, které web zatím reálně má — a právě
+  proto je nesmí vydávat za něco silnějšího, než jsou. Jazykově se to
+  pozná jasným přiznáním vlastnictví („postavil jsem si", „vlastní
+  projekt"), ne jen vynecháním slova klient. Nesouvisí se zákazem
+  publikovat Reference bez 2 záznamů — ten platí zvlášť.
 - Existující texty na homepage a podstránkách pocházejí z předchozí verze
   podle smazaného dokumentu — dokud nebudou cíleně přepsané na nový
   segment a styl, ber je jako prozatímní, ne jako potvrzený text.
@@ -143,7 +151,7 @@ Hero → **Důvěra/citace** (`TrustStrip`) → **Poslání** (`Mission`) → O 
 (`About`) → Differentiators → Proč automatizace (`WhyAutomation`) →
 Příklady automatizací (`AutomationAreas`) → VerifiedSystems → **Služby**
 (`Services`) → HowWeBuild → ToolsIntegration → **Jak spolupráce probíhá**
-(`ProcessSteps`) → *[ZakazIQ — Fáze 4]* → FAQ → **Kontakt + formulář**
+(`ProcessSteps`) → **ZakazIQ** (`ZakazIq`) → FAQ → **Kontakt + formulář**
 (`ContactSection`).
 
 Pravidla, která z toho plynou:
@@ -159,6 +167,13 @@ Pravidla, která z toho plynou:
   obsahově překrývají a drží mezi sebou odstup.
 - `StatsBar` a `Collaboration` byly 2026-08-09 zrušeny (čísla přebírá
   `TrustStrip`, vlastní projekty vysvětlí sekce ZakazIQ a `/o-mne`).
+- **Sekce ZakazIQ nepoužívá `bg-zinc-900`** (od 2026-08-09) — je důkazní,
+  ne rozhodovací (`DESIGN.md` §5), a `ProcessSteps` přímo nad ní zinc-900
+  má. Společně by se slily do jednoho pásu.
+- `LiveSystemFlow` patří **výhradně** do sekce ZakazIQ — nese tok „jak to
+  funguje" a jinde by mluvil o cizím tématu (proto se nepřenesl do
+  `ContactSection` při slučování). Není to sdílený vizuál k volnému
+  použití.
 - Kotva `#kontakt` je **kanonická** pro kontaktní sekci — míří na ni šest
   míst napříč webem, nepřejmenovávat. `#proces-prace` bylo 2026-08-09
   přejmenováno na `#spoluprace`.

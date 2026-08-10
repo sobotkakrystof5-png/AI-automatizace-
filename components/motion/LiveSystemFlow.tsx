@@ -10,11 +10,11 @@ import {
 // hodin", která zatím nejsou naměřená — místo tvrzení ukazuje tvar systému,
 // kterým zákazník reálně projde, než s AvenIQ vůbec promluví.
 //
-// STAV 2026-08-09: dočasně nezapojená. Používala ji sekce Booking, která
-// se sloučila do ContactSection — tam se ale nepřenesla schválně, protože
-// její obsah mluví o ZakazIQ, ne o kontaktu. REZERVOVÁNO pro sekci ZakazIQ
-// (Fáze 4, viz docs/plan-repozice-2026-08.md, sekce 7). Nemazat jako
-// mrtvý kód.
+// STAV 2026-08-09 (Fáze 4): zapojená v components/home/ZakazIq.tsx, kde
+// nese tok „jak to funguje". Předtím ji používala sekce Booking, která se
+// sloučila do ContactSection — tam se nepřenesla schválně, protože její
+// obsah mluví o ZakazIQ, ne o kontaktu. Tím je rezervace naplněná; kdyby
+// sekce ZakazIQ někdy zanikla, tahle komponenta zaniká s ní.
 //
 // Obsah není nové obchodní tvrzení: vrstvy odpovídají popisu od majitele
 // (frontend produkt → automatizace n8n → databáze), výstupy jsou přesně ty,
@@ -95,9 +95,13 @@ export default function LiveSystemFlow() {
         ))}
       </div>
 
+      {/* Hlas sjednocen do 1. os. j. č. (Fáze 4). Dřív „náš provoz / bez
+          nás" — značkové „my" je podle claude.md v pořádku, ale tenhle
+          diagram teď stojí uvnitř osobní sekce ZakazIQ („postavil jsem
+          pro sebe"), kde by dvojí hlas v jednom bloku působil jako chyba. */}
       <p className="mt-6 text-sm text-zinc-400">
-        Takhle běží náš vlastní provoz. Zákazník vybere termín, zbytek —
-        potvrzení, SMS i e-mailová připomínka — odejde bez nás.
+        Takhle běží můj vlastní provoz. Zákazník vybere termín, zbytek —
+        potvrzení, SMS i e-mailová připomínka — odejde beze mě.
       </p>
     </div>
   );

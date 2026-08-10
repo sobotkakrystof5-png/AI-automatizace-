@@ -17,7 +17,9 @@ Pracuj po fázích (viz masterprompt, sekce 11). Po dokončení každé fáze se
 ## Cílová skupina a tým (aktualizováno 2026-08-09)
 Segment: **menší a středně velké firmy**. Účetnictví a reality jsou ukázkové příklady oborů, **ne uzavřená specializace** — copy se před ostatními obory (živnostníci, agentury, marketingové firmy) nesmí zavírat, ale nemá zůstávat ani obecné „pro všechny firmy". *Nahrazuje formulaci platnou 2026-07-17 až 2026-08-09 („živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory"), která zněla jako uzavřený výčet.* Tým: AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
 
-Hlas: první osoba jednotného čísla v osobních sekcích (O mně, pruh důvěry, kontakt), množné číslo jen tam, kde mluví AvenIQ jako značka (Poslání, Služby). Značkové „my" není předstírání týmu; zakázané je množné číslo naznačující konkrétní další lidi („náš tým", „naši konzultanti"). Detaily viz `claude.md`, sekce „Hranice ‚já' / ‚my'".
+ZakazIQ a VIZEON jsou **vlastní projekty zakladatele, nikdy klientská reference** (od 2026-08-09) — platí pro copy, loga i structured data. Žádné „klient", žádné hodnocení, žádné zařazení mezi reference; vlastnictví se přiznává výslovně („postavil jsem si"), ne jen vynecháním slova klient. Detaily viz `claude.md`, sekce „Cílová skupina a obsahová pravidla".
+
+Hlas: první osoba jednotného čísla v osobních sekcích (O mně, pruh důvěry, kontakt, ZakazIQ), množné číslo jen tam, kde mluví AvenIQ jako značka (Poslání, Služby). Značkové „my" není předstírání týmu; zakázané je množné číslo naznačující konkrétní další lidi („náš tým", „naši konzultanti"). Detaily viz `claude.md`, sekce „Hranice ‚já' / ‚my'".
 
 ## Design systém — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — nahrazuje `brand.gold`/`brand.electric` rozhodnutí z 2026-07-21)
 | Token | Zdroj | Použití |

@@ -8,13 +8,15 @@ import Link from "next/link";
 // tvoříme" jsou na stránce dál, jen nemají vlastní odkaz, aby se řádek
 // navigace nepřeplnil.
 //
-// Položka ZakazIQ přibude ve Fázi 4, až sekce vznikne. Přidat ji dřív by
-// znamenalo mrtvou kotvu.
+// ZakazIQ doplněn 2026-08-09 (Fáze 4), až po vzniku sekce s kotvou
+// `#zakaziq` — dřív by z něj byla mrtvá kotva. Pořadí odpovídá pořadí
+// sekcí na stránce, ne důležitosti: navigace je mapa scrollu.
 const navLinks = [
   { href: "/#poslani", label: "Poslání" },
   { href: "/#o-nas", label: "O mně" },
   { href: "/#sluzby", label: "Služby" },
   { href: "/#spoluprace", label: "Jak pracujeme" },
+  { href: "/#zakaziq", label: "ZakazIQ" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#kontakt", label: "Kontakt" },
 ];

@@ -18,8 +18,9 @@ import ContactBookingCta from "@/components/home/ContactBookingCta";
 // formulář; kanály jsou úniková cesta a rezervace zatím jen poznámka.
 //
 // Vizuál `LiveSystemFlow` z bývalé Booking sekce se sem záměrně
-// nepřenáší — jeho obsah mluví o ZakazIQ, takže patří do sekce ZakazIQ
-// (Fáze 4). Komponenta zůstává v repu nezapojená a je pro ni rezervovaná.
+// nepřenesl — jeho obsah mluví o ZakazIQ, takže patří do sekce ZakazIQ.
+// Od Fáze 4 (2026-08-09) je zapojený tam (`components/home/ZakazIq.tsx`);
+// sem se nevrací ani jako doplněk, kontakt není místo na popis produktu.
 export default function ContactSection() {
   return (
     <section id="kontakt" className="bg-zinc-900">
