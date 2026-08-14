@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Pořadí přepracováno 2026-08-10 na výslovnou žádost uživatele — nahrazuje
 // pořadí podle docs/plan-repozice-2026-08.md, sekce 2 (viz claude.md,
@@ -53,11 +54,21 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4 sm:px-8">
-        <Link
-          href="/"
-          className="text-lg font-semibold tracking-tight text-zinc-50"
-        >
-          ALTENO
+        {/* Wordmark je od rebrandu 2026-08-14 obrázek, ne vysázený text —
+            geometrický řez loga (zkosené „A" s tyrkysovým akcentem) není
+            žádným písmem projektu reprodukovatelný. Průhledné PNG, takže
+            nepotřebuje mix-blend-screen ani plný podklad. `priority`, protože
+            hlavička je nad ohybem a logo je LCP kandidát. */}
+        <Link href="/" className="shrink-0" aria-label="ALTENO — domů">
+          <Image
+            src="/alteno-logo.png"
+            alt="ALTENO"
+            width={939}
+            height={126}
+            sizes="179px"
+            priority
+            className="h-6 w-auto"
+          />
         </Link>
 
         <nav

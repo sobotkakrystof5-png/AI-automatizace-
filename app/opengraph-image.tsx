@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 // Sdílený OG/Twitter obrázek pro celý web (root-level file convention —
@@ -5,8 +7,21 @@ import { ImageResponse } from "next/og";
 // jednou při buildu (žádný dynamický segment), takže náklad na build je
 // zanedbatelný. Barvy odpovídají design systému (zinc-950 pozadí,
 // brand-turquoise #2DD4BF akcent) — žádná nová barva navíc.
+//
+// Wordmark je od rebrandu 2026-08-14 skutečné logo, ne vysázený text: řez
+// loga není žádným písmem projektu reprodukovatelný a OG náhled je často
+// první, co člověk ze značky uvidí. Soubor se načítá ze souborového systému
+// a vkládá jako data URI — satori neumí relativní URL a obrázek musí být
+// v generovaném PNG zapečený, ne stažený za běhu.
+//
+// Použit je wordmark bez hesel, ne `alteno-logo-claim.png`: pod logem už
+// stojí hero claim a obojí najednou by z náhledu udělalo dva soupeřící slogany.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const wordmark = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public", "alteno-logo.png")
+).toString("base64")}`;
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -33,17 +48,8 @@ export default function OpengraphImage() {
               "radial-gradient(circle, rgba(45,212,191,0.35) 0%, rgba(45,212,191,0) 70%)",
           }}
         />
-        <div
-          style={{
-            display: "flex",
-            fontSize: 108,
-            fontWeight: 400,
-            color: "#fafafa",
-            letterSpacing: -2,
-          }}
-        >
-          ALTENO
-        </div>
+        {/* satori v ImageResponse renderuje jen <img>; next/image tu nefunguje. */}
+        <img src={wordmark} alt="ALTENO" width={620} height={83} />
         <div
           style={{
             display: "flex",
