@@ -10,29 +10,30 @@ import { ToolChip } from "./ToolChip";
 import { usePrefersReducedMotion } from "./usePrefersReducedMotion";
 import { useLenis } from "./SmoothScrollProvider";
 import { connectedTools, type Tool } from "@/lib/tools";
+import AltenoWordmark from "@/components/brand/AltenoWordmark";
 
 // Vlajková scrollytelling sekce (Fáze R3, 2026-07-21). Dvakrát přepracovaná
-// na žádost uživatele 2026-07-22 (viz git historie), počtvrté 2026-08-10 —
-// důvod: sekce působila „AI-made" a průměrně. Diagnóza té verze:
+// na žádost uživatele 2026-07-22 (viz git historie), počtvrté 2026-08-10.
+// Důvod: sekce působila „AI-made" a průměrně. Diagnóza té verze:
 //   1. Text kroků se měnil tvrdým přepnutím bez přechodu (největší levnost).
-//   2. Perpetuální dekorace bez významu — 16 částic kroužících po kabelech
+//   2. Perpetuální dekorace bez významu. 16 částic kroužících po kabelech
 //      pořád dokola, náhodný jitter kostek, rotující čárkované prstence
 //      (DESIGN.md §7 „plovoucí částice" má přímo na zákazovém seznamu).
 //   3. Kabely mizely POD uzly místo aby se do nich zapojovaly.
-//   4. Abstraktní fasetová hvězda jako jádro — dekorace, ne systém.
+//   4. Abstraktní fasetová hvězda jako jádro. Dekorace, ne systém.
 // Nová verze staví na principu „události, ne ambient": diagram žije v
 // diskrétních BĚZÍCH (objednávka projde systémem jako viditelná dávka dat),
 // mezi nimi jen klidný drift. Kabely se zapojují do portů na hranách uzlů,
 // jádro je konkrétní dlaždice ALTENO, text kroků se prolíná (crossfade
-// s blur — dva stavy se nesmí číst jako dva objekty přes sebe). Od kroku
-// SÍŤ běhy startují samy a spouštěč jde přehrát kliknutím — interaktivita,
+// s blur. Dva stavy se nesmí číst jako dva objekty přes sebe). Od kroku
+// SÍŤ běhy startují samy a spouštěč jde přehrát kliknutím. Interaktivita,
 // ne jen pasivní film.
 //
 // Kategorie kroků i veškerý text zůstávají vlastní (viz historie: vlastní
 // přeinterpretace konceptu z automatizace-ai.cz, žádné doslovné kopírování);
 // vizuální styl uzlů/kabelů vychází z obecné estetiky workflow nástrojů
 // (n8n aj.), ne z kopie konkrétního cizího designu. Scénář diagramu vypráví
-// JEDEN konkrétní příběh (nová objednávka v e-shopu) — rozhodnutí uživatele
+// JEDEN konkrétní příběh (nová objednávka v e-shopu). Rozhodnutí uživatele
 // 2026-07-22, beze změny.
 type Step = {
   key: string;
@@ -74,7 +75,7 @@ const STEPS: Step[] = [
   },
 ];
 
-// Stavový štítek systému v hlavičce plátna — druhý, mimoslovní kanál
+// Stavový štítek systému v hlavičce plátna. Druhý, mimoslovní kanál
 // vyprávění (vizuál nese myšlenku i bez čtení levého sloupce). Popisuje
 // stav UKÁZKY, ne obchodní tvrzení. `run` dostává pulzující tečku.
 const STEP_STATUS: Array<{ label: string; tone: "off" | "ready" | "run" | "done" }> = [
@@ -92,10 +93,10 @@ const STATUS_DOT: Record<(typeof STEP_STATUS)[number]["tone"], string> = {
   done: "bg-brand-mint",
 };
 
-// Diagram vypráví JEDEN konkrétní scénář — ne 5 náhodných log (na žádost
+// Diagram vypráví JEDEN konkrétní scénář, ne 5 náhodných log (na žádost
 // uživatele 2026-07-22): nová objednávka v e-shopu spustí platbu, zápis do
 // účetnictví, e-mail zákazníkovi a úkol pro tým. Jen skutečné, už schválené
-// nástroje z `lib/tools.ts` — `action` popisuje krok, `tool` dodává
+// nástroje z `lib/tools.ts`. `action` popisuje krok, `tool` dodává
 // rozpoznatelnou ikonu.
 type JourneyNode = {
   tool: Tool;
@@ -124,7 +125,7 @@ function polar(angleDeg: number, r: number) {
 }
 
 // Plátno je čtverec BOX×BOX (viewBox i skutečná pixelová velikost
-// kontejneru musí být shodné 1:1 — HTML uzly se polohují inline pixely,
+// kontejneru musí být shodné 1:1. HTML uzly se polohují inline pixely,
 // SVG kabely stejnými souřadnicemi ve viewBoxu; kdyby se kontejner
 // škáloval responzivně, obě vrstvy by se rozjely). Střed CENTER slouží
 // jako společný ukotvovací bod: každý uzel je v DOM ukotven přesně na
@@ -140,7 +141,7 @@ const CENTER = 240;
 // ní visí štítek akce (+8 px odsazení, ~22 px výška). Krajní hodnota 152
 // je maximum, při kterém horní kostka nenaráží do hlavičky plátna (text
 // scénáře na `top-5`) a štítek spodní kostky se nedotýká rámu. Předchozí
-// 175 obojí porušovalo — ověřeno screenshotem, ne odhadem.
+// 175 obojí porušovalo. Ověřeno screenshotem, ne odhadem.
 const PIPELINE_POS = [
   { x: -185, y: 0 }, // spouštěč
   { x: 15, y: -152 },
@@ -148,10 +149,10 @@ const PIPELINE_POS = [
   { x: 15, y: 51 },
   { x: 15, y: 152 },
 ];
-// Jádro má dlaždici 96 px — x drží 17px odstup pravé hrany od rámu plátna.
+// Jádro má dlaždici 96 px, x drží 17px odstup pravé hrany od rámu plátna.
 const HUB_POS = { x: 175, y: 0 };
 
-// Rozházené, pootočené startovní pozice pro krok "ZMATEK" — nepravidelný
+// Rozházené, pootočené startovní pozice pro krok "ZMATEK". Nepravidelný
 // mnohoúhelník s proměnlivým poloměrem, ne dokonalý kruh, ať to na první
 // pohled čte jako skutečný nepořádek, ne jen jiné geometrické uspořádání.
 const CHAOS_POS = [
@@ -171,7 +172,7 @@ const TRIGGER_ABS = abs(PIPELINE_POS[0]);
 const HUB_ABS = abs(HUB_POS);
 const BRANCH_ABS = PIPELINE_POS.slice(1).map(abs);
 
-// Porty: kabel se zapojuje do HRANY uzlu, nemizí pod ním — bez toho diagram
+// Porty: kabel se zapojuje do HRANY uzlu, nemizí pod ním. Bez toho diagram
 // nečte jako technika, ale jako čáry položené přes obrázky. Kostka nástroje
 // má 64 px (poloviny 32 + 6 px mezera), dlaždice jádra 96 px (48 + 8).
 const CHIP_PORT = 38;
@@ -190,13 +191,13 @@ function bezierEdge(from: { x: number; y: number }, to: { x: number; y: number }
 }
 
 // 8 hran: spouštěč → každá ze 4 větví, každá větev → jádro ALTENO
-// (fan-out + fan-in). Pořadí je důležité — hover interakce, časování
+// (fan-out + fan-in). Pořadí je důležité. Hover interakce, časování
 // aktivace i běhy (viz `edgeConnectsToNode` a `fireRun`) na něm staví.
 const IN_EDGES = BRANCH_IN.map((b) => bezierEdge(TRIGGER_OUT, b));
 const OUT_EDGES = BRANCH_OUT.map((b) => bezierEdge(b, HUB_IN));
 const ALL_EDGES = [...IN_EDGES, ...OUT_EDGES];
 
-// Zdířky na koncích kabelů — drobné body v místě, kde se kabel potkává
+// Zdířky na koncích kabelů. Drobné body v místě, kde se kabel potkává
 // s hranou uzlu. Čistě vizuální detail „opravdového zapojení".
 const SOCKETS = [
   TRIGGER_OUT,
@@ -211,7 +212,7 @@ const SOCKETS = [
 const COMET_LEN = 26;
 
 const TRIGGER_INDEX = 0;
-const HUB_INDEX = JOURNEY_NODES.length; // sentinel — jádro není v `JOURNEY_NODES`
+const HUB_INDEX = JOURNEY_NODES.length; // sentinel, jádro není v `JOURNEY_NODES`
 
 // Které hrany patří k danému uzlu (pro hover zvýraznění). Spouštěč svítí
 // na všechny IN_EDGES, jádro na všechny OUT_EDGES, každá větev jen na
@@ -231,10 +232,12 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-// Jádro ALTENO jako konkrétní produktová dlaždice — nahrazuje dřívější
+// Jádro ALTENO jako konkrétní produktová dlaždice. Nahrazuje dřívější
 // abstraktní fasetovou hvězdu s rotujícími prstenci, která četla jako
-// dekorace bez významu. Wordmark místo symbolu je záměr: ALTENO žádné
-// samostatné logo nemá (stejný princip jako Navbar) a vymýšlet ho nesmíme.
+// dekorace bez významu. Wordmark místo symbolu je záměr: ALTENO má sice
+// i samostatný znak (`public/alteno-mark.png`), ale v uzlu diagramu musí
+// být čitelné, o čí systém jde, a to nese jen celý název (stejný princip
+// jako Navbar). Vymýšlet vlastní symbol nesmíme.
 // Záře a dech (breathRef) řídí GSAP zvenku; `compact` je varianta pro
 // mobilní mini náhled, kde se nic neřídí scrollem.
 function HubNode({
@@ -263,7 +266,7 @@ function HubNode({
       <div ref={breathRef} className="relative h-full w-full">
         <div
           role="img"
-          aria-label="Jádro ALTENO — sem se sbíhají všechny kroky"
+          aria-label="Jádro ALTENO, sem se sbíhají všechny kroky"
           className={cx(
             "relative flex h-full w-full flex-col items-center justify-center border border-zinc-700 bg-zinc-900",
             compact ? "gap-0 rounded-xl" : "gap-0.5 rounded-2xl"
@@ -273,14 +276,21 @@ function HubNode({
             aria-hidden
             className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-br from-brand-turquoise/15 via-transparent to-transparent"
           />
-          <span
-            className={cx(
-              "relative font-semibold tracking-tight text-brand-turquoise",
-              compact ? "text-[10px]" : "text-sm"
-            )}
-          >
-            ALTENO
-          </span>
+          {/* Vektorová značka místo vysázeného textu (2026-08-14). Barva
+              se tím mění z celotyrkysové na barvy loga (světlá písmena,
+              tyrkysový akcent v „A") podle rozhodnutí uživatele. Tyrkysová
+              z uzlu nemizí: nese ji dál záře pod dlaždicí, gradient přes ni
+              i prstenec při najetí, takže zůstává u interaktivních a
+              klíčových prvků, jak žádá claude.md.
+
+              Výšku určuje šířka dlaždice, ne velikost písma: uzel je 96 px
+              (`h-24`), mini varianta 64 px. Wordmark v poměru 939:126 je
+              při 10 px široký 74,5 px a při 7 px 52,2 px, takže v obou
+              případech zbývá ~6-10 px na stranu k okraji. Zvětšit ho nejde
+              bez zvětšení dlaždice. */}
+          <AltenoWordmark
+            className={cx("relative w-auto", compact ? "h-[7px]" : "h-2.5")}
+          />
           {!compact && (
             <span className="relative font-mono text-[9px] uppercase tracking-widest text-zinc-400">
               jádro
@@ -292,7 +302,7 @@ function HubNode({
   );
 }
 
-// Tečkovaná mřížka na pozadí plátna — vizuální podpis "workflow canvasu"
+// Tečkovaná mřížka na pozadí plátna. Vizuální podpis "workflow canvasu"
 // (n8n, Make apod.), ne jen prázdné pozadí. Čistě dekorativní CSS
 // gradient, maska zjemní okraje, aby mřížka neměla ostrý čtvercový střih.
 function CanvasGrid() {
@@ -332,7 +342,7 @@ function getViewportServerSnapshot() {
 // Pinovaná scrollytelling verze potřebuje dost místa (svislý ukazatel
 // kroku, uzly rozmístěné do stran) a na malé obrazovce/hrubém dotyku by
 // pin + scrub scroll dělal potíže (posun URL lišty v mobilních prohlížečích
-// rozbíjí přesné výpočty pin pozice) — proto se aktivuje jen od `md`
+// rozbíjí přesné výpočty pin pozice), proto se aktivuje jen od `md`
 // šířky, stejný `useSyncExternalStore` vzor jako `usePrefersReducedMotion`,
 // `false` na serveru = bezpečný mobile-first default.
 function useIsDesktopViewport() {
@@ -363,7 +373,7 @@ function FinalCta() {
 }
 
 // Přechod textu mezi kroky. Tvrdé přepnutí bez animace bylo největší
-// jednotlivý zdroj „levného" dojmu staré verze — dva stavy se přes sebe
+// jednotlivý zdroj „levného" dojmu staré verze. Dva stavy se přes sebe
 // nesmí číst jako dva objekty, proto crossfade dostává i jemný blur, který
 // oba stavy během prolnutí spojí do jednoho (viz emil-design-eng skill).
 const STEP_TEXT_TRANSITION = { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const };
@@ -406,7 +416,7 @@ function DesktopJourney() {
 
     const ctx = gsap.context(() => {
       // Délky drah pro kreslení kabelů i pro komety běhů. Kometa je krátký
-      // dash, který se posunem dashoffsetu "projede" po celé dráze — mezera
+      // dash, který se posunem dashoffsetu "projede" po celé dráze. Mezera
       // v patternu je delší než dráha, takže je vidět vždy jen jedna.
       edgeLengths.current = ALL_EDGES.map((_, i) => {
         const path = edgeRefs.current[i];
@@ -451,7 +461,7 @@ function DesktopJourney() {
             if (progressFillRef.current) {
               gsap.set(progressFillRef.current, { scaleY: self.progress });
             }
-            // Živé běhy dávají smysl až v plně zapojeném diagramu — při
+            // Živé běhy dávají smysl až v plně zapojeném diagramu. Při
             // scrollu zpět do dřívějších kroků se rozběhnutý běh zabije,
             // jinak by komety létaly po kabelech, které se právě odkreslují.
             if (step < 3 && runTlRef.current?.isActive()) {
@@ -459,7 +469,7 @@ function DesktopJourney() {
               gsap.set(cometRefs.current.filter(Boolean), { autoAlpha: 0 });
               gsap.set(popRefs.current.filter(Boolean), { scale: 1 });
             }
-            // První živý běh hned po dokončení zapojení sítě — divák vidí
+            // První živý běh hned po dokončení zapojení sítě. Divák vidí
             // důsledek (systém žije) okamžitě, ne až za 5 s intervalu.
             // delayedCall se eviduje, aby ho cleanup stihl zabít i když
             // unmount přijde v těch 0,7 s.
@@ -471,7 +481,7 @@ function DesktopJourney() {
         },
       });
       scrollTriggerRef.current = tl.scrollTrigger ?? null;
-      // Prázdný tween drží celkovou délku PŘESNĚ na 5 jednotkách — jinak by
+      // Prázdný tween drží celkovou délku PŘESNĚ na 5 jednotkách. Jinak by
       // hranice segmentů (floor(progress × 5)) neseděly na celočíselné
       // kotvy T_* a text by se rozjel s diagramem.
       tl.to({}, { duration: 0.3 }, STEPS.length - 0.3);
@@ -506,8 +516,8 @@ function DesktopJourney() {
         );
       });
 
-      // Jádro ALTENO se v chaosu ještě "nezkrystalizovalo" — malé, tlumené,
-      // rozostřené — a naskočí na plnou přítomnost spolu s uzly: "systém
+      // Jádro ALTENO se v chaosu ještě "nezkrystalizovalo", malé, tlumené,
+      // rozostřené. A naskočí na plnou přítomnost spolu s uzly: "systém
       // právě vznikl z chaosu".
       if (hubWrapperRef.current) {
         tl.fromTo(
@@ -545,7 +555,7 @@ function DesktopJourney() {
         );
       }
 
-      // Krok 3 (START): spouštěč "odpálí" signál — pop + radarový prstenec —
+      // Krok 3 (START): spouštěč "odpálí" signál, pop + radarový prstenec,
       // a vstupní kabely se dokreslí přesně ve chvíli, kdy signál dorazí do
       // dané větve. Kreslení kabelu tak čte jako "signál právě propojil tyto
       // dva uzly", ne jako samostatná dekorace.
@@ -607,7 +617,7 @@ function DesktopJourney() {
       });
 
       // Krok 4 (SÍŤ): výstupní kabely se dokreslí do jádra, štítky akcí se
-      // vynoří — teprve teď je diagram kompletní a přebírají ho živé běhy.
+      // vynoří. Teprve teď je diagram kompletní a přebírají ho živé běhy.
       OUT_EDGES.forEach((_, i) => {
         const index = IN_EDGES.length + i;
         const path = edgeRefs.current[index];
@@ -642,8 +652,8 @@ function DesktopJourney() {
         );
       }
 
-      // Krok 5 (VÝSLEDKY): jádro dostane plnou záři a "dokončeno" odznak —
-      // konkrétní vizuální tečka za příběhem, bez vymýšlení čísel.
+      // Krok 5 (VÝSLEDKY): jádro dostane plnou záři a "dokončeno" odznak.
+      // Konkrétní vizuální tečka za příběhem, bez vymýšlení čísel.
       if (glowRef.current) {
         tl.to(glowRef.current, { opacity: 1, scale: 1.15, duration: 0.6, ease: "power1.inOut" }, T_DONE + 0.1);
       }
@@ -658,13 +668,13 @@ function DesktopJourney() {
 
       // ------------------------------------------------------------------
       // Mimo scrub: klidový život diagramu. Žádné věčné kroužící částice
-      // (DESIGN.md §7) — jen pomalý drift čárkování po kabelech (data v
+      // (DESIGN.md §7), jen pomalý drift čárkování po kabelech (data v
       // klidu), sotva viditelné dýchání kostek a jádra. Vše transform/
       // opacity/stroke, nic layoutového.
       // ------------------------------------------------------------------
       // Spouštěč (index 0) se schválně NEHÝBE: je to jediný klikací uzel a
       // pohyblivý terč se hůř trefuje. Zakotvený zdroj + driftující větve
-      // navíc čte správně — původ toku stojí, důsledky žijí.
+      // navíc čte správně. Původ toku stojí, důsledky žijí.
       floatRefs.current.forEach((el, i) => {
         if (!el || i === TRIGGER_INDEX) return;
         gsap.to(el, {
@@ -698,7 +708,7 @@ function DesktopJourney() {
       }
 
       // Paralaxa na pohyb myši: kabely+uzly+jádro jako JEDNA vrstva (jsou
-      // souřadnicově svázané, nesmí se rozjet), mřížka mírně proti — tichý
+      // souřadnicově svázané, nesmí se rozjet), mřížka mírně proti. Tichý
       // dojem hloubky bez 3D naklápění. quickTo = plynulé dojíždění.
       if (layerRef.current && gridLayerRef.current) {
         const layerX = gsap.quickTo(layerRef.current, "x", { duration: 0.7, ease: "power3.out" });
@@ -716,7 +726,7 @@ function DesktopJourney() {
       // ------------------------------------------------------------------
       // Živý běh: jedna objednávka viditelně projde celým systémem.
       // Spouští se sám (interval níže), po dokreslení sítě, a ručně
-      // kliknutím na spouštěč. Události místo ambientu — tohle je hlavní
+      // kliknutím na spouštěč. Události místo ambientu. Tohle je hlavní
       // rozdíl proti staré verzi s věčně kroužícími tečkami.
       // ------------------------------------------------------------------
       const cometTravel = (
@@ -779,7 +789,7 @@ function DesktopJourney() {
           cometTravel(runTl, IN_EDGES.length + i, arrival + 0.05, 0.5);
         });
 
-        // Poslední dávka dorazí ~1,32 s po startu — jádro potvrdí přijetí
+        // Poslední dávka dorazí ~1,32 s po startu. Jádro potvrdí přijetí
         // prstencem a krátkým nádechem záře.
         if (hubRingRef.current) {
           runTl.fromTo(
@@ -832,14 +842,14 @@ function DesktopJourney() {
   const step = STEPS[activeStep];
   const status = STEP_STATUS[activeStep];
   // Ruční přehrání běhu má smysl až v plně zapojeném diagramu (viz
-  // `fireRun`) — do té doby je spouštěč jen uzel jako ostatní.
+  // `fireRun`). Do té doby je spouštěč jen uzel jako ostatní.
   const runnable = activeStep >= 3;
 
   return (
     <div ref={trackRef} style={{ height: `${STEPS.length * 55}vh` }} className="relative">
       {/* Pin je full-width obal, mřížka s obsahem je až uvnitř. Krokový
           ukazatel tak může viset u okraje okna a zároveň zůstat součástí
-          pinu — dokud byl přišpendlený na `trackRef` (2475 px vysoký), byl
+          pinu. Dokud byl přišpendlený na `trackRef` (2475 px vysoký), byl
           `top-1/2` uprostřed CELÉ dráhy, takže během scrollu odjížděl z
           obrazu a u posledního kroku nebyl vidět vůbec. */}
       <div ref={pinRef} className="relative h-screen">
@@ -866,7 +876,7 @@ function DesktopJourney() {
                 </motion.div>
               </AnimatePresence>
             </div>
-            {/* CTA má rezervovanou výšku i když není vidět — jinak by jeho
+            {/* CTA má rezervovanou výšku i když není vidět. Jinak by jeho
                 příchod v posledním kroku vytlačil text nahoru a celý levý
                 sloupec by povyskočil. */}
             <div className="h-14">
@@ -897,7 +907,7 @@ function DesktopJourney() {
             }}
           >
             <div className="absolute inset-0 overflow-hidden rounded-[32px] border border-zinc-800/60 bg-zinc-950/40">
-              {/* Jemná světlá linka na horní hraně — "obrobená" hrana panelu,
+              {/* Jemná světlá linka na horní hraně, "obrobená" hrana panelu,
                   dekorativní detail bez glassmorphismu. */}
               <span
                 aria-hidden
@@ -933,7 +943,7 @@ function DesktopJourney() {
                     </linearGradient>
                   </defs>
 
-                  {/* Vrstva 1: neutrální "kabel" — kreslí se scrubem. */}
+                  {/* Vrstva 1: neutrální "kabel", kreslí se scrubem. */}
                   {ALL_EDGES.map((d, edgeIndex) => {
                     const dimmed =
                       hoveredNode !== null && !edgeConnectsToNode(edgeIndex, hoveredNode);
@@ -950,7 +960,7 @@ function DesktopJourney() {
                         strokeWidth={highlighted ? 2 : 1.25}
                         fill="none"
                         style={{
-                          // impeccable-disable-next-line layout-transition: jde o SVG prezentační vlastnost tahu, ne o layoutový rozměr — reflow nezpůsobuje.
+                          // impeccable-disable-next-line layout-transition: jde o SVG prezentační vlastnost tahu, ne o layoutový rozměr. Reflow nezpůsobuje.
                           transition: "stroke-opacity 0.25s ease, stroke-width 0.25s ease",
                           strokeOpacity: dimmed ? 0.2 : highlighted ? 0.9 : 0.6,
                         }}
@@ -958,10 +968,10 @@ function DesktopJourney() {
                     );
                   })}
 
-                  {/* Vrstva 2: barevný "proud" — pomalu driftující čárkování,
+                  {/* Vrstva 2: barevný "proud", pomalu driftující čárkování,
                       zesílí na hover a při průjezdu dávky. Viditelnost (od
                       dokreslení kabelu) řídí výhradně GSAP přes autoAlpha,
-                      React přes stroke-opacity jen hover jas — dva různé
+                      React přes stroke-opacity jen hover jas. Dva různé
                       kanály, aby si nepřepisovaly hodnoty. */}
                   {ALL_EDGES.map((d, edgeIndex) => {
                     const dimmed =
@@ -980,7 +990,7 @@ function DesktopJourney() {
                         strokeLinecap="round"
                         fill="none"
                         style={{
-                          // impeccable-disable-next-line layout-transition: jde o SVG prezentační vlastnost tahu, ne o layoutový rozměr — reflow nezpůsobuje.
+                          // impeccable-disable-next-line layout-transition: jde o SVG prezentační vlastnost tahu, ne o layoutový rozměr. Reflow nezpůsobuje.
                           transition: "stroke-opacity 0.25s ease",
                           strokeOpacity: dimmed ? 0.08 : highlighted ? 0.95 : 0.35,
                         }}
@@ -988,7 +998,7 @@ function DesktopJourney() {
                     );
                   })}
 
-                  {/* Vrstva 3: kometa běhu — krátký zářivý úsek, který projede
+                  {/* Vrstva 3: kometa běhu, krátký zářivý úsek, který projede
                       kabelem, když systémem prochází dávka dat. */}
                   {ALL_EDGES.map((d, edgeIndex) => (
                     <path
@@ -1037,7 +1047,7 @@ function DesktopJourney() {
                         <AnimatePresence>
                           {hoveredNode === i && (
                             // Spouštěč stojí u levého okraje plátna a jeho
-                            // bublina je nejdelší — vycentrovaná přetéká
+                            // bublina je nejdelší. Vycentrovaná přetéká
                             // přes hranu, kterou panel ořezává. U něj se
                             // proto kotví zleva, ne na střed.
                             <motion.div
@@ -1065,7 +1075,7 @@ function DesktopJourney() {
 
                         {/* Vrstvy transformací jsou oddělené schválně: vnější
                             div polohuje scrub (x/y), floatRef nese pomalé
-                            dýchání, popRef krátké pulzy běhů — tři nezávislé
+                            dýchání, popRef krátké pulzy běhů. Tři nezávislé
                             GSAP kanály, které si nesmí přepisovat transform. */}
                         <div
                           ref={(el) => {
@@ -1096,7 +1106,7 @@ function DesktopJourney() {
                               >
                                 <ToolChip tool={tool} size="md" shape="square" />
                                 {/* Zvací prstenec: jediný trvalý pohyb navíc,
-                                    a jen když jde kliknout — říká "tady se dá
+                                    a jen když jde kliknout, říká "tady se dá
                                     hrát", ne jen dekoruje. */}
                                 <motion.span
                                   aria-hidden
@@ -1188,7 +1198,7 @@ function DesktopJourney() {
               </div>
 
               {/* Hlavička plátna: vlevo rámování scénáře (rozhodnutí
-                  2026-07-22 — bez něj uzly nečtou jako jeden příběh), vpravo
+                  2026-07-22, bez něj uzly nečtou jako jeden příběh), vpravo
                   živý stav systému. */}
               <div className="pointer-events-none absolute inset-x-5 top-5 flex items-center justify-between">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-zinc-400">
@@ -1225,7 +1235,7 @@ function DesktopJourney() {
               </div>
             </div>
 
-            {/* Nápověda, že sekce reaguje na scroll — pin bez ní může působit
+            {/* Nápověda, že sekce reaguje na scroll. Pin bez ní může působit
                 jako zamrzlá stránka. Zmizí, jakmile čtenář popojede. */}
             <AnimatePresence>
               {activeStep === 0 && (
@@ -1266,7 +1276,7 @@ function DesktopJourney() {
             aria-hidden
             className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-zinc-800"
           />
-          {/* Výplň roste přes scaleY, ne height — height by se počítala na
+          {/* Výplň roste přes scaleY, ne height. height by se počítala na
               hlavním vlákně při každém scroll framu (DESIGN.md §6). */}
           <div
             ref={progressFillRef}
@@ -1301,7 +1311,7 @@ function DesktopJourney() {
 }
 
 // Kompaktní statická verze diagramu (spouštěč → 4 uzly → jádro ALTENO) pro
-// mobil/reduced-motion — bez GSAP/scroll-pin (viz komentář u
+// mobil/reduced-motion, bez GSAP/scroll-pin (viz komentář u
 // `useIsDesktopViewport`), jen lehké CSS animace stejným principem jako
 // MiniProcessDiagram (pulz putující po spojnici), respektuje
 // `prefers-reduced-motion` přes existující globální pravidlo.
@@ -1356,7 +1366,7 @@ function MiniWorkflowPreview({ animated }: { animated: boolean }) {
 function StackedJourney({ animated }: { animated: boolean }) {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 sm:px-8">
-      {/* Svislá linka spojuje kroky do jedné cesty — mobil nemá scrub ani
+      {/* Svislá linka spojuje kroky do jedné cesty. Mobil nemá scrub ani
           diagram, tak nese "journey" alespoň tahle nit. Linka je sourozenec
           <ol>, ne jeho dítě: <ol> smí přímo obsahovat jen <li> (stejné
           pravidlo jako v TrustStrip.tsx). `<ol>`: kroky jsou číslované

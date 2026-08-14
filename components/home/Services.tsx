@@ -4,11 +4,11 @@ import GlowCard from "@/components/motion/GlowCard";
 
 // Sekce Služby (repozice 2026-08-09, viz docs/plan-repozice-2026-08.md,
 // sekce 6). Číslovaná karta je převzatá z bývalé sekce Ceník, která byla
-// ve Fázi 2c smazaná — vizuál byl schválený a nemá důvod zaniknout jen
+// ve Fázi 2c smazaná. Vizuál byl schválený a nemá důvod zaniknout jen
 // proto, že zmizely ceny. Oproti originálu vypadl řádek s částkou a ten
 // se sem NIKDY nesmí vrátit, stejně jako tlačítko vedoucí na ceník.
 //
-// Cíl CTA je konstanta, ne pole v datech (lib/services.ts) — kdyby byl
+// Cíl CTA je konstanta, ne pole v datech (lib/services.ts). Kdyby byl
 // per-service, dal by se jím obejít zákaz odkazu na ceník.
 const CTA_HREF = "/#kontakt";
 
@@ -24,7 +24,7 @@ export default function Services() {
           {/* Nadpis změněn 2026-08-10 na výslovné zadání uživatele z „Co pro
               vás udělám". Známý a vědomě přijatý důsledek: sekce
               AutomationAreas přímo nad touto má nadpis „Co vše jde
-              automatizovat" a větu „Nejčastěji řešíme" — obsahový překryv
+              automatizovat" a větu „Nejčastěji řešíme". Obsahový překryv
               byl uživateli předložen a rozhodl ho neřešit teď. Je to
               otevřený bod, ne přehlédnutí. */}
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
@@ -37,13 +37,13 @@ export default function Services() {
 
         {/* Šest karet ve 3sloupcovém gridu (2026-08-10): pět konkrétních
             služeb z lib/services.ts + šestá karta „na míru" doplněná níže
-            v gridu. Do dat nepatří — není to další položka katalogu, ale
+            v gridu. Do dat nepatří. Není to další položka katalogu, ale
             výslovné popření katalogu, a má i jiný vizuál. Tím se zároveň
             dorovnal dřív nevyrovnaný poslední řádek (5 karet = 2+2+1). */}
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {services.map((service, i) => (
             <AnimatedSection key={service.slug} delay={Math.min(i * 0.08, 0.32)}>
-              {/* Klikatelná je celá karta, ne odkaz uvnitř — víc odkazů se
+              {/* Klikatelná je celá karta, ne odkaz uvnitř. Víc odkazů se
                   stejným popiskem „Probrat na konzultaci" pod sebou by
                   bylo pro čtečku obrazovky nepoužitelné. Titulek služby je
                   součástí odkazu, takže nese přístupný název. */}
@@ -76,14 +76,14 @@ export default function Services() {
           {/* Šestá karta (2026-08-10, výslovné zadání uživatele): nahrazuje
               samostatný uzavírací blok pod gridem, který nesl doslova stejné
               sdělení („automatizace se staví na míru, ne z katalogu") ve
-              stejném tyrkysovém rámečku — dvakrát po sobě by to působilo jako
+              stejném tyrkysovém rámečku. Dvakrát po sobě by to působilo jako
               chyba, ne jako důraz. Uvnitř gridu sdělení navíc funguje líp: čte
               se jako poslední z možností, ne jako poznámka pod čarou.
 
               Rámeček je viditelný i bez hoveru (accent turquoise-strong,
               odstíny shodné s TrustStrip.tsx), aby karta z pětice vystupovala
-              jako jiný typ nabídky. Zbytek struktury — číslo, dělicí linka,
-              CTA řádek, cíl odkazu — je shodný s ostatními kartami, takže se
+              jako jiný typ nabídky. Zbytek struktury (číslo, dělicí linka,
+              CTA řádek, cíl odkazu) je shodný s ostatními kartami, takže se
               liší barvou, ne tvarem. */}
           <AnimatedSection delay={0.4}>
             <GlowCard

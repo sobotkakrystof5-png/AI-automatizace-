@@ -25,9 +25,9 @@ const CHIP_SIZE: Record<ToolChipSize, { wrapper: string; icon: string }> = {
 //
 // Vykreslí buď reálné SVG brand logo (simple-icons), nebo pokud `path`
 // chybí (viz komentář u `connectedTools` v lib/tools.ts), textový
-// placeholder chip — nikdy nekreslí náhradní ikonu, aby nevypadala jako
+// placeholder chip. Nikdy nekreslí náhradní ikonu, aby nevypadala jako
 // reálné, ale nepřesné logo. `shape="square"` (zaoblený čtverec místo kruhu)
-// je pro uzly workflow diagramu v AutomationJourney.tsx — n8n a podobné
+// je pro uzly workflow diagramu v AutomationJourney.tsx. n8n a podobné
 // nástroje kreslí uzly jako karty, ne kruhové odznaky, a odlišný tvar zároveň
 // čtenáři signalizuje, že jde o jiný typ prvku než odznaky jinde na webu.
 export function ToolChip({

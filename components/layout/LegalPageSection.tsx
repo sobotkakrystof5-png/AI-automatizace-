@@ -3,7 +3,7 @@ export function LegalDraftNotice() {
     <p className="mt-4 text-zinc-400">
       Tento dokument se aktuálně připravuje a před nasazením na ostrý provoz
       projde kontrolou advokátem. Sekce níže ukazují závaznou strukturu
-      dokumentu — konkrétní právní formulace budou doplněny.
+      dokumentu. Konkrétní právní formulace budou doplněny.
     </p>
   );
 }

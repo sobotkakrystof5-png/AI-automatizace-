@@ -1,7 +1,7 @@
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 
-// Nahrazuje sekci HowWeBuild (2026-08-10). Ta neměla vlastní obsah — všechny
+// Nahrazuje sekci HowWeBuild (2026-08-10). Ta neměla vlastní obsah. Všechny
 // tři body byly duplicity: „ne podle šablony" = TrustStrip, „otestujeme před
 // spuštěním" a „první měsíc podpory zdarma" byly doslovné opisy kroků 4 a 5
 // z lib/process-steps.ts, které stojí jen dvě sekce nad tím.
@@ -10,21 +10,21 @@ import GlowCard from "@/components/motion/GlowCard";
 // její existence:
 //   ProcessSteps  = co se stane (timeline spolupráce)
 //   QuoteProcess  = jak vzniká cena, a implicitně proč na webu není ceník
-// Bod 1 proto mluví o *rozsahu*, ne o „co vás brzdí" — to je krok 1
+// Bod 1 proto mluví o *rozsahu*, ne o „co vás brzdí". To je krok 1
 // v ProcessSteps a zopakovat ho by znamenalo vyrobit stejnou duplicitu,
 // kvůli které původní sekce padla.
 //
-// ŽÁDNÉ ČÍSLO. Sekce vysvětluje mechanismus vzniku ceny, ne cenu samotnou —
-// tím zákaz z claude.md („Uvádět na webu jakoukoli cenu") neporušuje, ale
+// ŽÁDNÉ ČÍSLO. Sekce vysvětluje mechanismus vzniku ceny, ne cenu samotnou.
+// Tím zákaz z claude.md („Uvádět na webu jakoukoli cenu") neporušuje, ale
 // podpírá ho („cena se sděluje výhradně na konzultaci"). Nikdy sem nesmí
 // přibýt částka, rozmezí, „od X" ani odkaz na ceník, a lib/json-ld.ts kvůli
 // téhle sekci nedostává `Offer`/`priceSpecification`.
 //
-// Obě obchodní tvrzení potvrdil uživatel 2026-08-10 přes AskUserQuestion —
-// nejsou odvozená z jiných míst webu jako u předchozí verze sekce:
+// Obě obchodní tvrzení potvrdil uživatel 2026-08-10 přes AskUserQuestion.
+// Nejsou odvozená z jiných míst webu jako u předchozí verze sekce:
 //   1. výstupem je PEVNÁ cena za dohodnutý rozsah (ne odhad, ne rozpětí),
 //   2. klient ji slyší PŘÍMO NA KONZULTACI (ne až v písemné nabídce potom).
-// Obojí je závazek, ne formulace — přepis, který by z „pevné ceny" udělal
+// Obojí je závazek, ne formulace. Přepis, který by z „pevné ceny" udělal
 // „odhad" nebo cenu odsunul za konzultaci, mění slib vůči zákazníkovi
 // a chce nový souhlas.
 //
@@ -32,7 +32,7 @@ import GlowCard from "@/components/motion/GlowCard";
 // 01–05 a Differentiators 1–4. Třetí číslovaná sekce na jedné stránce by
 // splývala; pořadí tu nese čtecí směr.
 //
-// Mluví se v „my" — nacenění je proces značky ALTENO, ne osobní vyprávění
+// Mluví se v „my". Nacenění je proces značky ALTENO, ne osobní vyprávění
 // (claude.md, „Hranice ‚já' / ‚my'"). Stejný hlas jako ProcessSteps a Služby.
 const quoteSteps = [
   {

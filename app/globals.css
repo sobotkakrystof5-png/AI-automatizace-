@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Design tokeny — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — viz
+ * Design tokeny. Tyrkysovo-mintová paleta (revize R11, 2026-07-22, viz
  * claude.md, sekce "Redesign 2026" → "Paleta R11"). Nahrazuje dřívější
  * brand-gold/brand-electric systém (rozhodnutý 2026-07-21). Čtyři vlastní
  * tokeny (brand-turquoise, brand-mint, brand-deep-green, brand-deep-blue)
@@ -10,12 +10,12 @@
  * Tailwind `zinc` škály bez vlastní definice.
  */
 @theme {
-  /* Primární interaktivní akcent — CTA, aktivní stavy, klíčové zvýraznění.
+  /* Primární interaktivní akcent. CTA, aktivní stavy, klíčové zvýraznění.
      Nahrazuje dřívější brand-gold i brand-electric v této roli. */
   --color-brand-turquoise: #2dd4bf;
   --color-brand-mint: #6ee7b7;
 
-  /* Tmavé podklady a hloubka pozadí — nahrazují plochou zinc-950. */
+  /* Tmavé podklady a hloubka pozadí, nahrazují plochou zinc-950. */
   --color-brand-deep-green: #052e2b;
   --color-brand-deep-blue: #0a1a2f;
 
@@ -45,12 +45,12 @@
   }
 }
 
-/* Puls putující po spojnici. Animuje `transform`, ne `left` — `left` je
+/* Puls putující po spojnici. Animuje `transform`, ne `left`. `left` je
  * layoutová vlastnost, takže by se každý snímek počítal na hlavním vlákně
  * a nešel by na kompozitor (viz DESIGN.md §5, "Neanimovat width/height/
  * padding/margin"). Na homepage běží 8 těchto pulsů současně a nekonečně,
  * takže rozdíl není teoretický. Element, na který se třída aplikuje, musí
- * být plná šířka dráhy (`inset-0`) s tečkou u svého levého okraje —
+ * být plná šířka dráhy (`inset-0`) s tečkou u svého levého okraje.
  * translateX(100%) ho pak posune přesně o délku dráhy, stejně jako
  * původní `left: 100%`. */
 @keyframes flow-pulse {
@@ -70,7 +70,7 @@
   }
 }
 
-/* Svislá varianta `flow-pulse` — stejný princip (posouvá se obal přes celou
+/* Svislá varianta `flow-pulse`, stejný princip (posouvá se obal přes celou
  * délku dráhy, ne samotná tečka), jen po ose Y. Pro vrstvené diagramy, kde
  * tok jde shora dolů. */
 @keyframes flow-pulse-y {
@@ -107,8 +107,8 @@
 /* Pozor při psaní nových keyframes, které polohují prvek: nikdy do nich
  * nedávat `translate(-50%, -50%)` pro vycentrování. Tailwind v4 kompiluje
  * `-translate-x-1/2` do samostatné vlastnosti `translate:`, ne do
- * `transform:`, a obě vlastnosti se podle CSS Transforms L2 skládají —
- * prvek by se posunul o -100 %, -100 % místo -50 %, -50 %. Centrování patří
+ * `transform:`, a obě vlastnosti se podle CSS Transforms L2 skládají.
+ * Prvek by se posunul o -100 %, -100 % místo -50 %, -50 %. Centrování patří
  * výhradně na `translate:` (Tailwind třídy na elementu), keyframe řeší jen
  * samotný pohyb. Stejný princip jako u zákazu kombinovat CSS animaci s GSAP
  * polohováním níže. Historicky na tom havaroval `float-y` (plovoucí loga v
@@ -118,12 +118,12 @@
  * Ke stejnému datu zmizel i `idle-jitter` (rotace + scale kostek v
  * AutomationJourney). Jeho jediný uživatel po přestavbě hero animace
  * odpadl: klidový pohyb uzlů teď řídí GSAP přímo v komponentě, protože
- * musí sdílet timeline s běhy dat a jít vypnout, když se scrolluje zpět —
- * to CSS animace neumí. */
+ * musí sdílet timeline s běhy dat a jít vypnout, když se scrolluje zpět.
+ * To CSS animace neumí. */
 
 /* Navbar je `sticky top-0` (~68 px včetně border a py-4), takže skok na
  * kotvu dosud přistával pod hlavičkou a nadpis sekce zůstal schovaný.
- * Jeden řádek tady řeší všechny kotvy naráz — čistší než rozsévat
+ * Jeden řádek tady řeší všechny kotvy naráz, čistší než rozsévat
  * `scroll-mt-*` po jednotlivých sekcích a zapomenout ho u příští nové.
  * Lenis (SmoothScrollProvider) nemá zapnutou vlastní obsluhu kotev, takže
  * hash navigace zůstává nativní a tohle pravidlo se na ni vztahuje. */
@@ -151,7 +151,7 @@ body {
 /* `background-attachment: fixed` nutí prohlížeč překreslovat gradient při
  * každém posunu. Na desktopu je to v pohodě a drží zamýšlený dojem hloubky
  * (pozadí stojí, obsah jede). Na dotykových zařízeních je to známý zdroj
- * trhání — mobilní Safari `fixed` navíc stejně nectí spolehlivě — a spolu
+ * trhání (mobilní Safari `fixed` navíc stejně nectí spolehlivě) a spolu
  * s Lenisem se to sčítá. Rozlišujeme podle `hover: none`, ne podle šířky:
  * rozhoduje typ zařízení, ne velikost okna. */
 @media (hover: none) {
@@ -163,8 +163,8 @@ body {
 /* Jednotný focus indikátor pro celý web. Bez něj spoléhaly interaktivní
  * prvky (taby, rozkliky, krokové tečky, odkazy v kartách) na výchozí
  * kroužek prohlížeče, který se na tmavém podkladu ztrácí. 2px + offset
- * splňuje WCAG 2.2 SC 2.4.11 Focus Appearance; tyrkysová je tu na místě —
- * jde o interaktivní stav, ne dekoraci. */
+ * splňuje WCAG 2.2 SC 2.4.11 Focus Appearance; tyrkysová je tu na místě.
+ * Jde o interaktivní stav, ne dekoraci. */
 :focus-visible {
   outline: 2px solid var(--color-brand-turquoise);
   outline-offset: 2px;
@@ -206,8 +206,8 @@ body {
     animation: none;
   }
 
-  /* Puls zastavený uprostřed dráhy by vypadal jako náhodná tečka navíc —
-   * pod reduced-motion se rovnou skryje, uzly a spojnice samy o sobě
+  /* Puls zastavený uprostřed dráhy by vypadal jako náhodná tečka navíc.
+   * Pod reduced-motion se rovnou skryje, uzly a spojnice samy o sobě
    * ukazují "vstup → zpracování → výstup" i bez pohybu. */
   .animate-flow-pulse,
   .animate-flow-pulse-y {

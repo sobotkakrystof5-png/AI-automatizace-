@@ -8,7 +8,7 @@ export const metadata = {
     path: "/vop",
     title: "Všeobecné obchodní podmínky | ALTENO",
     description:
-      "Všeobecné obchodní podmínky ALTENO — dokument se připravuje a čeká na finální kontrolu advokátem.",
+      "Všeobecné obchodní podmínky ALTENO. Dokument se připravuje a čeká na finální kontrolu advokátem.",
   }),
   robots: { index: false, follow: true },
 };

@@ -422,3 +422,114 @@ název nenachází.
    nedotýkám. Zároveň je to místo, kam podle doporučení agentů 2 a 3 patří
    zápis rozhodnutí o **rodu značky ALTENO**, aby se netříštil napříč
    sekcemi.
+
+### Wordmark jako vektor (2026-08-14)
+
+Uživatel zadal, že **každý zápis názvu v ploše webu má vypadat totožně jako
+logo**, a v `AskUserQuestion` doplnil dvě rozhodnutí: platí to **i uvnitř
+vět**, a barvy jsou **barvy loga doslova** i tam, kde byl wordmark dosud
+celý tyrkysový.
+
+**Nová komponenta `components/brand/AltenoWordmark.tsx`** — jediný zdroj
+pravdy pro zápis názvu. Dva exporty: `AltenoWordmark` (stojící značka,
+velikost přes `className`) a `AltenoInline` (vsazení do věty).
+
+Cesty **nejsou překreslené od oka**. Jsou odvozené přímo z alfa kanálu
+`public/alteno-logo.png`: marching squares na hladině 50 %, pak
+Douglas–Peucker s tolerancí 0,28 px. Vyšlo 8 prstenců (obrys a otvor „O",
+zvlášť horní rameno „E" a zbytek „E") plus samostatná cesta akcentu, celkem
+2,4 kB. Ověřeno zpětnou rasterizací proti originálu: **IoU obrysů 0,985 a
+žádný pixel se neliší o víc než 0,5** — zbylá odchylka je jen měkkost
+antialiasingu předlohy.
+
+Proč vůbec vektor, když PNG existuje: řez loga má tři tvary, které v žádném
+písmu nejsou — „A" bez příčky se seříznutým vrcholem, **„E" s odděleným
+horním ramenem**, a supereliptické „O" (exponent ≈ 2,3, ani kružnice, ani
+elipsa). Napsat „ALTENO" Geistem a doladit `tracking` proto dá jiný tvar.
+A bitmapa 939×126 by se rozpadla v 7-10px uzlech diagramů a neškálovala by
+s velikostí písma uvnitř vět.
+
+**Nasazeno na 11 místech** (`Navbar`, `Footer` ×2, `ToolBoard`,
+`AutomationJourney` ×2, `WhyAutomation`, `About` ×3, `ZakazIq`, `/o-mne`,
+`/design-preview`). Grep potvrzuje, že v živém kódu **nezůstal žádný
+vykreslovaný text „ALTENO"** — zbývající výskyty jsou `<title>`, meta
+popisy, `og:siteName`, JSON-LD `name` a přístupné názvy, tedy holé řetězce,
+kde styl technicky neexistuje.
+
+**Metriky pro sazbu do věty jsou změřené, ne odhadnuté:** cap height Geistu
+je 710/1000 em (`sCapHeight` z OS/2 tabulky woff2 v `.next/static/media/`),
+cap height wordmarku 104,54 ze 126 jednotek viewBoxu. Z toho výška
+0,856 em a posun účaří −0,064 em.
+
+**Na co jsem narazil:**
+
+- **Wordmark je o ~60 % širší než vysázené „ALTENO"** (poměr 939:126 proti
+  46,6 px textu ve 12 px). To je vlastnost širokého prostrku loga, ne chyba,
+  ale ve dvou stísněných místech to rozhoduje o velikosti:
+  - Hlavička třetího sloupce ve `WhyAutomation` má na `md` po odečtení
+    kontejneru, 39% sloupce a `px-6` jen 226,6 px, a popisek „Automatizace
+    na míru" z toho v Geistu 14 px zabere 142,4 px. Vysázené „ALTENO"
+    v pilulce vycházelo na 223,6 px, tedy 3 px pod limitem — wordmark se
+    tam nevejde v žádné velikosti. Sloupec proto dostal `flex-wrap`
+    a štítek se v pásmu zhruba 768-830 px zalomí nad popisek. Je to jediná
+    layoutová změna mimo výměnu značky.
+  - Uzel v `AutomationJourney` je 96 px (mini 64 px), takže wordmark musí
+    být 10 px, resp. 7 px. To je **méně**, než měl dřívější text, a je to
+    strop daný šířkou dlaždice, ne volba.
+- **Hlavička přišla o `<Image priority>`.** Inline SVG přijde rovnou
+  v HTML, takže LCP kandidát nad ohybem už nečeká na síť. Čistý zisk.
+- **`public/alteno-logo.png` se nesmí mazat.** Navbar ani patička ho už
+  nepoužívají, ale `app/opengraph-image.tsx` ho čte serverově přes satori,
+  kde inline SVG komponenta není použitelná. OG obrázek navíc už logo
+  zobrazuje, takže tam nebylo co měnit.
+- **Tyrkysová nezmizela z míst, kde měla význam.** Uzel v
+  `AutomationJourney` má dál tyrkysovou záři, gradient i prstenec při
+  najetí; štítek ve `WhyAutomation` tyrkysový rámeček a podklad. Pravidlo
+  z `claude.md` o zdrženlivém použití akcentu tedy platí dál.
+- **Souběžná session.** Během práce byl v pracovním stromu běh skillu
+  `humanize-text-cs` (46 souborů, mizí pomlčky ze souvětí). Nesahal jsem na
+  to. Ověřil jsem jen, že se to nedotklo chráněného obsahu: **hero claim je
+  na všech pěti místech doslova nezměněný a nikde nepřibyla cena.**
+
+**Otevřené pro uživatele:**
+
+1. **Zápis do `claude.md`.** Že `AltenoWordmark` je jediný zdroj pravdy pro
+   zápis názvu (a že se název nikde nevysází písmem), patří mezi trvalá
+   pravidla. Nezapisoval jsem to sám — `claude.md` je autorita, ne můj
+   poznámkový blok.
+2. **Rod značky** zůstává otevřený z bodu 1 výše a rozhodnutí o logu s ním
+   nehnulo: věty „Tak vznikl ALTENO" teď mají na místě názvu značku, ale
+   sloveso je pořád v mužském rodě na všech třech místech.
+
+### Lockup v hlavičce (2026-08-14)
+
+Uživatel zadal posunout logo v hlavičce doleva a doplnit pod něj drobně tři
+hesla. Obojí je v `components/layout/Navbar.tsx`, podrobné zdůvodnění včetně
+změřených šířek je v komentáři přímo tam.
+
+- **Hlavička už není v `max-w-6xl` mřížce obsahu, ale přes celou šířku.**
+  Logo se tím přestává krýt s levou hranou obsahu stránky — to je smysl
+  zadání, ne přehlédnutí. Uživatel vzápětí upřesnil, že úplně na kraji ho
+  nechce, takže odsazení od `lg` výš roste s oknem:
+  `max(2rem, min((100vw − 76rem) / 2, 6rem))`. Do 1216px okna 32 px, pak
+  přesně tempem volného místa, od 1408 px strop 96 px. Pevná hodnota to
+  udělat nemohla: jeden řádek hlavičky potřebuje 1182 px vnitřní šířky
+  (změřeno, ne odhad) a každý pixel odsazení bere navigaci dva, takže třeba
+  `xl:px-16` by na 1280px oknech zalomilo navigaci. Na 1440px displeji stojí
+  logo 96 px od kraje — o 80 px vlevo od původní mřížky, o 64 px vpravo od
+  plné šířky. Pod `lg` platí `px-6`/`sm:px-8` beze změny.
+- **Hesla jsou stejná jako v patičce** („Automatizujeme. Propojujeme.
+  Zrychlujeme." s tyrkysovými oddělovači), jen 9 px místo 10 px a bez prostrku
+  pod `sm`, aby se lockup vešel vedle tlačítka menu i na 360px telefonu.
+  Pořád je to **doprovod loga, ne náhrada hero claimu** — rozhodnutí
+  z tabulky výše platí beze změny a hero claim se nikde nedotkl. Tím padá
+  poznámka v komentáři patičky, že hlavička nese jen wordmark; komentář je
+  opravený.
+- **Bod 5 výše (navigace se láme na dva řádky) tím zmizel na `xl`, na `lg`
+  trvá.** Hlavička přes celou šířku dá navigaci na 1280 px 128 px navíc, což
+  je víc, než si vzal širší lockup (+95 px), a rostoucí odsazení je navržené
+  tak, aby o tenhle zisk nepřipravila. Na 1024–1279 px se navigace lámala už
+  předtím a láme se dál — jeden řádek by tam potřeboval 1182 px, k dispozici
+  je nejvýš 960 px, takže to odsazením vyřešit nejde. Opravou by bylo
+  přepnout mobilní menu z `lg` na `xl`, což je zásah do struktury navigace —
+  čeká na rozhodnutí uživatele.

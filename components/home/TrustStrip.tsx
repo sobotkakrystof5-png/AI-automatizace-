@@ -5,20 +5,20 @@ import { ClockIcon, ChatIcon, GearIcon } from "@/components/motion/process-icons
 // docs/plan-repozice-2026-08.md, sekce 2).
 //
 // 2026-08-10 na výslovné zadání uživatele: tři body dostaly vlastní
-// tyrkysové rámečky a větší text — mají nést důraz, ne jen doplňovat hero.
+// tyrkysové rámečky a větší text. Mají nést důraz, ne jen doplňovat hero.
 // Tím padá původní záměr "lehký pruh bez rámečků"; rámečky se ale nedělají
-// přes `GlowCard` (ta má zinc-800 border a hover s posunem — hover efekt na
+// přes `GlowCard` (ta má zinc-800 border a hover s posunem; hover efekt na
 // neklikatelném prvku slibuje interakci, která neexistuje), ale vlastním
 // stylem: tyrkysová linka v nízké alfě + sotva znatelný tyrkysový podklad,
 // aby akcent zvýrazňoval, ale nekonkuroval CTA v hero hned nad tím
 // (DESIGN.md §2, "Zdrženlivost akcentu").
 //
 // Rytmus se zvedl z tieru "Pás" (`py-12 sm:py-16`) na "Standard"
-// (`py-16 sm:py-24`) podle DESIGN.md §5 — z proužku se staly plnohodnotné
+// (`py-16 sm:py-24`) podle DESIGN.md §5. Z proužku se staly plnohodnotné
 // karty a při původním rytmu by se tiskly na hero. Dva "Zlomy" po sobě to
 // netvoří, hero zůstává jediný.
 //
-// Body jsou v první osobě jednotného čísla — je to osobní sekce, ne
+// Body jsou v první osobě jednotného čísla. Je to osobní sekce, ne
 // značkové sdělení (viz claude.md, "Hranice ‚já' / ‚my'").
 const points = [
   { Icon: ClockIcon, text: "Odpovídám do 24 hodin" },

@@ -1,7 +1,7 @@
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 
-// Přímé kontaktní kanály — přeneseno z bývalé samostatné sekce Contact,
+// Přímé kontaktní kanály. Přeneseno z bývalé samostatné sekce Contact,
 // která se 2026-08-09 sloučila do jedné finální sekce (viz
 // docs/plan-repozice-2026-08.md, sekce 9, "Umístění").
 //

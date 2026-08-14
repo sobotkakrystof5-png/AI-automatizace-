@@ -13,10 +13,10 @@ import type { AutomationArea } from "@/lib/automation-areas";
 const absoluteUrl = (path: string) => `${SITE_URL_BASE}${path}`;
 
 // Description opravena 2026-08-10 (Fáze 7): dřív končila "— chytrá
-// automatizace, lidský přístup" — motto zrušené 2026-08-09, sem se ta
+// automatizace, lidský přístup". Motto zrušené 2026-08-09, sem se ta
 // úprava tehdy nepromítla. Structured data proto nesmí tvrdit nic, co web
 // sám už neříká. Aktuální hero claim ("Vy řešíte byznys. Rutinu
-// automatizujeme my.", 2026-08-10) se sem záměrně nekopíruje — description
+// automatizujeme my.", 2026-08-10) se sem záměrně nekopíruje, description
 // popisuje nabídku, ne slogan.
 export function organizationJsonLd() {
   return {

@@ -26,7 +26,7 @@ function BandChip({ tool }: { tool: AutomationTool }) {
   );
 }
 
-// Nekonečně se posouvající pás — pole chipů vykreslené 2× vedle sebe,
+// Nekonečně se posouvající pás, pole chipů vykreslené 2× vedle sebe,
 // řádek animuje translateX(0) → translateX(-50%) (stejný trik jako
 // --animate-marquee v globals.css), takže na konci první kopie navazuje
 // druhá beze švu.

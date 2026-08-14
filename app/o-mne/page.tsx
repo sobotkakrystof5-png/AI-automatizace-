@@ -3,17 +3,18 @@ import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 import JsonLd from "@/components/seo/JsonLd";
+import { AltenoInline } from "@/components/brand/AltenoWordmark";
 import { breadcrumbJsonLd } from "@/lib/json-ld";
 import { pageMetadata } from "@/lib/page-metadata";
 
 // Podstránka /o-mne (Fáze 5 repozice, viz docs/plan-repozice-2026-08.md,
 // sekce 4 a 11). Nese plný příběh, který se na homepage do sekce „O mně"
-// nevejde — ta zůstává zkrácená a odkazuje sem.
+// nevejde. Ta zůstává zkrácená a odkazuje sem.
 //
 // PRAVIDLA, KTERÁ TU PLATÍ PŘÍSNĚJI NEŽ JINDE:
 //
 //  1. Celá stránka je v první osobě jednotného čísla. Značkové „my" sem
-//     nepatří ani u nabídky — tohle je osobní sekce podle claude.md,
+//     nepatří ani u nabídky. Tohle je osobní sekce podle claude.md,
 //     „Hranice já/my".
 //  2. Delší odstavce jsou tu VÝSLOVNĚ v pořádku (výjimka z babička testu
 //     2.0 pro detailní podstránku), ale nadpisy drží 3–6 slov.
@@ -21,7 +22,7 @@ import { pageMetadata } from "@/lib/page-metadata";
 //     homepage (dva roky Vizeonu, desítky rozhovorů, vznik ZakazIQ,
 //     jednočlenný tým), plán repozice (kurzy a měsíce praxe, Vizeon jako
 //     jednočlenný provoz) nebo dnes ověřený screenshot ZakazIQ
-//     (`public/zakaziq-ukazka.png` — stav zakázky, postup v procentech,
+//     (`public/zakaziq-ukazka.png`. Stav zakázky, postup v procentech,
 //     hodnocení 1–10, rezervace konzultace). Nic nad tento rámec se
 //     nedoplňuje odhadem, ani kdyby to znělo líp: čísla o obratu, počtu
 //     klientů, názvy kurzů ani délka praxe potvrzené nejsou.
@@ -30,7 +31,7 @@ export const metadata = pageMetadata({
   path: "/o-mne",
   title: "O mně | ALTENO",
   description:
-    "Od tvorby webů ve Vizeonu k automatizaci firemních procesů. Proč ALTENO vznikl a jak funguje ZakazIQ — systém, který jsem si postavil pro vlastní provoz.",
+    "Od tvorby webů ve Vizeonu k automatizaci firemních procesů. Proč ALTENO vznikl a jak funguje ZakazIQ, systém, který jsem si postavil pro vlastní provoz.",
 });
 
 export default function AboutPage() {
@@ -58,7 +59,7 @@ export default function AboutPage() {
               přebíralo plochu.
 
               `object-cover` s `object-top`: originál je na výšku 1200×1600
-              a hlava je v horní části snímku — výchozí středový ořez by
+              a hlava je v horní části snímku. Výchozí středový ořez by
               z ní ubral. */}
           <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center">
             <Image
@@ -75,7 +76,7 @@ export default function AboutPage() {
                 O mně
               </h1>
               <p className="mt-3 text-xl text-zinc-400">
-                Jmenuju se Kryštof Sobotka. Tohle je celý příběh — ne ta
+                Jmenuju se Kryštof Sobotka. Tohle je celý příběh, ne ta
                 zkrácená verze z úvodní stránky.
               </p>
             </div>
@@ -88,7 +89,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 text-zinc-400">
             <p>
-              Dva roky jsem stál za projektem Vizeon — tvorbou webů na míru
+              Dva roky jsem stál za projektem Vizeon, tvorbou webů na míru
               pro živnostníky a malé firmy. Dělal jsem na nich sám, od
               prvního rozhovoru o tom, co firma vlastně potřebuje, až po
               spuštění a dolaďování provozu.
@@ -113,7 +114,7 @@ export default function AboutPage() {
             </p>
             <p>
               Nový web jim přinesl pozornost, ale nevrátil čas. Ten se
-              ztrácel úplně jinde — v přepisování stejných údajů z jednoho
+              ztrácel úplně jinde. V přepisování stejných údajů z jednoho
               místa na druhé, v dohledávání informací v e-mailech a
               v připomínání termínů, na které si musel někdo vzpomenout.
             </p>
@@ -132,7 +133,7 @@ export default function AboutPage() {
             <p>
               Přestal jsem řešit, jak firmě postavit další web, a začal
               řešit, co jí ujídá čas. Prošel jsem kurzy zaměřené na AI
-              automatizaci a měsíce praxe — ne teorií, ale stavěním věcí,
+              automatizaci a měsíce praxe, ne teorií, ale stavěním věcí,
               které musí běžet samy, i když se na ně zrovna nikdo nedívá.
             </p>
             <p>
@@ -147,7 +148,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 text-zinc-400">
             <p>
-              V rámci Vizeonu vznikl ZakazIQ — vlastní systém, který za mě
+              V rámci Vizeonu vznikl ZakazIQ, vlastní systém, který za mě
               automaticky řeší komunikaci s klienty, rezervace i
               připomínky. Nestavěl jsem ho jako produkt na prodej, ale
               proto, že jsem tu práci nechtěl dělat ručně.
@@ -157,14 +158,14 @@ export default function AboutPage() {
               klient: karta jeho zakázky se zadáním, stavem, postupem prací
               v procentech a datem poslední aktualizace. Pod ní běží
               automatizace v n8n, která reaguje na to, co klient udělá. A
-              úplně vespod databáze, kde zůstává historie — zakázky,
+              úplně vespod databáze, kde zůstává historie. Zakázky,
               termíny, hodnocení.
             </p>
             <p>
               V praxi to vypadá takhle: klient si vybere termín, rezervace
               se zapíše, odejde potvrzení a před schůzkou ještě připomínka
               SMS i e-mailem. Já u toho nejsem. Zpětnou vazbu si systém
-              vybere taky sám — klient dá známku od 1 do 10 a může připsat,
+              vybere taky sám. Klient dá známku od 1 do 10 a může připsat,
               co chce udělat jinak.
             </p>
             <p>
@@ -180,9 +181,9 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 text-zinc-400">
             <p>
-              Tak vznikl ALTENO. Navazuju na dva roky zkušeností s reálnými
-              klienty a přesouvám se z tvorby webů do automatizace celých
-              firemních procesů — pro menší a středně velké firmy.
+              Tak vznikl <AltenoInline />. Navazuju na dva roky zkušeností
+              s reálnými klienty a přesouvám se z tvorby webů do automatizace
+              celých firemních procesů. Pro menší a středně velké firmy.
             </p>
             <p>
               Pracuju na tom zatím sám. Je to záměr, ne provizorium:
@@ -191,7 +192,7 @@ export default function AboutPage() {
             </p>
             <p>
               Vizeon i ZakazIQ jsou moje vlastní projekty, ne klientské
-              reference — a schválně to říkám nahlas. Je to zatím jediná
+              reference. A schválně to říkám nahlas. Je to zatím jediná
               automatizace, kterou vám můžu ukázat celou, od zadání až po
               odeslanou připomínku. Radši ukážu vlastní systém, který si
               můžete projít, než cizí loga bez příběhu.

@@ -1,10 +1,10 @@
-// Jediný zdroj pravdy pro sekci Služby na homepage — stejnou konvencí
+// Jediný zdroj pravdy pro sekci Služby na homepage, stejnou konvencí
 // jako lib/automation-areas.ts a lib/faq.ts. Když se obsah služeb mění,
 // mění se tady, ne v komponentě.
 //
 // TYP ZÁMĚRNĚ NEMÁ POLE PRO CENU a nikdy ho mít nebude. Web neuvádí
-// žádnou částku ani rozmezí (viz claude.md, "Co se nikdy nedělá") —
-// tvar dat to má vynucovat, ne až kontrola v code review. Ze stejného
+// žádnou částku ani rozmezí (viz claude.md, "Co se nikdy nedělá").
+// Tvar dat to má vynucovat, ne až kontrola v code review. Ze stejného
 // důvodu tu není ani `href`: karty vedou výhradně na kontaktní sekci a
 // cíl je konstanta v komponentě, ne pole v datech, aby do něj nešlo
 // propašovat odkaz na ceník.
@@ -16,7 +16,7 @@ export type Service = {
 
 // Služby potvrzené uživatelem 2026-08-10 (Fáze 6, viz
 // docs/plan-repozice-2026-08.md, sekce 6). Pět položek místo tří
-// z původního návrhu — uživatel chtěl zobrazit všechny, ne redukovat na
+// z původního návrhu. Uživatel chtěl zobrazit všechny, ne redukovat na
 // tři, takže grid v components/home/Services.tsx počítá s pěti kartami
 // (viz komentář tam k rozvržení posledního řádku).
 export const services: Service[] = [

@@ -3,7 +3,7 @@ import ContactLeadForm from "@/components/home/ContactLeadForm";
 import ContactChannels from "@/components/home/ContactChannels";
 import ContactBookingCta from "@/components/home/ContactBookingCta";
 
-// Finální sekce webu — sloučení dřívějších tří samostatných sekcí
+// Finální sekce webu. Sloučení dřívějších tří samostatných sekcí
 // (Contact + Booking + FinalCTA) do jedné, podle
 // docs/plan-repozice-2026-08.md, sekce 9 ("Umístění").
 //
@@ -11,14 +11,14 @@ import ContactBookingCta from "@/components/home/ContactBookingCta";
 // webem (Hero, Navbar 2×, FAQ, AutomationJourney, /automatizace/[slug]).
 // Díky tomu si sloučení nevyžádalo úpravu ani jednoho z nich.
 //
-// `bg-zinc-900` je tu v souladu s DESIGN.md §5 — je to rozhodovací sekce,
+// `bg-zinc-900` je tu v souladu s DESIGN.md §5. Je to rozhodovací sekce,
 // přesně ten případ, pro který je ta plocha vyhrazená.
 //
 // Pořadí uvnitř: formulář → přímé kanály → rezervace. Úkolem sekce je
 // formulář; kanály jsou úniková cesta a rezervace zatím jen poznámka.
 //
 // Vizuál `LiveSystemFlow` z bývalé Booking sekce se sem záměrně
-// nepřenesl — jeho obsah mluví o ZakazIQ, takže patří do sekce ZakazIQ.
+// nepřenesl. Jeho obsah mluví o ZakazIQ, takže patří do sekce ZakazIQ.
 // Od Fáze 4 (2026-08-09) je zapojený tam (`components/home/ZakazIq.tsx`);
 // sem se nevrací ani jako doplněk, kontakt není místo na popis produktu.
 export default function ContactSection() {

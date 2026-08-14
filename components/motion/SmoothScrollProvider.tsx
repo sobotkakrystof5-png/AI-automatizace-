@@ -9,9 +9,9 @@ const LenisContext = createContext<RefObject<Lenis | null> | null>(null);
 
 // Sdílená instance Lenis pro komponenty, které potřebují programově
 // naskočit na konkrétní scroll pozici (např. klik na krokový ukazatel ve
-// scrollytelling animaci) — přímé `window.scrollTo`/`scrollIntoView` by
+// scrollytelling animaci). Přímé `window.scrollTo`/`scrollIntoView` by
 // s Lenisovým virtuálním scrollem soupeřilo, `lenis.scrollTo` je jediný
-// bezkonfliktní způsob. Vrací ref (ne hodnotu/state) — instance vzniká až
+// bezkonfliktní způsob. Vrací ref (ne hodnotu/state). Instance vzniká až
 // v efektu (SSR/client-only), a čtení přes `.current` v okamžiku kliknutí
 // se obejde bez re-renderu celého stromu při inicializaci/zániku Lenis.
 // `.current` je `null`, dokud Lenis neběží (SSR i prefers-reduced-motion),
@@ -22,7 +22,7 @@ export function useLenis() {
 
 // Lenis je poháněná přes gsap.ticker (ne vlastní requestAnimationFrame
 // smyčkou), aby na stránce běžel jen jeden sdílený animační "hodinový
-// strojek" i tam, kde je zároveň aktivní GSAP ScrollTrigger — dvě nezávislé
+// strojek" i tam, kde je zároveň aktivní GSAP ScrollTrigger. Dvě nezávislé
 // smyčky reagující na scroll by se mohly rozjet mimo synchronizaci.
 export default function SmoothScrollProvider({
   children,

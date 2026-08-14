@@ -1,10 +1,11 @@
 import type { Tool } from "@/lib/tools";
+import AltenoWordmark from "@/components/brand/AltenoWordmark";
 
 function cx(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-// Deska plošných spojů — přehled nástrojů propojených přes ALTENO.
+// Deska plošných spojů. Přehled nástrojů propojených přes ALTENO.
 // Verze 2 (2026-08-10): rozšířeno z 19 na 44 nástrojů na žádost uživatele
 // („mřížku prohloubit, mřížky zúžit") a vizuálně povýšeno z prosté mřížky
 // na desku s hloubkou: tečkovaná textura pájecích bodů na podkladu,
@@ -13,17 +14,17 @@ function cx(...classes: Array<string | false | undefined>) {
 // a hustší (4 breakpointy: 3/4/6/8 sloupců), každá s viditelným názvem.
 //
 // Geometrie je spočítaná tak, aby mřížka vyšla **beze zbytku** na všech
-// breakpointech — proto je nástrojů přesně 44 (lib/tools.ts) a proto se
+// breakpointech, proto je nástrojů přesně 44 (lib/tools.ts) a proto se
 // počet nemění bez přepočtu:
 //   mobil  3 sloupce: uzel 1×1 → 45 buněk = 15 řádků, uzel [2,8] = střed
 //   sm     4 sloupce: uzel 2×2 → 48 buněk = 12 řádků, uzel [2–3,6–7] = střed
 //   md     6 sloupců: uzel 2×2 → 48 buněk =  8 řádků, uzel [3–4,4–5] = střed
 //   lg     8 sloupců: uzel 2×2 → 48 buněk =  6 řádků, uzel [4–5,3–4] = střed
-// Uzel je na každém breakpointu v přesném středu desky — na tom stojí
+// Uzel je na každém breakpointu v přesném středu desky. Na tom stojí
 // sběrnice: kreslí se jako `left-1/2`/`top-1/2` vůči panelu, ne vůči uzlu,
 // takže nepotřebují žádnou per-breakpoint geometrii. Dlaždice jsou lehce
 // průsvitné (`bg-zinc-900/70`), takže sběrnice pod nimi jemně prosvítá a
-// v mezerách svítí naplno — deska tím dostává vrstvy místo plochého vzhledu
+// v mezerách svítí naplno. Deska tím dostává vrstvy místo plochého vzhledu
 // „excelové tabulky".
 //
 // Spojnice mezi dlaždicemi zůstávají ukotvené **uvnitř dlaždic** (viz
@@ -35,7 +36,7 @@ function cx(...classes: Array<string | false | undefined>) {
 type TraceDirection = "right" | "down";
 
 // Spoj z dlaždice doprava a dolů, s pájecí ploškou v místě výstupu.
-// Kreslí se u všech dlaždic včetně krajních — spoj z posledního
+// Kreslí se u všech dlaždic včetně krajních. Spoj z posledního
 // sloupce/řádku doběhne na rámeček panelu (svod na okraj desky).
 function Trace({ direction }: { direction: TraceDirection }) {
   const horizontal = direction === "right";
@@ -75,7 +76,7 @@ function ToolTile({ tool }: { tool: Tool }) {
         </svg>
       ) : (
         // Nástroj bez reálného SVG loga (viz komentář u `connectedTools`
-        // v lib/tools.ts) — prázdná ploška, nikdy vymyšlená náhradní ikona.
+        // v lib/tools.ts). Prázdná ploška, nikdy vymyšlená náhradní ikona.
         <span
           aria-hidden="true"
           className="h-4 w-4 rounded-md border border-dashed border-zinc-600 sm:h-5 sm:w-5"
@@ -92,10 +93,10 @@ function ToolTile({ tool }: { tool: Tool }) {
   );
 }
 
-// Puls putující po sběrnici. Čtyři dráhy — každá pokrývá jednu polovinu
+// Puls putující po sběrnici. Čtyři dráhy, každá pokrývá jednu polovinu
 // příslušné sběrnice (od okraje desky ke středu, nebo od středu k okraji),
 // takže vodorovné pulsy tečou směrem DO uzlu zleva a VEN doprava, svislé
-// shora dolů skrz uzel — dohromady obousměrná výměna dat, ne jednosměrný
+// shora dolů skrz uzel. Dohromady obousměrná výměna dat, ne jednosměrný
 // odsyp. Posouvá se obal přes celou délku dráhy, ne tečka samotná (stejný
 // vzor jako Spojnice v LiveSystemFlow.tsx); obal proto nesmí mít vlastní
 // `translate-*` třídu. `delay` rozhodí čtyři pulsy po 3s cyklu, ať nejedou
@@ -142,11 +143,11 @@ function BusPulse({
   );
 }
 
-// Centrální uzel desky. Není to nástroj, takže je pro čtečky skrytý —
-// sdělení „napojíme se na ně" nese nadpis sekce, ne tenhle odznak.
+// Centrální uzel desky. Není to nástroj, takže je pro čtečky skrytý.
+// Sdělení „napojíme se na ně" nese nadpis sekce, ne tenhle odznak.
 // Od `sm` výš zabírá 2×2 buňky (ohnisko desky), na mobilu 1×1 (2×2 by ve
 // třech sloupcích nevyšlo na střed). Souřadnice viz tabulka v hlavičce
-// souboru — CSS Grid umísťuje explicitně polohované položky první a zbylé
+// souboru. CSS Grid umísťuje explicitně polohované položky první a zbylé
 // dlaždice kolem nich obteče, na pořadí v DOM nezáleží.
 function HubNode() {
   return (
@@ -154,12 +155,24 @@ function HubNode() {
       aria-hidden="true"
       className="relative col-start-2 row-start-8 flex items-center justify-center gap-1.5 rounded-lg border border-brand-turquoise/50 bg-zinc-900 px-1 text-center shadow-[0_0_45px_-10px_var(--color-brand-turquoise)] sm:col-span-2 sm:col-start-2 sm:row-span-2 sm:row-start-6 sm:gap-2 sm:rounded-xl md:col-start-3 md:row-start-4 lg:col-start-4 lg:row-start-3"
     >
-      {/* Statická „kontrolka" — na desce spojů čte jako power LED. Bez
+      {/* Statická „kontrolka". Na desce spojů čte jako power LED. Bez
           animace, takže nevyžaduje reduced-motion větev. */}
       <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-turquoise shadow-[0_0_6px_1px_var(--color-brand-turquoise)]" />
-      <span className="text-xs font-semibold tracking-tight text-zinc-50 sm:text-lg">
-        ALTENO
-      </span>
+      {/* Vektorová značka místo vysázeného textu (2026-08-14). Výšky jsou
+          zvolené tak, aby verzálky zůstaly stejně vysoké jako u dosavadního
+          `text-xs`/`sm:text-lg` (cap Geistu 0,71 em, cap wordmarku 104,54
+          ze 126 jednotek): 10 px ≈ cap 8,3 px proti dřívějším 8,5 px,
+          16 px ≈ cap 13,3 px proti 12,8 px.
+
+          Šířka je tu limit, ne výška: wordmark má poměr 939:126, takže při
+          10 px je 74,5 px široký proti 46,6 px vysázeného „ALTENO" (změřeno
+          z advance widths Geistu). Na mobilu je buňka 1×1 při šířce okna
+          390 px široká 103 px, po `px-1` a kontrolce s mezerou zbývá 83 px,
+          takže se vejde s rezervou ~9 px. Pod ~365 px okna už rezerva mizí,
+          ale nerozbije se to: SVG je flexová položka s `preserveAspectRatio`
+          na výchozím `meet`, takže se úměrně zmenší a zůstane celé, jen
+          menší. Při změně geometrie desky nebo kontrolky tohle přepočítat. */}
+      <AltenoWordmark className="h-2.5 w-auto sm:h-4" />
     </li>
   );
 }
@@ -168,7 +181,7 @@ export default function ToolBoard({ tools }: { tools: Tool[] }) {
   return (
     <div className="[--trace-gap:0.5rem] sm:[--trace-gap:0.625rem] lg:[--trace-gap:0.75rem]">
       <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/40 p-[var(--trace-gap)]">
-        {/* Textura pájecích bodů — jemný rastr teček pod celou deskou.
+        {/* Textura pájecích bodů. Jemný rastr teček pod celou deskou.
             Barva jde přes color-mix z tokenu zinc-700, ne natvrdo. */}
         <div
           aria-hidden="true"
@@ -180,7 +193,7 @@ export default function ToolBoard({ tools }: { tools: Tool[] }) {
           }}
         />
 
-        {/* Ambientní záře pod středem desky — zvýrazňuje uzel ALTENO jako
+        {/* Ambientní záře pod středem desky. Zvýrazňuje uzel ALTENO jako
             ohnisko (klíčový prvek, ne dekorace plošně). Velmi nízké krytí,
             prosvítá skrz průsvitné dlaždice. */}
         <div
@@ -194,7 +207,7 @@ export default function ToolBoard({ tools }: { tools: Tool[] }) {
 
         {/* Dvě sběrnice skrz střed desky. Uzel ALTENO leží na jejich
             průsečíku (viz geometrie v hlavičce), takže vypadají, že z něj
-            vycházejí — ale kreslí se vůči panelu, což drží na všech
+            vycházejí, ale kreslí se vůči panelu, což drží na všech
             breakpointech bez dopočítávání. Dlaždice je překrývají (jsou
             v DOM později), sběrnice tedy svítí v mezerách a jemně prosvítá
             pod dlaždicemi. */}

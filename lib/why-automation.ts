@@ -1,14 +1,14 @@
 // Jediný zdroj pravdy pro srovnání "ruční práce s ChatGPT vs. automatizace"
 // na homepage. `/proc-automatizace` je jen kotva v rámci homepage (web byl
-// sloučen zpět na jednostránkový, viz app/page.tsx) — žádná samostatná
+// sloučen zpět na jednostránkový, viz app/page.tsx). Žádná samostatná
 // podstránka s delší verzí neexistuje, `body` je proto už jen tak dlouhé,
-// kolik uneze babička test 2.0 (1 věta) — srovnávací tabulka níže
+// kolik uneze babička test 2.0 (1 věta). Srovnávací tabulka níže
 // (`comparisonRows`) dodává detail pro 5 z 6 bodů, takže zkrácení tady
 // neztrácí informaci, jen odstraňuje duplicitu s tabulkou.
 export const whyAutomationPoints = [
   {
     title: "Automatizace pracuje za vás, ne vy s ní",
-    body: "Spustí se sama, hned jak nastane událost — bez otevírání ChatGPT.",
+    body: "Spustí se sama, hned jak nastane událost. Bez otevírání ChatGPT.",
   },
   {
     title: "Propojení s vašimi systémy",

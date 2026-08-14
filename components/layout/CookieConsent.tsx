@@ -21,7 +21,7 @@ function getSnapshot() {
   return window.localStorage.getItem(STORAGE_KEY);
 }
 
-// Server neví, co má uživatel uloženo v localStorage — vrátíme "žádná
+// Server neví, co má uživatel uloženo v localStorage. Vrátíme "žádná
 // volba", ať se lišta na klientovi po hydrataci správně schová/zobrazí
 // podle skutečného stavu, beze změny setState() v efektu.
 function getServerSnapshot() {
@@ -52,8 +52,8 @@ export default function CookieConsent() {
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-zinc-400">
-          Používáme nutné cookies pro chod webu a — jen s vaším souhlasem —
-          analytické cookies pro vyhodnocení návštěvnosti. Víc v{" "}
+          Používáme nutné cookies pro chod webu. Analytické cookies pro
+          vyhodnocení návštěvnosti používáme jen s vaším souhlasem. Víc v{" "}
           <Link href="/cookies" className="underline hover:text-zinc-50">
             Zásadách cookies
           </Link>

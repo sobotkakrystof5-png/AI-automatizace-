@@ -3,15 +3,16 @@ import Link from "next/link";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
 import FlowDiagramLazy from "@/components/motion/FlowDiagramLazy";
+import { AltenoInline } from "@/components/brand/AltenoWordmark";
 
-// Interní QA stránka — náhled design tokenů a motion primitiv, ne
+// Interní QA stránka, náhled design tokenů a motion primitiv, ne
 // produkční layout. Historie palety: zjednodušená tmavá paleta
 // (2026-07-17) → brand-gold/brand-electric (Fáze R0/R1, 2026-07-21) →
 // tyrkysovo-mintová paleta R11 (2026-07-22, viz claude.md, sekce "Redesign
 // 2026" → "Paleta R11"), aktuálně běžící produkčně napříč webem.
 // Nepatří do produkční navigace webu.
 export const metadata: Metadata = {
-  title: "Design tokeny — interní náhled",
+  title: "Design tokeny (interní náhled)",
   robots: { index: false, follow: false },
 };
 
@@ -57,14 +58,14 @@ const brandSwatches = [
   {
     token: "brand-turquoise",
     hex: "#2DD4BF",
-    usage: "Primární interaktivní akcent — CTA, aktivní stavy, klíčové zvýraznění",
+    usage: "Primární interaktivní akcent. CTA, aktivní stavy, klíčové zvýraznění",
     className: "bg-brand-turquoise",
     textOn: "text-zinc-950",
   },
   {
     token: "brand-mint",
     hex: "#6EE7B7",
-    usage: "Doplněk k tyrkysové — gradienty, jemné ambientní detaily",
+    usage: "Doplněk k tyrkysové. Gradienty, jemné ambientní detaily",
     className: "bg-brand-mint",
     textOn: "text-zinc-950",
   },
@@ -90,7 +91,7 @@ export default function DesignPreviewPage() {
       <div className="mx-auto max-w-4xl space-y-16">
         <header className="space-y-3 border-b border-zinc-800 pb-8">
           <p className="text-sm font-medium uppercase tracking-wide text-brand-turquoise">
-            Paleta R11 — potvrzeno 2026-07-22, běží produkčně
+            Paleta R11, potvrzeno 2026-07-22, běží produkčně
           </p>
           <h1 className="text-4xl font-semibold tracking-tight">
             Tyrkysovo-mintová paleta
@@ -100,7 +101,7 @@ export default function DesignPreviewPage() {
             <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
               zinc
             </code>
-            . Vlastní jsou čtyři tokeny —{" "}
+            . Vlastní jsou čtyři tokeny,{" "}
             <code className="rounded bg-zinc-900 px-1.5 py-0.5 text-sm">
               brand-turquoise
             </code>{" "}
@@ -172,14 +173,14 @@ export default function DesignPreviewPage() {
         <section className="space-y-4 rounded-xl border border-brand-turquoise/20 bg-zinc-900/40 p-6 sm:p-8">
           <div className="space-y-2">
             <p className="text-sm font-medium uppercase tracking-wide text-brand-turquoise">
-              Pozadí — aktuální stav
+              Pozadí (aktuální stav)
             </p>
             <h2 className="text-2xl font-semibold tracking-tight">
               Ambientní gradient (živě, viz body v globals.css)
             </h2>
             <p className="max-w-2xl text-sm text-zinc-400">
-              Nahrazuje plochou <code className="rounded bg-zinc-950 px-1.5 py-0.5">zinc-950</code>{" "}
-              — dva radiální gradienty (deep-green vlevo nahoře, deep-blue
+              Nahrazuje plochou <code className="rounded bg-zinc-950 px-1.5 py-0.5">zinc-950</code>.{" "}
+              Dva radiální gradienty (deep-green vlevo nahoře, deep-blue
               vpravo) nad téměř černým základem, `background-attachment:
               fixed`, aby se nepřekresloval při scrollu.
             </p>
@@ -193,7 +194,7 @@ export default function DesignPreviewPage() {
               }}
             >
               <span className="font-mono text-xs text-zinc-400">
-                body — living gradient
+                body (living gradient)
               </span>
             </div>
           </div>
@@ -228,22 +229,22 @@ export default function DesignPreviewPage() {
             </p>
             <p className="max-w-xl text-zinc-400">
               Bereme firmám zpátky hodiny strávené opakovanou administrativou
-              — a vracíme je tam, kam patří: k zákazníkům, k růstu, k práci,
+              a vracíme je tam, kam patří: k zákazníkům, k růstu, k práci,
               která vás baví. Písmo: Geist Sans (next/font, beze změny).
             </p>
             <p className="font-mono text-sm text-zinc-500">
-              font-mono ukázka — Geist Mono, pro kód / technické detaily.
+              font-mono ukázka (Geist Mono, pro kód / technické detaily).
             </p>
           </div>
         </section>
 
         <section>
-          <h2 className="mb-6 text-xl font-semibold">Ukázka — hero blok</h2>
+          <h2 className="mb-6 text-xl font-semibold">Ukázka (hero blok)</h2>
           <div className="relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-10 sm:p-14">
             <div className="magic-aurora pointer-events-none absolute -inset-20" aria-hidden />
             <div className="relative">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-zinc-400">
-                ALTENO — AI automatizace
+                <AltenoInline />, AI automatizace
               </p>
               <h3 className="mb-4 max-w-xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
                 Vy řešíte byznys. Rutinu automatizujeme my.
@@ -261,11 +262,11 @@ export default function DesignPreviewPage() {
 
         <section className="space-y-4">
           <h2 className="text-xl font-semibold">
-            Motion foundation — živé demo primitiv
+            Motion foundation (živé demo primitiv)
           </h2>
           <p className="max-w-2xl text-sm text-zinc-400">
-            Vše níže respektuje <code className="rounded bg-zinc-900 px-1.5 py-0.5">prefers-reduced-motion</code> —
-            zkus si to ověřit přepnutím &quot;Emulate CSS media feature
+            Vše níže respektuje <code className="rounded bg-zinc-900 px-1.5 py-0.5">prefers-reduced-motion</code>.
+            Zkus si to ověřit přepnutím &quot;Emulate CSS media feature
             prefers-reduced-motion: reduce&quot; v DevTools a reloadem
             stránky.
           </p>
@@ -273,8 +274,8 @@ export default function DesignPreviewPage() {
           <div className="rounded-lg border border-zinc-800 bg-zinc-900 p-4 text-sm text-zinc-400">
             <strong className="text-zinc-50">Plynulý scroll (Lenis)</strong> je
             aktivní globálně přes <code className="rounded bg-zinc-950 px-1.5 py-0.5">SmoothScrollProvider</code> v{" "}
-            <code className="rounded bg-zinc-950 px-1.5 py-0.5">app/layout.tsx</code> —
-            scrolluj libovolnou stránku webu, ne jen tuhle, ať to poznáš.
+            <code className="rounded bg-zinc-950 px-1.5 py-0.5">app/layout.tsx</code>.
+            Scrolluj libovolnou stránku webu, ne jen tuhle, ať to poznáš.
           </div>
 
           <AnimatedSection className="rounded-lg border border-zinc-800 bg-zinc-900 p-6">
@@ -291,7 +292,7 @@ export default function DesignPreviewPage() {
             </p>
             <p className="text-sm text-zinc-400">
               Redesign 2026 odstranil kurzorem řízený &bdquo;magnetický&ldquo;
-              pohyb tlačítek — CTA teď reaguje jen jemným
+              pohyb tlačítek. CTA teď reaguje jen jemným
               opacity/scale hover stavem, nesleduje kurzor.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
@@ -310,7 +311,7 @@ export default function DesignPreviewPage() {
           <div>
             <p className="mb-3 font-mono text-sm font-semibold">GlowCard</p>
             <p className="mb-4 text-sm text-zinc-400">
-              Zjednodušeno na čistou prezentační komponentu — žádný
+              Zjednodušeno na čistou prezentační komponentu. Žádný
               mouse-tracking spotlight, jen jemné zesvětlení borderu a lift
               na hover.
             </p>
@@ -320,7 +321,7 @@ export default function DesignPreviewPage() {
                   accent=&quot;turquoise&quot;
                 </p>
                 <p className="mt-1 text-sm text-zinc-400">
-                  Najeď myší — border zesvětlí a karta se jemně nadzvedne.
+                  Najeď myší. Border zesvětlí a karta se jemně nadzvedne.
                 </p>
               </GlowCard>
               <GlowCard accent="mint" className="bg-zinc-900 p-6">

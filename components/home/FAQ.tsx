@@ -53,8 +53,8 @@ export default function FAQ() {
             className="text-zinc-50 underline hover:text-brand-turquoise"
           >
             Napište nám
-          </Link>{" "}
-          — ozveme se do 24 hodin.
+          </Link>
+          . Ozveme se do 24 hodin.
         </p>
       </div>
     </section>

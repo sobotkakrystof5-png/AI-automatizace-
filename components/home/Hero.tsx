@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="flex flex-col items-start gap-8">
           {/* Jediné místo na webu, kde se sahá nad text-5xl (viz DESIGN.md
               §3). Zalomení je záměrné, ne náhoda šířky: první věta mluví o
-              zákazníkovi, druhá o nás — proto <span className="block">, ne
+              zákazníkovi, druhá o nás. Proto <span className="block">, ne
               spoléhání na wrap.
 
               Repozice 2026-08-09: nahradila motto „Chytrá automatizace.
@@ -17,8 +17,8 @@ export default function Hero() {
               volbu uživatele (AskUserQuestion ze tří variant): zákazník je
               teď v pořadí první a druhá věta je oznamovací, ne rozkazovací
               („Vy se věnujte…" byl imperativ vůči návštěvníkovi, který zatím
-              nic neodsouhlasil). Sloveso „automatizujeme" muselo zůstat —
-              claim je zároveň <title> (app/layout.tsx), takže bez něj by z
+              nic neodsouhlasil). Sloveso „automatizujeme" muselo zůstat.
+              Claim je zároveň <title> (app/layout.tsx), takže bez něj by z
               title tagu vypadl kořen „automatiz-". Motto je v claude.md
               chráněné tvrzení, tohle není precedens pro další úpravy. */}
           <h1 className="text-5xl font-semibold leading-[0.95] tracking-tight text-zinc-50 sm:text-7xl lg:text-8xl">
@@ -27,13 +27,13 @@ export default function Hero() {
           </h1>
           <p className="max-w-xl text-xl font-medium text-zinc-200 sm:text-2xl">
             Pomáháme firmám soustředit se na to, co má pro jejich byznys
-            skutečně smysl — odebíráme jim rutinní procesy, které za ně
+            skutečně smysl. Odebíráme jim rutinní procesy, které za ně
             zvládne automatizace.
           </p>
           {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
           {/* Jednotná vstupní nabídka celého webu (rozhodnutí 2026-08-05).
               Dřív tu stála celá věta "Rezervovat konzultaci zdarma — popište
-              svůj projekt" — na tlačítku se věta nečte, čte se slib. Doplněk
+              svůj projekt". Na tlačítku se věta nečte, čte se slib. Doplněk
               se přesunul pod tlačítko, kde na něj je místo. */}
           <div className="flex flex-col items-start gap-3">
             <Link
@@ -42,7 +42,7 @@ export default function Hero() {
             >
               Konzultace zdarma
             </Link>
-            {/* Dřív „Popište, co vás brzdí" — formulář se na to od
+            {/* Dřív „Popište, co vás brzdí". Formulář se na to od
                 2026-08-09 už neptá (viz claude.md, „Obchodní tvrzení a
                 leadový formulář"), takže by ta výzva mířila do prázdna. */}
             <p className="text-sm text-zinc-400">

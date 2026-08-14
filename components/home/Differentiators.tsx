@@ -9,23 +9,23 @@ import { usePrefersReducedMotion } from "@/components/motion/usePrefersReducedMo
 const pillars = [
   {
     title: "1. Zajímá nás váš problém, ne váš software",
-    body: "Neptáme se, jaký nástroj chcete propojit. Ptáme se, co vás na provozu skutečně brzdí — a teprve pak hledáme řešení. Automatizace bez reálného problému je jen drahá hračka.",
-    tagline: "Automatizujeme to, co vás brzdí — ne to, co je trendy.",
+    body: "Neptáme se, jaký nástroj chcete propojit. Ptáme se, co vás na provozu skutečně brzdí, a teprve pak hledáme řešení. Automatizace bez reálného problému je jen drahá hračka.",
+    tagline: "Automatizujeme to, co vás brzdí, ne to, co je trendy.",
   },
   {
     title: "2. Nezmizíme po spuštění",
-    body: "Automatizace se dřív nebo později rozbije — API se změní, firma vyroste. Většina dodavatelů v tu chvíli mlčí. My máme jasně definovanou podporu: víte předem, co se stane a jak rychle zareagujeme.",
+    body: "Automatizace se dřív nebo později rozbije. API se změní, firma vyroste. Většina dodavatelů v tu chvíli mlčí. My máme jasně definovanou podporu: víte předem, co se stane a jak rychle zareagujeme.",
     tagline: "Podpora po spuštění je součást dohody, ne laskavost.",
   },
   {
     title: "3. Řekneme vám i to, co se automatizovat nevyplatí",
-    body: "Nejcennější není konzultant, který postaví cokoliv chcete — je to ten, kdo vás odradí od funkce bez návratnosti. Radši vám ušetříme peníze, než prodáme něco, co nevyužijete.",
+    body: "Nejcennější není konzultant, který postaví cokoliv chcete. Je to ten, kdo vás odradí od funkce bez návratnosti. Radši vám ušetříme peníze, než prodáme něco, co nevyužijete.",
     tagline: "Stavíme jen to, co se vám vrátí.",
   },
   {
-    title: "4. Naši jednoduchost nemusíte věřit na slovo — zažijete ji",
+    title: "4. Naši jednoduchost nemusíte věřit na slovo, zažijete ji",
     body: "Než s námi promluvíte, projdete si rezervaci přes náš vlastní systém ZakazIQ: termín, potvrzení, připomínka SMS i e-mailem. Žádné volání, žádné čekání. Přesně takhle bude fungovat i vaše automatizace.",
-    tagline: "Jednoduchost, kterou napřed zažijete — ne jen slíbíme.",
+    tagline: "Jednoduchost, kterou napřed zažijete, ne jen slíbíme.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function Differentiators() {
 
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           {/* Svisle na všech šířkách. Dřív to byl na mobilu vodorovný
-              `overflow-x-auto` pás se čtyřmi celými větami — bez jakéhokoli
+              `overflow-x-auto` pás se čtyřmi celými větami, bez jakéhokoli
               náznaku, že se dá posouvat, takže třetí a čtvrtý pilíř nikdo
               nenašel. */}
           <div
@@ -104,7 +104,7 @@ export default function Differentiators() {
 
           {/* Jediný panel se přepíná obsahem, takže má stabilní `id`, na
               které míří `aria-controls` všech záložek. `tabIndex={0}` ho
-              dělá dosažitelným tabulátorem hned po záložkách — bez toho by
+              dělá dosažitelným tabulátorem hned po záložkách. Bez toho by
               se k rozkliku „Proč" uživatel na klávesnici nedostal. */}
           <div
             role="tabpanel"

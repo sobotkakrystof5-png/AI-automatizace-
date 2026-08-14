@@ -5,6 +5,7 @@ import { whyAutomationPoints, comparisonRows } from "@/lib/why-automation";
 import { openAiIconPath } from "@/lib/brand-icons";
 import AnimatedSection from "@/components/motion/AnimatedSection";
 import GlowCard from "@/components/motion/GlowCard";
+import AltenoWordmark from "@/components/brand/AltenoWordmark";
 import {
   BoltIcon,
   ChartIcon,
@@ -17,22 +18,22 @@ import {
 const MANUAL_LABEL = "Ruční práce s ChatGPT";
 const AUTOMATED_LABEL = "Automatizace na míru";
 
-// Ikona ke každé výhodě — karta má nést myšlenku i bez čtení textu
+// Ikona ke každé výhodě. Karta má nést myšlenku i bez čtení textu
 // (babička test 2.0, "vizuál nese myšlenku"). Pořadí odpovídá
 // `whyAutomationPoints` v lib/why-automation.ts; když se tam bod přidá
 // nebo přeuspořádá, musí se srovnat i tohle pole.
 const POINT_ICONS: ReadonlyArray<ComponentType<SVGProps<SVGSVGElement>>> = [
   BoltIcon, // spustí se sama, hned jak nastane událost
   LinkIcon, // propojení s vašimi systémy
-  RepeatIcon, // konzistence — běží pokaždé stejně
+  RepeatIcon, // konzistence, běží pokaždé stejně
   ShieldIcon, // bezpečnost dat
   ChartIcon, // škáluje se
   ClockIcon, // ušetřený čas
 ];
 
 // Oficiální monochrome mark OpenAI (viz lib/brand-icons.ts). Vykresluje se
-// v `zinc`, ne ve firemních barvách OpenAI a ne v naší tyrkysové —
-// označuje porovnávaný nástroj, netvrdí partnerství ani schválení. Je
+// v `zinc`, ne ve firemních barvách OpenAI a ne v naší tyrkysové.
+// Označuje porovnávaný nástroj, netvrdí partnerství ani schválení. Je
 // `aria-hidden`, protože "ChatGPT" stojí hned vedle jako text.
 function OpenAiMark({ className }: { className?: string }) {
   return (
@@ -42,13 +43,30 @@ function OpenAiMark({ className }: { className?: string }) {
   );
 }
 
-// Wordmark značky, ne vymyšlené logo — ALTENO žádný samostatný symbol
-// nemá (viz Navbar, kde je taky jen text). Tyrkysová je tu na místě:
-// označuje klíčové sdělení sekce, ne dekoraci.
+// Wordmark značky, ne vymyšlené logo. Od 2026-08-14 vektorová značka místo
+// vysázeného textu, v barvách loga (světlá písmena, tyrkysový akcent v „A")
+// místo dosavadní celotyrkysové. Tyrkysová ze štítku nemizí: drží ji dál
+// rámeček a podklad pilulky, takže pořád označuje klíčové sdělení sekce.
+//
+// Výška 10 px odpovídá shodě verzálek s okolním `text-xs` (cap Geistu
+// 0,71 em, cap wordmarku 104,54 ze 126 jednotek viewBoxu).
+//
+// Do hlavičky třetího sloupce se řádek nevejde v žádné velikosti, a je to
+// tak i dnes. Změřeno, ne odhadnuto: na `md` (768 px) je kontejner
+// `max-w-6xl` po odečtení `sm:px-8` široký 704 px, sloupec 39 % z toho je
+// 274,6 px a po `px-6` buňky zbývá 226,6 px. Popisek „Automatizace na míru"
+// má v Geistu 14 px přesně 142,4 px (advance widths z woff2), takže vysázené
+// „ALTENO" v pilulce (46,6 + 20 px) vycházelo na 223,6 px, tedy 3 px pod
+// limitem. Wordmark má poměr 939:126, takže i při 8 px by řádek přetekl.
+//
+// Proto má sloupec `flex-wrap`: štítek se zalomí nad popisek místo aby
+// vytekl z buňky. Zalomení se týká jen pásma zhruba 768 až 830 px, výš se
+// řádek vejde vcelku. Volím tedy čitelnou velikost a řízené zalomení, ne
+// nečitelnou značku kvůli ~60px pásmu šířky.
 function AltenoMark() {
   return (
-    <span className="rounded-full border border-brand-turquoise/40 bg-brand-turquoise/10 px-2.5 py-0.5 text-xs font-semibold tracking-tight text-brand-turquoise">
-      ALTENO
+    <span className="inline-flex items-center rounded-full border border-brand-turquoise/40 bg-brand-turquoise/10 px-2.5 py-1">
+      <AltenoWordmark className="h-2.5 w-auto" title="ALTENO" />
     </span>
   );
 }
@@ -106,7 +124,7 @@ export default function WhyAutomation() {
             Proč automatizace, a ne jen ChatGPT
           </h2>
           <p className="mt-4 max-w-3xl text-zinc-400">
-            {"ChatGPT odpoví, jen když se zeptáte — nespustí se sám ani nezná vaše systémy."}
+            {"ChatGPT odpoví, jen když se zeptáte. Nespustí se sám ani nezná vaše systémy."}
           </p>
         </AnimatedSection>
 
@@ -123,7 +141,7 @@ export default function WhyAutomation() {
                   {/* Světlo v rohu karty. Absolutně polohovaný sourozenec by
                       se jinak vykreslil PŘES text (pozicované prvky malují
                       nad neplovoucím obsahem), proto mají nadpis, linka i
-                      popis `relative` — pak rozhoduje pořadí v DOM. */}
+                      popis `relative`. Pak rozhoduje pořadí v DOM. */}
                   <span
                     aria-hidden
                     className="pointer-events-none absolute -left-14 -top-14 h-36 w-36 rounded-full bg-brand-turquoise/10 blur-3xl transition-colors duration-500 group-hover:bg-brand-turquoise/20"
@@ -148,19 +166,19 @@ export default function WhyAutomation() {
           })}
         </div>
 
-        {/* Srovnání záměrně NENÍ `<table>` s rámečky a zebrou — vypadalo to
+        {/* Srovnání záměrně NENÍ `<table>` s rámečky a zebrou. Vypadalo to
             jako export z Excelu. Sémantiku (řádek = kritérium, dvě
             porovnávané hodnoty) nese ARIA `table`/`rowheader`/`cell`, layout
             dělá grid. Diptych ze dvou panelů na pozadí: neutrální pro ruční
             práci, podsvícený pro automatizaci. Panely jsou samostatné
-            plochy, ne karta v kartě — proto tu není žádný společný rámeček
+            plochy, ne karta v kartě. Proto tu není žádný společný rámeček
             navíc. Sloupce jsou v procentech a bez mezery, aby polohování
-            panelů (22 % / 39 % / 39 %) sedělo přesně — když se změní jedno,
+            panelů (22 % / 39 % / 39 %) sedělo přesně. Když se změní jedno,
             musí se změnit i druhé.
 
             Pohyb: celý blok se odhalí JEDNOU, jako jeden celek. Dřív měl
             každý z pěti řádků vlastní `whileInView` se zpožděním `i * 0.07`,
-            takže při scrollu naskakovaly postupně — pět samostatných
+            takže při scrollu naskakovaly postupně. Pět samostatných
             spouštěčů na jednom bloku působilo trhaně, ne plynule. Stagger
             dává smysl u mřížky karet, kde jsou dlaždice vedle sebe; u řádků
             pod sebou, kterými se projíždí, ne. */}
@@ -171,7 +189,7 @@ export default function WhyAutomation() {
           />
           {/* Zvednutí ze tmy dělá hlavně výplň a ohraničení panelu; záře je
               jen doplněk. Velký rozostřený halo (0 0 60px -14px) vypadal
-              jako neon, což je v DESIGN.md §7 na zákazovém seznamu — proto
+              jako neon, což je v DESIGN.md §7 na zákazovém seznamu. Proto
               vysoký záporný spread, který světlo drží těsně u hrany. Barva
               jde z tokenu, ne z natvrdo zapsané rgba (stejný postup jako u
               pulsu v MiniProcessDiagram.tsx). */}
@@ -182,7 +200,7 @@ export default function WhyAutomation() {
 
           {/* Na mobilu není místo na hlavičku sloupců, ale bez ní by čtenář
               nevěděl, čí je která řádka. Opakovat štítek u každé z pěti
-              položek byl vizuální šum — nese to jednou legenda a dál už jen
+              položek byl vizuální šum. Nese to jednou legenda a dál už jen
               křížek/fajfka a podsvícení. `aria-hidden`, protože odečítač
               dostane totéž ze `sr-only` štítků uvnitř buněk. */}
           <div
@@ -206,7 +224,7 @@ export default function WhyAutomation() {
             aria-label={`Srovnání: ${MANUAL_LABEL} vs. ${AUTOMATED_LABEL}`}
             className="relative"
           >
-            {/* Hlavička jen od `md` výš. Na mobilu ji nahradí legenda výše —
+            {/* Hlavička jen od `md` výš. Na mobilu ji nahradí legenda výše.
                 `display: none` prvek stejně nečte ani odečítač, takže se
                 obsah nezdvojuje. */}
             <div role="rowgroup" className="hidden md:block">
@@ -226,7 +244,7 @@ export default function WhyAutomation() {
                 </div>
                 <div
                   role="columnheader"
-                  className="flex items-center gap-2.5 px-6 pb-5 pt-6 text-sm font-semibold text-zinc-50"
+                  className="flex flex-wrap items-center gap-2.5 px-6 pb-5 pt-6 text-sm font-semibold text-zinc-50"
                 >
                   <AltenoMark />
                   {AUTOMATED_LABEL}
@@ -245,7 +263,7 @@ export default function WhyAutomation() {
                       : ""
                   }`}
                 >
-                  {/* Kritérium je nadpis řádku, ne popisek — proto je z celého
+                  {/* Kritérium je nadpis řádku, ne popisek. Proto je z celého
                       řádku nejvýraznější. Dřív to byla mono verzálka 12 px s
                       tracking 0.18em v `zinc-400`: na tmavém podkladu se to
                       špatně luštilo a rozšířené mezery mezi písmeny čitelnost
@@ -308,7 +326,7 @@ export default function WhyAutomation() {
           Prostor pro to, co má smysl.
         </p>
         <p className="mt-2 text-zinc-400">
-          Automatizace odstraní zdlouhavé rutiny — ušetříte čas i peníze.
+          Automatizace odstraní zdlouhavé rutiny. Ušetříte čas i peníze.
         </p>
       </div>
     </section>

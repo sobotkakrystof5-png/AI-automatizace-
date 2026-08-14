@@ -19,7 +19,7 @@ function getServerSnapshot() {
 }
 
 // Reaktivní zjištění dotykového/hrubého pointeru (myš vs. prst) přes
-// useSyncExternalStore — bezpečné pro SSR (getServerSnapshot) a bez
+// useSyncExternalStore, bezpečné pro SSR (getServerSnapshot) a bez
 // setState-in-effect cascading-render varování, na rozdíl od
 // matchMedia().matches čteného v useEffect + useState.
 export function useCoarsePointer() {

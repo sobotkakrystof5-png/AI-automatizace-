@@ -3,19 +3,19 @@ import { automationAreas } from "@/lib/automation-areas";
 import { SITE_URL } from "@/lib/constants";
 
 // /design-preview je interní QA route (Fáze 1) a nepatří do produkčního
-// webu — viz i její vlastní `robots: { index: false }`. Vynechána i
+// webu. Viz i její vlastní `robots: { index: false }`. Vynechána i
 // odsud, aby ji Google vůbec nenašel přes sitemap.
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     { path: "/", changeFrequency: "monthly" as const, priority: 1 },
-    // /o-mne (Fáze 5) je jediná podstránka, která nese příběh zakladatele
-    // — pro důvěryhodnost webu je hned po homepage nejdůležitější, proto
+    // /o-mne (Fáze 5) je jediná podstránka, která nese příběh zakladatele.
+    // Pro důvěryhodnost webu je hned po homepage nejdůležitější, proto
     // priorita 0.8, výš než tematické stránky automatizací.
     { path: "/o-mne", changeFrequency: "yearly" as const, priority: 0.8 },
   ];
 
-  // /vop, /ochrana-osobnich-udaju a /cookies jsou záměrně vynechané —
-  // mají `robots: { index: false }` (právní text je zatím placeholder,
+  // /vop, /ochrana-osobnich-udaju a /cookies jsou záměrně vynechané.
+  // Mají `robots: { index: false }` (právní text je zatím placeholder,
   // viz claude.md), takže by v sitemapu vysílaly protichůdný signál
   // ("indexuj mě") vůči vlastní meta direktivě stránky.
 

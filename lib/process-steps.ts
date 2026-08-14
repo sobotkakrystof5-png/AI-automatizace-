@@ -1,4 +1,4 @@
-// Jediný zdroj pravdy pro kroky spolupráce — zobrazuje je sekce
+// Jediný zdroj pravdy pro kroky spolupráce. Zobrazuje je sekce
 // "Jak spolupráce probíhá" (components/home/ProcessSteps.tsx).
 //
 // Repozice 2026-08-09: přepsáno ze 6 kroků na 5 podle
@@ -10,7 +10,7 @@
 //    Nechávat nezobrazovaný text v datech znamená, že se tiše rozejde
 //    s tím, co je na stránce.
 //  - `title` už NEOBSAHUJE pořadové číslo. Dřív bylo "1. Konzultace
-//    zdarma" a komponenta k tomu renderovala vlastní "01" — číslo se
+//    zdarma" a komponenta k tomu renderovala vlastní "01". Číslo se
 //    tedy zobrazovalo dvakrát. Číslování vlastní komponenta; přehození
 //    pořadí kroků tak nevyžaduje ruční přepisování čísel.
 export type ProcessStep = {

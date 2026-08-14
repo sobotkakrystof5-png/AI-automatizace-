@@ -12,10 +12,10 @@ type MiniProcessDiagramProps = {
   icons: MiniProcessIcons;
 };
 
-// Malá vizualizace "vstup → zpracování → výstup" — hlavní vizuální prvek
+// Malá vizualizace "vstup → zpracování → výstup", hlavní vizuální prvek
 // karty oblasti automatizace (Fáze R5), ne doplněk k textu. Tři uzly
 // propojené linkou v brand-turquoise (stejný akcent jako svislá linka v
-// ProcessSteps.tsx), po ní nepřetržitě putuje puls — čistě CSS, bez JS.
+// ProcessSteps.tsx), po ní nepřetržitě putuje puls, čistě CSS, bez JS.
 // Pod `prefers-reduced-motion` puls úplně mizí (viz globals.css), uzly a
 // spojnice zůstávají, takže myšlenka "tok probíhá sám" je čitelná i bez
 // pohybu.
@@ -27,7 +27,7 @@ export default function MiniProcessDiagram({ icons }: MiniProcessDiagramProps) {
     >
       <div className="absolute inset-x-5 top-1/2 h-px -translate-y-1/2 bg-zinc-700" />
       <div className="absolute inset-x-5 top-1/2 h-px -translate-y-1/2 overflow-hidden">
-        {/* Posouvá se obal přes celou šířku dráhy, ne samotná tečka —
+        {/* Posouvá se obal přes celou šířku dráhy, ne samotná tečka.
             `flow-pulse` animuje `transform`, a translateX(%) se počítá z
             velikosti animovaného prvku. Tečka u levého okraje obalu tak
             urazí přesně délku dráhy. */}

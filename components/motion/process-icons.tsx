@@ -3,10 +3,10 @@ import type { SVGProps } from "react";
 // Jednoduché, vlastní kreslené generické glyfy (ne z ikonové knihovny,
 // ne odvozené z konkrétní značky). Původně jen pro MiniProcessDiagram na
 // kartách oblastí automatizace (Fáze R5), od 2026-08-05 i pro karty výhod
-// v WhyAutomation.tsx — proto je sada širší než "vstup → zpracování →
+// v WhyAutomation.tsx, proto je sada širší než "vstup → zpracování →
 // výstup". Sdílený stylový základ (stroke, zaoblené konce) drží všechny
 // glyfy vizuálně konzistentní; nové ikony se přidávají sem, ne lokálně do
-// komponent. Brand loga sem NEPATŘÍ — ta jdou přes `simple-icons`,
+// komponent. Brand loga sem NEPATŘÍ, ta jdou přes `simple-icons`,
 // případně `lib/brand-icons.ts`.
 const BASE_PROPS = {
   viewBox: "0 0 24 24",

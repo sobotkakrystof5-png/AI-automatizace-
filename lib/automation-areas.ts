@@ -4,10 +4,10 @@
 // aby text nemohl mezi oběma místy zdrift.ovat.
 //
 // `lead` zůstává plnohodnotná verze pro podstránku (H1 podnadpis) a SEO
-// meta popis (`generateMetadata` v app/automatizace/[slug]/page.tsx) —
-// ta se nemění. `cardLead` je nová, samostatná zkrácená verze (≤ ~12
+// meta popis (`generateMetadata` v app/automatizace/[slug]/page.tsx).
+// Ta se nemění. `cardLead` je nová, samostatná zkrácená verze (≤ ~12
 // slov) jen pro homepage kartu (Fáze R4/R5 redesignu, jazykový standard
-// "babička test 2.0") — homepage karta je jen "trailer", plný text
+// "babička test 2.0"). Homepage karta je jen "trailer", plný text
 // zůstává na podstránce.
 export type AutomationArea = {
   slug: string;
@@ -22,7 +22,7 @@ export const automationAreas: AutomationArea[] = [
   {
     slug: "marketing",
     title: "Marketing",
-    lead: "Od zachycení leadu až po vyhodnocení kampaně — bez ručního přepisování mezi nástroji.",
+    lead: "Od zachycení leadu až po vyhodnocení kampaně. Bez ručního přepisování mezi nástroji.",
     cardLead: "Od nového leadu až po report kampaně, automaticky.",
     points: [
       "Nový lead z formuláře automaticky obohacen, ohodnocen a zapsán do CRM",
@@ -35,10 +35,10 @@ export const automationAreas: AutomationArea[] = [
   {
     slug: "interni-procesy",
     title: "Interní procesy",
-    lead: "Schválení, předávání úkolů a firemní administrativa, která proběhne sama — ve správný čas, správné osobě.",
+    lead: "Schválení, předávání úkolů a firemní administrativa, která proběhne sama. Ve správný čas, správné osobě.",
     cardLead: "Schválení a úkoly proběhnou samy, ve správný čas.",
     points: [
-      "Schvalovací workflow pro faktury, objednávky nebo dovolené — bez mailového ping-pongu",
+      "Schvalovací workflow pro faktury, objednávky nebo dovolené, bez mailového ping-pongu",
       "Onboarding nových zaměstnanců (přístupy, úkoly, dokumenty) spuštěný jedním krokem",
       "Automatické notifikace a předávání úkolů mezi odděleními",
       "Sledování termínů a automatické připomínky odpovědným osobám",
@@ -61,7 +61,7 @@ export const automationAreas: AutomationArea[] = [
   {
     slug: "prace-s-daty",
     title: "Práce s daty",
-    lead: "Data z různých systémů na jednom místě, čistá a připravená k použití — bez ruční práce a chyb z přepisování.",
+    lead: "Data z různých systémů na jednom místě, čistá a připravená k použití. Bez ruční práce a chyb z přepisování.",
     cardLead: "Data ze všech systémů, čistá a na jednom místě.",
     points: [
       "Sběr dat z více zdrojů (CRM, e-shop, fakturační systém) do jednoho přehledu",

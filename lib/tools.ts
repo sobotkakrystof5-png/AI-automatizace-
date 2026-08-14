@@ -50,36 +50,36 @@ import {
 
 // Jediný zdroj dat pro nástroje na desce spojů (VerifiedSystems.tsx →
 // ToolBoard.tsx) a pro uzly hero diagramu (AutomationJourney.tsx, bere si
-// odsud 5 konkrétních slugů přes find — proto se existující slugy nikdy
+// odsud 5 konkrétních slugů přes find, proto se existující slugy nikdy
 // nepřejmenovávají).
 //
 // Rozšířeno na 44 nástrojů 2026-08-10 na žádost uživatele („přes 40
 // nástrojů… které mají přímou integraci s n8n"). Kritérium pro zařazení:
-// nástroj má **oficiální n8n node** — ověřeno 2026-08-10 přes oficiální
+// nástroj má **oficiální n8n node**, ověřeno 2026-08-10 přes oficiální
 // n8n MCP (search_nodes), ne odhadem. Jediná výjimka je Google Meet
-// (vlastní node nemá, řeší se přes node Google Calendar) — je to ale
+// (vlastní node nemá, řeší se přes node Google Calendar). Je to ale
 // položka schválená už 2026-07-21, takže se bez souhlasu neodebírá.
 // Dlaždice „Microsoft 365" zastupuje rodinu Microsoft nodes v n8n
-// (Outlook, Excel, Teams, OneDrive, To Do) — jedna dlaždice, ne pět,
+// (Outlook, Excel, Teams, OneDrive, To Do). Jedna dlaždice, ne pět,
 // protože FA má jen souhrnné logo Microsoft.
 //
 // Loga: primárně `simple-icons` (oficiální monochrome brand ikony,
 // viewBox 24×24). LinkedIn, Slack, Salesforce a Microsoft v simple-icons
-// nejsou (odstraněny kvůli trademark policy) — pro ně se 2026-08-10 se
+// nejsou (odstraněny kvůli trademark policy). Pro ně se 2026-08-10 se
 // souhlasem uživatele přidal balíček `@fortawesome/free-brands-svg-icons`
 // (stejný princip: surová SVG path data, žádné komponenty; viewBox se
 // liší per ikona, proto pole `viewBox` níže). **Tím se ruší rozhodnutí
-// z 2026-07-22 Slack úplně vynechat** — tehdy byla loga bez viditelných
+// z 2026-07-22 Slack úplně vynechat**. Tehdy byla loga bez viditelných
 // názvů a bez alternativního zdroje; teď má každá dlaždice název a FA
 // poskytuje skutečné logo, uživatel návrat Slacku výslovně schválil.
-// Pořád platí: nikdy nekreslit vymyšlenou napodobeninu loga — nástroj,
+// Pořád platí: nikdy nekreslit vymyšlenou napodobeninu loga. Nástroj,
 // pro který nemá logo ani simple-icons, ani FA brands, se buď vynechá,
 // nebo dostane přiznanou textovou dlaždici (path: null).
 export type Tool = {
   slug: string;
   name: string;
   path: string | null;
-  /** SVG viewBox — simple-icons mají 24×24 (default), FA brands vlastní. */
+  /** SVG viewBox, simple-icons mají 24×24 (default), FA brands vlastní. */
   viewBox?: string;
 };
 
@@ -95,7 +95,7 @@ function fa(icon: IconDefinition): Pick<Tool, "path" | "viewBox"> {
 // Pořadí = pořadí dlaždic na desce (mřížka se plní po řádcích). Nástroje
 // jsou seskupené po rodinách (Google → komunikace → sociální sítě → práce
 // a projekty → e-commerce a platby → CRM a podpora → marketing a web),
-// aby oko četlo shluky souvisejících log, ne náhodnou koláž — vizuální
+// aby oko četlo shluky souvisejících log, ne náhodnou koláž. Vizuální
 // členění bez nadpisů kategorií, které uživatel u tohoto konceptu nechtěl.
 export const connectedTools: Tool[] = [
   // Google

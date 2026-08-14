@@ -16,7 +16,7 @@ import {
   SparkIcon,
 } from "@/components/motion/process-icons";
 
-// Tři ikony na míru dané oblasti (vstup → zpracování → výstup) — Fáze
+// Tři ikony na míru dané oblasti (vstup → zpracování → výstup). Fáze
 // R5. Karta má dávat smysl i bez čtení textu, viz
 // docs/redesign-kickoff-prompt.md, Fáze R5.
 const AREA_ICONS: Record<AutomationArea["slug"], MiniProcessIcons> = {

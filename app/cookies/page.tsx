@@ -8,7 +8,7 @@ export const metadata = {
     path: "/cookies",
     title: "Zásady cookies | ALTENO",
     description:
-      "Zásady používání cookies na webu ALTENO — dokument se připravuje a čeká na finální kontrolu advokátem.",
+      "Zásady používání cookies na webu ALTENO. Dokument se připravuje a čeká na finální kontrolu advokátem.",
   }),
   robots: { index: false, follow: true },
 };
@@ -34,7 +34,7 @@ export default function CookiesPage() {
             Technická poznámka:
           </strong>{" "}
           web aktuálně nespouští žádné analytické ani marketingové skripty.
-          Jediná hodnota, kterou si ukládáme, je vaše volba v cookie liště —
+          Jediná hodnota, kterou si ukládáme, je vaše volba v cookie liště,
           uložená lokálně ve vašem prohlížeči (localStorage), ne jako
           cookie třetí strany. Pokud v budoucnu doplníme analytiku, spustí se
           až po vašem výslovném souhlasu.

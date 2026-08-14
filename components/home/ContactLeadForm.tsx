@@ -10,7 +10,7 @@ const FIELD_CLASS =
 
 // Jediná klientská část kontaktní sekce. Oddělená od obalu schválně:
 // `useActionState` vyžaduje "use client", ale kontaktní dlaždice ani
-// booking poznámka klienta nepotřebují — kdyby byly ve stejném souboru,
+// booking poznámka klienta nepotřebují. Kdyby byly ve stejném souboru,
 // putovaly by do klientského bundlu úplně zbytečně.
 //
 // Pole formuláře a jejich vazba na DB: viz claude.md, sekce "Obchodní
@@ -29,7 +29,7 @@ export default function ContactLeadForm() {
       >
         <p className="font-semibold text-zinc-50">Díky, mám to.</p>
         <p className="mt-2 text-zinc-400">
-          Ozvu se osobně, nejpozději do 24 hodin — každý den v týdnu.
+          Ozvu se osobně, nejpozději do 24 hodin, každý den v týdnu.
         </p>
       </div>
     );
@@ -149,7 +149,7 @@ export default function ContactLeadForm() {
       </button>
 
       <p className="text-sm text-zinc-400">
-        Bez závazků. Ozvu se osobně, nejpozději do 24 hodin — každý den
+        Bez závazků. Ozvu se osobně, nejpozději do 24 hodin, každý den
         v týdnu. Vaše údaje nikam neputují mimo tuhle konverzaci.
       </p>
     </form>

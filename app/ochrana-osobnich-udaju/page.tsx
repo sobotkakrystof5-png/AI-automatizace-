@@ -8,7 +8,7 @@ export const metadata = {
     path: "/ochrana-osobnich-udaju",
     title: "Ochrana osobních údajů | ALTENO",
     description:
-      "Zásady ochrany osobních údajů ALTENO — dokument se připravuje a čeká na finální kontrolu advokátem.",
+      "Zásady ochrany osobních údajů ALTENO. Dokument se připravuje a čeká na finální kontrolu advokátem.",
   }),
   robots: { index: false, follow: true },
 };

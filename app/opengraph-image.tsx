@@ -2,16 +2,16 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-// Sdílený OG/Twitter obrázek pro celý web (root-level file convention —
-// podstránky ho dědí, pokud nemají vlastní opengraph-image). Generuje se
+// Sdílený OG/Twitter obrázek pro celý web (root-level file convention.
+// Podstránky ho dědí, pokud nemají vlastní opengraph-image). Generuje se
 // jednou při buildu (žádný dynamický segment), takže náklad na build je
 // zanedbatelný. Barvy odpovídají design systému (zinc-950 pozadí,
-// brand-turquoise #2DD4BF akcent) — žádná nová barva navíc.
+// brand-turquoise #2DD4BF akcent), žádná nová barva navíc.
 //
 // Wordmark je od rebrandu 2026-08-14 skutečné logo, ne vysázený text: řez
 // loga není žádným písmem projektu reprodukovatelný a OG náhled je často
 // první, co člověk ze značky uvidí. Soubor se načítá ze souborového systému
-// a vkládá jako data URI — satori neumí relativní URL a obrázek musí být
+// a vkládá jako data URI. Satori neumí relativní URL a obrázek musí být
 // v generovaném PNG zapečený, ne stažený za běhu.
 //
 // Použit je wordmark bez hesel, ne `alteno-logo-claim.png`: pod logem už
