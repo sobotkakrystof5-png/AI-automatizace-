@@ -50,6 +50,46 @@ přejmenování:
   jen tam, kde mluví firma.
 - Nepřidávat závislosti, neměnit tokeny v `app/globals.css`.
 
+## Stav k 2026-08-14 — rebrand dokončen, pět otevřených bodů
+
+Commity: `c54f560` (assety + hooky), `109e3f0` (přejmenování, 61 nahrazení
+v 29 souborech), `acca176` (nasazení loga). `npm run lint` i `npm run build`
+procházejí.
+
+**Čeká na rozhodnutí uživatele — nic z toho neprovádět bez souhlasu:**
+
+1. **Rod názvu ALTENO v češtině.** „AvenIQ“ se choval jako mužský neživotný
+   („vznikl“), ale „ALTENO“ končí na -O a čtenář ho přirozeně přečte jako
+   střední rod („vzniklo“, jako Tesco). Jsou to **tři místa a musí se
+   změnit najednou**, jinak se homepage a podstránka rozejdou:
+   `components/home/About.tsx` (~ř. 67), `app/o-mne/page.tsx` (~ř. 183)
+   a `app/o-mne/page.tsx` (~ř. 33, meta description — text viditelný ve
+   výsledcích vyhledávání). Až padne rozhodnutí, zapsat ho do `CLAUDE.md`.
+2. **`STORAGE_KEY` / `CONSENT_EVENT` v `components/layout/CookieConsent.tsx`**
+   pořád nesou `aveniq-…`. Přejmenování je jednořádkové a lokální, ale
+   **zahodí uložený souhlas všem vracejícím se návštěvníkům** a cookie lišta
+   se jim objeví znovu. Při změně domény je cena nulová (`localStorage` je
+   vázaný na origin), takže to má smysl řešit společně s bodem 3.
+3. **Doména.** `SITE_URL` je pořád placeholder `[DOPLNIT_DOMENU_PRED_DEPLOYEM]`
+   v `lib/constants.ts`. V `.env.example` byl příklad `www.aveniq.cz`
+   nahrazen neutrálním `www.example.cz`, ne odhadem nové adresy.
+
+**Nalezené existující vady — nesouvisí s rebrandem, potvrzeno i na verzi
+před ním:**
+
+4. **Tlačítko mobilního menu se nevykresluje.** Na šířce 390 px není
+   v hlavičce vidět (v DOM je, ale nevykreslí ani pixel); na 700 px se
+   vykreslí normálně. Ověřeno i na `Navbar.tsx` z commitu `109e3f0`, tedy
+   **před** nasazením loga — není to regrese rebrandu. Že jde o skutečnou
+   vadu a ne o artefakt headless prohlížeče, potvrdil test: samostatné SVG
+   se stejným `stroke`/`fill="none"` se v témže prohlížeči vykreslí.
+   Dopad je vážný — na mobilu se nejde dostat do navigace.
+5. **Navigace se na 1024 px láme na dva řádky.** Osm odkazů plus CTA se do
+   šířky nevejde. Logo situaci mírně zhoršuje (179 px proti ~85 px
+   původního textu), ale výpočet ukazuje, že to bylo na hraně už předtím.
+   Řešení (méně odkazů, jiný breakpoint pro mobilní menu) je zásah do
+   struktury navigace, tedy věc k odsouhlasení, ne tichá oprava.
+
 ## Průběh — záznamy agentů
 
 Formát: kdo, co, na co narazil, co zbývá.
