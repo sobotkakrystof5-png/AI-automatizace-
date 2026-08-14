@@ -23,7 +23,7 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${absoluteUrl("/")}#organization`,
-    name: "AvenIQ",
+    name: "ALTENO",
     url: absoluteUrl("/"),
     description:
       "AI automatizace firemních procesů pro menší a středně velké firmy.",

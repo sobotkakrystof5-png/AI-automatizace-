@@ -42,7 +42,7 @@ export default function OpengraphImage() {
             letterSpacing: -2,
           }}
         >
-          AvenIQ
+          ALTENO
         </div>
         <div
           style={{

@@ -10,11 +10,11 @@ import GlowCard from "@/components/motion/GlowCard";
 // specialista není součástí aktuální nabídky) a nikdo ho výslovně
 // nepotvrdil pro nové znění.
 // Repozice 2026-08-09 — hlas sjednocen do první osoby jednotného čísla.
-// „O nás"/„navazujeme" bylo v rozporu s tím, že AvenIQ je jednočlenný
+// „O nás"/„navazujeme" bylo v rozporu s tím, že ALTENO je jednočlenný
 // projekt, i s hranicí „já"/„my" v claude.md: tohle je osobní sekce, ne
 // značkové sdělení. Délka textu se ZÁMĚRNĚ nezkracuje — výjimka z
 // babička testu 2.0 pro tuhle sekci platí dál (potvrzeno 2026-08-05
-// i 2026-08-09), protože příběh Vizeon → ZakazIQ → AvenIQ nese
+// i 2026-08-09), protože příběh Vizeon → ZakazIQ → ALTENO nese
 // důvěryhodnost a jedna věta by ji vyprázdnila.
 //
 // Fáze 5 (2026-08-09): odkaz „Celý příběh →" doplněn — /o-mne existuje.
@@ -64,12 +64,12 @@ export default function About() {
               Fungoval tak dobře, že mělo smysl postavit na něm celou firmu.
             </p>
             <p>
-              Tak vznikl AvenIQ — navazuju na dva roky zkušeností s reálnými
+              Tak vznikl ALTENO — navazuju na dva roky zkušeností s reálnými
               klienty a přesouvám se z tvorby webů do AI automatizace celých
               firemních procesů.
             </p>
             <p>
-              Na AvenIQ zatím pracuju sám. Je to záměr, ne provizorium —
+              Na ALTENO zatím pracuju sám. Je to záměr, ne provizorium —
               vaši zakázku nikdo nepředá dál.
             </p>
             <p>
@@ -96,7 +96,7 @@ export default function About() {
             </blockquote>
             <figcaption className="mt-4 text-sm text-zinc-400">
               <cite className="not-italic">Kryštof Sobotka</cite> — zakladatel
-              AvenIQ
+              ALTENO
             </figcaption>
           </figure>
         </AnimatedSection>

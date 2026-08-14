@@ -42,13 +42,13 @@ function OpenAiMark({ className }: { className?: string }) {
   );
 }
 
-// Wordmark značky, ne vymyšlené logo — AvenIQ žádný samostatný symbol
+// Wordmark značky, ne vymyšlené logo — ALTENO žádný samostatný symbol
 // nemá (viz Navbar, kde je taky jen text). Tyrkysová je tu na místě:
 // označuje klíčové sdělení sekce, ne dekoraci.
-function AvenIqMark() {
+function AltenoMark() {
   return (
     <span className="rounded-full border border-brand-turquoise/40 bg-brand-turquoise/10 px-2.5 py-0.5 text-xs font-semibold tracking-tight text-brand-turquoise">
-      AvenIQ
+      ALTENO
     </span>
   );
 }
@@ -194,7 +194,7 @@ export default function WhyAutomation() {
               <span className="text-sm text-zinc-300">{MANUAL_LABEL}</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <AvenIqMark />
+              <AltenoMark />
               <span className="text-sm font-semibold text-zinc-50">
                 {AUTOMATED_LABEL}
               </span>
@@ -228,7 +228,7 @@ export default function WhyAutomation() {
                   role="columnheader"
                   className="flex items-center gap-2.5 px-6 pb-5 pt-6 text-sm font-semibold text-zinc-50"
                 >
-                  <AvenIqMark />
+                  <AltenoMark />
                   {AUTOMATED_LABEL}
                 </div>
               </div>

@@ -29,7 +29,7 @@ export default function Footer() {
     <footer className="border-t border-zinc-800 bg-zinc-900 text-zinc-50">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 sm:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-          <p className="text-lg font-semibold tracking-tight">AvenIQ</p>
+          <p className="text-lg font-semibold tracking-tight">ALTENO</p>
 
           <nav aria-label="Odkazy na stránky">
             <ul className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-zinc-400 sm:grid-cols-4">
@@ -64,7 +64,7 @@ export default function Footer() {
           </nav>
 
           <p className="text-xs text-zinc-400">
-            © {new Date().getFullYear()} AvenIQ
+            © {new Date().getFullYear()} ALTENO
           </p>
         </div>
 

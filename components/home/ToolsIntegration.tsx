@@ -4,7 +4,7 @@ import { automationTools } from "@/lib/automation-tools";
 
 // Redesign 2026-07-22 — dřív duplicitní se VerifiedSystems.tsx (stejná
 // komponenta kruhu, stejná data). Teď jiný obsah (nástroje, na kterých
-// AvenIQ staví automatizace, ne nástroje zákazníků) a jiný vizuální jazyk
+// ALTENO staví automatizace, ne nástroje zákazníků) a jiný vizuální jazyk
 // (horizontální marquee pás místo kruhu), ať sekce nesou dva odlišné
 // messagingy místo jednoho opakovaného.
 export default function ToolsIntegration() {

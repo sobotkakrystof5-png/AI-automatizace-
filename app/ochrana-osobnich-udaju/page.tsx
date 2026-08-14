@@ -6,9 +6,9 @@ import { pageMetadata } from "@/lib/page-metadata";
 export const metadata = {
   ...pageMetadata({
     path: "/ochrana-osobnich-udaju",
-    title: "Ochrana osobních údajů | AvenIQ",
+    title: "Ochrana osobních údajů | ALTENO",
     description:
-      "Zásady ochrany osobních údajů AvenIQ — dokument se připravuje a čeká na finální kontrolu advokátem.",
+      "Zásady ochrany osobních údajů ALTENO — dokument se připravuje a čeká na finální kontrolu advokátem.",
   }),
   robots: { index: false, follow: true },
 };

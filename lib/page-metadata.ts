@@ -25,7 +25,7 @@ export function pageMetadata({
       title,
       description,
       url: path,
-      siteName: "AvenIQ",
+      siteName: "ALTENO",
       locale: "cs_CZ",
       type: "website",
       images: ["/opengraph-image"],

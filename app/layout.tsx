@@ -17,7 +17,7 @@ import "./globals.css";
 // Popis nese frázi „rutinní procesy" záměrně: plán
 // (docs/plan-repozice-2026-08.md, sekce 5a) ji chce opakovat i mimo
 // sekci Poslání — v hero podnadpisu a meta description.
-const title = "AvenIQ — Vy řešíte byznys. Rutinu automatizujeme my.";
+const title = "ALTENO — Vy řešíte byznys. Rutinu automatizujeme my.";
 const description =
   "Automatizujeme menším a středně velkým firmám rutinní procesy, které je zdržují — od faktur po e-maily. Konzultace zdarma, odpověď do 24 hodin.";
 
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
-    siteName: "AvenIQ",
+    siteName: "ALTENO",
     locale: "cs_CZ",
     type: "website",
   },

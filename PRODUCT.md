@@ -33,7 +33,7 @@ rychle a nedočtou dlouhý odstavec.
 
 ## Product Purpose
 
-AvenIQ staví firmám automatizace, které jim vrací hodiny strávené
+ALTENO staví firmám automatizace, které jim vrací hodiny strávené
 opakovanou administrativou. Web má jediný úkol: srozumitelně ukázat, co
 automatizace znamená a jak spolupráce probíhá, a dovést návštěvníka k
 nezávaznému kontaktu. Úspěch = návštěvník bez technického zázemí pochopí
@@ -66,14 +66,14 @@ Tři slova: **srozumitelný, věcný, důvěryhodný**.
 
 ## Team Reality
 
-AvenIQ je zatím **jednočlenný projekt (Kryštof Sobotka)**. Žádná sekce,
+ALTENO je zatím **jednočlenný projekt (Kryštof Sobotka)**. Žádná sekce,
 copy ani vizuál nesmí předstírat větší tým — žádné „náš tým", „naši
 konzultanti" ani fotky smyšlených lidí.
 
 **Hranice „já" / „my"** (rozhodnuto 2026-08-09): první osoba jednotného
 čísla v osobních sekcích — O mně, pruh důvěry, kontakt („komunikujete
 přímo se mnou", „postavil jsem"). Množné číslo **jen tam, kde mluví
-AvenIQ jako značka** — Poslání, Služby, obecný popis nabídky. Značkové
+ALTENO jako značka** — Poslání, Služby, obecný popis nabídky. Značkové
 „my" není předstírání týmu; zakázané zůstává jen množné číslo, které
 tvrdí nebo naznačuje **konkrétní další lidi**.
 

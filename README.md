@@ -1,6 +1,6 @@
-# AvenIQ — marketingový web
+# ALTENO — marketingový web
 
-Marketingový web pro AvenIQ (AI automatizace pro menší a středně velké
+Marketingový web pro ALTENO (AI automatizace pro menší a středně velké
 firmy, zakladatel Kryštof Sobotka).
 
 ## Tech stack

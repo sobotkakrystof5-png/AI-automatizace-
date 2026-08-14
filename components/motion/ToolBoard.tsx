@@ -4,7 +4,7 @@ function cx(...classes: Array<string | false | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-// Deska plošných spojů — přehled nástrojů propojených přes AvenIQ.
+// Deska plošných spojů — přehled nástrojů propojených přes ALTENO.
 // Verze 2 (2026-08-10): rozšířeno z 19 na 44 nástrojů na žádost uživatele
 // („mřížku prohloubit, mřížky zúžit") a vizuálně povýšeno z prosté mřížky
 // na desku s hloubkou: tečkovaná textura pájecích bodů na podkladu,
@@ -158,7 +158,7 @@ function HubNode() {
           animace, takže nevyžaduje reduced-motion větev. */}
       <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-turquoise shadow-[0_0_6px_1px_var(--color-brand-turquoise)]" />
       <span className="text-xs font-semibold tracking-tight text-zinc-50 sm:text-lg">
-        AvenIQ
+        ALTENO
       </span>
     </li>
   );
@@ -180,7 +180,7 @@ export default function ToolBoard({ tools }: { tools: Tool[] }) {
           }}
         />
 
-        {/* Ambientní záře pod středem desky — zvýrazňuje uzel AvenIQ jako
+        {/* Ambientní záře pod středem desky — zvýrazňuje uzel ALTENO jako
             ohnisko (klíčový prvek, ne dekorace plošně). Velmi nízké krytí,
             prosvítá skrz průsvitné dlaždice. */}
         <div
@@ -192,7 +192,7 @@ export default function ToolBoard({ tools }: { tools: Tool[] }) {
           }}
         />
 
-        {/* Dvě sběrnice skrz střed desky. Uzel AvenIQ leží na jejich
+        {/* Dvě sběrnice skrz střed desky. Uzel ALTENO leží na jejich
             průsečíku (viz geometrie v hlavičce), takže vypadají, že z něj
             vycházejí — ale kreslí se vůči panelu, což drží na všech
             breakpointech bez dopočítávání. Dlaždice je překrývají (jsou

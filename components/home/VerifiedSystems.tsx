@@ -4,7 +4,7 @@ import { connectedTools } from "@/lib/tools";
 
 // Vizuál sekce přepracován 2026-08-10 na výslovnou žádost uživatele: místo
 // otáčejícího se kruhu log (ToolOrbit, smazán) je tu deska plošných spojů —
-// pojmenované dlaždice nástrojů propojené spoji, s uzlem AvenIQ uprostřed.
+// pojmenované dlaždice nástrojů propojené spoji, s uzlem ALTENO uprostřed.
 // Kruh nesl jen "hodně nástrojů", deska nese "vaše nástroje spolu mluví",
 // což je skutečné sdělení sekce.
 //

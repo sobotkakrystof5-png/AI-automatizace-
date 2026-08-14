@@ -28,9 +28,9 @@ import { pageMetadata } from "@/lib/page-metadata";
 //  4. Žádná cena, v žádné podobě.
 export const metadata = pageMetadata({
   path: "/o-mne",
-  title: "O mně | AvenIQ",
+  title: "O mně | ALTENO",
   description:
-    "Od tvorby webů ve Vizeonu k automatizaci firemních procesů. Proč AvenIQ vznikl a jak funguje ZakazIQ — systém, který jsem si postavil pro vlastní provoz.",
+    "Od tvorby webů ve Vizeonu k automatizaci firemních procesů. Proč ALTENO vznikl a jak funguje ZakazIQ — systém, který jsem si postavil pro vlastní provoz.",
 });
 
 export default function AboutPage() {
@@ -63,7 +63,7 @@ export default function AboutPage() {
           <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center">
             <Image
               src="/krystof-sobotka.jpeg"
-              alt="Kryštof Sobotka, zakladatel AvenIQ"
+              alt="Kryštof Sobotka, zakladatel ALTENO"
               width={1200}
               height={1600}
               sizes="128px"
@@ -180,7 +180,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-4 space-y-4 text-zinc-400">
             <p>
-              Tak vznikl AvenIQ. Navazuju na dva roky zkušeností s reálnými
+              Tak vznikl ALTENO. Navazuju na dva roky zkušeností s reálnými
               klienty a přesouvám se z tvorby webů do automatizace celých
               firemních procesů — pro menší a středně velké firmy.
             </p>

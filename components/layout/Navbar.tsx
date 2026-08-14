@@ -57,7 +57,7 @@ export default function Navbar() {
           href="/"
           className="text-lg font-semibold tracking-tight text-zinc-50"
         >
-          AvenIQ
+          ALTENO
         </Link>
 
         <nav

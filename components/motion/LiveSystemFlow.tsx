@@ -9,7 +9,7 @@ import {
 
 // Živá ukázka ZakazIQ (2026-08-05). Nahrazuje čísla typu "ušetřili jsme X
 // hodin", která zatím nejsou naměřená — místo tvrzení ukazuje tvar systému,
-// kterým zákazník reálně projde, než s AvenIQ vůbec promluví.
+// kterým zákazník reálně projde, než s ALTENO vůbec promluví.
 //
 // STAV 2026-08-09 (Fáze 4): zapojená v components/home/ZakazIq.tsx, kde
 // nese tok „jak to funguje". Předtím ji používala sekce Booking, která se

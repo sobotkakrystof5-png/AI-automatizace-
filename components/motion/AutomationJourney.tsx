@@ -23,7 +23,7 @@ import { connectedTools, type Tool } from "@/lib/tools";
 // Nová verze staví na principu „události, ne ambient": diagram žije v
 // diskrétních BĚZÍCH (objednávka projde systémem jako viditelná dávka dat),
 // mezi nimi jen klidný drift. Kabely se zapojují do portů na hranách uzlů,
-// jádro je konkrétní dlaždice AvenIQ, text kroků se prolíná (crossfade
+// jádro je konkrétní dlaždice ALTENO, text kroků se prolíná (crossfade
 // s blur — dva stavy se nesmí číst jako dva objekty přes sebe). Od kroku
 // SÍŤ běhy startují samy a spouštěč jde přehrát kliknutím — interaktivita,
 // ne jen pasivní film.
@@ -133,7 +133,7 @@ const BOX = 480;
 const CENTER = 240;
 
 // Finální "pipeline" rozložení: spouštěč vlevo → 4 uzly uprostřed → jádro
-// AvenIQ vpravo (trigger → paralelní větve → sloučení, jako ve skutečných
+// ALTENO vpravo (trigger → paralelní větve → sloučení, jako ve skutečných
 // workflow nástrojích).
 //
 // Svislý rozestup větví není volný: kostka je 64 px (±32 od středu) a pod
@@ -189,7 +189,7 @@ function bezierEdge(from: { x: number; y: number }, to: { x: number; y: number }
   return `M ${from.x} ${from.y} C ${from.x + dx} ${from.y}, ${to.x - dx} ${to.y}, ${to.x} ${to.y}`;
 }
 
-// 8 hran: spouštěč → každá ze 4 větví, každá větev → jádro AvenIQ
+// 8 hran: spouštěč → každá ze 4 větví, každá větev → jádro ALTENO
 // (fan-out + fan-in). Pořadí je důležité — hover interakce, časování
 // aktivace i běhy (viz `edgeConnectsToNode` a `fireRun`) na něm staví.
 const IN_EDGES = BRANCH_IN.map((b) => bezierEdge(TRIGGER_OUT, b));
@@ -231,9 +231,9 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-// Jádro AvenIQ jako konkrétní produktová dlaždice — nahrazuje dřívější
+// Jádro ALTENO jako konkrétní produktová dlaždice — nahrazuje dřívější
 // abstraktní fasetovou hvězdu s rotujícími prstenci, která četla jako
-// dekorace bez významu. Wordmark místo symbolu je záměr: AvenIQ žádné
+// dekorace bez významu. Wordmark místo symbolu je záměr: ALTENO žádné
 // samostatné logo nemá (stejný princip jako Navbar) a vymýšlet ho nesmíme.
 // Záře a dech (breathRef) řídí GSAP zvenku; `compact` je varianta pro
 // mobilní mini náhled, kde se nic neřídí scrollem.
@@ -263,7 +263,7 @@ function HubNode({
       <div ref={breathRef} className="relative h-full w-full">
         <div
           role="img"
-          aria-label="Jádro AvenIQ — sem se sbíhají všechny kroky"
+          aria-label="Jádro ALTENO — sem se sbíhají všechny kroky"
           className={cx(
             "relative flex h-full w-full flex-col items-center justify-center border border-zinc-700 bg-zinc-900",
             compact ? "gap-0 rounded-xl" : "gap-0.5 rounded-2xl"
@@ -279,7 +279,7 @@ function HubNode({
               compact ? "text-[10px]" : "text-sm"
             )}
           >
-            AvenIQ
+            ALTENO
           </span>
           {!compact && (
             <span className="relative font-mono text-[9px] uppercase tracking-widest text-zinc-400">
@@ -506,7 +506,7 @@ function DesktopJourney() {
         );
       });
 
-      // Jádro AvenIQ se v chaosu ještě "nezkrystalizovalo" — malé, tlumené,
+      // Jádro ALTENO se v chaosu ještě "nezkrystalizovalo" — malé, tlumené,
       // rozostřené — a naskočí na plnou přítomnost spolu s uzly: "systém
       // právě vznikl z chaosu".
       if (hubWrapperRef.current) {
@@ -1300,7 +1300,7 @@ function DesktopJourney() {
   );
 }
 
-// Kompaktní statická verze diagramu (spouštěč → 4 uzly → jádro AvenIQ) pro
+// Kompaktní statická verze diagramu (spouštěč → 4 uzly → jádro ALTENO) pro
 // mobil/reduced-motion — bez GSAP/scroll-pin (viz komentář u
 // `useIsDesktopViewport`), jen lehké CSS animace stejným principem jako
 // MiniProcessDiagram (pulz putující po spojnici), respektuje

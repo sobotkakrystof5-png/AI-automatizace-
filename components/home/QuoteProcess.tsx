@@ -32,7 +32,7 @@ import GlowCard from "@/components/motion/GlowCard";
 // 01–05 a Differentiators 1–4. Třetí číslovaná sekce na jedné stránce by
 // splývala; pořadí tu nese čtecí směr.
 //
-// Mluví se v „my" — nacenění je proces značky AvenIQ, ne osobní vyprávění
+// Mluví se v „my" — nacenění je proces značky ALTENO, ne osobní vyprávění
 // (claude.md, „Hranice ‚já' / ‚my'"). Stejný hlas jako ProcessSteps a Služby.
 const quoteSteps = [
   {

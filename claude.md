@@ -1,4 +1,13 @@
-# CLAUDE.md — AvenIQ web
+# CLAUDE.md — ALTENO web
+
+> **Rebrand 2026-08-14: projekt se jmenuje ALTENO, ne AvenIQ.** Starý název
+> je zrušený ve všem živém kódu i v odvozené dokumentaci (`README.md`,
+> `PRODUCT.md`, `DESIGN.md`, `AGENTS.md`). Pokud na „AvenIQ“ narazíš mimo
+> `docs/`, je to nedokončený úklid, ne platný stav. Naopak **v `docs/` je
+> starý název správně** — plánovací dokumenty jsou záznamy rozhodnutí v
+> čase a záměrně se zpětně nepřepisují. Podrobnosti rebrandu (assety loga,
+> naměřené barvy, otevřené body) drží
+> [`docs/rebrand-alteno-kontext.md`](docs/rebrand-alteno-kontext.md).
 
 Tento soubor platí pro **každou** interakci s tímto repozitářem, ne jen pro
 počáteční build. Čti ho jako trvalou provozní směrnici. Kickoff prompt (s
@@ -128,7 +137,7 @@ pravdy:
   agentury, malé a středně velké firmy, účetní a marketingové firmy a
   podobné obory" — ta zněla jako uzavřený výčet oborů. Změna vzešla z
   repozičního promptu, ne z domněnky.*
-- **Tým:** AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — žádná
+- **Tým:** ALTENO je zatím jednočlenný projekt (Kryštof Sobotka) — žádná
   sekce (např. "Náš tým") nemá předstírat víc lidí, než reálně existuje.
 - **ZakazIQ a VIZEON jsou vlastní projekty zakladatele, nikdy klientská
   reference (od 2026-08-09).** Platí pro copy, ikony, loga i structured
@@ -414,7 +423,7 @@ zjednodušení pojmů:
 - **Odstavce o více větách** se ve viditelné ploše homepage
   **neobjevují** — patří nanejvýš do rozkliknutého detailu nebo
   podstránky, ne do hlavního scrollu. **Výjimka: sekce „O nás"**
-  (`components/home/About.tsx`), kde příběh Vizeon → ZakazIQ → AvenIQ
+  (`components/home/About.tsx`), kde příběh Vizeon → ZakazIQ → ALTENO
   nese důvěryhodnost celé sekce a zkrácení na jednu větu by ji vyprázdnilo.
   Výjimku potvrdil uživatel 2026-08-05 po auditu, který rozpor mezi
   pravidlem a kódem odhalil — je to vědomé rozhodnutí, ne přehlédnutý dluh.
@@ -435,7 +444,7 @@ Web mluví dvěma hlasy a je to záměr, ne nedůslednost:
 - **První osoba jednotného čísla** v osobních sekcích — „O mně", pruh
   důvěry, kontakt. Sem patří „komunikujete přímo se mnou", „postavil jsem
   si to pro sebe", „nejsem agentura". Tohle je diferenciátor, ne skromnost.
-- **Množné číslo jen tam, kde mluví AvenIQ jako značka** — Poslání,
+- **Množné číslo jen tam, kde mluví ALTENO jako značka** — Poslání,
   Služby, obecný popis nabídky („Pomáháme firmám…").
 
 Značkové „my" **není** předstírání týmu a nekoliduje s pravidlem o
@@ -444,7 +453,7 @@ naznačuje **konkrétní další lidi** („náš tým", „naši konzultanti",
 „zeptejte se našich specialistů").
 
 Když si u nové věty nejsi jistý, do které kategorie patří, rozhodni podle
-toho, kdo je jejím mluvčím: člověk Kryštof → „já", firma AvenIQ → „my".
+toho, kdo je jejím mluvčím: člověk Kryštof → „já", firma ALTENO → „my".
 
 ## Design skilly (nainstalované 2026-08-05)
 
@@ -468,7 +477,7 @@ tady nebo v `@theme` bloku, musí se to promítnout i do nich.
 ### Priorita při konfliktu — případ od případu (rozhodnutí uživatele 2026-08-05)
 
 Tyto skilly mají vlastní silné názory na design a místy se bijí se
-zamčenou identitou AvenIQ (paleta R11, Tailwind v4 bez configu, čeština,
+zamčenou identitou ALTENO (paleta R11, Tailwind v4 bez configu, čeština,
 zákaz nových závislostí). Platí:
 
 - **Skill nikdy nemění paletu, fonty, stack ani obchodní tvrzení sám od
@@ -508,7 +517,7 @@ skutečná regrese, ne šum.
 - Podstránky `/automatizace/*` mají vlastní SEO titulek a meta popis odvozený
   z obsahu příslušné sekce — ne generický.
 - `/o-mne` (od 2026-08-09, Fáze 5) nese **plný** příběh Vizeon → kurzy →
-  ZakazIQ → AvenIQ. Sekce `About` na homepage zůstává schválně zkrácená a
+  ZakazIQ → ALTENO. Sekce `About` na homepage zůstává schválně zkrácená a
   odkazuje sem přes „Celý příběh →" — obojí se nesmí rozejít v tvrzeních.
   Celá stránka je v první osobě jednotného čísla a delší odstavce jsou tu
   povolené (je to detail, ne první kontakt). Odkazuje na ni patička

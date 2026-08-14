@@ -14,7 +14,7 @@ import LiveSystemFlow from "@/components/motion/LiveSystemFlow";
 //     slily by se do jednoho dlouhého pásu a předěl by zmizel.
 //
 // Obsah není nové obchodní tvrzení. Trojici vlastností a cíl CTA potvrdil
-// uživatel 2026-08-09; popisky pod nimi jsou psané k AvenIQ, ne převzaté
+// uživatel 2026-08-09; popisky pod nimi jsou psané k ALTENO, ne převzaté
 // z vizeon.cz doslova — stejný text na dvou vlastních doménách by si
 // konkuroval ve vyhledávání. Tok „jak to funguje" nese LiveSystemFlow,
 // který byl přesně pro tuhle sekci rezervovaný.
@@ -47,10 +47,10 @@ import LiveSystemFlow from "@/components/motion/LiveSystemFlow";
 // `tailwind.config.ts` toho repozitáře) + text „Zakaz" + „IQ" v tomto
 // webu vlastním fontu (Geist, ne nový serif — „v designu písma stránky",
 // jak zadal uživatel). Barvy loga jsou ZakazIQ vlastní identita, ne nový
-// akcent AvenIQ — stejná výjimka z `DESIGN.md` §2 jako u log nástrojů v
+// akcent ALTENO — stejná výjimka z `DESIGN.md` §2 jako u log nástrojů v
 // `ToolBoard.tsx`, která se řídí značkovými barvami cizích produktů, ne
 // paletou R11. Modrá tak zároveň vizuálně odlišuje ZakazIQ od tyrkysové
-// AvenIQ identity, což podporuje pravidlo „ZakazIQ nikdy jako reference".
+// ALTENO identity, což podporuje pravidlo „ZakazIQ nikdy jako reference".
 const vlastnosti = [
   {
     nazev: "Přímá komunikace",
@@ -117,7 +117,7 @@ export default function ZakazIq() {
               </p>
               <p className="mt-2 text-zinc-400">
                 Do systému se dostanete hned po objednání konzultace
-                přes AvenIQ.
+                přes ALTENO.
               </p>
 
               <ol className="mt-8 border-t border-zinc-800">

@@ -1,6 +1,6 @@
-# AvenIQ — trvalá pravidla pro Claude Code
+# ALTENO — trvalá pravidla pro Claude Code
 
-Toto jsou tvrdá pravidla z masterpromptu pro build webu AvenIQ. Platí po celou dobu buildu (fáze 0–10) a přežívají i kompresi/sumarizaci konverzace, protože se načítají znovu při každém tahu. Pokud si nejsi jistý copy textem, cenou nebo obchodní logikou, zastav se a zeptej se uživatele — nevymýšlej ani neparafrázuj.
+Toto jsou tvrdá pravidla z masterpromptu pro build webu ALTENO. Platí po celou dobu buildu (fáze 0–10) a přežívají i kompresi/sumarizaci konverzace, protože se načítají znovu při každém tahu. Pokud si nejsi jistý copy textem, cenou nebo obchodní logikou, zastav se a zeptej se uživatele — nevymýšlej ani neparafrázuj.
 
 Doslovné znění kickoff promptu (definice fází 0–10) je v
 [`docs/kickoff-prompt.md`](docs/kickoff-prompt.md) — před zahájením
@@ -15,11 +15,11 @@ ověř si tam rozsah fáze před jejím zahájením.
 Pracuj po fázích (viz masterprompt, sekce 11). Po dokončení každé fáze se **zastav**, shrň co jsi udělal, a počkej na výslovné potvrzení, než začneš další fázi. Nepokračuj automaticky dál, i kdyby ti to přišlo efektivnější — je to záměr, ne omezení schopnosti. Na konci každé fáze vždy uveď: (1) co jsi konkrétně udělal, (2) jaké předpoklady jsi musel udělat a že čekají na schválení, (3) co je otevřené/chybí doplnit. Pak se zeptej, jestli pokračovat.
 
 ## Cílová skupina a tým (aktualizováno 2026-08-09)
-Segment: **menší a středně velké firmy**. Účetnictví a reality jsou ukázkové příklady oborů, **ne uzavřená specializace** — copy se před ostatními obory (živnostníci, agentury, marketingové firmy) nesmí zavírat, ale nemá zůstávat ani obecné „pro všechny firmy". *Nahrazuje formulaci platnou 2026-07-17 až 2026-08-09 („živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory"), která zněla jako uzavřený výčet.* Tým: AvenIQ je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
+Segment: **menší a středně velké firmy**. Účetnictví a reality jsou ukázkové příklady oborů, **ne uzavřená specializace** — copy se před ostatními obory (živnostníci, agentury, marketingové firmy) nesmí zavírat, ale nemá zůstávat ani obecné „pro všechny firmy". *Nahrazuje formulaci platnou 2026-07-17 až 2026-08-09 („živnostníci, agentury, malé a středně velké firmy, účetní a marketingové firmy a podobné obory"), která zněla jako uzavřený výčet.* Tým: ALTENO je zatím jednočlenný projekt (Kryštof Sobotka) — nepředstírat víc lidí, než reálně existuje.
 
 ZakazIQ a VIZEON jsou **vlastní projekty zakladatele, nikdy klientská reference** (od 2026-08-09) — platí pro copy, loga i structured data. Žádné „klient", žádné hodnocení, žádné zařazení mezi reference; vlastnictví se přiznává výslovně („postavil jsem si"), ne jen vynecháním slova klient. Detaily viz `claude.md`, sekce „Cílová skupina a obsahová pravidla".
 
-Hlas: první osoba jednotného čísla v osobních sekcích (O mně, pruh důvěry, kontakt, ZakazIQ), množné číslo jen tam, kde mluví AvenIQ jako značka (Poslání, Služby). Značkové „my" není předstírání týmu; zakázané je množné číslo naznačující konkrétní další lidi („náš tým", „naši konzultanti"). Detaily viz `claude.md`, sekce „Hranice ‚já' / ‚my'".
+Hlas: první osoba jednotného čísla v osobních sekcích (O mně, pruh důvěry, kontakt, ZakazIQ), množné číslo jen tam, kde mluví ALTENO jako značka (Poslání, Služby). Značkové „my" není předstírání týmu; zakázané je množné číslo naznačující konkrétní další lidi („náš tým", „naši konzultanti"). Detaily viz `claude.md`, sekce „Hranice ‚já' / ‚my'".
 
 ## Design systém — tyrkysovo-mintová paleta (revize R11, 2026-07-22 — nahrazuje `brand.gold`/`brand.electric` rozhodnutí z 2026-07-21)
 | Token | Zdroj | Použití |

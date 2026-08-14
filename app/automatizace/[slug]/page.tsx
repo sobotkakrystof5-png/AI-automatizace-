@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return pageMetadata({
     path: `/automatizace/${area.slug}`,
-    title: `${area.seoTitle} | AvenIQ`,
+    title: `${area.seoTitle} | ALTENO`,
     description: area.lead,
   });
 }

@@ -1,7 +1,7 @@
 import { siN8n, siMake, siZapier, siClaude, siGooglegemini } from "simple-icons";
 import { openAiIconPath } from "./brand-icons";
 
-// Nástroje, na kterých AvenIQ reálně staví automatizace (odlišné od
+// Nástroje, na kterých ALTENO reálně staví automatizace (odlišné od
 // lib/tools.ts, což je seznam firemních nástrojů zákazníků) — zobrazené
 // jako horizontální pás v ToolsIntegration.tsx (redesign 2026-07-22).
 //

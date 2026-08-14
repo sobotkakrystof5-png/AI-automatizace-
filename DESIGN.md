@@ -1,5 +1,5 @@
 ---
-name: AvenIQ
+name: ALTENO
 description: Tyrkysovo-mintová identita (paleta R11) na tmavém zeleno-modrém gradientu. Zdrženlivý akcent, tmavé povrchy ze zinc škály, pohyb vždy s reduced-motion variantou.
 
 # POZOR: Zdrojem pravdy je `app/globals.css` (@theme blok) a `claude.md`
@@ -87,7 +87,7 @@ rounded:
   pill: "9999px"  # rounded-full — nejčastější, štítky a CTA
 ---
 
-# Design System: AvenIQ
+# Design System: ALTENO
 
 > **Autorita.** Tento soubor je **odvozený** z `app/globals.css` a
 > `claude.md` (sekce „Design systém", „Paleta R11"). Vznikl pro design

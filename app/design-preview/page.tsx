@@ -243,7 +243,7 @@ export default function DesignPreviewPage() {
             <div className="magic-aurora pointer-events-none absolute -inset-20" aria-hidden />
             <div className="relative">
               <p className="mb-3 text-sm font-medium uppercase tracking-wide text-zinc-400">
-                AvenIQ — AI automatizace
+                ALTENO — AI automatizace
               </p>
               <h3 className="mb-4 max-w-xl text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
                 Vy řešíte byznys. Rutinu automatizujeme my.
