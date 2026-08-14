@@ -26,6 +26,24 @@
           }
         ]
       }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/subagent-verify.mjs\"",
+            "timeout": 120,
+            "statusMessage": "Ověření práce subagenta"
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/subagent-format.mjs\"",
+            "timeout": 120,
+            "statusMessage": "Formátování změněných souborů"
+          }
+        ]
+      }
     ]
   }
 }
