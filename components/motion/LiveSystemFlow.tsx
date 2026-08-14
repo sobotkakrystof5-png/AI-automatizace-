@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   CheckIcon,
   ChatIcon,
@@ -24,7 +25,16 @@ import {
 //
 // Diagram je `aria-hidden` — celé sdělení nese souběžný textový popis pod
 // ním, takže odečítač nečte změť názvů uzlů.
-
+//
+// Layout (2026-08-12): dřív jediná svislá varianta omezená na `max-w-md`
+// (448px) a vystředěná — uvnitř sekce ZakazIQ (max-w-5xl, ~960px) to na
+// desktopu nechávalo velké prázdné okraje po stranách, přesně ten dojem
+// „volných míst", který uživatel žádal odstranit. Od `sm` výš teď běží
+// vodorovná varianta přes celou šířku sekce; svislá zůstává pro mobil, kde
+// by tři karty vedle sebe byly příliš úzké na čtení. Vodorovný puls
+// používá `animate-flow-pulse` (bez `-y`), stejnou třídu jako
+// `MiniProcessDiagram.tsx` — ta v `@theme` bloku globals.css už existovala
+// jako vodorovná varianta, takže nepřibylo žádné nové CSS.
 type Uzel = {
   ikona: typeof GearIcon;
   popisek: string;
@@ -52,7 +62,22 @@ const VRSTVY: Array<{ stitek: string; uzly: Uzel[] }> = [
   },
 ];
 
-function Spojnice() {
+function Uzly({ uzly }: { uzly: Uzel[] }) {
+  return (
+    <div className="mt-3 flex items-center justify-center gap-3">
+      {uzly.map(({ ikona: Ikona, popisek }) => (
+        <div key={popisek} className="flex flex-1 flex-col items-center gap-2">
+          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950">
+            <Ikona className="h-5 w-5 text-brand-turquoise" />
+          </span>
+          <span className="text-xs text-zinc-400">{popisek}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SpojniceSvisla() {
   return (
     <div className="relative mx-auto h-10 w-px bg-zinc-700">
       <div className="absolute inset-0 overflow-hidden">
@@ -66,33 +91,54 @@ function Spojnice() {
   );
 }
 
+function SpojniceVodorovna() {
+  return (
+    <div className="relative h-px w-10 shrink-0 self-center bg-zinc-700 md:w-14">
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Stejný princip jako u svislé spojnice a jako v
+            MiniProcessDiagram.tsx, jen po ose X. */}
+        <div className="animate-flow-pulse absolute inset-0">
+          <div className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-brand-turquoise shadow-[0_0_8px_2px_var(--color-brand-turquoise)]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LiveSystemFlow() {
   return (
-    <div className="mx-auto max-w-md">
+    <div>
       <div aria-hidden="true">
-        {VRSTVY.map((vrstva, i) => (
-          <div key={vrstva.stitek}>
-            {i > 0 && <Spojnice />}
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
-                {vrstva.stitek}
-              </p>
-              <div className="mt-3 flex items-center justify-center gap-3">
-                {vrstva.uzly.map(({ ikona: Ikona, popisek }) => (
-                  <div
-                    key={popisek}
-                    className="flex flex-1 flex-col items-center gap-2"
-                  >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950">
-                      <Ikona className="h-5 w-5 text-brand-turquoise" />
-                    </span>
-                    <span className="text-xs text-zinc-400">{popisek}</span>
-                  </div>
-                ))}
+        {/* Mobil: karty pod sebou, spojnice svislé (beze změny). */}
+        <div className="mx-auto max-w-md sm:hidden">
+          {VRSTVY.map((vrstva, i) => (
+            <div key={vrstva.stitek}>
+              {i > 0 && <SpojniceSvisla />}
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
+                <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
+                  {vrstva.stitek}
+                </p>
+                <Uzly uzly={vrstva.uzly} />
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* `sm` a výš: karty vedle sebe přes celou šířku sekce, spojnice
+            vodorovné — viz komentář nahoře. */}
+        <div className="hidden sm:flex sm:items-stretch">
+          {VRSTVY.map((vrstva, i) => (
+            <Fragment key={vrstva.stitek}>
+              {i > 0 && <SpojniceVodorovna />}
+              <div className="min-w-0 flex-1 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
+                <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-400">
+                  {vrstva.stitek}
+                </p>
+                <Uzly uzly={vrstva.uzly} />
+              </div>
+            </Fragment>
+          ))}
+        </div>
       </div>
 
       {/* Hlas sjednocen do 1. os. j. č. (Fáze 4). Dřív „náš provoz / bez

@@ -26,8 +26,9 @@ export default function Hero() {
             <span className="block text-zinc-400">Rutinu automatizujeme my.</span>
           </h1>
           <p className="max-w-xl text-xl font-medium text-zinc-200 sm:text-2xl">
-            Postavil jsem si vlastní automatizační systém. Teď stejné
-            know-how nabízím menším a středně velkým firmám.
+            Pomáháme firmám soustředit se na to, co má pro jejich byznys
+            skutečně smysl — odebíráme jim rutinní procesy, které za ně
+            zvládne automatizace.
           </p>
           {/* TODO: přepnout na ZAKAZIQ_BOOKING_URL, až bude k dispozici */}
           {/* Jednotná vstupní nabídka celého webu (rozhodnutí 2026-08-05).

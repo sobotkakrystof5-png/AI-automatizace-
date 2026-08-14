@@ -21,41 +21,36 @@ import LiveSystemFlow from "@/components/motion/LiveSystemFlow";
 //
 // Popisky jsou od 2026-08-09 ověřené proti reálnému screenshotu
 // (`public/zakaziq-ukazka.png`), ne odvozené — každý pojmenovává prvek,
-// který je na obrazovce vidět. Kdo je bude měnit, ať se na obrázek
-// podívá: text a důkaz si nesmí odporovat, i když teď (viz níže) stojí
-// nad sebou, ne vedle sebe jako dřív.
+// který je na obrazovce vidět.
 //
-// „Přehled" původně (téhož dne, před dodáním screenshotu) zněl
-// „Rezervace i termíny pohromadě". Obrázek ukázal, že karta sleduje
-// postup zakázky v procentech a datum aktualizace, ne kalendář — popisek
-// se opravil podle důkazu. Je to varování do budoucna: odvození
-// z okolního copy nestačí tam, kde vedle stojí screenshot.
+// Layout (2026-08-12, třetí iterace): uživatel poslal aktuální snímky
+// zakaziq.cz (vertikální seznam vlastností s dělicími linkami vlevo,
+// vysoký screenshot vpravo) a vyžádal si přestavbu podle nich — hlavní
+// vada dřívější verze byla vizuální prázdnota: krátký dvouřádkový text
+// vedle zmenšeného obrázku (max 280px) nechával v pravém sloupci velkou
+// nevyužitou plochu a diagram „Jak to funguje" (LiveSystemFlow) byl
+// omezený na `max-w-md` a na širokých obrazovkách se ztrácel uprostřed
+// sekce s prázdnými okraji po stranách. Řešení: úvodní text a trojice
+// vlastností se spojily do jednoho levého sloupce (dělicí linky, číslo ve
+// stylu `Services.tsx` — `font-mono text-xs text-zinc-600`, žádný nový
+// vizuální vzor), screenshot se zvětšil na šířku celého sloupce místo
+// pevného stropu a LiveSystemFlow dostal vodorovnou variantu pro `sm+`
+// (viz komentář v `LiveSystemFlow.tsx`), aby na desktopu využil celou
+// šířku sekce místo úzkého vystředěného pruhu.
 //
-// Layout (2026-08-10): přestavěno podle hierarchie na vizeon.cz — ten
-// samý produkt tam má vlastní sekci se třemi očíslovanými vlastnostmi
-// v řadě NAD screenshotem, místo dřívějších dvou sloupců vedle sebe.
-// Nejdřív se přečtou tři tvrzení, pak přijde důkaz. Očíslované odznaky
-// přebírají vizuální slovník `ProcessSteps.tsx` (kruh, `font-mono`,
-// `pad()`), ne nový vzor — ten na webu už existuje a trojice tady není
-// sekvenční proces, proto bez spojnice a bez zvýraznění aktivního
-// kroku. CTA zůstává tyrkysové pilulkové tlačítko podle zbytku webu,
-// ne vizeonův podtržený odkaz se šipkou — přebírání cizího stylu CTA
-// by rozbilo konzistenci se zbytkem homepage.
-//
-// Doplněno (2026-08-10, druhá iterace): obrázek zmenšený a přesunutý
-// doprava, vlevo k němu přibyl krátký odstavec vysvětlující, co
-// ZakazIQ je a jak se do něj klient dostane — na výslovné přání
-// uživatele, doplněk k trojici nahoře, ne náhrada (popisky pod
-// jednotlivými vlastnostmi zůstávají). Věta záměrně jmenuje AvenIQ, ne
-// VIZEON — potvrzeno uživatelem po dotazu, protože VIZEON není na
-// tomhle webu nikde představený. Text je zkrácený na dvě krátké věty
-// místo jednoho delšího souvětí z uživatelova podkladu („inspiruj se“,
-// ne doslovné znění) kvůli pravidlu o víceřetých odstavcích v hlavním
-// scrollu homepage (viz „Jazykový standard“ v claude.md). Věta „přes
-// AvenIQ se automaticky dostanete do systému“ je v mírném napětí s CTA
-// níže („Stejný princip umím postavit i pro vaši firmu“, které dřív
-// naznačovalo, že klienti AvenIQ dostanou obdobu, ne přímo ZakazIQ) —
-// otevřený bod ke zvážení, ne oprava provedená mnou.
+// Logo (2026-08-12): rastrový `/zakaziq-logo.png` (černé pozadí,
+// wordmark vypálený v pixelech) nahrazen skutečným nadpisem — ikona
+// kreslená přímo v JSX (čtyři bílé čtverečky ve 2×2 mřížce, stejná
+// geometrie jako ikona „LayoutGrid" v produkčním ZakazIQ dashboardu,
+// `components/HubSidebarNav.tsx` v repozitáři ZakazIQ) na tmavě modrém
+// podkladu (`#2b57a8` → `#1b3868`, doslovné `brand-600`/`brand-800` z
+// `tailwind.config.ts` toho repozitáře) + text „Zakaz" + „IQ" v tomto
+// webu vlastním fontu (Geist, ne nový serif — „v designu písma stránky",
+// jak zadal uživatel). Barvy loga jsou ZakazIQ vlastní identita, ne nový
+// akcent AvenIQ — stejná výjimka z `DESIGN.md` §2 jako u log nástrojů v
+// `ToolBoard.tsx`, která se řídí značkovými barvami cizích produktů, ne
+// paletou R11. Modrá tak zároveň vizuálně odlišuje ZakazIQ od tyrkysové
+// AvenIQ identity, což podporuje pravidlo „ZakazIQ nikdy jako reference".
 const vlastnosti = [
   {
     nazev: "Přímá komunikace",
@@ -86,60 +81,35 @@ export default function ZakazIq() {
           <p className="font-mono text-xs uppercase tracking-widest text-brand-turquoise">
             Vlastní projekt
           </p>
-          {/* Nadpis nese přímo logo produktu, ne vysázený text. Wordmark
-              „ZakazIQ" je součástí obrázku, takže psaný nadpis vedle něj
-              by tu stejnou věc řekl dvakrát. Přístupný název drží `alt` —
-              pro odečítač je to pořád normální nadpis druhé úrovně.
-              Podklad loga je téměř černý; `mix-blend-screen` ho na tmavém
-              pozadí sekce potlačí, aby kolem nevznikl viditelný obdélník. */}
-          <h2 className="mt-4">
-            <Image
-              src="/zakaziq-logo.png"
-              alt="ZakazIQ"
-              width={742}
-              height={438}
-              sizes="176px"
-              className="h-20 w-auto mix-blend-screen sm:h-24"
-            />
+          {/* Nadpis je od 2026-08-12 skutečný text, ne obrázek — ikona
+              vedle něj je čistě dekorativní (`aria-hidden`), přístupný
+              název nese `ZakazIQ` samotné. */}
+          <h2 className="mt-4 flex items-center gap-3">
+            <span
+              aria-hidden
+              className="grid h-11 w-11 shrink-0 grid-cols-2 grid-rows-2 gap-1 rounded-xl bg-gradient-to-br from-[#2b57a8] to-[#1b3868] p-2 sm:h-12 sm:w-12"
+            >
+              <span className="rounded-[2px] bg-white" />
+              <span className="rounded-[2px] bg-white" />
+              <span className="rounded-[2px] bg-white" />
+              <span className="rounded-[2px] bg-white" />
+            </span>
+            <span className="text-3xl font-semibold tracking-tight sm:text-4xl">
+              <span className="text-zinc-50">Zakaz</span>
+              <span className="text-[#5c8dd3]">IQ</span>
+            </span>
           </h2>
           <p className="mt-4 max-w-2xl text-zinc-400">
             Automatizace, kterou jsem postavil pro sebe — a teď běží 24/7.
           </p>
         </AnimatedSection>
 
-        {/* Tři vlastnosti v řadě, ne ve sloupci — čtou se jako rychlý
-            přehled ještě předtím, než přijde na řadu obrázek. Odznaky jsou
-            `aria-hidden`: pořadí je vizuální, ne informace navíc k
-            nadpisu, stejně jako u `ProcessSteps.tsx`. */}
-        <ol className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
-          {vlastnosti.map((vlastnost, i) => (
-            <li key={vlastnost.nazev}>
-              <AnimatedSection delay={i * 0.08}>
-                <span
-                  aria-hidden
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700 font-mono text-sm font-semibold text-zinc-400"
-                >
-                  {pad(i + 1)}
-                </span>
-                <h3 className="mt-3 text-lg font-semibold text-zinc-50">
-                  {vlastnost.nazev}
-                </h3>
-                <p className="mt-2 text-sm text-zinc-400">
-                  {vlastnost.popis}
-                </p>
-              </AnimatedSection>
-            </li>
-          ))}
-        </ol>
-
-        {/* Text vlevo, zmenšený screenshot vpravo (2026-08-10, na
-            výslovné přání uživatele — viz komentář nahoře). Krátký
-            text a menší obrázek mají podobnou výšku, proto
-            `items-center`: u předchozí verze (delší seznam vs. vysoký
-            portrétový screenshot) by `items-start` nechalo pod textem
-            velkou prázdnou plochu. */}
-        <AnimatedSection delay={0.24}>
-          <div className="mt-14 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-10">
+        {/* Levý sloupec spojuje úvodní text a trojici vlastností do
+            jednoho bloku (dřív dvě oddělené řady s velkou prázdnou plochou
+            kolem zmenšeného obrázku), pravý sloupec nese screenshot přes
+            celou šířku sloupce — viz komentář nahoře. */}
+        <AnimatedSection delay={0.1}>
+          <div className="mt-12 grid grid-cols-1 items-start gap-10 sm:grid-cols-2 sm:gap-12">
             <div>
               <p className="text-zinc-400">
                 ZakazIQ je komunikační a rezervační systém, který
@@ -149,12 +119,38 @@ export default function ZakazIq() {
                 Do systému se dostanete hned po objednání konzultace
                 přes AvenIQ.
               </p>
+
+              <ol className="mt-8 border-t border-zinc-800">
+                {vlastnosti.map((vlastnost, i) => (
+                  <li
+                    key={vlastnost.nazev}
+                    className="border-b border-zinc-800 py-5"
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span
+                        aria-hidden
+                        className="font-mono text-xs text-zinc-600"
+                      >
+                        {pad(i + 1)}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-semibold text-zinc-50">
+                          {vlastnost.nazev}
+                        </h3>
+                        <p className="mt-1 text-sm text-zinc-400">
+                          {vlastnost.popis}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
 
             {/* Screenshot je jediný tvrdý důkaz na celé stránce — proto
-                i zmenšený zůstává vlastní figurou s popiskem, ne
-                dekorací. Světlé UI na tmavé stránce svítí samo o sobě,
-                žádné zvýraznění navíc nepotřebuje.
+                zůstává vlastní figurou s popiskem, ne dekorací. Šířka teď
+                sleduje celý sloupec (dřív pevný strop 280px), aby
+                nevznikala prázdná plocha vedle textu.
 
                 `alt` popisuje, co je na obrazovce vidět, ne že jde
                 o screenshot — odečítač jinak dostane informaci, která
@@ -167,7 +163,7 @@ export default function ZakazIq() {
                 Kdyby se obrázek někdy vyměňoval, tohle musí platit
                 dál — screenshot s cizími osobními údaji na web
                 nepatří. */}
-            <figure className="m-0 ml-auto w-full max-w-[240px] sm:max-w-[280px]">
+            <figure className="m-0 w-full">
               {/* Bez vlastního rámečku a zaoblení: obrázek si zaoblené
                   rohy nese sám a v jejich výřezu má tmavou výplň
                   (9,11,15) — prakticky totožnou s pozadím stránky.
@@ -179,7 +175,7 @@ export default function ZakazIq() {
                 alt="Karta projektu v ZakazIQ: jméno zadavatele, jeho zadání, stav „Nová“, ukazatel postupu prací, hodnocení na škále 1–10 a pole pro zpětnou vazbu."
                 width={902}
                 height={1276}
-                sizes="(min-width: 640px) 280px, 240px"
+                sizes="(min-width: 640px) 456px, 100vw"
                 className="h-auto w-full"
               />
               <figcaption className="mt-4 text-sm text-zinc-400">
